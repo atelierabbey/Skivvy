@@ -1,0 +1,33 @@
+/*
+Theme Name:		D4 BaseTheme
+Theme URI:		http://www.d4webdesign.com
+Description:	Wordpress Theme by D4 Web Design
+Author:			D4 Web Design
+Version:		2012-November-9
+Author URI:		http://www.d4webdesign.com
+*/
+@import "inc/functions.css";
+
+.clear {clear:both;height:0;width:0;padding:0;margin:0;}
+
+
+/* Header */
+
+#header {}
+#logo {}
+
+
+
+/* Navigation styles */
+/* Tier 1 */
+#access {}
+#access .menu {}
+#access .menu a{white-space:nowrap;}
+#access .menu li {}
+#access .menu li:hover {}
+#access .menu li a {}
+/* Tier 2 */
+#access .menu ul {}
+#access .menu ul li{}
+#access .menu ul li:hover{}
+#access .menu ul li a{}

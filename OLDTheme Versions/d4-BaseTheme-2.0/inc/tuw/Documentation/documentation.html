@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Twitter Updates Widget by Creavità Studios</title>
+
+	<link rel="stylesheet" href="inc/blueprint.css" type="text/css" media="screen, projection">
+</head>
+
+<body>
+
+	<div class="container">  
+		<h1>Twitter Updates Widget</h1>
+		<hr>
+		<h2 class="alt">This is a great script for showing your latest tweets.</h2>
+
+		<hr>
+
+
+
+		<div class="span-15 prepend-1 colborder">
+			<h3 id="features">Features</h3>
+			
+			<p>With this widget, you can show your latest tweets on your website. Create your own widget with its great customizability.
+			<br>
+			<ul>
+			<li>Display tweets from a <span class="important">search</span>, or a <span class="important">list</span> or <span class="important">account(s)'s feeds</span>!</li>
+			<li>Supports <span class="important">multi-account</span></li>
+			<li>A simple theme for minimalism-fans!</li>
+			<li>It's <span class="important">fully customizable</span></li>
+			<li>Auto-linking mentions, hashtags and urls</li>
+			<li><span class="important">1-minute-install!</span></li>
+			<li>Powered by jQuery</li>
+			<li>Choose from <span class="important">two themes</span>, <span class="important">7 color styles</span> (blue, dark blue, green, red, gray, black&white, orange), <span class="important">4 icon styles</span> (twitter birds and logos), <span class="important">3 effects</span> (fade, slide, none)</li>
+			<li>Auto-scroller</li>
+			<li>Options to display the username, avatar, time, and arrows to scroll to the next tweet</li>
+			</ul>
+			</p>
+			<br><br>
+			
+			<hr>
+						
+			<h3 id="installation">Installation</h3>
+			<p>After copying <code>tuw-inc</code> folder to your server; there are two steps for installation. Also you can look over <strong>examples</strong> in the examples folder</p>
+			<h4><u>Step #1</u></h4>
+			<p>Create a <code>div</code> (or any HTML element) to where you want to add the widget. <strong>Or just Copy and Paste the following code.</strong></p>
+			<p class="code">&lt;div id='tuw_div'&gt;&lt;/div&gt;</p>
+			<br>
+			<h4><u>Step #2</u></h4>
+			<p>Here's the last and important part: Creating our widget. You can add the <strong>simple</strong> version which is really short to add the widget with default settings or the <strong>advanced</strong> version for customization so you can create your own widget with many options!</p>
+			<h6>Simple Installation Code</h6>
+			<pre class="code">
+&lt;!-- Setting "Twitter Updates Widget" Up --&gt;
+	&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+
+	&lt;script type="text/javascript" language="Javascript" src="<strong>tuw-inc/jquery.tuw.js</strong>"&gt;&lt;/script&gt;
+	&lt;link rel="stylesheet" href="<strong>tuw-inc/style.css</strong>" type="text/css" media="screen" /&gt;
+	&lt;script type="text/javascript" language="Javascript"&gt;
+		$(document).ready(function(){
+			$('#tuw_div').tuw();
+		});
+&#09;&lt;/script&gt;
+&lt;!-- This is it --&gt;</pre><br>
+			<h6>Advanced Installation Code</h6>
+			<pre class="code">
+&lt;!-- Setting "Twitter Updates Widget" Up --&gt;
+	&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"&gt;&lt;/script&gt;
+
+	&lt;script type="text/javascript" language="Javascript" src="<strong>tuw-inc/jquery.tuw.js</strong>"&gt;&lt;/script&gt;
+	&lt;link rel="stylesheet" href="<strong>tuw-inc/style.css</strong>" type="text/css" media="screen" /&gt;
+	&lt;script type="text/javascript" language="Javascript"&gt;
+		$(document).ready(function(){
+			settings = {
+				'username' : ['ebuyukkaya'],
+				'simpletheme' : false, 	
+				'updates' : 5, 				
+				'list' : null,				
+				'query' : null,				
+				'color' : 'blue', 			
+				'openbox' : true,	 		 
+				'icon' : '1', 			
+				'autonext' : false,				
+				'duration' : 5000,					
+				'linksinnewpage' : false,		
+				'showavatar' : true,				
+				'showusername' : true,			
+				'showdate' : true,					
+				'singlepostmode' : false,		
+				'effect' : 'slide',	
+				'defaultPicture' : 'http://s.twimg.com/a/1281028705/images/default_profile_6_normal.png',
+				'loadingText' : "Loading tweets..."
+			}
+			$('#tuw_div').tuw(settings);
+		});
+&#09;&lt;/script&gt;
+&lt;!-- This is it --&gt;</pre>
+			<p>Here's the options list for customization</p>
+			<table border="0" width="100%">
+				<thead>
+				<tr>
+					<td class="ik" style="background: #eee" width="20%"><strong>Option</strong></td>
+					<td style="background: #eee; border-left:5px solid white"><strong>Description</strong></td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						username
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[string] Username of the twitter user.
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						simpletheme
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[boolean] Simpler, more minimalist and static version of the script.
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f4f4f4">
+						updates
+						</td>
+					<td style="background: #f4f4f4; border-left:5px solid white">
+						[integer] Number of statuses to be got - Default '5'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						list
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[string] List name of the selected username
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						query
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[string] Search query
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						color
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[string] The color scheme -  <strong>blue</strong>, <strong>db</strong>, <strong>grey</strong>, <strong>green</strong>, <strong>orange</strong>, <strong>red' or <strong>bw</strong> - Default 'blue'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f4f4f4">
+						openbox
+						</td>
+					<td style="background: #f4f4f4; border-left:5px solid white">
+						[boolean] The box is open or close at the beginning - Default 'true'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						icon
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[integer] You can change the icon in the header of the widget from 1 to 4 - Default '1'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						autonext
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[boolean] Option for opening sliding to older tweets automatically. - Default 'false'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f4f4f4">
+						duration
+						</td>
+					<td style="background: #f4f4f4; border-left:5px solid white">
+						[integer] The time between auto-scrolls in milliseconds - Default '5000'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						linksinnewpage
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[boolean] Option for opening all links on the widget in the same page or in a new one. - Default 'false'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f4f4f4">
+						showavatar
+						</td>
+					<td style="background: #f4f4f4; border-left:5px solid white">
+						[boolean] Option for displaying user's avatar or not - Default 'true'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						showusername
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[boolean] Option for displaying username in the header or not - Default 'true'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						showdate
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[boolean] Option for displaying tweets' dates or not - Default 'true'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f4f4f4">
+						singlepostmode
+						</td>
+					<td style="background: #f4f4f4; border-left:5px solid white">
+						[boolean] In this mode, only the last update will be displayed - Default 'false'
+					</td>
+				</tr>
+				<tr>
+					<td class="ik" style="background: #f9f9f9">
+						effect
+					</td>
+					<td style="background: #f9f9f9; border-left:5px solid white">
+						[string] The effect used for opening and closing the box. - <strong>slide</strong>, <strong>fade</strong> or <strong>none</strong> - Default 'slide'
+					</td>
+				</tr>
+				</thead>
+			</table>
+			
+			
+			
+			<br>
+			
+		<h3 id="changelog">Changelog</h3>
+		<pre class="code">
+<b>25 AUGUST 2010</b>
+* Fixed bugs about time parsing and design corruption in some browsers.
+<b>18 AUGUST 2010</b>
+* v1.0 is released
+		</pre>
+		
+			
+		</div>
+    <div class="span-7 last">
+			
+			<h3>Navigation</h3>
+			<h5><a href="#features">&rarr; Features</a></h5>
+			<h5><a href="#installation">&rarr; Installation</a></h5>
+			<h5><a href="#changelog">&rarr; Changelog</a></h5>
+			<br>
+			
+			<h3>About <span class="alt">Creavità Studios</span></h3>
+
+			<p>We are a web design & development agency based in Turkey. We use latest web development techniques and create templates, logos and identity designs. We create easy-to-install, lightweight scripts and plugins for various systems.</p>
+
+			<h5>WARNING</h5>
+			<p class="incr">This script is only being sold in <a href="http://codecanyon.net">codecanyon.net</a> and <strong>can not be sold</strong> by any other ways.</p>
+		
+		</div>
+
+		
+		<hr>
+		<h2 class="alt">Thanks for buying! Follow us <a href="http://www.creavitastudios.com">Creavita Studios</a> <img src="inc/logo.jpg" style="float:right" /></h2>
+		<hr>
+
+	</div>
+
+</body>
+</html>

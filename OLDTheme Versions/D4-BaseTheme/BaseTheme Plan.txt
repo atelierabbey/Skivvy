@@ -1,0 +1,65 @@
+
+---- Built in features ----
+Slider (+admin section) Jcycle
+Featured img masthead div
+Built in shadowbox
+Shortcodes (one third, socialmedia) 
+if home do this, else do that
+Two Level dropdown menu (Walker menu, Hopkins)
+Body class from page type & page slug (class="about page")
+JS rollover 
+Javascript Browser Detector for CSS troubleshooting
+Consolidated CSS reset & JS files/folders
+Admin area slider editor 
+Slider short code/ PHP code (Function: Order by number not date)
+News widget category selector (pro-soil) or custom recent post widget
+AddThis/Sharethis shortcode
+
+Database error warning page
+Automatic sitemap page template
+D4 Coming Soon
+
+
+---- Admin console ----
+Social media, Phone Number, Address, Email, Logo(defaults to D4, but replaces) (Fresh start, doover(leap forward))
+
+---- Optional Plug ins ----
+Turn off <p> /post
+Custom Sidebar (Javier Marque)
+Widgets on page
+Contact Form 7 + Really simple captcha
+Ultimate Coming soon
+Set User privleges (Ebara)
+D4 - Style Admin area
+D4 - Testimonials
+D4 - Admin Area - Move Widget & Menu for Customer's CMS
+
+
+
+--- Theme files ---
+Theme
+   Includes
+     D4.CSS (CSS Reset)
+     D4.js
+     functions.php
+     loop.php
+   Coming-soon.php
+   Style.css (blank, D4 theme reference, import D4.css)
+   page.php
+   
+
+
+--- DONE ---
+Added Analytics.php & included it in the footer
+Remove unneeded admin items (for customer CMS)
+Dynamic Copyright footer
+built-in Log-in logo function
+built-in logo function
+CSS - Image border = 0
+Gave editors custom access
+Commented out Twenty ten header & background functions to reduce editor confusions
+Custom Login with D4 logo (interchange with customers)
+Added Ability to randomize and limit number of slides per page
+Adds ID tag to detect Browser and OS to troubleshoot CSS & work with JS files
+Seperate file to check and paste Analytics code that is automatically added before closing body tag.
+Made 'closed comments' message silent if closed.
