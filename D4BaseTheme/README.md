@@ -1,3 +1,8 @@
+// 6Mar13 - Github addition
+   Uploaded current state to github
+   moved and renamed inc/doc.txt to README.txt
+
+
 // 25Feb13 - Minor Update
   sidebar_register.php
   	changed "Foot" to "Footer"
