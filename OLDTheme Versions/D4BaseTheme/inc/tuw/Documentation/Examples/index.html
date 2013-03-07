@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Twitter Updates Widget - Examples</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<style type="text/css">
+	<!--
+	html { background: url(images/bg.jpg); }
+	#container { width: 650px;margin: 0 auto;color: white;font-family: Arial;font-size: 14px; }
+	#col1 { float: left;width: 300px; }
+	#col2 { float: right;width: 300px; }
+	#col2 a { color: #cccccc; }
+	-->
+	</style>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" language="Javascript" src="../tuw-inc/jquery.tuw.js"></script>
+	<link rel="stylesheet" href="../tuw-inc/style.css" type="text/css" media="screen" />
+	<script type="text/javascript" language="Javascript">
+		$(document).ready(function(){
+			// First widget
+			var settings = {
+				'color' : 'db',
+				'updates' : 10,
+				'query' : '#design'
+			}
+			$('#widget-will-be-here').tuw(settings);
+			
+			// Second widget
+			var newSettings = {
+				'color' : 'red',
+				'updates' : 10,
+				'username' : ['ebuyukkaya','atakanseckin']
+			}
+			$('#another-widgets-id').tuw(newSettings);
+			
+			// Third widget
+			var newSettings = {
+				'color' : 'grey',
+				'updates' : 10,
+				'username' : ['smashingmag'],
+				'list' : 'smashing-network'
+			}
+			$('#third-widget').tuw(newSettings);
+			
+			// Simple widget
+			var newSettings = {
+				'simpletheme' : true,
+				'updates' : 8,
+				'username' : ['ebuyukkaya','atakanseckin']
+			}
+			$('#simple-widget').tuw(newSettings);
+		});
+	</script>
+</head>
+<body>
+	<div id="container">
+			<div id="col1">
+			Search results of <u>#design</u><br /><br />
+			<div id="widget-will-be-here"></div>
+			<br />Feed of <u>@ebuyukkaya</u> and <u>@atakanseckin</u><br /><br />
+			<div id="another-widgets-id"></div>
+			<br />Feed of the list "" or <u>@smashingmag</u><br /><br />
+			<div id="third-widget"></div>
+			</div>
+		<div id="col2">
+			Simple Theme<br /><br />
+			<div id="simple-widget"></div>
+		</div>
+	</div>
+</body>
+</html>
