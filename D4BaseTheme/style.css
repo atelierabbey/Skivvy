@@ -2,10 +2,11 @@
 Theme Name:		D4 BaseTheme
 Theme URI:		http://www.d4webdesign.com
 Description:	Wordpress Theme by D4 Web Design
-Version:		25Feb13
+Version:		13Mar13
 */
 /* OVERALL */
-
+html {}
+body {background:#fff; position:relative;} 
 
 /* HEADER */
 .header {}
@@ -22,6 +23,9 @@ Version:		25Feb13
 #access ul.menu ul li{}
 #access ul.menu ul li:hover{}
 #access ul.menu ul li a{}
+
+
+
 /* FOOTER */
 .footer-copyright {}
 .footer-copyright a {}

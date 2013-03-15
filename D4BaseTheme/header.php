@@ -3,7 +3,7 @@
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body id="post-<?php the_ID(); ?>" <?php body_class(); ?>>
 
 <div class="header">
 	<div class="logo"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_url'); ?>/img/logo.png"></a></div>
