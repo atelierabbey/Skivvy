@@ -1,0 +1,23 @@
+/* ** #3Jul13 | Admin Specific CSS ** */
+
+/* Hide admin menus */
+#adminmenu li#menu-comments,
+#adminmenu li#menu-links,
+#adminmenu li#menu-tools
+{display: none;}
+
+/* Hide admin bar items */
+#wpadminbar ul li#wp-admin-bar-comments,
+#wpadminbar ul li#wp-admin-bar-updates
+{display: none;}
+
+/* Dashboard logo */
+#wp-admin-bar-wp-logo > .ab-item .ab-icon {background: url('../img/logo-dashboard.png') no-repeat scroll 0 0 transparent !important;width:30px !important;}
+
+/* Login Logo */
+.login #login > h1 a {background-image:url('../img/logo-login.png') !important;}
+
+/* Post type - Portfolio icons */
+#menu-posts-portfolio .wp-menu-image {background: url(../img/admin/portfolio-icon.png) no-repeat 6px 6px !important;}
+#menu-posts-portfolio:hover .wp-menu-image, #menu-posts-portfolio.wp-has-current-submenu .wp-menu-image {background-position:6px -16px !important;}
+#icon-edit.icon32-posts-portfolio {background: url(../img/admin/portfolio-32x32.png) no-repeat;}

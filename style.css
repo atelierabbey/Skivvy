@@ -1,0 +1,84 @@
+/*
+Theme Name:		D4Theme
+Author:			D4 Advanced Media
+Author URI:		http://www.d4webdesign.com/
+Theme URI:		http://www.d4webdesign.com/
+Description:	Wordpress Theme by D4 Web Design
+Version:		15Jul13
+*/
+/* OVERALL */
+html {
+	font: 15px/18px Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+	background-color:#fff;
+	position:relative;
+}
+h1 {
+	font-size:2em;
+	line-height:1em;
+	margin: 0 0 0.67em;
+}
+h2 {
+	font-size:1.5em;
+	line-height:1em;
+	margin: 0 0 0.83em;
+}
+h3 {
+	font-size:1.2em;
+	line-height:1em;
+	margin: 0 0 1em;
+}
+h4 {
+	font-size:1em;
+	line-height:1em;
+	margin: 0 0 0.8em;
+}
+h5 {
+	font-size:.8em;
+	line-height:1em;
+	margin: 0 0 0.67em;
+}
+h6 {
+	font-size:.65em;
+	line-height:1em;
+	margin: 0 0 0.33em;
+}
+p {
+	margin: 0 0 1em;
+}
+a, a:link, a:visited {
+	color:#0000EE;
+	text-decoration:underline;
+} 
+a:hover {
+	color:#EE00EE;
+}
+
+/* HEADER */
+.header {}
+.logo {}
+
+
+/* NAV - Tier 1 */
+.access {}
+.access ul.mainnav {}
+.access ul.mainnav a{white-space:nowrap;}
+.access ul.mainnav li {}
+.access ul.mainnav li:hover {}
+.access ul.mainnav li a {}
+/* NAV - Tier 2 */
+.access ul.mainnav ul.sub-menu {}
+.access ul.mainnav ul.sub-menu li{}
+.access ul.mainnav ul.sub-menu li:hover{}
+.access ul.mainnav ul.sub-menu li a{}
+
+
+/* FOOTER */
+.footer-copyright {
+	font-size:0.75em;
+}
+.footer-copyright a:link, .footer-copyright a:visited, .footer-copyright a:hover, .footer-copyright a {
+	color:inherit;
+	text-decoration:none;
+}
