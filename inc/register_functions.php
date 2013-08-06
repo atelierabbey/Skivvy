@@ -1,4 +1,4 @@
-<?php #28Jun13 // The Bat-a-rangs
+<?php #19Jul13 // The Bat-a-rangs
 /* -------------------------------
 	Usable Functions
 ---------------------------------*/
@@ -111,10 +111,6 @@ if ( ! function_exists( 'twentyten_posted_in' ) ) {
 /* -------------------------------
 	Thoughtless Functions - WP does it for you via actions and filters
 ---------------------------------*/
-//// ---- get rid of or hide useless menu items ---- ////
-function skivvy_remove_menu_pages() { remove_menu_page('link-manager.php');} add_action( 'admin_menu', 'skivvy_remove_menu_pages' );
-function skivvy_hide_menus() {echo '<style>#menu-comments{ display:none; }</style>';} add_action('admin_head', 'skivvy_hide_menus');
-
 //// ---- Removes the default gallery shortcode css ---- ////
 function twentyten_remove_gallery_css( $css ) { return preg_replace( "#<style type='text/css'>(.*?)</style>#s", '', $css );}add_filter( 'gallery_style', 'twentyten_remove_gallery_css' );
 
@@ -136,10 +132,7 @@ function template_snoop(){
     }
 }  //*/
 
-//// ---- Increase functions of Text/HTML Widgets ---- ////
-add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 ); // oEmbed 2
-add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // oEmbed
-add_filter('widget_text', 'do_shortcode'); // Shortcodes
+
 
 //// ---- Removes "Private:" & "Password:" from protected pages ---- ////
 function skip_password_prefix($title) {

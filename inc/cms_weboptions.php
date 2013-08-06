@@ -1,4 +1,4 @@
-<?php #28Jun13 // The Bat signal
+<?php #19Jul13 // The Bat signal
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' ); 
 function theme_options_init(){ register_setting( 'sample_options', 'clientcms_options');} 
@@ -38,6 +38,17 @@ function theme_options_do_page() {
 					Shortcode: [txt_ph2]   |   css: span.txt_phonetwo</td>
 				</tr>
                 <tr><td colspan="2"><br /></td></tr>
+				<tr valign="top">
+					<th scope="row">Email 1</th>
+					<td><input id="clientcms_options[em1txt]" type="text" name="clientcms_options[em1txt]" value="<?php esc_attr_e( $options['em1txt'] ); ?>" />
+					Shortcode: [txt_em1]   |   css: span.txt_emailone</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Email 2</th>
+					<td><input id="clientcms_options[em2txt]" type="text" name="clientcms_options[em2txt]" value="<?php esc_attr_e( $options['em2txt'] ); ?>" />
+					Shortcode: [txt_em2]   |   css: span.txt_emailtwo</td>
+				</tr>
+				<tr><td colspan="2"><br /></td></tr>
                 <tr valign="top">
 					<th scope="row">Address</th>
 					<td><input id="clientcms_options[adrtxt]" type="text" name="clientcms_options[adrtxt]" value="<?php esc_attr_e( $options['adrtxt'] ); ?>" />
@@ -172,6 +183,8 @@ function theme_options_do_page() {
 //// ---- Contact Info Area ---- ////
 function shortcode_txtphone(){ $options = get_option( 'clientcms_options' ); if($options["ph1txt"]){return '<span class="txt_phoneone">'.$options["ph1txt"].'</span>';}} add_shortcode( 'txt_ph1', 'shortcode_txtphone' );
 function shortcode_txtphtwo(){ $options = get_option( 'clientcms_options' ); if($options["ph2txt"]){return '<span class="txt_phonetwo">'.$options["ph2txt"].'</span>';}} add_shortcode( 'txt_ph2', 'shortcode_txtphtwo' );
+function shortcode_txtemone(){ $options = get_option( 'clientcms_options' ); if($options["em1txt"]){return '<span class="txt_emailone">'.$options["em1txt"].'</span>';}} add_shortcode( 'txt_em1', 'shortcode_txtemone' );
+function shortcode_txtemtwo(){ $options = get_option( 'clientcms_options' ); if($options["em2txt"]){return '<span class="txt_emailtwo">'.$options["em2txt"].'</span>';}} add_shortcode( 'txt_em2', 'shortcode_txtemtwo' );
 function shortcode_txtadr(){ $options = get_option( 'clientcms_options' ); if($options["adrtxt"]){return '<span class="txt_address">'.$options["adrtxt"].'</span>';}} add_shortcode( 'txt_adr', 'shortcode_txtadr' );
 function shortcode_txtcty(){ $options = get_option( 'clientcms_options' ); if($options["ctytxt"]){return '<span class="txt_city">'.$options["ctytxt"].'</span>';}} add_shortcode( 'txt_cty', 'shortcode_txtcty' );
 function shortcode_txtstt(){ $options = get_option( 'clientcms_options' ); if($options["stttxt"]){return '<span class="txt_state">'.$options["stttxt"].'</span>';}} add_shortcode( 'txt_stt', 'shortcode_txtstt' );
