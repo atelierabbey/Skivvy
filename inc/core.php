@@ -18,15 +18,6 @@ function skinfo($what='Version') {
 	}
 }
 
-// theme setup
-function skivvy_setup() {
-	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
-	// add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
-	// skivvy_autooptions(); // Auto setup options on theme setup
-	// skivvy_languageaccept(); // Language support
-} add_action( 'after_setup_theme', 'skivvy_setup' );
-
 // theme branding & dashboard widgets
 function skivvy_footer_admin() { echo 'Fueled by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';} add_filter('admin_footer_text', 'skivvy_footer_admin');
 function skivvy_footer_version(){ echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';} add_filter( 'update_footer', 'skivvy_footer_version', 11 );
@@ -71,7 +62,6 @@ function skivvy_wp_title( $title, $separator ) {
 	return $filtered_title;
 } add_filter( 'wp_title', 'skivvy_wp_title', 10, 2 );
 
-
 function skivvy_autooptions() {
 	$the_theme_status = get_option( 'theme_setup_status' );
 	if ( $the_theme_status !== '1' ) {
@@ -105,7 +95,6 @@ function skivvy_autooptions() {
 	}
 } 
 
-
 function skivvy_languageaccept() { 
 	// Make theme available for translation - Translations can be filed in the /lang/ directory
 	load_theme_textdomain( 'skivvy', TEMPLATEPATH.'/lng' );
@@ -113,6 +102,4 @@ function skivvy_languageaccept() {
 	$locale_file = TEMPLATEPATH."/lng/$locale.php";
 	if ( is_readable( $locale_file ) )require_once( $locale_file );
 } 
-	
-
 ?>

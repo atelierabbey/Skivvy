@@ -121,6 +121,7 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 #preloader {margin-left:-9999px;position:absolute;}
 .gallery {margin: 0 auto;width: 800px;}
 .gallery-item img {float: left;margin: 5px;}
+.xoxo {margin:0;padding:0;}
 .xoxo li {list-style:none;}
 /* Force Firefox to show image placeholders */
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}

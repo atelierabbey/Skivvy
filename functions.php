@@ -1,6 +1,19 @@
 <?php // 7Aug13 - Functions.php is like Batman's Tool belt. It has a ton of freakishly-specific gadgets and plenty of bat-a-rangs.
+// Core
+include_once 'inc/core.php';
+
 // Setup
- include_once 'inc/core.php';
+function skivvy_setup() {
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
+	add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes 
+	# add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
+	# skivvy_autooptions(); // Auto setup options on theme setup
+	# skivvy_languageaccept(); // Language support
+	# add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 ); add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
+
+} add_action( 'after_setup_theme', 'skivvy_setup' );
+
 
 // Registers
 # include_once 'inc/register_sidebar.php';
