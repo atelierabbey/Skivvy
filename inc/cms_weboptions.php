@@ -1,4 +1,4 @@
-<?php #19Jul13 // The Bat signal
+<?php #7Aug13 // The Bat signal
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' ); 
 function theme_options_init(){ register_setting( 'sample_options', 'clientcms_options');} 
@@ -29,13 +29,13 @@ function theme_options_do_page() {
             <table>
 				<tr valign="top">
 					<th scope="row">Phone 1</th>
-					<td><input id="clientcms_options[phtxt]" type="text" name="clientcms_options[ph1txt]" value="<?php esc_attr_e( $options['ph1txt'] ); ?>" />
-					Shortcode: [txt_ph1]   |   css: span.txt_phoneone</td>
+					<td><input id="clientcms_options[phtxt]" type="text" name="clientcms_options[ph1txt]" placeholder="1 222 333 4444" value="<?php esc_attr_e( $options['ph1txt'] ); ?>" />
+					Shortcode: [txt_ph1]   |   css: a.txt_phoneone   |   delimiter="."   |   custom="+$a ($b) $c-$d"</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row">Phone 2</th>
-					<td><input id="clientcms_options[ph2txt]" type="text" name="clientcms_options[ph2txt]" value="<?php esc_attr_e( $options['ph2txt'] ); ?>" />
-					Shortcode: [txt_ph2]   |   css: span.txt_phonetwo</td>
+					<td><input id="clientcms_options[ph2txt]" type="text" name="clientcms_options[ph2txt]" placeholder="1 222 333 4444" value="<?php esc_attr_e( $options['ph2txt'] ); ?>" />
+					Shortcode: [txt_ph2]   |   css: a.txt_phonetwo   |   delimiter="."   |   custom="+$a ($b) $c-$d</td>
 				</tr>
                 <tr><td colspan="2"><br /></td></tr>
 				<tr valign="top">
@@ -179,10 +179,41 @@ function theme_options_do_page() {
 /* -------------------------------
 	Website Options Shortcodes
 ---------------------------------*/ 
-
 //// ---- Contact Info Area ---- ////
-function shortcode_txtphone(){ $options = get_option( 'clientcms_options' ); if($options["ph1txt"]){return '<span class="txt_phoneone">'.$options["ph1txt"].'</span>';}} add_shortcode( 'txt_ph1', 'shortcode_txtphone' );
-function shortcode_txtphtwo(){ $options = get_option( 'clientcms_options' ); if($options["ph2txt"]){return '<span class="txt_phonetwo">'.$options["ph2txt"].'</span>';}} add_shortcode( 'txt_ph2', 'shortcode_txtphtwo' );
+function shortcode_txtphone($atts){
+	extract( shortcode_atts( array(
+		'delimiter' => '',
+		'custom' => ''
+	), $atts ) );
+	$options = get_option( 'clientcms_options' );
+	if($options["ph1txt"]){
+		$phone = explode(" ", $options["ph1txt"]);
+		if ($custom) : 
+			$formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
+			elseif($delimiter): $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
+			else: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
+		endif;
+		return '<a class="txt_phoneone" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
+	}
+} add_shortcode( 'txt_ph1', 'shortcode_txtphone' );
+
+function shortcode_txtphtwo($atts){
+	extract( shortcode_atts( array(
+		'delimiter' => '',
+		'custom' => ''
+	), $atts ) );
+	$options = get_option( 'clientcms_options' );
+	if($options["ph2txt"]){
+		$phone = explode(" ", $options["ph2txt"]);
+		if ($custom) : 
+			$formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
+			elseif($delimiter): $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
+			else: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
+		endif;
+		return '<a class="txt_phonetwo" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
+	}
+} add_shortcode( 'txt_ph2', 'shortcode_txtphtwo' );
+
 function shortcode_txtemone(){ $options = get_option( 'clientcms_options' ); if($options["em1txt"]){return '<span class="txt_emailone">'.$options["em1txt"].'</span>';}} add_shortcode( 'txt_em1', 'shortcode_txtemone' );
 function shortcode_txtemtwo(){ $options = get_option( 'clientcms_options' ); if($options["em2txt"]){return '<span class="txt_emailtwo">'.$options["em2txt"].'</span>';}} add_shortcode( 'txt_em2', 'shortcode_txtemtwo' );
 function shortcode_txtadr(){ $options = get_option( 'clientcms_options' ); if($options["adrtxt"]){return '<span class="txt_address">'.$options["adrtxt"].'</span>';}} add_shortcode( 'txt_adr', 'shortcode_txtadr' );

@@ -14,7 +14,7 @@
 // Modules
 # include_once 'inc/cms_client.php';
 # include_once 'inc/cms_admin.php';
-# include_once 'inc/cms_weboptions.php'; 
+include_once 'inc/cms_weboptions.php'; 
 
 // Tools
 # include_once 'inc/browser_detector.php';
