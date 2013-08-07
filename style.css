@@ -4,7 +4,7 @@ Author:			D4 Advanced Media
 Author URI:		http://www.d4webdesign.com/
 Theme URI:		http://www.d4webdesign.com/
 Description:	Wordpress Theme by D4 Web Design
-Version:		15Jul13
+Version:		7Aug13
 */
 /* OVERALL */
 html {
@@ -61,16 +61,16 @@ a:hover {
 
 /* NAV - Tier 1 */
 .access {}
-.access ul.mainnav {}
-.access ul.mainnav a{white-space:nowrap;}
-.access ul.mainnav li {}
-.access ul.mainnav li:hover {}
-.access ul.mainnav li a {}
+.access ul {}
+.access ul a{white-space:nowrap;}
+.access ul li {}
+.access ul li:hover {}
+.access ul li a {}
 /* NAV - Tier 2 */
-.access ul.mainnav ul.sub-menu {}
-.access ul.mainnav ul.sub-menu li{}
-.access ul.mainnav ul.sub-menu li:hover{}
-.access ul.mainnav ul.sub-menu li a{}
+.access ul ul.sub-menu {}
+.access ul ul.sub-menu li{}
+.access ul ul.sub-menu li:hover{}
+.access ul ul.sub-menu li a{}
 
 
 /* FOOTER */

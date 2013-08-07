@@ -1,4 +1,4 @@
-<?php // 10Jul13 - Functions.php is like Batman's Tool belt. It has a ton of freakishly-specific gadgets and plenty of bat-a-rangs.
+<?php // 7Aug13 - Functions.php is like Batman's Tool belt. It has a ton of freakishly-specific gadgets and plenty of bat-a-rangs.
 // Setup
  include_once 'inc/core.php';
 
@@ -14,7 +14,7 @@
 // Modules
 # include_once 'inc/cms_client.php';
 # include_once 'inc/cms_admin.php';
-include_once 'inc/cms_weboptions.php'; 
+# include_once 'inc/cms_weboptions.php'; 
 
 // Tools
 # include_once 'inc/browser_detector.php';

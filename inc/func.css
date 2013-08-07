@@ -1,4 +1,4 @@
-/* # 20Jun13 - This is a place for non-styled functional css, like Reset, dropdown menus
+/* # 7Aug13 - This is a place for non-styled functional css, like Reset, dropdown menus
 ------ BALANCED FOR PARAGRAPHS ------
 font-family: Baskerville, "Times New Roman", Times, serif;?
 font-family: Garamond, "Hoefler Text", Times New Roman, Times, serif;
@@ -121,19 +121,19 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 #preloader {margin-left:-9999px;position:absolute;}
 .gallery {margin: 0 auto;width: 800px;}
 .gallery-item img {float: left;margin: 5px;}
-
+.xoxo li {list-style:none;}
 /* Force Firefox to show image placeholders */
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}
 
 /* Nav - up to 3-tier drop down */
 /* Tier 1 */
-.access ul.mainnav {position: relative;display:inline-table;list-style:none;margin:0;padding:0;}
-.access ul.mainnav:after {content:"";clear:both;display:block;}
-.access ul.mainnav li {position:relative;float:left;list-style:none;margin:0;padding:0;}
-.access ul.mainnav li a {display:block;}
+.access ul {position: relative;display:inline-table;list-style:none;margin:0;padding:0;}
+.access ul:after {content:"";clear:both;display:block;}
+.access ul li {position:relative;float:left;list-style:none;margin:0;padding:0;}
+.access ul li a {display:block;}
 /* Tier 2 */
-.access ul.mainnav ul.sub-menu {display:none;position:absolute;top: 100%;margin:0;padding:0;}
-.access ul.mainnav ul.sub-menu li {float:none;position: relative;margin:0;padding:0;}
-.access ul.mainnav li:hover > ul {display:block;}
+.access ul ul.sub-menu {display:none;position:absolute;top: 100%;margin:0;padding:0;}
+.access ul ul.sub-menu li {float:none;position: relative;margin:0;padding:0;}
+.access ul li:hover > ul {display:block;}
 /* Tier 3 */
-.access ul.mainnav ul.sub-menu ul.sub-menu {position: absolute; left: 100%; top:0;margin:0;padding:0;}
+.access ul ul.sub-menu ul.sub-menu {position: absolute; left: 100%; top:0;margin:0;padding:0;}

@@ -1,4 +1,4 @@
-<?php #2Jul13 ?>
+<?php #7Aug13 ?>
 <!DOCTYPE html>
 <html class="<?php if (function_exists('css_browser_selector')){echo css_browser_selector().' ';} if (function_exists('skinfo')){ echo skinfo('Version'); }?>"  dir="ltr" lang="en-US">
 <head>
@@ -10,23 +10,23 @@
 	<link rel="stylesheet" href="<?php bloginfo('template_directory');?>/inc/func.css?ver=1" type="text/css" />
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/style.css?ver=1" type="text/css" />
 	<?php wp_enqueue_script("jquery"); ?>
+    <!--[if lt IE 9]>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
+	<![endif]-->
 	<?php wp_head(); ?>
 </head>
 <body id="post-<?php the_ID(); ?>" <?php body_class(); ?>>
 <div id="preloader"></div>
 <div class="header">
-	<div class="logo">
-    	<a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-        	<img src="<?php bloginfo('template_url'); ?>/img/logo.png">
-        </a>
-    </div>
-	<?php $menuargs = array(
+	<div class="logo"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_url'); ?>/img/logo.png"></a></div>
+    <div class="access">
+		<?php $menuargs = array(
             'theme_location'  => 'main',
             'menu'            => '',
-            'container'       => 'div',
-            'container_class' => 'access',
+            'container'       => false,
+            'container_class' => '',
             'container_id'    => '',
-            'menu_class'      => 'mainnav',
+            'menu_class'      => '',
             'menu_id'         => '',
             'echo'            => true,
             'fallback_cb'     => 'wp_page_menu',
@@ -34,10 +34,10 @@
             'after'           => '',
             'link_before'     => '',
             'link_after'      => '',
-            'items_wrap'      => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
+            'items_wrap'      => '<ul role="navigation">%3$s</ul>',
             'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
             'walker'          => ''
-        );
-        wp_nav_menu( $menuargs ); ?>
+        ); wp_nav_menu( $menuargs ); ?>
+	</div>
 </div>
 <div class="clear"></div>
