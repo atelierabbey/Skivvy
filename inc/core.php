@@ -18,6 +18,7 @@ function skinfo($what='Version') {
 	}
 }
 
+
 // theme branding & dashboard widgets
 function skivvy_footer_admin() { echo 'Fueled by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';} add_filter('admin_footer_text', 'skivvy_footer_admin');
 function skivvy_footer_version(){ echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';} add_filter( 'update_footer', 'skivvy_footer_version', 11 );
@@ -96,7 +97,7 @@ function skivvy_autooptions() {
 } 
 
 function skivvy_languageaccept() { 
-	// Make theme available for translation - Translations can be filed in the /lang/ directory
+	// Make theme available for translation - Translations can be filed in the /lng/ directory
 	load_theme_textdomain( 'skivvy', TEMPLATEPATH.'/lng' );
 	$locale = get_locale();
 	$locale_file = TEMPLATEPATH."/lng/$locale.php";
