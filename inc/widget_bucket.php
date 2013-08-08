@@ -80,33 +80,36 @@ class Bucket_Widget extends WP_Widget {
 				$output .= $inside;
 			} else {
 				$output .= '<div class="bucket">';
-				// Add a Title
-				if($instance['title']){ $output .= $args['before_title']. $instance['title'] . $args['after_title']; }
-				// Add the image.
-				if ( ! empty( $instance['image_id'] ) ) {
-					$image_size = ( ! empty( $instance['image_size'] ) ) ? $instance['image_size'] : apply_filters( 'bucket_widget_output_default_size', 'medium', $this->id_base );
-					$output .= sprintf( '<div class="bucketimg">%s%s%s</div>',
-						$instance['link_open'],
-						wp_get_attachment_image( $instance['image_id'], $image_size ),
-						$instance['link_close']
-					);
-				} elseif ( ! empty( $instance['image'] ) ) {
-					// Legacy output.
-					$output .= sprintf( '%s<img src="%s" alt="%s">%s',
-						$instance['link_open'],
-						esc_url( $instance['image'] ),
-						( empty( $instance['alt'] ) ) ? '' : esc_attr( $instance['alt'] ),
-						$instance['link_close']
-					);
-				}
-				// Add the text.
-				if ( ! empty( $instance['text'] ) ) {
-					$output .= '<div class="buckettxt">'.apply_filters( 'the_content', $instance['text'] ).'</div>';
-				}
-				// Add a more link.
-				if ( ! empty( $instance['link_open'] ) && ! empty( $instance['link_text'] ) ) {
-					$output .= '<div class="bucketlnk">' . $instance['link_open'] . $instance['link_text'] . $instance['link_close'] . '</div>';
-				}
+					// Add a Title
+					if($instance['title']){ $output .= $args['before_title']. $instance['title'] . $args['after_title']; }
+					// Add the image.
+					if ( ! empty( $instance['image_id'] ) ) {
+						$image_size = ( ! empty( $instance['image_size'] ) ) ? $instance['image_size'] : apply_filters( 'bucket_widget_output_default_size', 'medium', $this->id_base );
+						$output .= sprintf( '<div class="bucketimg">%s%s%s</div>',
+							$instance['link_open'],
+							wp_get_attachment_image( $instance['image_id'], $image_size ),
+							$instance['link_close']
+						);
+
+					} elseif ( ! empty( $instance['image'] ) ) {
+						// Legacy output.
+						$output .= sprintf( '%s<img src="%s" alt="%s">%s',
+							$instance['link_open'],
+							esc_url( $instance['image'] ),
+							( empty( $instance['alt'] ) ) ? '' : esc_attr( $instance['alt'] ),
+							$instance['link_close']
+						);
+					}
+					$output .= '<div class="bucketcont">';
+						// Add the text.
+						if ( ! empty( $instance['text'] ) ) {
+							$output .= '<div class="buckettxt">' . apply_filters( 'the_content', $instance['text'] ) . '</div>';
+						}
+						// Add a more link.
+						if ( ! empty( $instance['link_open'] ) && ! empty( $instance['link_text'] ) ) {
+							$output .= '<div class="bucketlnk">' . $instance['link_open'] . $instance['link_text'] . $instance['link_close'] . '</div>';
+						}
+					$output .= '</div>';
 				$output .= '</div>';
 			}
 		$output .= $args['after_widget'];
