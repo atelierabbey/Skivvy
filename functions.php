@@ -16,11 +16,11 @@ function skivvy_setup() {
 
 
 // Registers
-# include_once 'inc/register_sidebar.php';
+ include_once 'inc/register_sidebar.php';
 # include_once 'inc/register_menu.php';
 # include_once 'inc/register_scripts.php';
 # include_once 'inc/register_posttype.php';
-# include_once 'inc/register_widget.php';
+ include_once 'inc/register_widget.php';
 # include_once 'inc/register_shortcode.php';
 # include_once 'inc/register_functions.php';
 

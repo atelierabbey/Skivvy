@@ -1,4 +1,4 @@
-<?php #7Aug13
+<?php #8Aug13
 add_action( 'widgets_init', 'skivvy_remove_widget' );
 function skivvy_remove_widget() {
 	unregister_widget('WP_Widget_Pages'); //Pages Widget
@@ -14,4 +14,8 @@ function skivvy_remove_widget() {
 #	unregister_widget('WP_Widget_RSS'); //RSS Widget
 	unregister_widget('WP_Widget_Tag_Cloud'); //Tag Cloud Widget
 #	unregister_widget('WP_Nav_Menu_Widget'); //Menus Widget
-} ?>
+register_widget( 'Bucket_Widget' );
+}
+
+include_once('widget_bucket.php');
+?>

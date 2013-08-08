@@ -1,4 +1,4 @@
-/* ** #7Aug13 | Admin Specific CSS ** */
+/* ** #8Aug13 | Admin Specific CSS ** */
 
 /* Hide admin menus */ /*
 #adminmenu li#menu-comments,
@@ -21,3 +21,11 @@
 #menu-posts-portfolio .wp-menu-image {background: url(../img/admin/portfolio-icon.png) no-repeat 6px 6px !important;}
 #menu-posts-portfolio:hover .wp-menu-image, #menu-posts-portfolio.wp-has-current-submenu .wp-menu-image {background-position:6px -16px !important;}
 #icon-edit.icon32-posts-portfolio {background: url(../img/admin/portfolio-32x32.png) no-repeat;}
+
+
+/* Widget - Bucket */
+.widget .widget-inside .bucket-widget-form .bucket-widget-control { padding: 20px 0; text-align: center; border: 1px dashed #aaa;}
+.widget .widget-inside .bucket-widget-form .bucket-widget-control.has-image { padding: 10px; text-align: left; border: 1px dashed #aaa;}
+.widget .widget-inside .bucket-widget-form .bucket-widget-control img { display: block; margin-bottom: 10px; max-width: 100%; height: auto;}
+.bucket-widget-legacy-fields { margin-bottom: 1em; padding: 10px; background-color: #e0e0e0; border-radius: 3px;}
+.bucket-widget-legacy-fields p:last-child { margin-bottom: 0;}
