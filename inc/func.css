@@ -43,7 +43,7 @@ fieldset, img { border:0 }
 address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal }
 caption, th { text-align:left }
 ol, ul, li {list-style:none}
-html {font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+html {font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;overflow-y:scroll;}
 html,button,input,select,textarea {font-family: sans-serif;}
 a, a:visited, a:active {text-decoration:none;}
 a:focus {outline: thin dotted;}
