@@ -1,9 +1,9 @@
-/* ** #8Aug13 | Admin Specific CSS ** */
+/* ** #9Aug13 | Admin Specific CSS ** */
 
-/* Hide admin menus */ /*
-#adminmenu li#menu-comments,
-#adminmenu li#menu-links,
-#adminmenu li#menu-tools
+/* Hide admin menus */
+/*#adminmenu li#menu-comments,/* */
+#adminmenu li#menu-links, /* */
+/* #adminmenu li#menu-tools /* */
 {display: none;} /* */
 
 /* Hide admin bar items */
@@ -12,10 +12,10 @@
 {display: none;}
 
 /* Dashboard logo */
-#wp-admin-bar-wp-logo > .ab-item .ab-icon {background: url('../img/logo-dashboard.png') no-repeat scroll 0 0 transparent !important;width:30px !important;}
+#wp-admin-bar-wp-logo > .ab-item .ab-icon {background: url('../img/admin/logo-dashboard.png') no-repeat scroll 0 0 transparent !important;width:30px !important;}
 
 /* Login Logo */
-.login #login > h1 a {background-image:url('../img/logo-login.png') !important;}
+.login #login > h1 a {background-image:url('../img/admin/logo-login.png') !important;}
 
 /* Post type - Portfolio icons */
 #menu-posts-portfolio .wp-menu-image {background: url(../img/admin/portfolio-icon.png) no-repeat 6px 6px !important;}

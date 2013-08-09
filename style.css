@@ -8,10 +8,10 @@ Version:		8Aug13
 */
 /* OVERALL */
 html {
-	font: 15px/18px Verdana, Geneva, Tahoma, sans-serif;
+	background-color:#fff;
+	font: 14px/16px Verdana, Geneva, Tahoma, sans-serif;
 }
 body {
-	background-color:#fff;
 	position:relative;
 }
 h1 {
@@ -54,30 +54,49 @@ a:hover {
 	color:#EE00EE;
 }
 
-/* HEADER */
-.header {}
-.logo {}
+/* LAYOUT */
+.wrapper {
+	width:980px;
+	margin: 0 auto;	
+}
+.header {
+	
+}
+.logo {
 
-
-/* NAV - Tier 1 */
-.access {}
-.access ul {}
-.access ul a{white-space:nowrap;}
-.access ul li {}
-.access ul li:hover {}
-.access ul li a {}
-/* NAV - Tier 2 */
-.access ul ul.sub-menu {}
-.access ul ul.sub-menu li{}
-.access ul ul.sub-menu li:hover{}
-.access ul ul.sub-menu li a{}
-
-
-/* FOOTER */
+}
 .footer-copyright {
 	font-size:0.75em;
 }
-.footer-copyright a:link, .footer-copyright a:visited, .footer-copyright a:hover, .footer-copyright a {
+.footer-copyright a:active,
+.footer-copyright a:link,
+.footer-copyright a:visited,
+.footer-copyright a:hover,
+.footer-copyright a {
 	color:inherit;
 	text-decoration:none;
+}
+
+/* NAV - Tier 1 */
+.access {
+}
+.access ul {
+}
+.access ul a{
+	white-space:nowrap;
+}
+.access ul li {
+}
+.access ul li:hover {
+}
+.access ul li a {
+}
+/* NAV - Tier 2 */
+.access ul ul.sub-menu {
+}
+.access ul ul.sub-menu li{
+}
+.access ul ul.sub-menu li:hover{
+}
+.access ul ul.sub-menu li a{
 }
