@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> - See more at: http://www.w3resource.com/twitter-bootstrap/grid-system-tutorial.php#sthash.s4OZDtF9.dpuf
 	<link rel="shortcut icon" type="image/png" href="<?php bloginfo('stylesheet_directory');?>/img/favicon.png?v=1" />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="<?php bloginfo('rss2_url'); ?>" />
 	<link rel="stylesheet" href="<?php bloginfo('template_directory');?>/inc/func.css?ver=1" type="text/css" />
