@@ -1,4 +1,4 @@
-<?php #13Aug13 // This is the 'belt' part of the utility belt... It holds up the superhero underwear.
+<?php #14Aug13 // This is the 'belt' part of the utility belt... It holds up the superhero underwear.
 
 //// ---- skinfo('$what'); Get Version from style.css ---- ////
 function skinfo($what='Version') {
@@ -22,7 +22,7 @@ function skinfo($what='Version') {
 // theme branding & dashboard widgets
 function skivvy_footer_admin() { echo 'Fueled by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';} add_filter('admin_footer_text', 'skivvy_footer_admin');
 function skivvy_footer_version(){ echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';} add_filter( 'update_footer', 'skivvy_footer_version', 11 );
-function skivvy_admin_css() { wp_enqueue_style('skivvy_admin_css',get_template_directory_uri().'/inc/admin.css','','');} add_action('admin_print_styles','skivvy_admin_css');add_action('login_head', 'skivvy_admin_css');
+function skivvy_admin_css() { wp_enqueue_style('skivvy_admin_css',get_template_directory_uri().'/css/admin.css','','');} add_action('admin_print_styles','skivvy_admin_css');add_action('login_head', 'skivvy_admin_css');
 function skivvy_admin_notice(){ global $current_screen; if ( $current_screen->parent_base == 'options-general' ){  echo '<div id="admin-settings-warning-box"><strong>Warning</strong> - changing settings on these pages may cause problems with your website&rsquo;s design!</div>'; }} add_action('admin_notices', 'skivvy_admin_notice'); // Add a warning box to the settings page Uses the same style box as the WordPress Update "update-nag"
 function skivvy_dashboard_help() {echo '<p>Welcome to '.get_bloginfo( "name", "display" )."'s CMS! Need help? Contact <a href='".skinfo("AuthorURI")."' target='_blank'>".skinfo('Author')."</a>.</p>";}
 function skivvy_dashboard_feed() {echo '<div class="rss-widget">';wp_widget_rss_output(array('url' => skinfo("AuthorURI").'feed/','title' => 'Latest News','items' => 4, 'show_summary' => 1,'show_author' => 0,'show_date' => 1));echo "</div>";}

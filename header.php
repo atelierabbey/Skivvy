@@ -1,17 +1,17 @@
-<?php #13Aug13 ?>
+<?php #14Aug13 ?>
 <!DOCTYPE html>
 <html class="<?php if (function_exists('css_browser_selector')){echo css_browser_selector().' ';} if (function_exists('skinfo')){ echo skinfo('Version'); }?>"  dir="ltr" lang="en-US">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> - See more at: http://www.w3resource.com/twitter-bootstrap/grid-system-tutorial.php#sthash.s4OZDtF9.dpuf
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/png" href="<?php bloginfo('stylesheet_directory');?>/img/favicon.png?v=1" />
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="<?php bloginfo('rss2_url'); ?>" />
-	<link rel="stylesheet" href="<?php bloginfo('template_directory');?>/inc/func.css?ver=1" type="text/css" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory');?>/css/func.css?ver=1" type="text/css" />
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/style.css?ver=1" type="text/css" />
 	<?php wp_enqueue_script("jquery"); ?>
-    <!--[if lt IE 9]> <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script> <![endif]-->
+    <!--[if lt IE 9]> <script src="<?php bloginfo('template_directory'); ?>/js/html5.js"></script> <![endif]-->
 	<?php wp_head(); ?>
 </head>
 <body id="post-<?php the_ID(); ?>" <?php body_class(); ?>>
