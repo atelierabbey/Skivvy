@@ -1,4 +1,4 @@
-<?php #7Aug13 ?>
+<?php #13Aug13 ?>
 <!DOCTYPE html>
 <html class="<?php if (function_exists('css_browser_selector')){echo css_browser_selector().' ';} if (function_exists('skinfo')){ echo skinfo('Version'); }?>"  dir="ltr" lang="en-US">
 <head>
@@ -41,3 +41,4 @@
         </div>
     </div>
     <div class="clear"></div>
+    <div class="content">

@@ -4,7 +4,7 @@ Author:			D4 Advanced Media
 Author URI:		http://www.d4webdesign.com/
 Theme URI:		http://www.d4webdesign.com/
 Description:	Wordpress Theme by D4 Web Design
-Version:		8Aug13
+Version:		13Aug13
 */
 /* OVERALL */
 html {
@@ -15,33 +15,27 @@ body {
 	position:relative;
 }
 h1 {
-	font-size:2em;
-	line-height:1em;
+	font-size:2em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.67em;
 }
 h2 {
-	font-size:1.5em;
-	line-height:1em;
+	font-size:1.5em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.83em;
 }
 h3 {
-	font-size:1.2em;
-	line-height:1em;
+	font-size:1.2em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 1em;
 }
 h4 {
-	font-size:1em;
-	line-height:1em;
+	font-size:1em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.8em;
 }
 h5 {
-	font-size:.8em;
-	line-height:1em;
+	font-size:0.8em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.67em;
 }
 h6 {
-	font-size:.65em;
-	line-height:1em;
+	font-size:.65em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.33em;
 }
 p {
@@ -53,11 +47,23 @@ a, a:link, a:visited {
 a:hover {
 	color:#EE00EE;
 }
-
+ul, ol { 
+	padding: 0 0 0 40px;
+}
+ul li {
+	list-style:disc;
+}
+ul li ul li {
+	list-style: circle;
+}
 /* LAYOUT */
 .wrapper {
 	width:980px;
-	margin: 10px auto;	
+	margin: 0 auto;
+	padding: 0 0 0 0;
+}
+.content {
+	
 }
 .header {
 	
