@@ -1,41 +1,4 @@
-/* # 13Aug13 - This is a place for non-styled functional css, like Reset, dropdown menus
------- BALANCED FOR PARAGRAPHS ------
-font-family: Baskerville, "Times New Roman", Times, serif;?
-font-family: Garamond, "Hoefler Text", Times New Roman, Times, serif;
-font-family: Geneva, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;?
-font-family: Georgia, Palatino," Palatino Linotype", Times, "Times New Roman", serif;?
-font-family: "Gill Sans", Calibri, "Trebuchet MS", sans-serif;?
-font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-font-family: Palatino, "Palatino Linotype", Georgia, Times, "Times New Roman", serif;?
-font-family: Tahoma, Geneva, Verdana;?
-font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande"," Lucida Sans", Arial, sans-serif;?
-font-family: Verdana, Geneva, Tahoma, sans-serif;?
-
------- BALANCED FOR TITLES ------ 
-font-family: Baskerville, Times, "Times New Roman", serif;
-font-family: Garamond, "Hoefler Text", Palatino, "Palatino Linotype", serif;
-font-family: Geneva, Verdana, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-font-family: Georgia, Times, "Times New Roman", serif;
-font-family: "Gill Sans", "Trebuchet MS", Calibri, sans-serif;
-font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
-font-family: Palatino, "Palatino Linotype", "Hoefler Text", Times, "Times New Roman", serif;
-font-family: Tahoma, Verdana, Geneva;
-font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
-font-family: Verdana, Tahoma, Geneva, sans-serif;
-
------- BALANCED FOR BOTH TITLES & PARAGRAPHS ------
-font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-font-family: Cambria, Georgia, Times, "Times New Roman", serif;
-font-family: "Century Gothic", "Apple Gothic", sans-serif;
-font-family: Consolas, "Lucida Console", Monaco, monospace;
-font-family: "Copperplate Light", "Copperplate Gothic Light", serif;
-font-family: "Courier New", Courier, monospace;
-font-family: "Franklin Gothic Medium", "Arial Narrow Bold", Arial, sans-serif;
-font-family: Futura, "Century Gothic", AppleGothic, sans-serif;
-font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
-font-family: Times, "Times New Roman", Georgia, serif;
-*/
+/* # 22Aug13
 /* Normalise */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}

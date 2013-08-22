@@ -1,4 +1,4 @@
-<?php // 9Aug13 - Functions.php is like Batman's Tool belt. It has a ton of freakishly-specific gadgets and plenty of bat-a-rangs.
+<?php // 22Aug13 - Functions.php is like Batman's Tool belt. It has a ton of freakishly-specific gadgets and plenty of bat-a-rangs.
 // Core & Setup
 include_once 'inc/core.php';
 function skivvy_setup() {
@@ -10,6 +10,7 @@ function skivvy_setup() {
 	# if (function_exists('skivvy_autooptions')){skivvy_autooptions();} // Auto setup options on theme setup
 	# if (function_exists('skivvy_languageaccept')){skivvy_languageaccept();}; // Language support
 } add_action( 'after_setup_theme', 'skivvy_setup' );
+include_once 'inc/wpsimple';
 
 // Unique Registers
 # include_once 'inc/register_sidebar.php';

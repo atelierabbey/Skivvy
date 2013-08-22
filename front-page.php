@@ -1,15 +1,11 @@
-<?php #14Aug13 ?>
 <?php get_header(); ?>
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.cycle.lite.js"></script>
-
-<div class='slideshow-wrapper' style="position:relative;">
-	<?php $args = array(
-			'post_type' => 'd4am_slider',
-			'posts_per_page' => 5,
-			'order' => 'ASC', // ASC or DESC
-			'orderby' => 'none' // none , ID, author, title, name, date, modified, parent, rand, comment_count, menu_order, meta_value, meta_value_num
-		); $loop = new WP_Query( $args ); while ( $loop->have_posts() ) : $loop->the_post();
-	?>
+<div class="slidewrap" style="position:relative;">
+	<?php $slidequery = new WP_Query(array(
+		'post_type' => 'd4am_slider',
+		'posts_per_page' => 5,
+		'order' => 'ASC', // ASC or DESC
+		'orderby' => 'none' // none , ID, author, title, name, date, modified, parent, rand, comment_count, menu_order, meta_value, meta_value_num
+	)); while ( $slidequery->have_posts() ) : $slidequery->the_post(); ?>
         <div class="slide" style="position:absolute;">
 			<h1><?php the_title();?></h1>
             <?php the_post_thumbnail();?>
@@ -22,10 +18,13 @@
     <div id='next_arrow'></div>
     <div id='prev_arrow'></div>
 </div><?php //*/ ?>
-
-<script type='text/javascript'>
+<?php while ( have_posts() ) : the_post(); ?>
+	<?php the_content(); ?>
+<?php endwhile; ?>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.cycle.lite.js"></script>
+<script>
 	jQuery(document).ready(function() {
-		jQuery('.slideshow-wrapper').cycle({
+		jQuery('.slidewrap').cycle({
 			// activePagerClass: 'activeSlide', // class name used for the active pager element 
 			// after:         null,  // transition callback (scope set to element that was shown):  function(currSlideElement, nextSlideElement, options, forwardFlag) 
 			// allowPagerClickBubble: false, // allows or prevents click event on pager anchors from bubbling 
@@ -84,9 +83,4 @@
 		});
 	});
 </script>
-<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-	<?php the_content(); ?>
-<?php endwhile; ?>
-
-
 <?php get_footer(); ?>

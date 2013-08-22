@@ -11,17 +11,17 @@
             ?>
         </a>
     </h1>
+	<time><?php the_date(); ?></time>
     <?php
-        the_date();
 		the_excerpt();
         
         if ( count( get_the_category() ) ) {
-            printf( __( 'Posted in %2$s', 'd4basetheme' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) );
+            printf( __( 'Posted in %2$s', 'skivvy' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) );
         };
         
         $tags_list = get_the_tag_list( '', ', ' );
         if ( $tags_list ){
-            printf( __( 'Tagged %2$s', 'd4basetheme' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
+            printf( __( 'Tagged %2$s', 'skivvy' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
         };
     ?>
 <?php endwhile;?>

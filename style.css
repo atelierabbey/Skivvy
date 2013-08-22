@@ -4,7 +4,7 @@ Author:			D4 Advanced Media
 Author URI:		http://www.d4webdesign.com/
 Theme URI:		http://www.d4webdesign.com/
 Description:	Wordpress Theme by D4 Web Design
-Version:		13Aug13
+Version:		22Aug13
 */
 /* OVERALL */
 html {
@@ -15,27 +15,27 @@ body {
 	position:relative;
 }
 h1 {
-	font-size:2em / 1em Verdana, Tahoma, Geneva, sans-serif;
+	font:2em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.67em;
 }
 h2 {
-	font-size:1.5em / 1em Verdana, Tahoma, Geneva, sans-serif;
+	font:1.5em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.83em;
 }
 h3 {
-	font-size:1.2em / 1em Verdana, Tahoma, Geneva, sans-serif;
+	font:1.2em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 1em;
 }
 h4 {
-	font-size:1em / 1em Verdana, Tahoma, Geneva, sans-serif;
+	font:1em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.8em;
 }
 h5 {
-	font-size:0.8em / 1em Verdana, Tahoma, Geneva, sans-serif;
+	font:0.8em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.67em;
 }
 h6 {
-	font-size:.65em / 1em Verdana, Tahoma, Geneva, sans-serif;
+	font:.65em / 1em Verdana, Tahoma, Geneva, sans-serif;
 	margin: 0 0 0.33em;
 }
 p {
@@ -62,14 +62,17 @@ ul li ul li {
 	margin: 0 auto;
 	padding: 0 0 0 0;
 }
-.content {
+article.content {
 	
 }
-.header {
+header {
 	
 }
 .logo {
 
+}
+footer {
+	
 }
 .footer-copyright {
 	font-size:0.75em;

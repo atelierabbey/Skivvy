@@ -9,7 +9,6 @@
         </h2>
         <div class="post-date"><?php the_date();?></div>
         <?php
-            the_date();
             if ( is_archive() || is_search() ) { the_excerpt();
             } else {the_content();};
 			$cats_list = get_the_category_list( ', ' ); if($cats_list) {echo "Category: $cats_list";};

@@ -1,4 +1,4 @@
-<?php #14Aug13 // This is the 'belt' part of the utility belt... It holds up the superhero underwear.
+<?php #22Aug13 // This is the 'belt' part of the utility belt... It holds up the superhero underwear.
 
 //// ---- skinfo('$what'); Get Version from style.css ---- ////
 function skinfo($what='Version') {
@@ -18,14 +18,13 @@ function skinfo($what='Version') {
 	}
 }
 
-
 // theme branding & dashboard widgets
 function skivvy_footer_admin() { echo 'Fueled by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';} add_filter('admin_footer_text', 'skivvy_footer_admin');
 function skivvy_footer_version(){ echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';} add_filter( 'update_footer', 'skivvy_footer_version', 11 );
 function skivvy_admin_css() { wp_enqueue_style('skivvy_admin_css',get_template_directory_uri().'/css/admin.css','','');} add_action('admin_print_styles','skivvy_admin_css');add_action('login_head', 'skivvy_admin_css');
 function skivvy_admin_notice(){ global $current_screen; if ( $current_screen->parent_base == 'options-general' ){  echo '<div id="admin-settings-warning-box"><strong>Warning</strong> - changing settings on these pages may cause problems with your website&rsquo;s design!</div>'; }} add_action('admin_notices', 'skivvy_admin_notice'); // Add a warning box to the settings page Uses the same style box as the WordPress Update "update-nag"
 function skivvy_dashboard_help() {echo '<p>Welcome to '.get_bloginfo( "name", "display" )."'s CMS! Need help? Contact <a href='".skinfo("AuthorURI")."' target='_blank'>".skinfo('Author')."</a>.</p>";}
-function skivvy_dashboard_feed() {echo '<div class="rss-widget">';wp_widget_rss_output(array('url' => skinfo("AuthorURI").'feed/','title' => 'Latest News','items' => 4, 'show_summary' => 1,'show_author' => 0,'show_date' => 1));echo "</div>";}
+function skivvy_dashboard_feed() {echo '<div class="rss-widget">';wp_widget_rss_output(array('url' => skinfo("AuthorURI").'feed/','title' => 'Latest News','items' => 5, 'show_summary' => 1,'show_author' => 0,'show_date' => 1));echo "</div>";}
 function skivvy_dashboard_widgets() {
 	wp_add_dashboard_widget('dashboard_custom_feed', skinfo('Author').' News Feed', 'skivvy_dashboard_feed');
 	wp_add_dashboard_widget('dashboard_custom_help', 'Website Technical Support', 'skivvy_dashboard_help');
@@ -35,34 +34,6 @@ if (!current_user_can('edit_users')) {
 	add_action('init', create_function('$a', "remove_action('init', 'wp_version_check');"), 2);
 	add_filter('pre_option_update_core', create_function('$a', "return null;"));
 } // */
-
-// remove wp_head fluff
-remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wp_generator');
-remove_action('wp_head', 'feed_links', 2);
-remove_action('wp_head', 'index_rel_link');
-remove_action('wp_head', 'wlwmanifest_link');
-remove_action('wp_head', 'feed_links_extra', 3);
-remove_action('wp_head', 'start_post_rel_link', 10, 0);
-remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
-remove_action('wp_head', 'parent_post_rel_link', 10, 0);
-
-// wp_title
-function skivvy_wp_title( $title, $separator ) {
-	global $paged, $page;
-	$description = get_bloginfo( 'description', 'display' );
-
-	if (is_feed()) { return $title; }		
-	if (is_category()) { $title = "Category: $title";}	
-	if (is_tag()) { $title = "Tag: $title";}
-	if (is_search()) { $title = "Search: $title"; }
-	if (post_password_required($post) ) { $title = "Protected: $title"; }
-	if (is_404() ) { $title = "404 Not Found $separator "; }
-	$filtered_title = $title . get_bloginfo( 'name', 'display' );
-	$filtered_title .= ( ! empty( $description ) && ( is_home() || is_front_page() || is_404() ) ) ? " $separator $description" : '';
-	$filtered_title .= ( 2 <= $paged || 2 <= $page ) ? ' | ' . sprintf( __( 'Page %s' ), max( $paged, $page ) ) : '';
-	return $filtered_title;
-} add_filter( 'wp_title', 'skivvy_wp_title', 10, 2 );
 
 function skivvy_autooptions() {
 	$the_theme_status = get_option( 'theme_setup_status' );

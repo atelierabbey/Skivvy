@@ -1,6 +1,14 @@
-<?php #8Aug13
+<?php #22Aug13
 
-function Skivvy_allthumbcolumns(){
+// for posts
+add_filter( 'manage_posts_columns', 'Skivvy_AddThumbnailColumn' );
+add_action( 'manage_posts_custom_column', 'Skivvy_AddThumbValue', 10, 2 );
+// for pages
+add_filter( 'manage_pages_columns', 'Skivvy_AddThumbnailColumn' );
+add_action( 'manage_pages_custom_column', 'Skivvy_AddThumbValue', 10, 2 );
+//*/
+
+/* function Skivvy_allthumbcolumns(){
 	$types = get_post_types( '', 'objects' );
 	foreach( $types as $type ){
 		if( isset( $type->rewrite->slug ) ){ // need the actual slug?  this will do it...
@@ -9,15 +17,7 @@ function Skivvy_allthumbcolumns(){
 			add_action( "manage_".$typo."_custom_column", 'Skivvy_AddThumbValue', 10, 2 );
 		}
 	}
-}add_action( 'init', 'Skivvy_allthumbcolumns' );
-/*
-// for posts
-add_filter( 'manage_posts_columns', 'Skivvy_AddThumbnailColumn' );
-add_action( 'manage_posts_custom_column', 'Skivvy_AddThumbValue', 10, 2 );
-// for pages
-add_filter( 'manage_pages_columns', 'Skivvy_AddThumbnailColumn' );
-add_action( 'manage_pages_custom_column', 'Skivvy_AddThumbValue', 10, 2 );
-*/
+}add_action( 'init', 'Skivvy_allthumbcolumns' ); // */
 //// ---- Add Thumbnails in Manage Posts/Pages List ---- ////
 function Skivvy_AddThumbnailColumn($cols) {
 	$cols['thumbnail'] = __('Thumbnail');
@@ -27,8 +27,6 @@ function Skivvy_AddThumbValue($column_name, $post_id) {
 	$width = (int) 35;
 	$height = (int) 35;
 	if ( 'thumbnail' == $column_name ) {
-		// thumbnail of WP 2.9
-		$thumbnail_id = get_post_meta( $post_id, '_thumbnail_id', true );
 		// image from gallery
 		$attachments = get_children( array('post_parent' => $post_id, 'post_type' => 'attachment', 'post_mime_type' => 'image') );
 		if ($thumbnail_id)
@@ -47,17 +45,19 @@ function Skivvy_AddThumbValue($column_name, $post_id) {
 }
 
 //// ---- ADD CUSTOM POST TYPES TO THE DEFAULT RSS FEED ---- ////
+/*
 function skivvy_custom_feed_request( $vars ) {
  if (isset($vars['feed']) && !isset($vars['post_type']))
   $vars['post_type'] = array( 'post', 'site', 'plugin', 'theme', 'person' );
  return $vars;
-} add_filter( 'request', 'skivvy_custom_feed_request' );
+} add_filter( 'request', 'skivvy_custom_feed_request' );  //*/
 
 //// ---- MAKE CUSTOM POST TYPES SEARCHABLE ---- ////
+/*
 function skivvy_customPosttype_search( $query ) {
  if ( $query->is_search ) { $query->set( 'post_type', array( 'site', 'plugin', 'theme', 'person' )); } 
  return $query;
-} add_filter( 'the_search_query', 'skivvy_customPosttype_search' );
+} add_filter( 'the_search_query', 'skivvy_customPosttype_search' ); //*/
 
 //// ---- ADD CUSTOM POST TYPES TO THE 'RIGHT NOW' DASHBOARD WIDGET ---- ////
 function skivvy_right_now_content_table_end() {
@@ -91,8 +91,7 @@ function skivvy_right_now_content_table_end() {
   echo '<tr><td class="first b b-' . $taxonomy->name . '">' . $num . '</td>';
   echo '<td class="t ' . $taxonomy->name . '">' . $text . '</td></tr>';
  }
-}
-add_action( 'right_now_content_table_end' , 'wph_right_now_content_table_end' );
+} add_action( 'right_now_content_table_end' , 'skivvy_right_now_content_table_end' );
 
 //// ---- Remove Plugin Update Notice ONLY for INACTIVE plugins ---- ////
 function skivvy_update_active_plugins($value = '') {
@@ -134,12 +133,11 @@ function post_word_count() {
         $count += str_word_count( strip_tags( get_post_field( 'post_content', $post->ID )));
     }
     $num =  number_format_i18n( $count );
-    // This block will add your word count to the stats portion of the Right Now box
     $text = _n( 'Word', 'Words', $num );
+	// This block will add your word count to the stats portion of the Right Now box
     echo "<tr><td class='first b'>{$num}</td><td class='t'>{$text}</td></tr>";
     // This line will add your word count to the bottom of the Right Now box.
-    echo '<p>This blog contains a total of <strong>' . $num . '</strong> published words!</p>';
-}
-add_action( 'right_now_content_table_end', 'post_word_count'); // add to Content Stats table
-add_action('activity_box_end', 'post_word_count'); // add to bottom of Activity Box
+    // echo '<p>This blog contains a total of <strong>' . $num . '</strong> published words!</p>';
+} add_action('right_now_content_table_end', 'post_word_count'); 
+add_action('activity_box_end', 'post_word_count');
 ?>

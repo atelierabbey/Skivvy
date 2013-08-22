@@ -1,4 +1,3 @@
-<?php #14Aug13 ?>
 <!DOCTYPE html>
 <html class="<?php if (function_exists('css_browser_selector')){echo css_browser_selector().' ';} if (function_exists('skinfo')){ echo skinfo('Version'); }?>"  dir="ltr" lang="en-US">
 <head>
@@ -17,9 +16,9 @@
 <body id="post-<?php the_ID(); ?>" <?php body_class(); ?>>
 <div id="preloader"></div>
 <div class="wrapper">
-    <div class="header">
+    <header>
         <div class="logo"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_url'); ?>/img/logo.png"></a></div>
-        <div class="access">
+        <nav class="access">
             <?php $menuargs = array(
                 'theme_location'  => 'main',
                 'menu'            => '',
@@ -38,7 +37,7 @@
                 'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
                 'walker'          => ''
             ); wp_nav_menu( $menuargs ); ?>
-        </div>
-    </div>
+        </nav>
+    </header>
     <div class="clear"></div>
-    <div class="content">
+    <article class="content">
