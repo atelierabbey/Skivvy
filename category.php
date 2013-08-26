@@ -14,7 +14,7 @@
             <?php the_title(); ?>
         </a>
     </h1>
-	<time><?php the_date(); ?></time>    
+	<div class="post-date"><?php the_date();?></div>    
     <?php
         if ( is_archive() || is_search() ) { // Only display excerpts for archives and search.
             the_excerpt();

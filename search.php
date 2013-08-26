@@ -11,7 +11,7 @@
             ?>
         </a>
     </h1>
-	<time><?php the_date(); ?></time>
+	<div class="post-date"><?php the_date();?></div>
     <?php
 		the_excerpt();
         

@@ -17,10 +17,10 @@
 <div id="preloader"></div>
 <div class="wrapper">
     <header>
-        <div class="logo"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_url'); ?>/img/logo.png"></a></div>
+        <div class="logo"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="Logo"></a></div>
         <nav class="access">
             <?php $menuargs = array(
-                'theme_location'  => 'main',
+                'theme_location'  => 'main1',
                 'menu'            => '',
                 'container'       => false,
                 'container_class' => '',
@@ -33,7 +33,7 @@
                 'after'           => '',
                 'link_before'     => '',
                 'link_after'      => '',
-                'items_wrap'      => '<ul role="navigation">%3$s</ul>',
+                'items_wrap'      => '<ul>%3$s</ul>',
                 'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
                 'walker'          => ''
             ); wp_nav_menu( $menuargs ); ?>

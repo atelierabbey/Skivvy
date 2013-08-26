@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
     <h1><?php the_title(); ?></h1>
-	<time><?php the_date(); ?></time>
+	<div class="post-date"><?php the_date();?></div>
     <?php the_content(); ?>
 	<?php /* if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
         <?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'skivvy_author_bio_avatar_size', 60 ) ); ?>
