@@ -5,8 +5,14 @@ Author URI:		http://www.d4webdesign.com/
 Theme URI:		https://github.com/atelierabbey/Skivvy
 Description:	Wordpress Theme by D4 Web Design
 Version:		26Aug13
-*/
-/* OVERALL */
+----------- Index -----------
+	a. OVERALL
+	b. LAYOUT
+		1. Content
+		2. Header
+		3. Nav
+		4. Footer
+/* ----------- OVERALL ----------- */
 html {
 	background-color:#fff;
 	font: 14px/16px Verdana, Geneva, Tahoma, sans-serif;
@@ -56,7 +62,8 @@ ul li {
 ul li ul li {
 	list-style: circle;
 }
-/* LAYOUT */
+/* ----------- LAYOUT ----------- */
+/* Content */
 .wrapper {
 	width:980px;
 	margin: 0 auto;
@@ -65,27 +72,15 @@ ul li ul li {
 article.content {
 	
 }
+
+/* Header */	
+
 header {
 	
 }
 .logo {
 
 }
-footer {
-	
-}
-.footer-copyright {
-	font-size:0.75em;
-}
-.footer-copyright a:active,
-.footer-copyright a:link,
-.footer-copyright a:visited,
-.footer-copyright a:hover,
-.footer-copyright a {
-	color:inherit;
-	text-decoration:none;
-}
-
 /* NAV - Tier 1 */
 .access {
 }
@@ -108,4 +103,20 @@ footer {
 .access ul ul.sub-menu li:hover{
 }
 .access ul ul.sub-menu li a{
+}
+
+/* FOOTER */
+footer {
+	
+}
+.footer-copyright {
+	font-size:0.75em;
+}
+.footer-copyright a:active,
+.footer-copyright a:link,
+.footer-copyright a:visited,
+.footer-copyright a:hover,
+.footer-copyright a {
+	color:inherit;
+	text-decoration:none;
 }
