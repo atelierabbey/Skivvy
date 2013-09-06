@@ -3,7 +3,7 @@
 include_once 'inc/core.php';
 function skivvy_setup() {
 	add_theme_support( 'post-thumbnails' );
-	# add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
+	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 	# add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
 	# add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes 
 	# add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 ); add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
