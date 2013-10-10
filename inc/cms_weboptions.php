@@ -27,7 +27,9 @@ function theme_options_do_page() {
             <br>
             <style>
 				tr img.icon {
+					background: #848d9d;
 					height: 20px;
+					padding: 1px;
 					margin-right: 10px;
 					max-width: 20px;
 				}
