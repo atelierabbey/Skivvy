@@ -1,4 +1,4 @@
-<?php $version = "9Oct13"; // The Bat signal
+<?php $version = "10Oct13"; // The Bat signal
 add_action( 'admin_init', 'theme_options_init' );
 add_action( 'admin_menu', 'theme_options_add_page' ); 
 function theme_options_init(){ register_setting( 'sample_options', 'clientcms_options');} 
@@ -150,7 +150,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Instagram</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[igurladd]" type="checkbox" value="1" <?php if( 1 == $options['igurladd']) echo 'checked="checked"'; ?> name="clientcms_options[igurladd]"></td>
 					<td><input id="clientcms_options[igurl]" type="text" size="50" name="clientcms_options[igurl]" value="<?php esc_attr_e( $options['igurl'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>instagram.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="instagram"]' onclick="copyText(this)" readonly>
@@ -158,7 +158,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Linkedin</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[liurladd]" type="checkbox" value="1" <?php if( 1 == $options['liurladd']) echo 'checked="checked"'; ?> name="clientcms_options[liurladd]"></td>
 					<td><input id="clientcms_options[liurl]" type="text" size="50" name="clientcms_options[liurl]" value="<?php esc_attr_e( $options['liurl'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>linkedin.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="linkedin"]' onclick="copyText(this)" readonly>
@@ -166,7 +166,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Pinterest</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[pturladd]" type="checkbox" value="1" <?php if( 1 == $options['pturladd']) echo 'checked="checked"'; ?> name="clientcms_options[pturladd]"></td>
 					<td><input id="clientcms_options[pturl]" type="text" size="50" name="clientcms_options[pturl]" value="<?php esc_attr_e( $options['pturl'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>pinterest.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="pinterest"]' onclick="copyText(this)" readonly>
@@ -174,7 +174,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Twitter</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[twurladd]" type="checkbox" value="1" <?php if( 1 == $options['twurladd']) echo 'checked="checked"'; ?> name="clientcms_options[twurladd]"></td>
 					<td><input id="clientcms_options[twurl]" type="text" size="50" name="clientcms_options[twurl]" value="<?php esc_attr_e( $options['twurl'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>twitter.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="twitter"]' onclick="copyText(this)" readonly>
@@ -182,7 +182,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Vimeo</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[vmurladd]" type="checkbox" value="1" <?php if( 1 == $options['vmurladd']) echo 'checked="checked"'; ?> name="clientcms_options[vmurladd]"></td>
 					<td><input id="clientcms_options[vmurl]" type="text" size="50" name="clientcms_options[vmurl]" value="<?php esc_attr_e( $options['vmurl'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>vimeo.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="vimeo"]' onclick="copyText(this)" readonly>
@@ -190,7 +190,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Youtube</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[yturladd]" type="checkbox" value="1" <?php if( 1 == $options['yturladd']) echo 'checked="checked"'; ?> name="clientcms_options[yturladd]"></td>
 					<td><input id="clientcms_options[yturl]" type="text" size="50" name="clientcms_options[yturl]" value="<?php esc_attr_e( $options['yturl'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>youtube.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="youtube"]' onclick="copyText(this)" readonly>
@@ -198,7 +198,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Extra 1</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[x1urladd]" type="checkbox" value="1" <?php if( 1 == $options['x1urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x1urladd]"></td>
 					<td><input id="clientcms_options[x1url]" type="text" size="50" name="clientcms_options[x1url]" value="<?php esc_attr_e( $options['x1url'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>button1.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="extra1"]' onclick="copyText(this)" readonly>
@@ -206,7 +206,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Extra 2</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[x2urladd]" type="checkbox" value="1" <?php if( 1 == $options['x2urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x2urladd]"></td>
 					<td><input id="clientcms_options[x2url]" type="text" size="50" name="clientcms_options[x2url]" value="<?php esc_attr_e( $options['x2url'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>button2.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="extra2"]' onclick="copyText(this)" readonly>
@@ -214,7 +214,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Extra 3</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[x3urladd]" type="checkbox" value="1" <?php if( 1 == $options['x3urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x3urladd]"></td>
 					<td><input id="clientcms_options[x3url]" type="text" size="50" name="clientcms_options[x3url]" value="<?php esc_attr_e( $options['x3url'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>button3.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="extra3"]' onclick="copyText(this)" readonly>
@@ -222,7 +222,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Extra 4</th>
-                    <td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
+                    <td><input id="clientcms_options[x4urladd]" type="checkbox" value="1" <?php if( 1 == $options['x4urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x4urladd]"></td>
 					<td><input id="clientcms_options[x4url]" type="text" size="50" name="clientcms_options[x4url]" value="<?php esc_attr_e( $options['x4url'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>button4.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="extra4"]' onclick="copyText(this)" readonly>
@@ -230,7 +230,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Extra 5</th>
-                    <td><input id="clientcms_options[x5urladd]" type="checkbox" value="1" <?php if( 1 !== $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[x5urladd]"></td>
+                    <td><input id="clientcms_options[x5urladd]" type="checkbox" value="1" <?php if( 1 == $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[x5urladd]"></td>
 					<td><input id="clientcms_options[x5url]" type="text" size="50" name="clientcms_options[x5url]" value="<?php esc_attr_e( $options['x5url'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>button5.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="extra5"]' onclick="copyText(this)" readonly>
@@ -238,7 +238,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Extra 6</th>
-                    <td><input id="clientcms_options[x6urladd]" type="checkbox" value="1" <?php if( 1 !== $options['x6urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x6urladd]"></td>
+                    <td><input id="clientcms_options[x6urladd]" type="checkbox" value="1" <?php if( 1 == $options['x6urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x6urladd]"></td>
 					<td><input id="clientcms_options[x6url]" type="text" size="50" name="clientcms_options[x6url]" value="<?php esc_attr_e( $options['x6url'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>button6.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="extra6"]' onclick="copyText(this)" readonly>
@@ -246,7 +246,7 @@ function theme_options_do_page() {
 				</tr>
 				<tr valign="top">
 					<th scope="row">Extra 7</th>
-                    <td><input id="clientcms_options[x7urladd]" type="checkbox" value="1" <?php if( 1 !== $options['x7urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x7urladd]"></td>
+                    <td><input id="clientcms_options[x7urladd]" type="checkbox" value="1" <?php if( 1 == $options['x7urladd']) echo 'checked="checked"'; ?> name="clientcms_options[x7urladd]"></td>
 					<td><input id="clientcms_options[x7url]" type="text" size="50" name="clientcms_options[x7url]" value="<?php esc_attr_e( $options['x7url'] ); ?>" /></td>
 					<td><img class="icon" src="<?php echo $socnet ?>button7.png" />
                         Icon: <input type="text" size="30" value='[socialbox key="extra7"]' onclick="copyText(this)" readonly>
@@ -337,27 +337,24 @@ function socialbox_shortcode( $atts ){
 		default : { // Social Box
 			$result = '<div class="socialbox">';
 				// Social Media
-				if ($options["fburl"]) { $result .= '<a class="btn_facebook" href="'.$options["fburl"].'" target="_blank"><img class="icon" src="'.$socnet.'facebook.png" alt="Facebook" ></a>'; }
-				if ($options["twurl"]) { $result .= '<a class="btn_twitter" href="'.$options["twurl"].'" target="_blank"><img class="icon" src="'.$socnet.'twitter.png" alt="Twitter" ></a>'; }
-				if ($options["liurl"]) { $result .= '<a class="btn_linkedin" href="'.$options["liurl"].'" target="_blank"><img class="icon" src="'.$socnet.'linkedin.png" alt="Linkedin" ></a>'; }
-				if ($options["eturl"]) { $result .= '<a class="btn_etsy" href="'.$options["eturl"].'" target="_blank"><img class="icon" src="'.$socnet.'etsy.png" alt="Etsy" ></a>'; }
-				if ($options["yturl"]) { $result .= '<a class="btn_youtube" href="'.$options["yturl"].'" target="_blank"><img class="icon" src="'.$socnet.'youtube.png" alt="Youtube" /></a>'; }
-				if ($options["gpurl"]) { $result .= '<a class="btn_googleplus" href="'.$options["gpurl"].'" target="_blank"><img class="icon" src="'.$socnet.'google-plus.png" alt="Google Plus" /></a>'; }
-				if ($options["igurl"]) { $result .= '<a class="btn_instagram" href="'.$options["igurl"].'" target="_blank"><img class="icon" src="'.$socnet.'instagram.png" alt="Instagram" /></a>'; }
-				if ($options["pturl"]) { $result .= '<a class="btn_pinterest" href="'.$options["pturl"].'" target="_blank"><img class="icon" src="'.$socnet.'pinterest.png" alt="Pinterest" /></a>'; }
-				if ($options["glurl"]) { $result .= '<a class="btn_flickr" href="'.$options["flurl"].'" target="_blank"><img class="icon" src="'.$socnet.'flickr.png" alt="Flicker" /></a>'; }
-				if ($options["vmurl"]) { $result .= '<a class="btn_vimeo" href="'.$options["vmurl"].'" target="_blank"><img class="icon" src="'.$socnet.'vimeo.png" alt="Vimeo" /></a>'; }
-				if ($options["x1url"]) { $result .= '<a class="btn_extra1" href="'.$options["x1url"].'" target="_blank"><img class="icon" src="'.$socnet.'button1.png" alt="Social Network" /></a>'; }
-				if ($options["x2url"]) { $result .= '<a class="btn_extra2" href="'.$options["x2url"].'" target="_blank"><img class="icon" src="'.$socnet.'button2.png" alt="Social Network" /></a>'; }
-				if ($options["x3url"]) { $result .= '<a class="btn_extra3" href="'.$options["x3url"].'" target="_blank"><img class="icon" src="'.$socnet.'button3.png" alt="Social Network" /></a>'; }
-				if ($options["x4url"]) { $result .= '<a class="btn_extra4" href="'.$options["x4url"].'" target="_blank"><img class="icon" src="'.$socnet.'button4.png" alt="Social Network" /></a>'; }
-				if ($options["x5url"]) { $result .= '<a class="btn_extra5" href="'.$options["x5url"].'" target="_blank"><img class="icon" src="'.$socnet.'button5.png" alt="Social Network" /></a>'; }
-				if ($options["x6url"]) { $result .= '<a class="btn_extra6" href="'.$options["x6url"].'" target="_blank"><img class="icon" src="'.$socnet.'button6.png" alt="Social Network" /></a>'; }
-
-				if ($options["x7url"]) { $result .= '<a class="btn_extra7" href="'.$options["x7url"].'" target="_blank"><img class="icon" src="'.$socnet.'button7.png" alt="Social Network" /></a>'; }
-				// RSS
+				if (1 == $options["fburladd"] && $options["fburl"]) { $result .= '<a class="btn_facebook" href="'.$options["fburl"].'" target="_blank"><img class="icon" src="'.$socnet.'facebook.png" alt="Facebook" ></a>'; }
+				if (1 == $options["twurladd"] && $options["twurl"]) { $result .= '<a class="btn_twitter" href="'.$options["twurl"].'" target="_blank"><img class="icon" src="'.$socnet.'twitter.png" alt="Twitter" ></a>'; }
+				if (1 == $options["liurladd"] && $options["liurl"]) { $result .= '<a class="btn_linkedin" href="'.$options["liurl"].'" target="_blank"><img class="icon" src="'.$socnet.'linkedin.png" alt="Linkedin" ></a>'; }
+				if (1 == $options["eturladd"] && $options["eturl"]) { $result .= '<a class="btn_etsy" href="'.$options["eturl"].'" target="_blank"><img class="icon" src="'.$socnet.'etsy.png" alt="Etsy" ></a>'; }
+				if (1 == $options["yturladd"] && $options["yturl"]) { $result .= '<a class="btn_youtube" href="'.$options["yturl"].'" target="_blank"><img class="icon" src="'.$socnet.'youtube.png" alt="Youtube" /></a>'; }
+				if (1 == $options["gpurladd"] && $options["gpurl"]) { $result .= '<a class="btn_googleplus" href="'.$options["gpurl"].'" target="_blank"><img class="icon" src="'.$socnet.'google-plus.png" alt="Google Plus" /></a>'; }
+				if (1 == $options["igurladd"] && $options["igurl"]) { $result .= '<a class="btn_instagram" href="'.$options["igurl"].'" target="_blank"><img class="icon" src="'.$socnet.'instagram.png" alt="Instagram" /></a>'; }
+				if (1 == $options["pturladd"] && $options["pturl"]) { $result .= '<a class="btn_pinterest" href="'.$options["pturl"].'" target="_blank"><img class="icon" src="'.$socnet.'pinterest.png" alt="Pinterest" /></a>'; }
+				if (1 == $options["blurladd"] && $options["glurl"]) { $result .= '<a class="btn_flickr" href="'.$options["flurl"].'" target="_blank"><img class="icon" src="'.$socnet.'flickr.png" alt="Flicker" /></a>'; }
+				if (1 == $options["vmurladd"] && $options["vmurl"]) { $result .= '<a class="btn_vimeo" href="'.$options["vmurl"].'" target="_blank"><img class="icon" src="'.$socnet.'vimeo.png" alt="Vimeo" /></a>'; }
+				if (1 == $options["x1urladd"] && $options["x1url"]) { $result .= '<a class="btn_extra1" href="'.$options["x1url"].'" target="_blank"><img class="icon" src="'.$socnet.'button1.png" alt="Social Network" /></a>'; }
+				if (1 == $options["x2urladd"] && $options["x2url"]) { $result .= '<a class="btn_extra2" href="'.$options["x2url"].'" target="_blank"><img class="icon" src="'.$socnet.'button2.png" alt="Social Network" /></a>'; }
+				if (1 == $options["x3urladd"] && $options["x3url"]) { $result .= '<a class="btn_extra3" href="'.$options["x3url"].'" target="_blank"><img class="icon" src="'.$socnet.'button3.png" alt="Social Network" /></a>'; }
+				if (1 == $options["x4urladd"] && $options["x4url"]) { $result .= '<a class="btn_extra4" href="'.$options["x4url"].'" target="_blank"><img class="icon" src="'.$socnet.'button4.png" alt="Social Network" /></a>'; }
+				if (1 == $options["fburladd"] && $options["x5url"]) { $result .= '<a class="btn_extra5" href="'.$options["x5url"].'" target="_blank"><img class="icon" src="'.$socnet.'button5.png" alt="Social Network" /></a>'; }
+				if (1 == $options["fburladd"] && $options["x6url"]) { $result .= '<a class="btn_extra6" href="'.$options["x6url"].'" target="_blank"><img class="icon" src="'.$socnet.'button6.png" alt="Social Network" /></a>'; }
+				if (1 == $options["fburladd"] && $options["x7url"]) { $result .= '<a class="btn_extra7" href="'.$options["x7url"].'" target="_blank"><img class="icon" src="'.$socnet.'button7.png" alt="Social Network" /></a>'; }
 				if (1 == $options["rssurladd"]) {$result .= '<a class="btn_rss" href="'.$options["rssurl"].'" target="_blank"><img class="icon" src="'.$socnet.'rss.png" alt="RSS" /></a>'; }
-				// Phone & Email
 				if (1 == $options["em1txtadd"] && $options["em1txt"]){ $result .= '<a class="btn_email1" href="mailto:'.$options["em1txt"].'" title="Email - '.$options["em1txt"].'"><img class="icon" src="'.$socnet.'email1.png" alt="Email - ' .$options["em1txt"]. '" /></a>'; }
 				if (1 == $options["em2txtadd"] && $options["em2txt"]){ $result .= '<a class="btn_email2" href="mailto:'.$options["em2txt"].'" title="Email - '.$options["em2txt"].'"><img class="icon" src="'.$socnet.'email2.png" alt="Email - ' .$options["em2txt"]. '" /></a>'; }
 				if (1 == $options["phtxtadd"]  && $options["ph1txt"]){ $phone = explode(" ", $options["ph1txt"]); $result .= '<a class="btn_phoneone" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"><img class="icon" src="'.$socnet.'phone1.png" alt="Phone - '. "$phone[0] ( $phone[1] ) $phone[2] - $phone[3]" .'" /></a>'; }
