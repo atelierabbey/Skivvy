@@ -27,9 +27,8 @@ function theme_options_do_page() {
             <br>
             <style>
 				tr img.icon {
-					background: #848d9d;
 					height: 20px;
-					padding: 1px;
+					padding: 2px;
 					margin-right: 10px;
 					max-width: 20px;
 				}
@@ -51,9 +50,10 @@ function theme_options_do_page() {
 					<td><input id="clientcms_options[ph1txt]" type="text" name="clientcms_options[ph1txt]" placeholder="1 222 333 4444" value="<?php esc_attr_e( $options['ph1txt'] ); ?>" /></td>
                     <td>
                     	<img class="icon" src="<?php echo $socnet ?>phone1.png" />
-                    	Text:<input type="text" size="6" value="[txt_ph1]" onclick="copyText(this)" readonly>
                         Icon: <input type="text" size="22" value='[socialbox key="phone1"]' onclick="copyText(this)" readonly>
-                        <em>delimiter="."   |   custom="+$a ($b) $c-$d</em>
+                        &nbsp;|&nbsp;&nbsp;Text:<input type="text" size="6" value="[txt_ph1]" onclick="copyText(this)" readonly>
+                        <input type="text" size="20" value='[txt_ph1 delimiter="."]' onclick="copyText(this)" readonly>
+                        <input type="text" size="34" value='[txt_ph1 custom="+$a ($b) $c-$d"]' onclick="copyText(this)" readonly>
 					</td>
                 </tr>
 				<tr valign="top">
@@ -62,9 +62,10 @@ function theme_options_do_page() {
 					<td><input id="clientcms_options[ph2txt]" type="text" name="clientcms_options[ph2txt]" placeholder="1 222 333 4444" value="<?php esc_attr_e( $options['ph2txt'] ); ?>" /></td>
 					<td>
                     	<img class="icon" src="<?php echo $socnet ?>phone2.png" />
-                    	Text:<input type="text" size="6" value="[txt_ph2]" onclick="copyText(this)" readonly>
                         Icon: <input type="text" size="22" value='[socialbox key="phone2"]' onclick="copyText(this)" readonly>
-                        <em>delimiter="."   |   custom="+$a ($b) $c-$d</em>
+                        &nbsp;|&nbsp;&nbsp;Text:<input type="text" size="6" value="[txt_ph2]" onclick="copyText(this)" readonly>
+                        <input type="text" size="20" value='[txt_ph2 delimiter="."]' onclick="copyText(this)" readonly>
+                        <input type="text" size="34" value='[txt_ph2 custom="+$a ($b) $c-$d"]' onclick="copyText(this)" readonly>
 					</td>
 				</tr>
                 <tr><td colspan="2"><br /></td></tr>
