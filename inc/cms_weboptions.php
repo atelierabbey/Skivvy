@@ -33,6 +33,9 @@ function theme_options_do_page() {
 					margin-right: 10px;
 					max-width: 20px;
 				}
+				tr img.icon:hover {
+					background: linear-gradient(to top, #373737 0px, #464646 5px) repeat scroll 0 0 #464646
+				}
 			</style>
             <script>
 				function copyText(element) {
