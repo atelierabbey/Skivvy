@@ -10,7 +10,7 @@ function skivvy_setup() {
 	# if (function_exists('skivvy_autooptions')){skivvy_autooptions();} // Auto setup options on theme setup
 	# if (function_exists('skivvy_languageaccept')){skivvy_languageaccept();}; // Language support
 } add_action( 'after_setup_theme', 'skivvy_setup' );
-include_once 'inc/wpsimple.php';
+# include_once 'inc/wpsimple.php';
 
 // Unique Registers
 # include_once 'inc/register_sidebar.php';
