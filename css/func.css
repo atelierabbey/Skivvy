@@ -1,4 +1,4 @@
-/* # 6Sep13
+/* # 14Oct13
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -80,8 +80,6 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 /* Force Firefox to show image placeholders */
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}
 
-
-
 /* ----------- WORDPRESS DEFAULTS ----------- */
 .aligncenter { display:block; margin:0 auto }
 .alignleft { float:left }
@@ -92,7 +90,9 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 .xoxo {margin:0;padding:0;}
 .xoxo li {list-style:none;}
 
-
+/* Theme Specific */
+.footer-copyright { font-size:0.75em;}
+.footer-copyright a:active,.footer-copyright a:link,.footer-copyright a:visited,.footer-copyright a:hover,.footer-copyright a {	color:inherit; text-decoration:none;}
 
 /* ----------- Nav - up to 3-tier drop down ----------- */
 /* Tier 1 */

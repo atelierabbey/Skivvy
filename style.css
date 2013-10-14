@@ -4,15 +4,8 @@ Author:			D4 Advanced Media
 Author URI:		http://www.d4webdesign.com/
 Theme URI:		https://github.com/atelierabbey/Skivvy
 Description:	Wordpress Theme by D4 Web Design
-Version:		26Aug13
------------ Index -----------
-	a. OVERALL
-	b. LAYOUT
-		1. Content
-		2. Header
-		3. Nav
-		4. Footer
-/* ----------- OVERALL ----------- */
+Version:		14Oct13
+*/
 html {
 	background-color:#fff;
 	font: 14px/16px Verdana, Geneva, Tahoma, sans-serif;
@@ -20,29 +13,8 @@ html {
 body {
 	position:relative;
 }
-h1 {
-	font:2em / 1em Verdana, Tahoma, Geneva, sans-serif;
-	margin: 0 0 0.67em;
-}
-h2 {
-	font:1.5em / 1em Verdana, Tahoma, Geneva, sans-serif;
-	margin: 0 0 0.83em;
-}
-h3 {
-	font:1.2em / 1em Verdana, Tahoma, Geneva, sans-serif;
-	margin: 0 0 1em;
-}
-h4 {
-	font:1em / 1em Verdana, Tahoma, Geneva, sans-serif;
-	margin: 0 0 0.8em;
-}
-h5 {
-	font:0.8em / 1em Verdana, Tahoma, Geneva, sans-serif;
-	margin: 0 0 0.67em;
-}
-h6 {
-	font:.65em / 1em Verdana, Tahoma, Geneva, sans-serif;
-	margin: 0 0 0.33em;
+h1, h2, h3, h4, h5, h6 {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 p {
 	margin: 0 0 1em;
@@ -62,25 +34,21 @@ ul li {
 ul li ul li {
 	list-style: circle;
 }
-/* ----------- LAYOUT ----------- */
-/* Content */
+/* LAYOUT */
 .wrapper {
 	width:980px;
 	margin: 0 auto;
 	padding: 0 0 0 0;
 }
 article.content {
-	
 }
-
-/* Header */	
-
 header {
-	
 }
 .logo {
-
 }
+footer {
+}
+
 /* NAV - Tier 1 */
 .access {
 }
@@ -103,20 +71,4 @@ header {
 .access ul ul.sub-menu li:hover{
 }
 .access ul ul.sub-menu li a{
-}
-
-/* FOOTER */
-footer {
-	
-}
-.footer-copyright {
-	font-size:0.75em;
-}
-.footer-copyright a:active,
-.footer-copyright a:link,
-.footer-copyright a:visited,
-.footer-copyright a:hover,
-.footer-copyright a {
-	color:inherit;
-	text-decoration:none;
 }
