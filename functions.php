@@ -22,10 +22,10 @@ function skivvy_setup() {
 // Progressive Registers
 # include_once 'inc/register_widget.php';
 # include_once 'inc/register_shortcode.php';
-# include_once 'inc/register_functions.php';
+
 
 // Modules
-# include_once 'lib/skivvy_branding.php';
+# include_once 'lib/branding.php';
 # include_once 'lib/wpsimple.php';
 # include_once 'lib/cms_client.php';
 # include_once 'lib/cms_admin.php';
@@ -35,4 +35,5 @@ function skivvy_setup() {
 # include_once 'lib/mod_advstyles.php'; 
 # include_once 'lib/mod_posttypetools.php';
 # include_once 'lib/mod_rewrites.php';
+# include_once 'inc/mod_functions.php';
 ?>
