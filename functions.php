@@ -1,6 +1,6 @@
 <?php // 22Aug13 - Functions.php is like Batman's Tool belt. It has a ton of freakishly-specific gadgets and plenty of bat-a-rangs.
 // Core & Setup
-include_once 'inc/core.php';
+include_once 'lib/core.php';
 function skivvy_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
@@ -10,7 +10,7 @@ function skivvy_setup() {
 	# if (function_exists('skivvy_autooptions')){skivvy_autooptions();} // Auto setup options on theme setup
 	# if (function_exists('skivvy_languageaccept')){skivvy_languageaccept();}; // Language support
 } add_action( 'after_setup_theme', 'skivvy_setup' );
-# include_once 'inc/wpsimple.php';
+
 
 // Unique Registers
 # include_once 'inc/register_sidebar.php';
@@ -24,13 +24,13 @@ function skivvy_setup() {
 # include_once 'inc/register_functions.php';
 
 // Modules
-# include_once 'inc/cms_client.php';
-# include_once 'inc/cms_admin.php';
-# include_once 'inc/cms_weboptions.php'; 
-# include_once 'inc/mod_browserdetect.php';
-# include_once 'inc/mod_randimg.php'; 
-# include_once 'inc/mod_advstyles.php'; 
-# include_once 'inc/mod_posttypetools.php';
-# include_once 'inc/mod_rewrites.php';
-
+# include_once 'lib/wpsimple.php';
+# include_once 'lib/cms_client.php';
+# include_once 'lib/cms_admin.php';
+# include_once 'lib/cms_weboptions.php'; 
+# include_once 'lib/mod_browserdetect.php';
+# include_once 'lib/mod_randimg.php'; 
+# include_once 'lib/mod_advstyles.php'; 
+# include_once 'lib/mod_posttypetools.php';
+# include_once 'lib/mod_rewrites.php';
 ?>
