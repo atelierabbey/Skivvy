@@ -1,14 +1,15 @@
-<?php // 22Aug13 - Functions.php is like Batman's Tool belt. It has a ton of freakishly-specific gadgets and plenty of bat-a-rangs.
-// Core & Setup
-include_once 'lib/core.php';
+<?php // 16Oct13
 function skivvy_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 	# add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
 	# add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes 
 	# add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 ); add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
-	# if (function_exists('skivvy_autooptions')){skivvy_autooptions();} // Auto setup options on theme setup
-	# if (function_exists('skivvy_languageaccept')){skivvy_languageaccept();}; // Language support
+	# if (function_exists('skivvy_autooptions')){skivvy_autooptions();} // Auto setup options on theme setup - In lib/wpsimple.php
+	/* 	load_theme_textdomain( 'skivvy', TEMPLATEPATH.'/lng' );
+		$locale = get_locale();
+		$locale_file = TEMPLATEPATH."/lng/$locale.php";
+		if ( is_readable( $locale_file ) )require_once( $locale_file ); //*/
 } add_action( 'after_setup_theme', 'skivvy_setup' );
 
 
@@ -24,6 +25,7 @@ function skivvy_setup() {
 # include_once 'inc/register_functions.php';
 
 // Modules
+# include_once 'lib/skivvy_branding.php';
 # include_once 'lib/wpsimple.php';
 # include_once 'lib/cms_client.php';
 # include_once 'lib/cms_admin.php';
