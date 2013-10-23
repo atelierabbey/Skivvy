@@ -20,7 +20,7 @@
         <div class="logo"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="Logo"></a></div>
         <nav class="access">
             <?php $menuargs = array(
-                'theme_location'  => 'main1',
+                'theme_location'  => 'main',
                 'menu'            => '',
                 'container'       => false,
                 'container_class' => '',
