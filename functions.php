@@ -25,7 +25,7 @@ function skivvy_setup() {
 # include_once 'inc/register_shortcode.php';
 
 // Modules
-# include_once 'lib/branding.php';
+# include_once 'lib/skivvy_branding.php';
 # include_once 'lib/wpsimple.php';
 # include_once 'lib/cms_client.php';
 # include_once 'lib/cms_admin.php';
