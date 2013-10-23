@@ -1,4 +1,4 @@
-<?php // 16Oct13
+<?php #23Oct13
 add_action( 'after_setup_theme', 'skivvy_setup' );
 function skivvy_setup() {
 	add_theme_support( 'post-thumbnails' );
@@ -14,7 +14,6 @@ function skivvy_setup() {
 		if ( is_readable( $locale_file ) )require_once( $locale_file ); //*/
 } 
 
-
 // Unique Registers
 # include_once 'inc/register_sidebar.php';
 # include_once 'inc/register_menu.php';
@@ -24,7 +23,6 @@ function skivvy_setup() {
 // Progressive Registers
 # include_once 'inc/register_widget.php';
 # include_once 'inc/register_shortcode.php';
-
 
 // Modules
 # include_once 'lib/branding.php';
