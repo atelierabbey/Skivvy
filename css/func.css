@@ -101,11 +101,11 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 .access ul li {position:relative;float:left;list-style:none;margin:0;padding:0;}
 .access ul li a {display:block;}
 /* Tier 2 */
-.access ul ul.sub-menu {display:none;position:absolute;top: 100%;margin:0;padding:0;}
-.access ul ul.sub-menu li {float:none;position: relative;margin:0;padding:0;}
+.access ul ul {display:none;position:absolute;top: 100%;margin:0;padding:0;}
+.access ul ul li {float:none;position: relative;margin:0;padding:0;}
 .access ul li:hover > ul {display:block;}
 /* Tier 3 */
-.access ul ul.sub-menu ul.sub-menu {position: absolute; left: 100%; top:0;margin:0;padding:0;}
+.access ul ul ul {position: absolute; left: 100%; top:0;margin:0;padding:0;}
 
 /* ----------- 960 Grid System ~ Core CSS. Learn more ~ http://960.gs/  Licensed under GPL and MIT. ----------- */
 /* `Container */.container_12 { margin-left: auto; margin-right: auto; width: 960px;}
