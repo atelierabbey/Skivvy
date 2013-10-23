@@ -4,7 +4,7 @@ Author:			D4 Advanced Media
 Author URI:		http://www.d4webdesign.com/
 Theme URI:		https://github.com/atelierabbey/Skivvy
 Description:	Wordpress Theme by D4 Web Design
-Version:		14Oct13
+Version:		23Oct13
 */
 html {
 	background-color:#fff;
@@ -49,7 +49,7 @@ header {
 footer {
 }
 
-/* NAV - Tier 1 */
+/* Menu */
 .access {
 }
 .access ul {
@@ -63,12 +63,11 @@ footer {
 }
 .access ul li a {
 }
-/* NAV - Tier 2 */
-.access ul ul.sub-menu {
+.access ul ul {
 }
-.access ul ul.sub-menu li{
+.access ul ul li{
 }
-.access ul ul.sub-menu li:hover{
+.access ul ul li:hover{
 }
-.access ul ul.sub-menu li a{
+.access ul ul li a{
 }
