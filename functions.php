@@ -30,5 +30,5 @@ include_once 'lib/wpsimple.php';
 # include_once 'lib/mod_advstyles.php'; 
 # include_once 'lib/mod_posttypetools.php';
 # include_once 'lib/mod_rewrites.php';
-# include_once 'inc/mod_functions.php';
+# include_once 'lib/mod_functions.php';
 ?>
