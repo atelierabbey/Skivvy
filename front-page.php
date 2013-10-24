@@ -15,8 +15,8 @@
 </div>
 <?php /* ?>
 <div id='page'>
-    <div id='next_arrow'></div>
-    <div id='prev_arrow'></div>
+    <div id='cycle-next'></div>
+    <div id='cycle-prev'></div>
 </div><?php //*/ ?>
 <?php while ( have_posts() ) : the_post(); ?>
 	<?php the_content(); ?>
@@ -52,7 +52,7 @@
 			// height:        'auto',// container height (if the 'fit' option is true, the slides will be set to this height as well) 
 			// manualTrump:   true,  // causes manual transition to stop an active transition instead of being ignored 
 			// metaAttr:      'cycle',// data- attribute that holds the option data for the slideshow 
-			// next:          '#next_arrow',  // element, jQuery object, or jQuery selector string for the element to use as event trigger for next slide 
+			// next:          '#cycle-next',  // element, jQuery object, or jQuery selector string for the element to use as event trigger for next slide 
 			// nowrap:        0,     // true to prevent slideshow from wrapping 
 			// onPagerEvent:  null,  // callback fn for pager events: function(zeroBasedSlideIndex, slideElement) 
 			// onPrevNextEvent: null,// callback fn for prev/next events: function(isNext, zeroBasedSlideIndex, slideElement) 
@@ -61,7 +61,7 @@
 			// pagerEvent:    'click.cycle', // name of event which drives the pager navigation 
 			pause:         true,     // true to enable "pause on hover" 
 			// pauseOnPagerHover: 0, // true to pause when hovering over pager link 
-			// prev:          '#prev_arrow',  // element, jQuery object, or jQuery selector string for the element to use as event trigger for previous slide 
+			// prev:          '#cycle-prev',  // element, jQuery object, or jQuery selector string for the element to use as event trigger for previous slide 
 			// prevNextEvent:'click.cycle',// event which drives the manual transition to the previous or next slide 
 			// random:        0,     // true for random, false for sequence (not applicable to shuffle fx) 
 			// randomizeEffects: 1,  // valid when multiple effects are used; true to make the effect sequence random 
