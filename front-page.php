@@ -11,12 +11,14 @@
             <?php the_post_thumbnail();?>
             <?php the_content(); ?>
         </div>
-	<?php endwhile; ?>
+	<?php endwhile; wp_reset_postdata();?>
 </div>
 <?php /* ?>
 <div id='page'>
-    <div id='cycle-next'></div>
-    <div id='cycle-prev'></div>
+	<div id='cycle-prev'>&lt;</div>
+	<div id='cycle-pause'>11</div>
+	<div id='cycle-resume'>|&gt;</div>
+	<div id='cycle-next'>&gt;</div>
 </div><?php //*/ ?>
 <?php while ( have_posts() ) : the_post(); ?>
 	<?php the_content(); ?>
