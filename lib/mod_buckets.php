@@ -1,4 +1,7 @@
-<?php #8Aug13
+<?php #24OCT13
+function add_bucket_widgets() {
+	register_widget( 'Bucket_Widget' );
+} add_action( 'widgets_init', 'add_bucket_widgets' );
 class Bucket_Widget extends WP_Widget {
 	/*
 	 * Setup widget options.
