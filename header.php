@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?php bloginfo('template_directory');?>/css/func.css?ver=1" type="text/css" />
 <link rel="stylesheet" href="<?php bloginfo('stylesheet_directory');?>/style.css?ver=1" type="text/css" />
 <!--[if lt IE 9]><script src="<?php bloginfo('template_directory'); ?>/js/html5.js"></script><![endif]-->
-<meta name="description" content="">
+<?php /* ?><meta name="description" content=""><?php // */ ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php wp_enqueue_script("jquery"); ?>
 <?php wp_head(); ?>
