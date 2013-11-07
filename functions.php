@@ -10,25 +10,25 @@
 } 
 
 // Unique Registers
-# include_once 'inc/register_sidebar.php';
-# include_once 'inc/register_menu.php';
-# include_once 'inc/register_posttype.php';
-# include_once 'inc/register_scripts.php';
-# include_once 'inc/register_widget.php';
+# include 'inc/register_sidebar.php';
+# include 'inc/register_menu.php';
+# include 'inc/register_posttype.php';
+# include 'inc/register_scripts.php';
+# include 'inc/register_widget.php';
 // Progressive Registers
-# include_once 'inc/register_shortcode.php';
+# include 'inc/register_shortcode.php';
 
 // Modules
-include_once 'lib/skivvy_branding.php';
-include_once 'lib/wpsimple.php';
-# include_once 'lib/cms_client.php';
-# include_once 'lib/cms_admin.php';
-# include_once 'lib/cms_weboptions.php'; 
-# include_once 'lib/mod_bucket.php';
-# include_once 'lib/mod_browserdetect.php';
-# include_once 'lib/mod_randimg.php'; 
-# include_once 'lib/mod_advstyles.php'; 
-# include_once 'lib/mod_posttypetools.php';
-# include_once 'lib/mod_rewrites.php';
-# include_once 'lib/mod_functions.php';
+include 'lib/skivvy_branding.php';
+include 'lib/wpsimple.php';
+# include 'lib/cms_client.php';
+# include 'lib/cms_admin.php';
+# include 'lib/cms_weboptions.php'; 
+# include 'lib/mod_buckets.php';
+# include 'lib/mod_browserdetect.php';
+# include 'lib/mod_randimg.php'; 
+# include 'lib/mod_advstyles.php'; 
+# include 'lib/mod_posttypetools.php';
+# include 'lib/mod_rewrites.php';
+# include 'lib/mod_functions.php';
 ?>
