@@ -29,20 +29,34 @@ function skivvy_wp_title( $title, $separator ) {
 
 // Remove Widgets
 function skivvy_remove_widget() {
- unregister_widget('WP_Widget_Pages'); //Pages Widget
- unregister_widget('WP_Widget_Calendar'); //Calendar Widget
- unregister_widget('WP_Widget_Archives'); //Archives Widget
- unregister_widget('WP_Widget_Links'); //Links Widget
- unregister_widget('WP_Widget_Meta'); //Meta Widget
-# unregister_widget('WP_Widget_Search'); //Search Widget
-# unregister_widget('WP_Widget_Text'); //Text Widget
- unregister_widget('WP_Widget_Categories'); //Categories Widget
- unregister_widget('WP_Widget_Recent_Posts'); //Recent Posts Widget
- unregister_widget('WP_Widget_Recent_Comments'); //Recent Comments Widget
-# unregister_widget('WP_Widget_RSS'); //RSS Widget
- unregister_widget('WP_Widget_Tag_Cloud'); //Tag Cloud Widget
-# unregister_widget('WP_Nav_Menu_Widget'); //Menus Widget
+	unregister_widget('WP_Widget_Pages'); //Pages Widget
+	unregister_widget('WP_Widget_Calendar'); //Calendar Widget
+	unregister_widget('WP_Widget_Archives'); //Archives Widget
+	unregister_widget('WP_Widget_Links'); //Links Widget
+	unregister_widget('WP_Widget_Meta'); //Meta Widget
+	# unregister_widget('WP_Widget_Search'); //Search Widget
+	# unregister_widget('WP_Widget_Text'); //Text Widget
+	unregister_widget('WP_Widget_Categories'); //Categories Widget
+	unregister_widget('WP_Widget_Recent_Posts'); //Recent Posts Widget
+	unregister_widget('WP_Widget_Recent_Comments'); //Recent Comments Widget
+	# unregister_widget('WP_Widget_RSS'); //RSS Widget
+	unregister_widget('WP_Widget_Tag_Cloud'); //Tag Cloud Widget
+	# unregister_widget('WP_Nav_Menu_Widget'); //Menus Widget
 } add_action( 'widgets_init', 'skivvy_remove_widget' );
+
+// Remove Wp-admin Dashboard
+ function skivvy_remove_menu_pages() {
+	# remove_menu_page( $menu_slug ); // Dashboard
+	# remove_menu_page( 'edit.php' ); // Posts
+	# remove_menu_page( 'upload.php' ); // Media
+	remove_menu_page( 'edit-comments.php' ); // Comments
+	# remove_menu_page( 'themes.php' ); // Appearance
+	#	remove_submenu_page( 'themes.php', 'widgets.php' ); // Appearance > Widgets
+	# remove_menu_page( 'plugins.php' ); // Plugins
+	# remove_menu_page( 'users.php' ); // Users
+	# remove_menu_page( 'tools.php' ); // Tools
+	# remove_menu_page( 'options-general.php' ); // Settings 
+} add_action( 'admin_menu', 'skivvy_remove_menu_pages' );
 
 
 function skivvy_autooptions() {
