@@ -1,4 +1,4 @@
-<?php #22Aug13
+<?php
 // remove wp_head fluff
 remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wp_generator');
