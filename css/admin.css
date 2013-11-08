@@ -1,16 +1,3 @@
-/* ** #9Aug13 | Admin Specific CSS ** */
-
-/* Hide admin menus */
-/*#adminmenu li#menu-comments,/* */
-#adminmenu li#menu-links, /* */
-/* #adminmenu li#menu-tools /* */
-{display: none;} /* */
-
-/* Hide admin bar items */
-#wpadminbar ul li#wp-admin-bar-comments,
-#wpadminbar ul li#wp-admin-bar-updates
-{display: none;}
-
 /* Dashboard logo */
 #wp-admin-bar-wp-logo > .ab-item .ab-icon {background: url('../img/admin/logo-dashboard.png') no-repeat scroll 0 0 transparent !important;width:30px !important;}
 
@@ -29,3 +16,5 @@
 .widget .widget-inside .bucket-widget-form .bucket-widget-control img { display: block; margin-bottom: 10px; max-width: 100%; height: auto;}
 .bucket-widget-legacy-fields { margin-bottom: 1em; padding: 10px; background-color: #e0e0e0; border-radius: 3px;}
 .bucket-widget-legacy-fields p:last-child { margin-bottom: 0;}
+
+#admin-settings-warning-box {background: #F00;border-radius: 5px;color: #FFF;font-family: Verdana, Tahoma, Geneva, sans-serif;font-size: 13px;font-weight: bold;margin: 10px auto 0;padding: 7px;text-align: center;width: 710px;}
