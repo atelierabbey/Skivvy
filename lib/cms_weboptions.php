@@ -291,16 +291,24 @@
 					?>
 					
 					<tr><td colspan="2"><br /></td></tr>
-					<tr valign="top">
-						<th scope="row">Email 1</th>
-						<td><input id="clientcms_options[em1txtadd]" type="checkbox" value="1" <?php if( 1 == $options['em1txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em1txtadd]"></td>
-						<td><input id="clientcms_options[em1txt]" type="text" name="clientcms_options[em1txt]" value="<?php esc_attr_e( $options['em1txt'] ); ?>" /></td>
-						<td>
-							<img class="icon" src="<?php echo self::iconLoc() ?>email1.png" />
-							Text:<input type="text" size="6" value="[txt_em1]"  readonly>
-							Icon: <input type="text" size="22" value="[socialbox key='email1']"  readonly>
-						</td>
-					</tr>
+                    
+                    <?php // For each email, create a row
+						for( $i = 1; $i <= self::$number_o_email; $i++ ) {
+
+							if( 1 == $options["em{$i}txtadd"]) $checked = 'checked="checked"';
+							$value = esc_attr( $options["em{$i}txt"] ); ?>
+                            <tr valign="top">
+                                <th scope="row">Email <?php echo $i; ?></th>
+                                <td><input id="clientcms_options[em<?php echo $i; ?>txtadd]" type="checkbox" value="1" <?php echo $checked; ?> name="clientcms_options[em<?php echo $i; ?>txtadd]"></td>
+                                <td><input id="clientcms_options[em<?php echo $i; ?>txt]" type="text" name="clientcms_options[em1txt]" value="<?php echo $value; ?>" /></td>
+                                <td>
+                                    <img class="icon" src="<?php echo self::iconLoc() ?>email<?php echo $i; ?>.png" />
+                                    Text:<input type="text" size="6" value="[txt_em<?php echo $i; ?>]"  readonly>
+                                    Icon: <input type="text" size="22" value="[socialbox key='email<?php echo $i; ?>']"  readonly>
+                                </td>
+                            </tr>
+					<?php } ?>
+					
 					<tr valign="top">
 						<th scope="row">Email 2</th>
 						<td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 == $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
