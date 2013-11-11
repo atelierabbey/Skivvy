@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<?php wp_enqueue_script('jcycle2'); ?>
+
 <?php $slidequery = new WP_Query(array(
 	'post_type' => 'jCycle_slider',
 	'posts_per_page' => 5,
