@@ -30,6 +30,10 @@
 	
 	static $number_o_address = 1;
 	
+	
+	/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
+	
+	
 	/* 
 	**
 	**	Initialization functions
