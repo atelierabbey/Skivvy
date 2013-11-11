@@ -16,3 +16,11 @@
 .bucket-widget-legacy-fields p:last-child { margin-bottom: 0;}
 
 #admin-settings-warning-box {background: #F00;border-radius: 5px;color: #FFF;font-family: Verdana, Tahoma, Geneva, sans-serif;font-size: 13px;font-weight: bold;margin: 10px auto 0;padding: 7px;text-align: center;width: 710px;}
+
+.skivvy-text-notes {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid;
+    border-radius: 7px;
+    color: #AAAAAA;
+    padding: 10px;
+}

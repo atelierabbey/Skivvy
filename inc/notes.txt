@@ -1,0 +1,5 @@
+To write in this section, open up theme/inc/notes.txt and edit the content. 
+You can write any thing particularily interesting about this site here. It's good practice to document. 
+
+
+etstekljaslkj hi rita!

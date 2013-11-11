@@ -46,7 +46,8 @@
 	//  Create [text_address format="line/address" linkage="map/none"]
 	//  Add google maps icon button to social box
 	//  Create one line form inputs in website options
-	//  
+
+	//  Add 'Markdown' function to the Notes section
 	
 		
 	**************** End Tu Deux ****************/
@@ -117,24 +118,6 @@
 		}
 	} 
 	
-	function shortcode_txtphtwo($atts){
-		extract( shortcode_atts( array(
-			'delimiter' => '',
-			'custom' => ''
-		), $atts ) );
-		$options = get_option( 'clientcms_options' );
-		if($options["ph2txt"]){
-			$phone = explode(" ", $options["ph2txt"]);
-			if ($custom) : 
-				$formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
-				elseif($delimiter): $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
-				else: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
-			endif;
-			return '<a class="txt_phonetwo" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
-		}
-	} 
-
-
 /*****	Shortcodes for Email *****/
 	function shortcode_txtemone(){
 		$options = get_option( 'clientcms_options' );
@@ -412,14 +395,18 @@
 		<div class="wrap skivvy-websitedata">
 			<?php screen_icon();?> <h2>Website Options</h2>
 			<?php if ( false !== $_REQUEST['settings-updated'] ) echo '<div><p><strong>Options saved</strong></p></div>'; ?> 
-           
+           <?php
+		   		//include 'markdown.php';
+				$text = file_get_contents( TEMPLATEPATH . '/inc/notes.txt' );
+				$html = $text;
+				//$html = \Michelf\Markdown::defaultTransform($text)?>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'skivvy_options' ); ?>
 				<?php $options = get_option( 'website_data_options' ); ?>
 				<table>
                 	<tr><td><strong>Google Analytics</strong></td><td><input type="text" id="website_data_options[ga_uacode]" name="website_data_options[ga_uacode]" placeholder="UA-XXXXXXX-X" value="<?php esc_attr_e( $options['ga_uacode'] ); ?>"></td></tr>
                     <tr><td><strong>Meta description</strong></td><td>Text Area</td></tr>
-                    <tr><td><strong>Design Notes</strong></td><td>Read Only Text area that calls in 'inc/notes.txt'</td></tr>
+                    <tr><td><strong>Design Notes</strong></td><td><div class="skivvy-text-notes"><?php echo $html; ?></div></td></tr>
                 </table>
                 <input type="submit" value="Save" class="button button-primary button-large">
              </form>

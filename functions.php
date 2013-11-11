@@ -20,7 +20,7 @@ include 'inc/wpsimple.php';
 include 'inc/website_branding.php';
 
 // Library - It's not nice to write in things from the library.
-# include 'lib/cms_weboptions.php';  if ( class_exists( 'skivvy_websiteoptions' ) ) { new skivvy_websiteoptions; } 
+# include 'lib/cms_weboptions.php'; new skivvy_websiteoptions;
 # include 'lib/cms_client.php';
 # include 'lib/cms_admin.php';
 # include 'lib/mod_buckets.php';
