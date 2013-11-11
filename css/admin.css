@@ -4,11 +4,9 @@
 /* Login Logo */
 .login #login > h1 a {background-image:url('../img/admin/logo-login.png') !important;}
 
-/* Post type - Portfolio icons */
-#menu-posts-portfolio .wp-menu-image {background: url(../img/admin/portfolio-icon.png) no-repeat 6px 6px !important;}
-#menu-posts-portfolio:hover .wp-menu-image, #menu-posts-portfolio.wp-has-current-submenu .wp-menu-image {background-position:6px -16px !important;}
-#icon-edit.icon32-posts-portfolio {background: url(../img/admin/portfolio-32x32.png) no-repeat;}
-
+/* Website options */
+.skivvy-websiteoptions tr img.icon {height: 20px;padding: 2px;margin-right: 10px;max-width: 20px; }
+.skivvy-websiteoptions tr img.icon:hover { background: linear-gradient(to top, #373737 0px, #464646 5px) repeat scroll 0 0 #464646 }
 
 /* Widget - Bucket */
 .widget .widget-inside .bucket-widget-form .bucket-widget-control { padding: 20px 0; text-align: center; border: 1px dashed #aaa;}
