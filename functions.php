@@ -17,13 +17,13 @@
 # include 'inc/register_widget.php';
 // Progressive Registers
 # include 'inc/register_shortcode.php';
+include 'inc/wpsimple.php';
 
 // Modules
 include 'lib/skivvy_branding.php';
-include 'lib/wpsimple.php';
+# include 'lib/cms_weboptions.php';  if ( class_exists( 'skivvy_websiteoptions' ) ) { new skivvy_websiteoptions; } 
 # include 'lib/cms_client.php';
 # include 'lib/cms_admin.php';
-# include 'lib/cms_weboptions.php'; 
 # include 'lib/mod_buckets.php';
 # include 'lib/mod_browserdetect.php';
 # include 'lib/mod_randimg.php'; 

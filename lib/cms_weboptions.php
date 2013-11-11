@@ -1,6 +1,6 @@
 <?php if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 	
-	static $version = "8Nov13";
+	static $version = "11Nov13";
 
 	static function iconLoc() { return get_bloginfo('template_url').'/img/social/'; }
 
@@ -378,4 +378,4 @@
 		<?php 
 	} 
 
-} new skivvy_websiteoptions; }?>
+}}?>
