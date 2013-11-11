@@ -9,18 +9,17 @@
 # load_theme_textdomain( 'skivvy', TEMPLATEPATH.'/lng' ); $locale_file = TEMPLATEPATH.'/lng/'.get_locale().'.php'; if ( is_readable($locale_file)){require_once( $locale_file );}
 } 
 
-// Unique Registers
+// Includes - You can change the includes per site
 # include 'inc/register_sidebar.php';
 # include 'inc/register_menu.php';
 # include 'inc/register_posttype.php';
 # include 'inc/register_scripts.php';
 # include 'inc/register_widget.php';
-// Progressive Registers
 # include 'inc/register_shortcode.php';
 include 'inc/wpsimple.php';
+include 'inc/website_branding.php';
 
-// Modules
-include 'lib/skivvy_branding.php';
+// Library - It's not nice to write in things from the library.
 # include 'lib/cms_weboptions.php';  if ( class_exists( 'skivvy_websiteoptions' ) ) { new skivvy_websiteoptions; } 
 # include 'lib/cms_client.php';
 # include 'lib/cms_admin.php';

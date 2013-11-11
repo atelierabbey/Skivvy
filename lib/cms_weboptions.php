@@ -33,6 +33,23 @@
 	
 	/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
 	
+	/**************** Tu Deux  ****************
+	
+	//	Make social_text_format ();
+	//	Make social_icon_format ();
+	//  Create Shortcode [social_text key="email" no="1"]
+	//	convert all for each to run functions
+	//  deprecate old text function
+	
+	//  Create foreach for Address
+	//  Create formatting options for Address (Similar to phone)
+	//  Create [text_address format="line/address" linkage="map/none"]
+	//  Add google maps icon button to social box
+	//  Create one line form inputs in website options
+	//  
+	
+		
+	**************** End Tu Deux ****************/
 	
 	/* 
 	**
@@ -42,6 +59,8 @@
 	function __construct() {
 		add_action( 'admin_init', 'skivvy_websiteoptions::theme_options_init');
 		add_action( 'admin_menu', 'skivvy_websiteoptions::theme_options_add_page'); 
+		add_action( 'wp_footer', 'skivvy_websiteoptions::website_data_foot_hook', 999);
+		
 		add_shortcode( 'text_phone', 'skivvy_websiteoptions::shortcode_textPhone');
 		add_shortcode( 'txt_ph2', 'skivvy_websiteoptions::shortcode_txtphtwo');
 		add_shortcode( 'txt_em1', 'skivvy_websiteoptions::shortcode_txtemone');
@@ -54,7 +73,8 @@
 	}
 	
 	static function theme_options_init(){
-		register_setting( 'sample_options', 'clientcms_options');
+		register_setting( 'skivvy_options', 'clientcms_options');
+		register_setting( 'skivvy_options', 'website_data_options');
 	} 
 	
 	function theme_options_add_page() {
@@ -63,7 +83,14 @@
 			'Website Options', // Menu Title
 			'edit_theme_options', // Capability
 			'website_options', // menu slug
-			'skivvy_websiteoptions::theme_options_do_page' 
+			'skivvy_websiteoptions::render_website_options' 
+		);
+		add_theme_page(
+			'Website Data', // Page Title
+			'Website Data', // Menu Title
+			'install_themes', // Capability
+			'website_data', // menu slug
+			'skivvy_websiteoptions::render_website_data' 
 		);
 	}
 	
@@ -71,11 +98,7 @@
 	
 	
 	
-	/* 
-	**
-	**	Shortcode [text_phone phone="1" delimiter="-"] functions
-	**
-	*/
+/*****	Shortcode [text_phone phone="1" delimiter="-"] functions *****/
 	function shortcode_textPhone($atts){
 		extract( shortcode_atts( array(
 			'phone' => '1',
@@ -83,14 +106,14 @@
 			'custom' => ''
 		), $atts ) );
 		$options = get_option( 'clientcms_options' );
-		if($options["ph1txt"]){
-			$phone = explode(" ", $options["ph1txt"]);
+		if($options["ph{$phone}txt"]){
+			$phone = explode(" ", $options["ph{$phone}txt"]);
 			if ($custom) : 
 				$formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
 				elseif($delimiter): $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
 				else: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
 			endif;
-			return '<a class="txt_phoneone" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
+			return '<a class="txt_phone{$phone}" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
 		}
 	} 
 	
@@ -110,15 +133,22 @@
 			return '<a class="txt_phonetwo" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
 		}
 	} 
- 
+
+
+/*****	Shortcodes for Email *****/
 	function shortcode_txtemone(){
 		$options = get_option( 'clientcms_options' );
-		if($options["em1txt"]){return '<span class="txt_emailone">'.$options["em1txt"].'</span>';}
+		if($options["em1txt"]){
+			return '<span class="txt_emailone">'.$options["em1txt"].'</span>';
+		}
 	} 
 	function shortcode_txtemtwo(){
 		$options = get_option( 'clientcms_options' );
 		if($options["em2txt"]){return '<span class="txt_emailtwo">'.$options["em2txt"].'</span>';}
-	} 
+	}
+
+
+/*****	Shortcode address *****/
 	function shortcode_txtadr(){
 		$options = get_option( 'clientcms_options' );
 		if($options["adrtxt"]){return '<span class="txt_address">'.$options["adrtxt"].'</span>';}
@@ -137,12 +167,7 @@
 	}
 
 
-	/* 
-	**
-	**	Shortcode [socialbox] functions
-	**
-	*/
-	
+/*****	formats functions *****/
 	// ---- formats phone
 	function format_phone_data ($i,$options,$type='icon') {
 		if( $type = 'text' ) {
@@ -154,7 +179,14 @@
 			return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
 		} 
 	}
-	// ---- formats social media
+	
+	// ---- formats email
+	function format_email_data ($social,$options) {
+		$slug = $social['slug'];
+		return '<a class="btn_'.$social['css'].'" href="mailto:'.$options["{$slug}txt"].'"></a>';
+	}
+	
+	// ---- formats social media icons
 	function format_socialbox_icons ($social,$options) {
 		$slug = $social['slug'];
 		return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
@@ -172,17 +204,18 @@
 			if ( $key === 'rss' && $options["rssurl"] ) {
 				$result .= '<a class="btn_rss" href="'.$options["rssurl"].'" target="_blank"></a>';
 			}
-			if ( $key === 'email1' && $options["em1txt"] ) {
-				$result .= '<a class="btn_email1" href="mailto:'.$options["em1txt"].'"></a>';
-			}
-			if ( $key === 'email2' && $options["em2txt"] ) {
-				$result .=  '<a class="btn_email2" href="mailto:'.$options["em2txt"].'"></a>';
-			}
+			
+			// For each number of phones
+			for( $i = 1; $i <= self::$number_o_email; $i++ ) {
+				if ( $key === "email{$i}" && $options["em{$i}txt"] ) { 
+					$result .= self::format_email_data ($i,$options) ;
+				}
+			} 
 
 			// For each number of phones
 			for( $i = 1; $i <= self::$number_o_phone; $i++ ) {
 				if ( $key === "phone{$i}" && $options["ph{$i}txt"] ) { 
-					$result .= self::format_phone_data ($i,$options, 'icon') ;
+					$result .= self::format_phone_data ($i,$options) ;
 				}
 			} // */
 
@@ -237,12 +270,8 @@
 
 
 
-	/* 
-	**
-	**	Website Options page
-	**
-	*/
-	function theme_options_do_page() {
+/*****	Render page - Website Options *****/
+	function render_website_options() {
 		global $select_options;
 		if ( ! isset( $_REQUEST['settings-updated'] ) ) { $_REQUEST['settings-updated'] = false; }
 		?>
@@ -251,13 +280,8 @@
 			<?php screen_icon();?> 
             <h2>Website Options</h2>
 			<form method="post" action="options.php">
-				<?php settings_fields( 'sample_options' ); ?>
-				<?php $options = get_option( 'clientcms_options' );
-
-					$quantity_of_emails = self::$number_o_email;
-					
-					$quantity_of_address = self::$number_o_address;
-				?>
+				<?php settings_fields( 'skivvy_options' ); ?>
+				<?php $options = get_option( 'clientcms_options' ); ?>
                 
 				<h3>Contact Information</h3>
 				<table>
@@ -309,16 +333,8 @@
                             </tr>
 					<?php } ?>
 					
-					<tr valign="top">
-						<th scope="row">Email 2</th>
-						<td><input id="clientcms_options[em2txtadd]" type="checkbox" value="1" <?php if( 1 == $options['em2txtadd']) echo 'checked="checked"'; ?> name="clientcms_options[em2txtadd]"></td>
-						<td><input id="clientcms_options[em2txt]" type="text" name="clientcms_options[em2txt]" value="<?php esc_attr_e( $options['em2txt'] ); ?>" /></td>
-						<td><img class="icon" src="<?php echo self::iconLoc() ?>email2.png" />
-							Text:<input type="text" size="6" value="[txt_em2]"  readonly>
-							Icon: <input type="text" size="22" value='[socialbox key="email2"]'  readonly>
-						</td>
-					</tr>
 					<tr><td colspan="3"><br /></td></tr>
+
 					<tr valign="top">
 						<th scope="row" colspan="2">Address</th>
 						<td><input id="clientcms_options[adrtxt]" type="text" name="clientcms_options[adrtxt]" value="<?php esc_attr_e( $options['adrtxt'] ); ?>" /></td>
@@ -385,5 +401,33 @@
 		</div>
 		<?php 
 	} 
-
+	
+	
+	
+/*****	Render page - Website Options *****/
+	function render_website_data() {
+		global $select_options;
+		if ( ! isset( $_REQUEST['settings-updated'] ) ) { $_REQUEST['settings-updated'] = false; } ?>
+        
+		<div class="wrap skivvy-websitedata">
+			<?php screen_icon();?> <h2>Website Options</h2>
+			<?php if ( false !== $_REQUEST['settings-updated'] ) echo '<div><p><strong>Options saved</strong></p></div>'; ?> 
+           
+			<form method="post" action="options.php">
+				<?php settings_fields( 'skivvy_options' ); ?>
+				<?php $options = get_option( 'website_data_options' ); ?>
+				<table>
+                	<tr><td><strong>Google Analytics</strong></td><td><input type="text" id="website_data_options[ga_uacode]" name="website_data_options[ga_uacode]" placeholder="UA-XXXXXXX-X" value="<?php esc_attr_e( $options['ga_uacode'] ); ?>"></td></tr>
+                    <tr><td><strong>Meta description</strong></td><td>Text Area</td></tr>
+                    <tr><td><strong>Design Notes</strong></td><td>Read Only Text area that calls in 'inc/notes.txt'</td></tr>
+                </table>
+                <input type="submit" value="Save" class="button button-primary button-large">
+             </form>
+             
+	<?php }
+	
+	function website_data_foot_hook () {
+		require TEMPLATEPATH .'/inc/analytics.php';
+	}
+	
 }}?>
