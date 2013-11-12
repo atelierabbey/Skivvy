@@ -29,5 +29,4 @@ include 'inc/website_branding.php';
 # include 'lib/mod_advstyles.php'; 
 # include 'lib/mod_posttypetools.php';
 # include 'lib/mod_rewrites.php';
-# include 'lib/mod_functions.php';
 ?>
