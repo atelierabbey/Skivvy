@@ -8,27 +8,28 @@
 			endif;
 		?>
     </h1>
-<?php rewind_posts(); ?>
-<?php $i = 1; while ( have_posts() ) : the_post(); ?> 
-    <div class="blogarticle <?php if ($i % 2 == 0) {echo 'even';} else { echo 'odd';}  if($i==1){echo " first"; }?>">
-        <h1>
-            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" rel="bookmark">
-                <?php the_title(); ?>
-            </a>
-        </h1>
-        <div class="post-date"><?php the_date();?></div>
-        <?php
+<?php rewind_posts();
+
+
+$i = 1; while ( have_posts() ) : the_post(); ?> 
+    <div class="blogarticle <?php if ($i % 2 == 0) {echo 'even';} else { echo 'odd';}  if ( $i==1 ){ echo " first"; }?>">
+        <h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+        <div class="post-meta"><?php
+        	the_date();
+        	
+        	$cats_list = get_the_category_list( ', ' ); if( $cats_list) echo " | Category: $cats_list";
+        	
+        	$tags_list = get_the_tag_list( '', ', ' ); if( $tags_list ) echo " | Tags: $tags_list" ;
+        ?></div>
+        <div class="post-content"><?php
             if ( is_archive() || is_search() ) {
 				the_excerpt();
 			} else {
                 the_content();
             };
-			$cats_list = get_the_category_list( ', ' ); if($cats_list) {echo "Category: $cats_list";};
-			echo ' | ';
-            $tags_list = get_the_tag_list( '', ', ' ); if($tags_list){echo "Tags: $tags_list" ;};
-        ?>
+        ?></div>
     </div>
 <?php $i++; endwhile;?>
-<?php posts_nav_link( ' ', 'Previous', 'Next' ); ?>
+<div class="post-pager"><?php posts_nav_link( ' ', 'Previous', 'Next' ); ?></div>
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
