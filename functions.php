@@ -6,7 +6,7 @@
 # add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
 # add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
 # if (function_exists('skivvy_autooptions')){skivvy_autooptions();} // Auto setup options on theme setup - In lib/wpsimple.php
-# load_theme_textdomain( 'skivvy', TEMPLATEPATH.'/lng' ); $locale_file = TEMPLATEPATH.'/lng/'.get_locale().'.php'; if ( is_readable($locale_file)){require_once( $locale_file );}
+# load_theme_textdomain( 'skivvy', TEMPLATEPATH . '/inc' ); $locale_file = TEMPLATEPATH. '/inc/' .get_locale(). '.php'; if ( is_readable( $locale_file )){require_once( $locale_file );}
 } 
 
 // Includes - You can change the includes per site
