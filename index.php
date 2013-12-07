@@ -1,29 +1,16 @@
-<?php get_header(); 
+<?php get_header(); ?>
 
-echo '<section class="content">';
+<section class="content"><?php
 
 	// Title
-	echo '<h1 class="page-title">';
-		get_template_part( 'title' );
-	echo '</h1>';
-
-	// Post Meta
-	if ( !is_page() && !is_single() && !is_front_page() ) {
-		echo '<div class="page-data">';
-			get_template_part( 'postmeta' );
-		echo '</div>';
-	}
+	get_template_part( 'inc/title' );
 
 	// Content
-	echo '<section class="page-content">';
-		get_template_part( 'content' );
-	echo '</section>';
+	get_template_part( 'inc/content' );
 
 	// Sidebar
-	echo '<aside>';
-		get_sidebar();
-	echo '</aside>';
+	get_sidebar();
 
-echo '</section>';
+?></section>
 
-get_footer(); ?>
+<?php get_footer(); ?>

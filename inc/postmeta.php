@@ -1,4 +1,38 @@
 <?php
+
+
+	// POST AUTHOR
+	
+		/* printf(__('By %2$s', 'skivvy'),
+			'meta-prep meta-prep-author',
+			sprintf( '<a class="url fn n" href="%1$s" title="%2$s">%3$s</a>',
+				get_author_posts_url( get_the_author_meta( 'ID' ) ),
+				sprintf( esc_attr__( 'View all posts by %s', 'skivvy' ), get_the_author() ),
+				get_the_author()
+				)
+		); //*/
+
+
+	// POST DATE
+	
+		the_time('F j, Y');
+		/* printf( __('Published %2$s', 'skivvy'),
+				'meta-prep meta-prep-entry-date',
+				sprintf( '<abbr title="%1$s">%2$s</abbr>',
+							esc_attr( get_the_time() ),
+							get_the_date()
+						)
+		); //*/
+
+	// POST CATEGORIES
+		$cats_list = get_the_category_list( ', ' );
+			if ( $cats_list ) echo __( ' | Category:' , 'skivvy' ). ' ' . $cats_list;
+
+	
+	// POST TAGS
+		$tags_list = get_the_tag_list( '', ', ' );
+			if ( $tags_list ) echo __( ' | Tags:' , 'skivvy' ) . ' ' . $tags_list;
+	
 	// Category, tag, and taxonomy
 	if ( is_category() || is_tag() || is_tax() ) :
 			term_description();
@@ -20,9 +54,9 @@
 	elseif ( is_attachment() ) :
 
 		if ( wp_attachment_is_image() ) {
-	
+
 			$metadata = wp_get_attachment_metadata();
-	
+
 			printf( __( 'Full size is %s pixels', 'skivvy'),
 				sprintf( '<a href="%1$s" title="%2$s">%3$s &times; %4$s</a>',
 					wp_get_attachment_url(),
@@ -31,26 +65,7 @@
 					$metadata['height']
 				)
 			);
-	
-			$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
-			foreach ( $attachments as $k => $attachment ) {
-				if ( $attachment->ID == $post->ID )
-				break;
-			}
-			$k++;
-	
-			// If there is more than 1 image attachment in a gallery
-			if ( count( $attachments ) > 1 ) {
-				if ( isset( $attachments[ $k ] ) )
-					// get the URL of the next image attachment
-					$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
-				else
-					// or get the URL of the first image attachment
-					$next_attachment_url = get_attachment_link( $attachments[ 0 ]->ID );
-			} else {
-				// or, if there's only 1 image attachment, get the URL of the image
-				$next_attachment_url = wp_get_attachment_url();
-			}
 		}
+
 
 endif; ?>

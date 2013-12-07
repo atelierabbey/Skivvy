@@ -1,11 +1,61 @@
-<?php // The Content
+<section class="page-content"><?php
+
+// The Content
 if ( have_posts() ) :
 
 	if ( is_page() || is_front_page() || is_single() ) :
 
-			the_post(); 
-			the_content(); 
+			the_post();
+			
+			// Slider content
+			if ( is_front_page() )
+					get_template_part( 'inc/chunk' , 'slider' );
+					
+					
+			// Add Page Meta for single post or attachment
+			if ( is_single() ) {
 
+					echo '<div class="page-meta">';
+						get_template_part( 'inc/postmeta' );
+					echo '</div>';
+
+			}
+			// Content for is_attachment
+			if ( is_attachment() ) {
+
+					$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
+					foreach ( $attachments as $k => $attachment ) {
+						if ( $attachment->ID == $post->ID )
+						break;
+					}
+					$k++;
+
+					// If there is more than 1 image attachment in a gallery
+					if ( count( $attachments ) > 1 ) {
+						if ( isset( $attachments[ $k ] ) )
+							// get the URL of the next image attachment
+							$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
+						else
+							// or get the URL of the first image attachment
+							$next_attachment_url = get_attachment_link( $attachments[ 0 ]->ID );
+					} else {
+						// or, if there's only 1 image attachment, get the URL of the image
+						$next_attachment_url = wp_get_attachment_url();
+					}
+
+					echo '<a href="' . $next_attachment_url . '" title="' . esc_attr( get_the_title() ) . '" rel="attachment">';
+						 // filterable image width with, essentially, no limit for image height.
+						echo wp_get_attachment_image( $post->ID, array( apply_filters( 'skivvy_attachment_size', 900 ), 9999 ) );
+					echo '</a>';
+
+			} else {
+
+				the_content();
+
+			}
+
+
+	// EVERYTHING ELSE!!1!!!11
 	else :
 
 			// post counter
@@ -39,14 +89,7 @@ if ( have_posts() ) :
 
 						// Post Meta
 						echo '<div class="post-meta">';
-							the_time('F j, Y');
-
-							$cats_list = get_the_category_list( ', ' );
-								if ( $cats_list ) echo __( ' | Category:' , 'skivvy' ). ' ' . $cats_list;
-
-							$tags_list = get_the_tag_list( '', ', ' );
-								if ( $tags_list ) echo __( ' | Tags:' , 'skivvy' ) . ' ' . $tags_list;
-
+								get_template_part( 'inc/postmeta' );
 						echo '</div>';
 
 						// Post excerpt
@@ -66,16 +109,21 @@ if ( have_posts() ) :
 				previous_post_link( '%link', '' . _x( '&larr;', 'Previous post link', 'skivvy' ) . ' %title' );
 				next_post_link( '%link', '%title ' . _x( '&rarr;', 'Next post link', 'skivvy' ) . '' );
 
-			} else { 
-
+			} elseif ( is_attachment() ) {
+				
 				posts_nav_link( ' ', 'Previous', 'Next' );
+				
+			}else { 
 
+				previous_image_link( false );
+				next_image_link( false );
+				
 			}
 		echo '</div>';
 
 
 
-endif;
+	endif;
 
 
 else : // IF Nothing exists!
@@ -113,4 +161,4 @@ else : // IF Nothing exists!
 	}
 	echo $output;
 
-endif; ?>
+endif; ?></section>
