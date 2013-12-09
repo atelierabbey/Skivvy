@@ -7,19 +7,6 @@ if ( have_posts() ) :
 
 			the_post();
 
-			// Slider content
-			if ( is_front_page() )
-					get_template_part( 'inc/chunk' , 'slider' );
-
-
-			// Add Page Meta for single post or attachment
-			if ( is_single() ) {
-
-					echo '<div class="page-meta">';
-						get_template_part( 'inc/postmeta' );
-					echo '</div>';
-
-			}
 			// Content for is_attachment
 			if ( is_attachment() ) {
 
@@ -89,7 +76,7 @@ if ( have_posts() ) :
 
 						// Post Meta
 						echo '<div class="post-meta">';
-								get_template_part( 'inc/postmeta' );
+								get_template_part( 'inc/chunk' , 'postmeta' );
 						echo '</div>';
 
 						// Post excerpt
