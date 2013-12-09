@@ -262,7 +262,7 @@
 			<?php if ( false !== $_REQUEST['settings-updated'] ) { echo '<div><p><strong>Options saved</strong></p></div>'; } ?> 
 			<?php screen_icon();?> 
             <h2>Website Options</h2>
-			<form method="post" action="options.php">
+			<form method="post" action="../../lib/options.php">
 				<?php settings_fields( 'skivvy_options' ); ?>
 				<?php $options = get_option( 'clientcms_options' ); ?>
                 
@@ -396,11 +396,11 @@
 			<?php screen_icon();?> <h2>Website Options</h2>
 			<?php if ( false !== $_REQUEST['settings-updated'] ) echo '<div><p><strong>Options saved</strong></p></div>'; ?> 
            <?php
-		   		//include 'markdown.php';
+		   		//include '../../lib/markdown.php';
 				$text = file_get_contents( TEMPLATEPATH . '/inc/notes.txt' );
 				$html = $text;
 				//$html = \Michelf\Markdown::defaultTransform($text)?>
-			<form method="post" action="options.php">
+			<form method="post" action="../../lib/options.php">
 				<?php settings_fields( 'skivvy_options' ); ?>
 				<?php $options = get_option( 'website_data_options' ); ?>
 				<table>

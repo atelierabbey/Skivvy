@@ -6,7 +6,7 @@
 # add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
 # add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
 # if (function_exists('skivvy_autooptions')){skivvy_autooptions();} // Auto setup options on theme setup - In lib/wpsimple.php
-# load_theme_textdomain( 'skivvy', TEMPLATEPATH . '/inc' ); $locale_file = TEMPLATEPATH. '/inc/' .get_locale(). '.php'; if ( is_readable( $locale_file )){require_once( $locale_file );}
+# $lang_location = get_template_directory_uri() . '/inc'; load_theme_textdomain( 'skivvy', $lang_location ); $locale_file = $lang_location . '/' . get_locale() . '.php'; if ( is_readable( $locale_file )){ require_once( $locale_file );}
 } 
 
 // Includes - You can change the includes per site
@@ -20,13 +20,13 @@ include 'inc/wpsimple.php';
 include 'inc/website_branding.php';
 
 // Library - It's not nice to write in things from the library.
-# include 'lib/cms_weboptions.php'; new skivvy_websiteoptions;
-# include 'lib/cms_client.php';
-# include 'lib/cms_admin.php';
-# include 'lib/mod_buckets.php';
-# include 'lib/mod_browserdetect.php';
-# include 'lib/mod_randimg.php'; 
-# include 'lib/mod_advstyles.php'; 
-# include 'lib/mod_posttypetools.php';
-# include 'lib/mod_rewrites.php';
+# include 'inc/lib/cms_weboptions.php'; new skivvy_websiteoptions;
+# include 'inc/lib/cms_client.php';
+# include 'inc/lib/cms_admin.php';
+# include 'inc/lib/mod_buckets.php';
+# include 'inc/lib/mod_browserdetect.php';
+# include 'inc/lib/mod_randimg.php'; 
+# include 'inc/lib/mod_advstyles.php'; 
+# include 'inc/lib/mod_posttypetools.php';
+# include 'inc/lib/mod_rewrites.php';
 ?>
