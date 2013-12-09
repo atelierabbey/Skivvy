@@ -1,4 +1,4 @@
-<section class="page-content"><?php
+<?php
 
 // The Content
 if ( have_posts() ) :
@@ -6,12 +6,12 @@ if ( have_posts() ) :
 	if ( is_page() || is_front_page() || is_single() ) :
 
 			the_post();
-			
+
 			// Slider content
 			if ( is_front_page() )
 					get_template_part( 'inc/chunk' , 'slider' );
-					
-					
+
+
 			// Add Page Meta for single post or attachment
 			if ( is_single() ) {
 
@@ -117,7 +117,7 @@ if ( have_posts() ) :
 
 				previous_image_link( false );
 				next_image_link( false );
-				
+
 			}
 		echo '</div>';
 
@@ -161,4 +161,4 @@ else : // IF Nothing exists!
 	}
 	echo $output;
 
-endif; ?></section>
+endif; ?>

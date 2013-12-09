@@ -35,10 +35,7 @@
 		// wp_head - Obviously... don't touch....
 			wp_head();
 	echo '</head>';
-
-	// Body tag
-	echo '<body id="page-' . get_the_ID() . '" '; body_class(); echo '>';
-?>
+?><body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
 <div id="preloader"></div>
 <div class="wrapper">
 <header>
