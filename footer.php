@@ -1,3 +1,5 @@
+</section>
+
 <footer>
 <?php
 	if ( is_active_sidebar( 'first-footer-widget-area' ) ) : ?><ul class="xoxo footsidebar-1"><?php dynamic_sidebar( 'first-footer-widget-area' ); ?></ul><?php endif;
@@ -20,7 +22,7 @@
 <?php 
 
 // includes custom.js
-	/* echo '<script src="' . get_template_directory_uri() . '/js/custom.js"></script>'; //*/
+# echo '<script src="' . get_template_directory_uri() . '/js/custom.js"></script>';
 
 // includes Analytics.php code
 	include ('js/analytics.php');

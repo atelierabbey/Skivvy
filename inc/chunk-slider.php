@@ -14,8 +14,8 @@
         </div>
 	<?php endwhile; wp_reset_postdata(); ?>
 
-    <div class='cycle-next cycle-pagerelement'></div>
-    <div class='cycle-resume cycle-pagerelement' data-cycle-cmd="resume"></div>
-    <div class='cycle-pause cycle-pagerelement' data-cycle-cmd="pause"></div>
-    <div class='cycle-prev cycle-pagerelement'></div>
+	<div class='cycle-next cycle-pagerelement'></div>
+	<div class='cycle-resume cycle-pagerelement' data-cycle-cmd="resume"></div>
+	<div class='cycle-pause cycle-pagerelement' data-cycle-cmd="pause"></div>
+	<div class='cycle-prev cycle-pagerelement'></div>
 </div><div id="per-slide-template"></div>
