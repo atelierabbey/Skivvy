@@ -92,4 +92,11 @@ function skivvy_autooptions() {
 	}
 } 
 
+
+// Removes "Private" & "Protected" from titles
+add_filter( 'private_title_format',   'remove_the_title_stuff' );
+add_filter( 'protected_title_format', 'remove_the_title_stuff' );
+function remove_the_title_stuff( $title ) {
+	return '%s';
+}
 ?>

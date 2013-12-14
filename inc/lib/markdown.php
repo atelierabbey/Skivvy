@@ -596,7 +596,7 @@ class Markdown {
 			$url = $this->urls[$link_id];
 			$url = $this->encodeAttribute($url);
 			
-			$result = "<a href=\"$url\"";
+			$result = "<a href=../../lib//"$url/"";
 			if ( isset( $this->titles[$link_id] ) ) {
 				$title = $this->titles[$link_id];
 				$title = $this->encodeAttribute($title);
@@ -620,7 +620,7 @@ class Markdown {
 
 		$url = $this->encodeAttribute($url);
 
-		$result = "<a href=\"$url\"";
+		$result = "<a href=../../lib//"$url/"";
 		if (isset($title)) {
 			$title = $this->encodeAttribute($title);
 			$result .=  " title=\"$title\"";
@@ -700,7 +700,7 @@ class Markdown {
 		$alt_text = $this->encodeAttribute($alt_text);
 		if (isset($this->urls[$link_id])) {
 			$url = $this->encodeAttribute($this->urls[$link_id]);
-			$result = "<img src=\"$url\" alt=\"$alt_text\"";
+			$result = "<img src=../../lib//"$url/" alt=\"$alt_text\"";
 			if (isset($this->titles[$link_id])) {
 				$title = $this->titles[$link_id];
 				$title = $this->encodeAttribute($title);
@@ -724,7 +724,7 @@ class Markdown {
 
 		$alt_text = $this->encodeAttribute($alt_text);
 		$url = $this->encodeAttribute($url);
-		$result = "<img src=\"$url\" alt=\"$alt_text\"";
+		$result = "<img src=../../lib//"$url/" alt=\"$alt_text\"";
 		if (isset($title)) {
 			$title = $this->encodeAttribute($title);
 			$result .=  " title=\"$title\""; # $title already quoted
@@ -1308,7 +1308,7 @@ class Markdown {
 	}
 	protected function _doAutoLinks_url_callback($matches) {
 		$url = $this->encodeAttribute($matches[1]);
-		$link = "<a href=\"$url\">$url</a>";
+		$link = "<a href=../../lib//"$url/">$url</a>";
 		return $this->hashPart($link);
 	}
 	protected function _doAutoLinks_email_callback($matches) {
@@ -1353,7 +1353,7 @@ class Markdown {
 		
 		$addr = implode('', $chars);
 		$text = implode('', array_slice($chars, 7)); # text without `mailto:`
-		$addr = "<a href=\"$addr\">$text</a>";
+		$addr = "<a href=../../lib//"$addr/">$text</a>";
 
 		return $addr;
 	}
@@ -2280,7 +2280,7 @@ class _MarkdownExtra_TmpImpl extends \Michelf\Markdown {
 			$url = $this->urls[$link_id];
 			$url = $this->encodeAttribute($url);
 			
-			$result = "<a href=\"$url\"";
+			$result = "<a href=../../lib//"$url/"";
 			if ( isset( $this->titles[$link_id] ) ) {
 				$title = $this->titles[$link_id];
 				$title = $this->encodeAttribute($title);
@@ -2308,7 +2308,7 @@ class _MarkdownExtra_TmpImpl extends \Michelf\Markdown {
 
 		$url = $this->encodeAttribute($url);
 
-		$result = "<a href=\"$url\"";
+		$result = "<a href=../../lib//"$url/"";
 		if (isset($title)) {
 			$title = $this->encodeAttribute($title);
 			$result .=  " title=\"$title\"";
@@ -2390,7 +2390,7 @@ class _MarkdownExtra_TmpImpl extends \Michelf\Markdown {
 		$alt_text = $this->encodeAttribute($alt_text);
 		if (isset($this->urls[$link_id])) {
 			$url = $this->encodeAttribute($this->urls[$link_id]);
-			$result = "<img src=\"$url\" alt=\"$alt_text\"";
+			$result = "<img src=../../lib//"$url/" alt=\"$alt_text\"";
 			if (isset($this->titles[$link_id])) {
 				$title = $this->titles[$link_id];
 				$title = $this->encodeAttribute($title);
@@ -2417,7 +2417,7 @@ class _MarkdownExtra_TmpImpl extends \Michelf\Markdown {
 
 		$alt_text = $this->encodeAttribute($alt_text);
 		$url = $this->encodeAttribute($url);
-		$result = "<img src=\"$url\" alt=\"$alt_text\"";
+		$result = "<img src=../../lib//"$url/" alt=\"$alt_text\"";
 		if (isset($title)) {
 			$title = $this->encodeAttribute($title);
 			$result .=  " title=\"$title\""; # $title already quoted
