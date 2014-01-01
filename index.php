@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<section class="page-content"><?php // The Content
+<section class="page-content">&nsbp;<?php // The Content
 
 	if ( is_front_page() ) get_template_part( 'inc/chunk' , 'slider' );
 
