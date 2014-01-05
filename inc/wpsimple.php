@@ -29,18 +29,18 @@ function skivvy_wp_title( $title, $separator ) {
 
 // Remove Widgets
 function skivvy_remove_widget() {
-	unregister_widget('WP_Widget_Pages'); //Pages Widget
-	unregister_widget('WP_Widget_Calendar'); //Calendar Widget
-	unregister_widget('WP_Widget_Archives'); //Archives Widget
-	unregister_widget('WP_Widget_Links'); //Links Widget
-	unregister_widget('WP_Widget_Meta'); //Meta Widget
+	# unregister_widget('WP_Widget_Pages'); //Pages Widget
+	# unregister_widget('WP_Widget_Calendar'); //Calendar Widget
+	# unregister_widget('WP_Widget_Archives'); //Archives Widget
+	# unregister_widget('WP_Widget_Links'); //Links Widget
+	# unregister_widget('WP_Widget_Meta'); //Meta Widget
 	# unregister_widget('WP_Widget_Search'); //Search Widget
 	# unregister_widget('WP_Widget_Text'); //Text Widget
-	unregister_widget('WP_Widget_Categories'); //Categories Widget
-	unregister_widget('WP_Widget_Recent_Posts'); //Recent Posts Widget
-	unregister_widget('WP_Widget_Recent_Comments'); //Recent Comments Widget
+	# unregister_widget('WP_Widget_Categories'); //Categories Widget
+	# unregister_widget('WP_Widget_Recent_Posts'); //Recent Posts Widget
+	# unregister_widget('WP_Widget_Recent_Comments'); //Recent Comments Widget
 	# unregister_widget('WP_Widget_RSS'); //RSS Widget
-	unregister_widget('WP_Widget_Tag_Cloud'); //Tag Cloud Widget
+	# unregister_widget('WP_Widget_Tag_Cloud'); //Tag Cloud Widget
 	# unregister_widget('WP_Nav_Menu_Widget'); //Menus Widget
 } add_action( 'widgets_init', 'skivvy_remove_widget' );
 
@@ -49,9 +49,9 @@ function skivvy_remove_widget() {
 	# remove_menu_page( $menu_slug ); // Dashboard
 	# remove_menu_page( 'edit.php' ); // Posts
 	# remove_menu_page( 'upload.php' ); // Media
-	remove_menu_page( 'edit-comments.php' ); // Comments
+	# remove_menu_page( 'edit-comments.php' ); // Comments
 	# remove_menu_page( 'themes.php' ); // Appearance
-	#	remove_submenu_page( 'themes.php', 'widgets.php' ); // Appearance > Widgets
+	# remove_submenu_page( 'themes.php', 'widgets.php' ); // Appearance > Widgets
 	# remove_menu_page( 'plugins.php' ); // Plugins
 	# remove_menu_page( 'users.php' ); // Users
 	# remove_menu_page( 'tools.php' ); // Tools
@@ -62,23 +62,23 @@ function skivvy_admin_bar() {
 	global $wp_admin_bar;
 
 	// Remove WP logo on 
-		$wp_admin_bar->remove_menu('wp-logo');
+		# $wp_admin_bar->remove_menu('wp-logo');
 		# $wp_admin_bar->remove_menu('site-name');
-		$wp_admin_bar->remove_menu('comments');
+		# $wp_admin_bar->remove_menu('comments');
 		# $wp_admin_bar->remove_menu('new-content');
 		# $wp_admin_bar->remove_menu('edit');
 		# $wp_admin_bar->remove_menu('my-account');
 		# $wp_admin_bar->remove_menu('search');
 		
 	// My Account Greeting
-		$my_account = $wp_admin_bar -> get_node('my-account');
+	/*	$my_account = $wp_admin_bar -> get_node('my-account');
 	
 		$newtitle = '';
 		# $newtitle = str_replace( 'Howdy,', 'back!', $my_account->title );
 		$wp_admin_bar->add_node( array(
 			'id' => 'my-account',
 			'title' => $newtitle,
-		) );
+		) ); //*/
 	
 } add_action('wp_before_admin_bar_render', 'skivvy_admin_bar', 0);
 
