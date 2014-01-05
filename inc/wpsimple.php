@@ -1,4 +1,4 @@
-<?php
+<?php // 5Jan14
 // remove wp_head fluff
 remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wp_generator');
@@ -58,6 +58,28 @@ function skivvy_remove_widget() {
 	# remove_menu_page( 'options-general.php' ); // Settings 
 } add_action( 'admin_menu', 'skivvy_remove_menu_pages' );
 
+function skivvy_admin_bar() {
+	global $wp_admin_bar;
+
+	// Remove WP logo on 
+		$wp_admin_bar->remove_menu('wp-logo');
+		# $wp_admin_bar->remove_menu('site-name');
+		$wp_admin_bar->remove_menu('comments');
+		# $wp_admin_bar->remove_menu('new-content');
+		# $wp_admin_bar->remove_menu('my-account');
+		# $wp_admin_bar->remove_menu('search');
+		
+	// My Account Greeting
+		$my_account = $wp_admin_bar -> get_node('my-account');
+	
+		$newtitle = '';
+		# $newtitle = str_replace( 'Howdy,', 'back!', $my_account->title );
+		$wp_admin_bar->add_node( array(
+			'id' => 'my-account',
+			'title' => $newtitle,
+		) );
+	
+} add_action('wp_before_admin_bar_render', 'skivvy_admin_bar', 0);
 
 function skivvy_autooptions() {
 	$the_theme_status = get_option( 'theme_setup_status' );
