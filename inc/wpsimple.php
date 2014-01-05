@@ -66,6 +66,7 @@ function skivvy_admin_bar() {
 		# $wp_admin_bar->remove_menu('site-name');
 		$wp_admin_bar->remove_menu('comments');
 		# $wp_admin_bar->remove_menu('new-content');
+		# $wp_admin_bar->remove_menu('edit');
 		# $wp_admin_bar->remove_menu('my-account');
 		# $wp_admin_bar->remove_menu('search');
 		
