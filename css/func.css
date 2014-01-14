@@ -80,6 +80,8 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}
 .redalert{color:#fff;background-color:red;}
 .screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+ul.nobull { padding:0; }
+ul.nobull > li { list-style:none; }
 
 /* ----------- WORDPRESS DEFAULTS ----------- */
 .aligncenter { display:block; margin:0 auto }
