@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 </section>
 
 <footer>
@@ -43,4 +42,3 @@ wp_footer(); ?></body></html>
 <?php wp_footer(); ?>
 </body>
 </html>
->>>>>>> origin/master
