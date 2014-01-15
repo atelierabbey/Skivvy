@@ -10,7 +10,7 @@
 ?>
 <div class="footer-copyright"><?php 
 	// Auto generate year. if 
-	$start_year = "2013";
+	$start_year = "2014";
 	$date = date("Y");
 	if ( $date > $start_year ) {
 	$date = "$start_year - $date";
