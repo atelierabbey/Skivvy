@@ -1,5 +1,4 @@
 <?php #24Jan14
-
 function skivvy_autooptions() {
 	$the_theme_status = get_option( 'theme_setup_status' );
 	if ( $the_theme_status !== '1' ) {
@@ -31,7 +30,4 @@ function skivvy_autooptions() {
 		</div>';
 		add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
 	}
-} 
-add_action( 'after_setup_theme', 'skivvy_autooptions' ); 
-
-?>
+} ?>
