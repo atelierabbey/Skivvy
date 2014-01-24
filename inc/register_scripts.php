@@ -1,7 +1,6 @@
-<?php #22Aug13
+<?php #24Jan14 - wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer ); 
 function skivvy_script_enqueuer() {
-	# wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer ); 
-	wp_enqueue_script( 'skivvycustom', get_stylesheet_directory_uri().'/js/custom.js', 'jquery', '1.0', true ); 
+
 
 	//// ---- Wordpress included http://codex.wordpress.org/Function_Reference/wp_enqueue_script ---- ////
 	# wp_enqueue_script('jcrop'); //http://deepliquid.com/content/Jcrop.html

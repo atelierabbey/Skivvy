@@ -10,17 +10,16 @@ $htmltag .= '">'; echo $htmltag;
 <head><?php
 
 	// Meta data
-		echo '<meta charset=utf-8>';
-		echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-		echo '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">';
-		echo '<meta name="description" content="' . get_bloginfo( 'description', 'display' ) . '">';
+		echo '<meta charset="utf-8">';
+		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">';
+		echo '<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">';
+		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';
 
 	// Site Title
 		echo '<title>' . wp_title( '|', FALSE, 'right' ) . '</title>';
 
-	// Shortcut Icon - Favicon    
-		$iconversion = 1;
-		echo '<link rel="shortcut icon" type="image/png" href="' . get_template_directory_uri() . '/img/favicon.png?v=' . $iconversion . '" />';
+	// Shortcut Icon - Favicon
+		echo '<link rel="shortcut icon" type="image/png" href="' . get_template_directory_uri() . '/img/favicon.png?v=1" />';
 
 	// RSS Link
 		echo '<link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="' . get_bloginfo('rss2_url') . '" />';
@@ -33,19 +32,16 @@ $htmltag .= '">'; echo $htmltag;
 		echo '<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->';
 
 	// Load Jquery
-		wp_enqueue_script("jquery");
-
-
+		wp_enqueue_script( 'jquery' );
 
 wp_head(); ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
-<div id="preloader"></div>
+<div class="preloader"></div>
 <div class="wrapper">
 <header>
 	<div class="logo"><?php
 
 		// LOGO
-
 			echo 
 			'<a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
 				'<img src="' . get_bloginfo('template_url') . '/img/logo.png" alt="Logo">' .
@@ -56,7 +52,6 @@ wp_head(); ?></head>
 	<nav class="access"><?php
 
 		// MAIN NAV MENU
-
 			wp_nav_menu( array(
 				'theme_location'  => 'main',
 				'menu'            => '',

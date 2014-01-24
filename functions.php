@@ -2,7 +2,7 @@
 add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
-		include 'inc/skivvy-autooptions.php';
+	#	include 'inc/skivvy-autooptions.php';
 	#	add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
 	#	add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes 
 	#	add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
@@ -15,8 +15,7 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 	#	include 'inc/register_menu.php';
 	#	include 'inc/register_posttype.php';
 	#	include 'inc/register_scripts.php';
-	#	include 'inc/register_widget.php';
-	#	include 'inc/register_shortcode.php';
+
 		include 'inc/skivvy_simple.php';
 		include 'inc/skivvy_branding.php';
 
@@ -26,8 +25,15 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 	#	include 'inc/lib/cms_admin.php';
 	#	include 'inc/lib/mod_buckets.php';
 	#	include 'inc/lib/mod_browserdetect.php';
-	#	include 'inc/lib/mod_randimg.php'; 
 	#	include 'inc/lib/mod_advstyles.php'; 
-	#	include 'inc/lib/mod_posttypetools.php';
+	#	include 'inc/lib/skivvy_tools-posttypes.php';
+	#	include 'inc/lib/skivvy_toolbox.php';
+	
+
+// CURRENTLY NOT WORKING -----
+	#	include 'inc/lib/mod_randimg.php'; 
 	#	include 'inc/lib/mod_rewrites.php';
+	#	include 'inc/lib/mod_siteclosed.php';
+	#	include 'inc/lib/mod_debug.php';
+	#	include 'inc/lib/markdown.php';
 ?>
