@@ -20,13 +20,14 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 
 // Library - It's not nice to write in things from the library.
 	#	include 'inc/lib/cms_weboptions.php'; new skivvy_websiteoptions;
+	#	include 'inc/lib/skivvy_toolbox.php';
 	#	include 'inc/lib/cms_client.php';
 	#	include 'inc/lib/cms_admin.php';
 	#	include 'inc/lib/mod_buckets.php';
 	#	include 'inc/lib/mod_browserdetect.php';
-	#	include 'inc/lib/mod_advstyles.php'; 
+	#	include 'inc/lib/advanced_style.php'; 
 	#	include 'inc/lib/skivvy_tools-posttypes.php';
-	#	include 'inc/lib/skivvy_toolbox.php';
+
 
 
 // CURRENTLY NOT WORKING -----

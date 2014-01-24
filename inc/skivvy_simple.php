@@ -45,8 +45,6 @@ function skivvy_remove_widget() {
 } add_action( 'widgets_init', 'skivvy_remove_widget' );
 
 
-
-
 /*
  *
  *   WP_HEAD() - Cleanup
@@ -126,5 +124,15 @@ function skivvy_remove_widget() {
 	function remove_the_title_stuff( $title ) {
 		return '%s';
 	}
+
+/*
+ *
+ *   Removes the default gallery shortcode css 
+ *   @ Stolen from twentyten
+ *
+*/
+function skivvy_remove_gallery_css( $css ) {
+	return preg_replace( "#<style type='text/css'>(.*?)</style>#s", '', $css );
+} add_filter( 'gallery_style', 'skivvy_remove_gallery_css' );
 
 ?>
