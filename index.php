@@ -11,9 +11,9 @@
 	}
 
 	get_template_part( 'inc/chunk' , 'content'  );
-?>&nsbp;</section>
+?>&nbsp;</section>
 
-<aside><?php get_sidebar(); ?></aside>
+<aside class="sidebar"><?php get_sidebar(); ?></aside>
 
 
 <?php get_footer(); ?>
