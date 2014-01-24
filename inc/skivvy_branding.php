@@ -76,7 +76,16 @@ function skinfo($what='Version') {
 
 
 	function skivvy_dashboard_feed() {
-		echo '<div class="rss-widget">';wp_widget_rss_output(array('url' => skinfo("AuthorURI").'feed/','title' => 'Latest News','items' => 5, 'show_summary' => 1,'show_author' => 0,'show_date' => 1));echo "</div>";
+		echo '<div class="rss-widget">';
+			wp_widget_rss_output(array(
+				'url' => skinfo("AuthorURI").'feed/',
+				'title' => 'Latest News',
+				'items' => 2,
+				'show_summary' => 1,
+				'show_author' => 0,
+				'show_date' => 1
+			));
+		echo "</div>";
 	}
 
 

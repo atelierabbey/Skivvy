@@ -32,7 +32,10 @@ $htmltag .= '">'; echo $htmltag;
 		echo '<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->';
 
 	// Load Jquery
-		wp_enqueue_script( 'jquery' );
+		if ( ! wp_script_is( 'jquery' , 'queue' ) ) {
+				wp_enqueue_script( 'jquery' );
+		}
+		
 
 wp_head(); ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>

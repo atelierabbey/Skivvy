@@ -3,8 +3,8 @@ Theme Name:		D4Theme
 Author:			D4 Advanced Media
 Author URI:		http://www.d4webdesign.com/
 Theme URI:		https://github.com/atelierabbey/Skivvy
-Description:	Wordpress Theme by D4 Web Design
-Version:		23Oct13
+Description:	Almost naked theme.
+Version:		24Jan14
 */
 html {
 	background-color:#fff;
@@ -28,46 +28,32 @@ a:hover {
 ul, ol { 
 	padding: 0 0 0 40px;
 }
-ul li {
-	list-style:disc;
-}
-ul li ul li {
-	list-style: circle;
-}
+
 /* LAYOUT */
 .wrapper {
 	width:980px;
 	margin: 0 auto;
 	padding: 0 0 0 0;
 }
-article.content {
-}
-header {
-}
-.logo {
-}
-footer {
-}
 
-/* Menu */
-.access {
-}
-.access ul {
-}
-.access ul a{
-	white-space:nowrap;
-}
-.access ul li {
-}
-.access ul li:hover {
-}
-.access ul li a {
-}
-.access ul ul {
-}
-.access ul ul li{
-}
-.access ul ul li:hover{
-}
-.access ul ul li a{
-}
+/* HEADER */
+header {}
+.logo {}
+
+/* NAV */
+.access {}
+.access ul {}
+.access ul a{}
+.access ul li {}
+.access ul li:hover {}
+.access ul li a {}
+.access ul ul {}
+.access ul ul li {}
+.access ul ul li:hover {}
+.access ul ul li a{}
+
+/* FOOTER */ 
+footer {}
+
+/* CONTENT */
+article.content {}

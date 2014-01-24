@@ -45,13 +45,16 @@ table {border-collapse: collapse;border-spacing: 0;}
 ::-moz-selection {text-shadow: none; background-color:#B2CCE6;}
 ::selection {text-shadow: none; background-color:#B2CCE6;}
 hr {display: block;height: 1px;border: 0;border-top: 1px solid #ccc;margin: 1em 0;padding: 0;}
-h1 {font-size:2em;line-height:1em;margin: 0 0 0.67em;}
-h2 {font-size:1.5em;line-height:1em;margin: 0 0 0.83em;}
-h3 {font-size:1.2em;line-height:1em;margin: 0 0 1em;}
-h4 {font-size:1em;line-height:1em;margin: 0 0 0.8em;}
-h5 {font-size:.8em;line-height:1em;margin: 0 0 0.67em;}
-h6 {font-size:.65em;line-height:1em;margin: 0 0 0.33em;}
-p, pre { margin: 0 0 1em; }
+h1, h2, h3, h4, h5, h6 {line-height:1em;}
+h1 {font-size:2em;margin: 0 0 0.67em;}
+h2 {font-size:1.5em;margin: 0 0 0.83em;}
+h3 {font-size:1.2em;margin: 0 0 1em;}
+h4 {font-size:1em;margin: 0 0 0.8em;}
+h5 {font-size:.8em;margin: 0 0 0.67em;}
+h6 {font-size:.65em;margin: 0 0 0.33em;}
+p, pre {margin: 0 0 1em;}
+ul li {list-style: disc;}
+ul li ul li {list-style: circle;}
 
 @media print {
 	* {background: transparent !important;color: #000 !important; /* Black prints faster: h5bp.com/s */box-shadow: none !important;text-shadow: none !important;}
@@ -102,7 +105,7 @@ ul.nobull > li { list-style:none; }
 .access ul {position: relative;display:inline-table;list-style:none;margin:0;padding:0;}
 .access ul:after {content:"";clear:both;display:block;}
 .access ul li {position:relative;float:left;list-style:none;margin:0;padding:0;}
-.access ul li a {display:block;}
+.access ul li a {display:block;white-space:nowrap;}
 /* Tier 2 */
 .access ul ul {display:none;position:absolute;top: 100%;margin:0;padding:0;}
 .access ul ul li {float:none;position: relative;margin:0;padding:0;}
