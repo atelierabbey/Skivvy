@@ -1,6 +1,11 @@
 <?php #24Jan14
 
-//// ---- skinfo('$what'); Get Version from style.css ---- ////
+/*
+ *
+ *		skinfo('$what');
+ *		Get Version from theme's style.css
+ *
+ */
 function skinfo($what='Version') {
 	$ct = wp_get_theme(); 
 	switch ($what){
@@ -24,20 +29,24 @@ function skinfo($what='Version') {
  *
  */
 
+
 	function skivvy_footer_admin() {
 		echo 'Fueled by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';
 	} add_filter('admin_footer_text', 'skivvy_footer_admin');
+
 
 	function skivvy_footer_version(){
 		echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';
 	} add_filter( 'update_footer', 'skivvy_footer_version', 11 );
 
+
 	function skivvy_admin_css() {
 		wp_enqueue_style( 'skivvy_admin_css', get_template_directory_uri().'/css/admin.css' , '' , '' );
 	} add_action('admin_print_styles','skivvy_admin_css'); add_action( 'login_head', 'skivvy_admin_css' );
 
+
+	// Adds a warning box to the settings page Uses the same style box as the WordPress Update "update-nag"
 	function skivvy_admin_notice(){ 
-		// Adds a warning box to the settings page Uses the same style box as the WordPress Update "update-nag"
 		global $current_screen;
 		if ( $current_screen->parent_base == 'options-general' ){
 			echo '<div id="admin-settings-warning-box"><strong>Warning</strong> - changing settings on these pages may cause problems with your website&rsquo;s design!</div>';
@@ -45,13 +54,13 @@ function skinfo($what='Version') {
 	} add_action('admin_notices', 'skivvy_admin_notice');
 
 
-/* 
-// Adds custom message if Wordpress is out of date
-if (!current_user_can('edit_users')) {
-	add_action('init', create_function('$a', "remove_action('init', 'wp_version_check');"), 2);
-	add_filter('pre_option_update_core', create_function('$a', "return null;"));
-} // */
-
+	/* **
+	// Adds custom message if Wordpress is out of date
+	if (!current_user_can('edit_users')) {
+		add_action('init', create_function('$a', "remove_action('init', 'wp_version_check');"), 2);
+		add_filter('pre_option_update_core', create_function('$a', "return null;"));
+	} 
+	***/
 
 
 /*
@@ -60,13 +69,16 @@ if (!current_user_can('edit_users')) {
  *
  */
 
+
 	function skivvy_dashboard_help() {
 		echo '<p>Welcome to '.get_bloginfo( "name", "display" )."'s CMS! Need help? Contact <a href='".skinfo("AuthorURI")."' target='_blank'>".skinfo('Author')."</a>.</p>";
 	}
 
+
 	function skivvy_dashboard_feed() {
 		echo '<div class="rss-widget">';wp_widget_rss_output(array('url' => skinfo("AuthorURI").'feed/','title' => 'Latest News','items' => 5, 'show_summary' => 1,'show_author' => 0,'show_date' => 1));echo "</div>";
 	}
+
 
 	// Registers those widgets
 	function skivvy_dashboard_widgets() {
