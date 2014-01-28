@@ -1,4 +1,4 @@
-<?php #24Jan14
+<?php #28Jan14
 
 /*
  *
@@ -47,6 +47,12 @@ function skinfo($what='Version') {
 	}
 		add_action('admin_print_styles','skivvy_admin_css');
 		add_action( 'login_head', 'skivvy_admin_css' );
+
+
+	function skivvy_login_logo_url() {
+		return get_bloginfo( 'url' );
+	}
+		add_filter( 'login_headerurl', 'skivvy_login_logo_url' );
 
 
 	// Adds a warning box to the settings page Uses the same style box as the WordPress Update "update-nag"
