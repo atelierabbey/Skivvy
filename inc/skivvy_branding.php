@@ -32,17 +32,21 @@ function skinfo($what='Version') {
 
 	function skivvy_footer_admin() {
 		echo 'Fueled by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';
-	} add_filter('admin_footer_text', 'skivvy_footer_admin');
+	}
+		add_filter('admin_footer_text', 'skivvy_footer_admin');
 
 
 	function skivvy_footer_version(){
 		echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';
-	} add_filter( 'update_footer', 'skivvy_footer_version', 11 );
+	}
+		add_filter( 'update_footer', 'skivvy_footer_version', 11 );
 
 
 	function skivvy_admin_css() {
 		wp_enqueue_style( 'skivvy_admin_css', get_template_directory_uri().'/css/admin.css' , '' , '' );
-	} add_action('admin_print_styles','skivvy_admin_css'); add_action( 'login_head', 'skivvy_admin_css' );
+	}
+		add_action('admin_print_styles','skivvy_admin_css');
+		add_action( 'login_head', 'skivvy_admin_css' );
 
 
 	// Adds a warning box to the settings page Uses the same style box as the WordPress Update "update-nag"

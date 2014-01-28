@@ -1,4 +1,6 @@
-<?php if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
+<?php #24Jan14
+
+if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 	
 	static $version = "11Nov13";
 
@@ -60,7 +62,6 @@
 	function __construct() {
 		add_action( 'admin_init', 'skivvy_websiteoptions::theme_options_init');
 		add_action( 'admin_menu', 'skivvy_websiteoptions::theme_options_add_page'); 
-		add_action( 'wp_footer', 'skivvy_websiteoptions::website_data_foot_hook', 999);
 		
 		add_shortcode( 'text_phone', 'skivvy_websiteoptions::shortcode_textPhone');
 		add_shortcode( 'txt_ph2', 'skivvy_websiteoptions::shortcode_txtphtwo');
@@ -410,11 +411,7 @@
                 </table>
                 <input type="submit" value="Save" class="button button-primary button-large">
              </form>
-             
-	<?php }
-	
-	function website_data_foot_hook () {
-		require TEMPLATEPATH .'/inc/analytics.php';
+             <?php
 	}
-	
+
 }}?>
