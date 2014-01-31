@@ -60,3 +60,15 @@
     color: #AAAAAA;
     padding: 10px;
 }
+
+/* Post Status */
+.status-publish {}
+.status-publish.alternate, .status-publish.alt {}
+.status-draft {}
+.status-draft.alternate, .status-draft.alt {}
+.status-pending {}
+.status-pending.alternate, .status-pending.alt {}
+.status-private {}
+.status-private.alternate, .status-private.alt {}
+.post-password-required {}
+.post-password-required.alternate, .post-password-required.alt {}
