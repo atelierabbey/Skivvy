@@ -1,8 +1,6 @@
-<?php #24Jan14
-
-if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
+<?php if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 	
-	static $version = "11Nov13";
+	static $version = "31Jan13";
 
 	static function iconLoc() { return get_bloginfo('template_url').'/img/social/'; }
 
@@ -76,7 +74,7 @@ if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 	
 	static function theme_options_init(){
 		register_setting( 'skivvy_options', 'clientcms_options');
-		register_setting( 'skivvy_options', 'website_data_options');
+		//register_setting( 'skivvy_options', 'website_data_options');
 	} 
 	
 	function theme_options_add_page() {
@@ -268,18 +266,19 @@ if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 				<?php $options = get_option( 'clientcms_options' ); ?>
                 
 				<h3>Contact Information</h3>
-				<table>
-                
-                	<?php // For each phone, create a row
+				<table><?php
+				
+				
+					// For each phone, create a row
+						echo '<tr><td colspan="4"><small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
 						for( $i = 1; $i <= self::$number_o_phone; $i++ ) {
 
 							if( 1 == $options["ph{$i}txtadd"]) $checked = 'checked="checked"';
 							$value = esc_attr( $options["ph{$i}txt"] );
-
-							echo
+							echo (
 								'<tr valign="top">'.
 									'<th scope="row">Phone '. $i .'</th>'.
-									'<td>'.
+									'<td>'. 
 										'<input id="clientcms_options[ph'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[ph'. $i .'txtadd]"'. $checked .'>'.
 									'</td>'.
 									'<td>'.
@@ -289,18 +288,16 @@ if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 										'<img class="icon" src="'.self::iconLoc().'phone'. $i .'.png" >'.
 										'Icon: <input type="text" size="22" value=\'[socialbox key="phone'. $i .'"]\'  readonly>'.
 										'&nbsp;&nbsp;|&nbsp;&nbsp;'.
-										'Text:<input type="text" size="6" value=\'[text_phone phone="'. $i .'"]\' readonly>'.
+										'Text:<input type="text" size="20" value=\'[text_phone phone="'. $i .'"]\' readonly>'.
 										'<input type="text" size="20" value=\'[text_phone phone="'. $i .'" delimiter="."]\' readonly>'.
 										'<input type="text" size="34" value=\'[text_phone phone="'. $i .'" custom="+$a ($b) $c-$d"]\' readonly>'.
 									'</td>'.
 								'</tr>'
-							;
+							);
 						}
 					?>
-					
 					<tr><td colspan="2"><br /></td></tr>
-                    
-                    <?php // For each email, create a row
+					<?php // For each email, create a row
 						for( $i = 1; $i <= self::$number_o_email; $i++ ) {
 
 							if( 1 == $options["em{$i}txtadd"]) $checked = 'checked="checked"';
@@ -412,6 +409,6 @@ if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
                 <input type="submit" value="Save" class="button button-primary button-large">
              </form>
              <?php
-	}
+	} //*/
 
 }}?>

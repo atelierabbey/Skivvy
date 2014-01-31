@@ -1,4 +1,4 @@
-<?php #28Jan14
+<?php #31Jan14
 
 /*
  *
@@ -86,16 +86,40 @@ function skinfo($what='Version') {
 
 
 	function skivvy_dashboard_feed() {
-		echo '<div class="rss-widget">';
-			wp_widget_rss_output(array(
-				'url' => skinfo("AuthorURI").'feed/',
-				'title' => 'Latest News',
-				'items' => 2,
-				'show_summary' => 1,
-				'show_author' => 0,
-				'show_date' => 1
-			));
-		echo "</div>";
+
+		// Edit this value to match selected RSS
+		$rss_url = skinfo("AuthorURI").'feed/';
+
+
+		include_once( ABSPATH . WPINC . '/feed.php' );
+
+		$rss = fetch_feed( $rss_url );
+
+		if ( ! is_wp_error( $rss ) ) : // Checks that the object is created correctly
+
+			// Figure out how many total items there are, but limit it to 5. 
+			$maxitems = $rss->get_item_quantity( 5 ); 
+
+			// Build an array of all the items, starting with element 0 (first element).
+			$rss_items = $rss->get_items( 0, $maxitems );
+
+		endif;
+
+		echo '<div class="rss-widget"><ul>';
+
+			if ( $maxitems == 0 ) {
+
+				echo '<li>' . __( 'No items', 'skivvy' ) . '</li>';
+
+			} else { // Loop through each feed item and display each item as a hyperlink.
+
+				foreach ( $rss_items as $item ) {
+					echo '<li><a href="' . esc_url( $item->get_permalink() ) . '" title="' . sprintf( __( 'Posted %s', 'skivvy' ), $item->get_date('j F Y | g:i a') ) . '" target="_blank">' . esc_html( $item->get_title() ) . '</a></li>';
+				}
+
+			}
+
+		echo "</ul></div>";
 	}
 
 
