@@ -14,6 +14,7 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 	#	include 'inc/register_sidebar.php';
 	#	include 'inc/register_menu.php';
 	#	include 'inc/register_posttype.php';
+	#	include 'inc/register_taxonomy.php';
 	#	include 'inc/register_scripts.php';
 		include 'inc/skivvy_simple.php';
 		include 'inc/skivvy_branding.php';
@@ -29,6 +30,7 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 	#	include 'inc/lib/skivvy_tools-posttypes.php';
 
 // CURRENTLY NOT WORKING -----
+	#	include 'inc/lib/cms_webdata.php'; new skivvy_websitedata;
 	#	include 'inc/lib/mod_randimg.php'; 
 	#	include 'inc/lib/mod_rewrites.php';
 	#	include 'inc/lib/mod_siteclosed.php';
