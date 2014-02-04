@@ -1,10 +1,22 @@
 <?php if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 
-	static $version = "31Jan13";
+	# TEMP NOTES
+	# Address Shortcode
+	# Add / style="text/icon/svg/li" /
+	# Add / Delimiter='' /
+	# Add Custom (for address & Phone)
+	# Deprecate all old text functions
+	# Add or Update Formatting functions
+	#    // Options -> Formating -> Socialbox
+
+
+
+
+	static $version = '1Feb13';
 
 	static $number_o_phone = 2;
 	static $number_o_email = 2;
-	static $number_o_address = 1;
+	static $number_o_address = 5;
 
 	static $socialmedsbox = array(
 	//  array( 'display' => '', 'css' => '', 'slug'=>'' ),
@@ -94,7 +106,7 @@
 				'Website Options', // Menu Title
 				'edit_theme_options', // Capability
 				'website_options', // menu slug
-				self::render_website_options
+				'skivvy_websiteoptions::render_website_options'
 			);
 		}
 
@@ -110,28 +122,51 @@
 
 
 		// ---- formats phone
-		function format_phone_data ($i,$options,$type='icon') {
-			if( $type = 'text' ) {
-				$option = $options["ph{$i}txtadd"];
-				$phone = explode(" ", $option);
-				return  '<a class="btn_phone'.$i.'" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'"></a>';
-			} else {
-				$slug = $social['slug'];
-				return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
-			} 
-		}
+			function format_phone_data ($i,$options,$type='icon') {
+				if( $type = 'text' ) {
+					$option = $options["ph{$i}txtadd"];
+					$phone = explode(" ", $option);
+					return  '<a class="btn_phone'.$i.'" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'"></a>';
+				} else {
+					$slug = $social['slug'];
+					return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
+				}
+			}
 
 		// ---- formats email
-		function format_email_data ($social,$options) {
-			$slug = $social['slug'];
-			return '<a class="btn_'.$social['css'].'" href="mailto:'.$options["{$slug}txt"].'"></a>';
-		}
+			function format_email_data ($social,$options) {
+				$slug = $social['slug'];
+				return '<a class="btn_'.$social['css'].'" href="mailto:'.$options["{$slug}txt"].'"></a>';
+			}
 
 		// ---- formats social media icons
-		function format_socialbox_icons ($social,$options) {
-			$slug = $social['slug'];
-			return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
-		}
+			function format_socialbox_icons ($social,$options) {
+				$slug = $social['slug'];
+				return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
+			}
+
+
+
+		// Format - Address
+			function format_address ( $input, $delimiter = ', ' ) {
+					$format = array (
+							'street1' => $input[0],
+							'street2' => $input[1],
+							'city'    => $input[2],
+							'state'   => $input[3],
+							'zip'     => $input[4]
+					);
+					$output  = $format['street1'];
+					$output .= $delimiter;
+					$output .= $format['street2'];
+					$output .= $delimiter;
+					$output .= $format['city'];
+					$output .= $delimiter;
+					$output .= $format['state'];
+					$output .= $delimiter;
+					$output .= $format['zip'];
+					return $output;
+			}
 
 
 
@@ -161,7 +196,7 @@
 					endif;
 					return '<a class="txt_phone{$phone}" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
 				}
-			} 
+			}
 
 
 
@@ -171,7 +206,7 @@
 				if($options["em1txt"]){
 					return '<span class="txt_emailone">'.$options["em1txt"].'</span>';
 				}
-			} 
+			}
 			function shortcode_txtemtwo(){
 				$options = get_option( 'clientcms_options' );
 				if($options["em2txt"]){return '<span class="txt_emailtwo">'.$options["em2txt"].'</span>';}
@@ -180,18 +215,54 @@
 
 
 		/*****	Shortcode address *****/
-			function shortcode_txtadr(){
+
+			function shortcode_address( $atts ) {
 				$options = get_option( 'clientcms_options' );
-				if($options["adrtxt"]){return '<span class="txt_address">'.$options["adrtxt"].'</span>';}
+				// {$phone}
+				$input = array (
+						$options["addr1_strt1_txt"],
+						$options["addr1_strt2_txt"],
+						$options["addr1_ctytxt"],
+						$options["addr1_stttxt"],
+						$options["addr1_ziptxt"]
+				);
+
+				if($options["ph{$phone}txt"]){
+					$phone = explode(" ", $options["ph{$phone}txt"]);
+					if ($custom) : 
+						$formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
+						elseif($delimiter): $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
+						else: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
+					endif;
+					return '<a class="txt_phone{$phone}" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
+				}
+
+				format_address ( $input, $delimiter = ', ' );
 			}
+
+
+
+			// Deprecated, Sooner or later to be removed.
+			function shortcode_txtadr(){
+					extract( shortcode_atts( array(
+						'address' => '1',
+						'delimiter' => ', ',
+						'custom' => ''
+					), $atts ) );
+					$options = get_option( 'clientcms_options' );
+					if($options["adrtxt"]){return '<span class="txt_address">'.$options["adrtxt"].'</span>';}
+			}
+
 			function shortcode_txtcty(){
 				$options = get_option( 'clientcms_options' );
 				if($options["ctytxt"]){return '<span class="txt_city">'.$options["ctytxt"].'</span>';}
 			}
+
 			function shortcode_txtstt(){
 				$options = get_option( 'clientcms_options' );
 				if($options["stttxt"]){return '<span class="txt_state">'.$options["stttxt"].'</span>';}
 			}
+
 			function shortcode_txtzip(){
 				$options = get_option( 'clientcms_options' );
 				if($options["ziptxt"]){return '<span class="txt_zip">'.$options["ziptxt"].'</span>';}
@@ -200,79 +271,86 @@
 
 		/*****	[socialbox] Shortcode *****/
 			function socialbox_shortcode( $atts ){
+
 				extract( shortcode_atts( array(
-					'key' => ''
+					'key' => '',
+					'delimiter' => '',
+					'custom' => ''
 				), $atts ) );
+
 				$options = get_option( 'clientcms_options' );
 				$socials = self::$socialmedsbox; 
 
+
 				if ($key) {
+
 					// Non-Dynamic Rss, Phones, & Emails
-					if ( $key === 'rss' && $options["rssurl"] ) {
-						$result .= '<a class="btn_rss" href="'.$options["rssurl"].'" target="_blank"></a>';
-					}
+						if ( $key === 'rss' && $options["rssurl"] ) {
+							$result .= '<a class="btn_rss" href="'.$options["rssurl"].'" target="_blank"></a>';
+						}
 
 					// For each number of phones
-					for( $i = 1; $i <= self::$number_o_email; $i++ ) {
-						if ( $key === "email{$i}" && $options["em{$i}txt"] ) { 
-							$result .= self::format_email_data ($i,$options) ;
+						for( $i = 1; $i <= self::$number_o_email; $i++ ) {
+							if ( $key === "email{$i}" && $options["em{$i}txt"] )
+								$result .= self::format_email_data ($i,$options) ;
 						}
-					} 
 
 					// For each number of phones
-					for( $i = 1; $i <= self::$number_o_phone; $i++ ) {
-						if ( $key === "phone{$i}" && $options["ph{$i}txt"] ) { 
-							$result .= self::format_phone_data ($i,$options) ;
+						for( $i = 1; $i <= self::$number_o_phone; $i++ ) {
+							if ( $key === "phone{$i}" && $options["ph{$i}txt"] )
+								$result .= self::format_phone_data ($i,$options) ;
 						}
-					} // */
 
 					// Run each $socialmedia key vs. $css, if == run formatting
-					foreach ($socials as $social) {
-						if ($key == $social['css']) {
-							$result .= self::format_socialbox_icons ($social,$options);
+						foreach ($socials as $social) {
+							if ($key == $social['css'])
+								$result .= self::format_socialbox_icons ($social,$options);
 						}
-					}
+
 
 				} else {
+
+
 					// If no $key is set run all
-					$result = '<div class="socialbox">';
+						$result = '<div class="socialbox">';
+
 						// Runs through the Socialmedbox variable's arrays
-						foreach($socials as $social){
-							$css = $social['css'];
-							$slug = $social['slug'];
-							if($options["{$slug}url"]){
-								
-								if( $key === $css ) {
-									$result .=  self::format_socialbox_icons ($social,$options);
+							foreach($socials as $social){
+								$css = $social['css'];
+								$slug = $social['slug'];
+
+								if($options["{$slug}url"]){
+									if( $key === $css ) 
+										$result .=  self::format_socialbox_icons ($social,$options);
+									if ( 1 == $options["{$slug}urladd"] )
+										$result .= self::format_socialbox_icons ($social,$options);
 								}
 
-								if (1 == $options["{$slug}urladd"] )
-									$result .= self::format_socialbox_icons ($social,$options);
 							}
-						}
 
 						// These are non-dynamic versions of the phone, email, and rss, they will be removed later.
-						if (1 == $options["rssurladd"]) {
-							$result .= '<a class="btn_rss socialbox_icon" href="'.$options["rssurl"].'" target="_blank"></a>';
-						}
-						if (1 == $options["em1txtadd"] && $options["em1txt"]){
-							$result .= '<a class="btn_email1 socialbox_icon" href="mailto:'.$options["em1txt"].'" title="Email - '.$options["em1txt"].'"></a>';
-						}
-						if (1 == $options["em2txtadd"] && $options["em2txt"]){
-							$result .= '<a class="btn_email2 socialbox_icon" href="mailto:'.$options["em2txt"].'" title="Email - '.$options["em2txt"].'"></a>';
-						}
-						if (1 == $options["phtxtadd"]  && $options["ph1txt"]){
-							$phone = explode(" ", $options["ph1txt"]);
-							$result .= '<a class="btn_phone1 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
-						}
-						if (1 == $options["ph2txtadd"] && $options["ph2txt"]){
-							$phone = explode(" ", $options["ph2txt"]);
-							$result .= '<a class="btn_phone2 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
-						}
+							if (1 == $options["rssurladd"]) {
+								$result .= '<a class="btn_rss socialbox_icon" href="'.$options["rssurl"].'" target="_blank"></a>';
+							}
+							if (1 == $options["em1txtadd"] && $options["em1txt"]){
+								$result .= '<a class="btn_email1 socialbox_icon" href="mailto:'.$options["em1txt"].'" title="Email - '.$options["em1txt"].'"></a>';
+							}
+							if (1 == $options["em2txtadd"] && $options["em2txt"]){
+								$result .= '<a class="btn_email2 socialbox_icon" href="mailto:'.$options["em2txt"].'" title="Email - '.$options["em2txt"].'"></a>';
+							}
+							if (1 == $options["phtxtadd"]  && $options["ph1txt"]){
+								$phone = explode(" ", $options["ph1txt"]);
+								$result .= '<a class="btn_phone1 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
+							}
+							if (1 == $options["ph2txtadd"] && $options["ph2txt"]){
+								$phone = explode(" ", $options["ph2txt"]);
+								$result .= '<a class="btn_phone2 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
+							}
 
-					$result .= '</div>';
-				}
-				return $result;
+						$result .= '</div>';
+
+				} return $result;
+
 			}
 
 
@@ -287,27 +365,51 @@
 
 
 			function render_website_options() {
-				global $select_options;
-				if ( ! isset( $_REQUEST['settings-updated'] ) ) { $_REQUEST['settings-updated'] = false; }
-				?>
-				<div class="wrap skivvy-websiteoptions">
-					<?php if ( false !== $_REQUEST['settings-updated'] ) { echo '<div><p><strong>Options saved</strong></p></div>'; } ?> 
-					<?php screen_icon();?> 
-					<h2>Website Options</h2>
-					<form method="post" action="../../lib/options.php">
-						<?php settings_fields( 'skivvy_options' ); ?>
-						<?php $options = get_option( 'clientcms_options' ); ?>
 
-						<h3>Contact Information</h3>
-						<table><?php
+				global $select_options;
+
+				echo '<div class="wrap skivvy-websiteoptions">';
+					screen_icon();
+					echo '<h2>Website Options</h2>';
+
+
+
+					if ( ! isset( $_REQUEST['settings-updated'] ) ) {
+							$_REQUEST['settings-updated'] = false;
+					}
+
+					if ( false !== $_REQUEST['settings-updated'] ) {
+							echo '<div class="skivvy-optionsupdate"><h3>Options saved</h3></div>';
+					}
+
+
+
+					echo '<form method="post" action="options.php">';
+
+						settings_fields( 'skivvy_options' );
+						$options = get_option( 'clientcms_options' );
+
+
+
+
+					echo '<h3>Contact Information</h3>';
+
+
+
+							echo '<table width="1300">';
+
 
 
 							// For each phone, create a row
 								echo '<tr><td colspan="4"><small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
 								for( $i = 1; $i <= self::$number_o_phone; $i++ ) {
 
-									if( 1 == $options["ph{$i}txtadd"]) $checked = 'checked="checked"';
-									$value = esc_attr( $options["ph{$i}txt"] );
+									$checked = '';
+
+									if( 1 == $options["ph{$i}txtadd"] && $options["ph{$i}txt"]) {
+												$checked = 'checked="checked"';
+									}
+
 									echo (
 										'<tr valign="top">'.
 											'<th scope="row">Phone '. $i .'</th>'.
@@ -315,10 +417,10 @@
 												'<input id="clientcms_options[ph'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[ph'. $i .'txtadd]"'. $checked .'>'.
 											'</td>'.
 											'<td>'.
-												'<input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.$value.'" >'.
+												'<input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["ph{$i}txt"] ).'" >'.
 											'</td>'.
 											'<td>'.
-												'<img class="icon" src="'.self::iconLoc().'phone'. $i .'.png" >'.
+												'<img class="icon" src="' . self::iconLoc() . 'phone'. $i .'.png" >'.
 												'Icon: <input type="text" size="22" value=\'[socialbox key="phone'. $i .'"]\'  readonly>'.
 												'&nbsp;&nbsp;|&nbsp;&nbsp;'.
 												'Text:<input type="text" size="20" value=\'[text_phone phone="'. $i .'"]\' readonly>'.
@@ -328,48 +430,74 @@
 										'</tr>'
 									);
 								}
-							?>
-							<tr><td colspan="2"><br /></td></tr>
-							<?php // For each email, create a row
+
+
+
+
+
+							echo '<tr><td colspan="4"><br></td></tr>';
+
+
+
+
+
+							// For each email, create a row
 								for( $i = 1; $i <= self::$number_o_email; $i++ ) {
 
-									if( 1 == $options["em{$i}txtadd"]) $checked = 'checked="checked"';
-									$value = esc_attr( $options["em{$i}txt"] ); ?>
-									<tr valign="top">
-										<th scope="row">Email <?php echo $i; ?></th>
-										<td><input id="clientcms_options[em<?php echo $i; ?>txtadd]" type="checkbox" value="1" <?php echo $checked; ?> name="clientcms_options[em<?php echo $i; ?>txtadd]"></td>
-										<td><input id="clientcms_options[em<?php echo $i; ?>txt]" type="text" name="clientcms_options[em1txt]" value="<?php echo $value; ?>" /></td>
-										<td>
-											<img class="icon" src="<?php echo self::iconLoc() ?>email<?php echo $i; ?>.png" />
-											Text:<input type="text" size="6" value="[txt_em<?php echo $i; ?>]"  readonly>
-											Icon: <input type="text" size="22" value="[socialbox key='email<?php echo $i; ?>']"  readonly>
-										</td>
-									</tr>
-							<?php } ?>
+									$checked = '';
 
-							<tr><td colspan="3"><br /></td></tr>
+									if( 1 == $options["em{$i}txtadd"] && $options["em{$i}txt"] ) {
+												$checked = 'checked="checked"';
+									}
 
-							<tr valign="top">
-								<th scope="row" colspan="2">Address</th>
-								<td><input id="clientcms_options[adrtxt]" type="text" name="clientcms_options[adrtxt]" value="<?php esc_attr_e( $options['adrtxt'] ); ?>" /></td>
-								<td>Shortcode: <em>[txt_adr]</em>   |   css: <em>span.txt_address</em></td>
-							</tr>
-							<tr valign="top">
-								<th scope="row" colspan="2">City</th>
-								<td><input id="clientcms_options[ctytxt]" type="text" name="clientcms_options[ctytxt]" value="<?php esc_attr_e( $options['ctytxt'] ); ?>" /></td>
-								<td>Shortcode: [txt_cty]   |   css: span.txt_city</td>
-							</tr>
-							<tr valign="top">
-								<th scope="row" colspan="2">State</th>
-								<td><input id="clientcms_options[stttxt]" type="text" name="clientcms_options[stttxt]" value="<?php esc_attr_e( $options['stttxt'] ); ?>" /></td>
-								<td>Shortcode: [txt_stt]   |   css: span.txt_state</td>
-							</tr>
-							<tr valign="top">
-								<th scope="row" colspan="2">ZIP</th>
-								<td><input id="clientcms_options[ziptxt]" type="text" name="clientcms_options[ziptxt]" value="<?php esc_attr_e( $options['ziptxt'] ); ?>" /></td>
-								<td>Shortcode: [txt_zip]   |   css: span.txt_zip</td>
-							</tr>
-						</table>
+									echo (
+										'<tr valign="top">'.
+											'<th scope="row">Email '. $i . '<div style="display:none;">' . $options["em{$i}txtadd"] . '</div>' . '</th>'.
+											'<td><input id="clientcms_options[em' . $i . 'txtadd]" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[em' . $i . 'txtadd]"></td>'.
+											'<td><input id="clientcms_options[em' . $i . 'txt]" type="text" name="clientcms_options[em' . $i . 'txt]" value="' . esc_attr( $options["em{$i}txt"] ) . '" ></td>'.
+											'<td>'.
+												'<img class="icon" src="' . self::iconLoc() . 'email' . $i . '.png" >' .
+												'Text:<input type="text" size="6" value="[txt_em' . $i . ']"  readonly>'.
+												'Icon: <input type="text" size="22" value="[socialbox key=\'email' . $i . '\']"  readonly>'.
+											'</td>'.
+										'</tr>'
+									);
+							}
+
+
+
+
+
+
+							echo '<tr><td colspan="4"><br></td></tr>';
+
+
+
+
+
+							// For each address
+								for( $i = 1; $i <= self::$number_o_address; $i++ ) {
+			
+									echo (
+										'<tr valign="top">'.
+											'<th colspan="2" scope="row">Address '. $i .'</th>'.
+											'<td colspan="2">'. 
+												'<input id="clientcms_options[addr'. $i .'street1]" type="text" name="clientcms_options[addr'. $i .'street1]" value="' . esc_attr( $options["addr{$i}street1"] ) . '" placeholder="Street 1">'.
+												'<input id="clientcms_options[addr'. $i .'street2]" type="text" name="clientcms_options[addr'. $i .'street2]" value="' . esc_attr( $options["addr{$i}street2"] ) . '" placeholder="Street 2">'.
+												'<input id="clientcms_options[addr'. $i .'city]" type="text" name="clientcms_options[addr'. $i .'city]" value="' . esc_attr( $options["addr{$i}city"] ) . '" placeholder="City">'.
+												'<input id="clientcms_options[addr'. $i .'state]" type="text" name="clientcms_options[addr'. $i .'state]" value="' . esc_attr( $options["addr{$i}state"] ) . '" placeholder="State">'.
+												'<input id="clientcms_options[addr'. $i .'zip]" type="text" name="clientcms_options[addr'. $i .'zip]" value="' . esc_attr( $options["addr{$i}zip"] ) . '" placeholder="Zip">'.
+											'</td>'.
+										'</tr>'
+									);
+			
+								}
+
+
+
+
+
+						?></table>
 
 
 						<hr />
@@ -385,7 +513,10 @@
 								</td>
 							</tr>
 
-							<?php $socials = self::$socialmedsbox;
+							<?php
+
+								$socials = self::$socialmedsbox;
+
 								foreach($socials as $social){
 									$display = $social['display'];
 									$css = $social['css'];
@@ -407,13 +538,14 @@
 											'</td>'.
 										'</tr>';
 								}
-							?>
-						</table>
-						<p><input type="submit" value="Save Options" /></p>
-					</form>
-					<div>Website Options Version : <?php echo self::$version ?></div>
-				</div>
-				<?php 
+
+						echo '</table>';
+
+						submit_button();
+
+					echo '</form>';
+					echo '<div>Website Options Version: ' . self::$version . '</div>';
+				echo '</div>';
 			}
 
 

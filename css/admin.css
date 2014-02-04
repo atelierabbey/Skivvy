@@ -1,4 +1,4 @@
-/* 31Jan14 */
+/* 1Feb14 */
 /* Login Logo */
 .login #login > h1 a { 
 	background-image:url("../img/admin/logo-login.svg");
@@ -43,6 +43,14 @@
 	text-align: center;
 	width: 710px;
 }
+.skivvy-optionsupdate h3 {
+    background: none repeat scroll 0 0 #008000;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 5px;
+    text-align: center;
+    width: 250px;
+}
 /* Website options */
 .skivvy-websiteoptions tr img.icon {
 	height: 20px;
@@ -72,3 +80,53 @@
 .status-private.alternate, .status-private.alt {}
 .post-password-required {}
 .post-password-required.alternate, .post-password-required.alt {}
+
+
+
+/* ----------- Socialbox icons ----------- */
+a.socialbox_icon {width:32px;height:32px;background: none no-repeat scroll center center transparent;display:inline-block;}
+a.btn_rss		{background-image:url('../img/social/rss.png');}
+a.btn_email1	{background-image:url('../img/social/email1.png');}
+a.btn_email2	{background-image:url('../img/social/email2.png');}
+a.btn_phone1	{background-image:url('../img/social/phone1.png');}
+a.btn_phone2	{background-image:url('../img/social/phone2.png');}
+a.btn_facebook	{background-image:url('../img/social/facebook.png');}
+a.btn_twitter	{background-image:url('../img/social/twitter.png');}
+a.btn_linkedin	{background-image:url('../img/social/linkedin.png');}
+a.btn_etsy		{background-image:url('../img/social/etsy.png');}
+a.btn_youtube	{background-image:url('../img/social/youtube.png');}
+a.btn_googleplus{background-image:url('../img/social/googleplus.png');}
+a.btn_instagram	{background-image:url('../img/social/instagram.png');}
+a.btn_pinterest	{background-image:url('../img/social/pinterest.png');}
+a.btn_flickr	{background-image:url('../img/social/flickr.png');}
+a.btn_vimeo		{background-image:url('../img/social/vimeo.png');}
+a.btn_extra1	{background-image:url('../img/social/extra1.png');}
+a.btn_extra2	{background-image:url('../img/social/extra2.png');}
+a.btn_extra3	{background-image:url('../img/social/extra3.png');}
+a.btn_extra4	{background-image:url('../img/social/extra4.png');}
+a.btn_extra5	{background-image:url('../img/social/extra5.png');}
+a.btn_extra6	{background-image:url('../img/social/extra6.png');}
+a.btn_extra7	{background-image:url('../img/social/extra7.png');}
+a.socialbox_icon.style-svg {background:none;}
+a.btn_rss.style-svg { }
+a.btn_email1.style-svg { }
+a.btn_email2.style-svg { }
+a.btn_phone1.style-svg { }
+a.btn_phone2.style-svg { }
+a.btn_facebook.style-svg { }
+a.btn_twitter.style-svg { }
+a.btn_linkedin.style-svg { }
+a.btn_etsy.style-svg { }
+a.btn_youtube.style-svg { }
+a.btn_googleplus.style-svg { }
+a.btn_instagram.style-svg { }
+a.btn_pinterest.style-svg { }
+a.btn_flickr.style-svg { }
+a.btn_vimeo.style-svg { }
+a.btn_extra1.style-svg { }
+a.btn_extra2.style-svg { }
+a.btn_extra3.style-svg { }
+a.btn_extra4.style-svg { }
+a.btn_extra5.style-svg { }
+a.btn_extra6.style-svg { }
+a.btn_extra7.style-svg { }
