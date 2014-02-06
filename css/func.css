@@ -123,7 +123,11 @@ ul.nobull > li { list-style:none; }
 /* `Pull Space >> 12 Columns */.container_12 .pull_1 {left: -80px;}.container_12 .pull_2 {left: -160px;}.container_12 .pull_3 {left: -240px;}.container_12 .pull_4 {left: -320px;}.container_12 .pull_5 {left: -400px;}.container_12 .pull_6 {left: -480px;}.container_12 .pull_7 {left: -560px;}.container_12 .pull_8 {left: -640px;}.container_12 .pull_9 {left: -720px;}.container_12 .pull_10 {left: -800px;}.container_12 .pull_11 {left: -880px;}
 
 /* ----------- Socialbox icons ----------- */
+ul.socialbox {margin:0;padding:0;}
+ul.socialbox li {margin:0;padding:0;list-style:none;display:inline;}
+
 a.socialbox_icon {width:32px;height:32px;background: none no-repeat scroll center center transparent;display:inline-block;}
+a.socialbox_icon span {text-align:-9999px;}
 a.btn_rss		{background-image:url('../img/social/rss.png');}
 a.btn_email1	{background-image:url('../img/social/email1.png');}
 a.btn_email2	{background-image:url('../img/social/email2.png');}

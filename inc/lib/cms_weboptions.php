@@ -2,7 +2,7 @@
 
 	# TEMP NOTES
 	# Address Shortcode
-	# Add / style="text/icon/svg/li" /
+	# Add / style="text/icon/svg" /
 	# Add / Delimiter='' /
 	# Add Custom (for address & Phone)
 	# Deprecate all old text functions
@@ -12,14 +12,15 @@
 
 
 
-	static $version = '1Feb13';
+
 
 	static $number_o_phone = 2;
+	static $number_o_fax = 1;
 	static $number_o_email = 2;
-	static $number_o_address = 5;
+	static $number_o_address = 2;
 
 	static $socialmedsbox = array(
-	//  array( 'display' => '', 'css' => '', 'slug'=>'' ),
+		// array( 'display' => '', 'css' => '', 'slug'=>'' ),
 		array( 'display' => 'Etsy',			'css' => 'etsy',		'slug'=>'et'),
 		array( 'display' => 'Facebook',		'css' =>'facebook',		'slug'=>'fb'),
 		array( 'display' => 'Flickr',		'css' =>'flickr',		'slug'=>'fl'),
@@ -68,7 +69,7 @@
 
 
 
-
+	static $version = '5Feb13';
 
 
 	/*
@@ -269,14 +270,21 @@
 			}
 
 
+
+
+
+
 		/*****	[socialbox] Shortcode *****/
 			function socialbox_shortcode( $atts ){
 
 				extract( shortcode_atts( array(
-					'key' => '',
-					'delimiter' => '',
-					'custom' => ''
+					'key' => '', // Example : phone1,email2,fax1,facebook. comma separated. If left empty, will display all. If >1, wraps in ul.socialbox, each item will be li. 
+					'output' => 'png', // Options : 'png' = a span with list  |  'svg' = outputs link around SVG code  |  'text' = outputs only text, no link.  |  'link', nolist
+					'delimiter' => '', // any character to delimit. Works only with phone, fax, or address
+					'custom' => '' // Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others => 
 				), $atts ) );
+
+
 
 				$options = get_option( 'clientcms_options' );
 				$socials = self::$socialmedsbox; 
@@ -363,7 +371,6 @@
 	 */
 
 
-
 			function render_website_options() {
 
 				global $select_options;
@@ -385,48 +392,49 @@
 
 
 					echo '<form method="post" action="options.php">';
-
 						settings_fields( 'skivvy_options' );
 						$options = get_option( 'clientcms_options' );
+						echo '<h3>Contact Information</h3>';
+
+						$total_phone = 2;
+							if ( $options["number_of_phone"] ) $total_phone = $options["number_of_phone"];
+						$total_email = 2;
+							if ( $options["number_of_email"] ) $total_email = $options["number_of_email"];
+						$total_addr = 2;
+							if ( $options["number_of_address"] ) $total_addr = $options["number_of_address"];
+
+						if ( is_admin() ) {
+							echo (
+									'<div class="skivvy-weboptions-admin-fields">'.
+										'Number of Phones: <input id="clientcms_options[number_of_phone]" type="text" name="clientcms_options[number_of_phone]" value="'.$total_phone.'"  size="2"> | '.
+										'Number of Emails: <input id="clientcms_options[number_of_email]" type="text" name="clientcms_options[number_of_email]" value="'.$total_email.'"  size="2"> | '.
+										'Number of Addresses: <input id="clientcms_options[number_of_address]" type="text" name="clientcms_options[number_of_address]" value="'.$total_addr.'"  size="2">'.
+									'</div>'
+								);
+						}
 
 
 
 
-					echo '<h3>Contact Information</h3>';
+						echo '<table width="1300">';
 
 
+							// PHONES
+								echo '<tr><td colspan="4"><small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small></tr>';
+								for( $i = 1; $i <= $total_phone; $i++ ) {
 
-							echo '<table width="1300">';
-
-
-
-							// For each phone, create a row
-								echo '<tr><td colspan="4"><small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
-								for( $i = 1; $i <= self::$number_o_phone; $i++ ) {
-
-									$checked = '';
-
-									if( 1 == $options["ph{$i}txtadd"] && $options["ph{$i}txt"]) {
-												$checked = 'checked="checked"';
+									if ( 1 == $options["ph{$i}txtadd"] && $options["ph{$i}txt"] ) {
+										$checked = 'checked="checked"';
+									} else {
+										$checked = '';
 									}
 
 									echo (
 										'<tr valign="top">'.
-											'<th scope="row">Phone '. $i .'</th>'.
-											'<td>'. 
-												'<input id="clientcms_options[ph'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[ph'. $i .'txtadd]"'. $checked .'>'.
-											'</td>'.
-											'<td>'.
-												'<input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["ph{$i}txt"] ).'" >'.
-											'</td>'.
-											'<td>'.
-												'<img class="icon" src="' . self::iconLoc() . 'phone'. $i .'.png" >'.
-												'Icon: <input type="text" size="22" value=\'[socialbox key="phone'. $i .'"]\'  readonly>'.
-												'&nbsp;&nbsp;|&nbsp;&nbsp;'.
-												'Text:<input type="text" size="20" value=\'[text_phone phone="'. $i .'"]\' readonly>'.
-												'<input type="text" size="20" value=\'[text_phone phone="'. $i .'" delimiter="."]\' readonly>'.
-												'<input type="text" size="34" value=\'[text_phone phone="'. $i .'" custom="+$a ($b) $c-$d"]\' readonly>'.
-											'</td>'.
+											'<td><img class="icon" src="' . self::iconLoc() . 'phone'. $i . '.png" ></td>'.
+											'<td><input id="clientcms_options[ph'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[ph'. $i .'txtadd]"'. $checked .'></td>'.
+											'<td>Phone '. $i .'</td>'.
+											'<td><input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["ph{$i}txt"] ).'" ></td>'.
 										'</tr>'
 									);
 								}
@@ -435,19 +443,19 @@
 
 
 
-							echo '<tr><td colspan="4"><br></td></tr>';
+
+
+							// EMAILS
+								echo '<tr><td colspan="4"><br><small>Email addresses</small>';
 
 
 
+								for( $i = 1; $i <= $total_email; $i++ ) {
 
-
-							// For each email, create a row
-								for( $i = 1; $i <= self::$number_o_email; $i++ ) {
-
-									$checked = '';
-
-									if( 1 == $options["em{$i}txtadd"] && $options["em{$i}txt"] ) {
-												$checked = 'checked="checked"';
+									if ( 1 == $options["em{$i}txtadd"] && $options["em{$i}txt"] ) {
+											$checked = 'checked="checked"';
+									} else {
+											$checked = '';
 									}
 
 									echo (
@@ -462,22 +470,16 @@
 											'</td>'.
 										'</tr>'
 									);
-							}
+								}
 
 
 
 
 
 
-							echo '<tr><td colspan="4"><br></td></tr>';
-
-
-
-
-
-							// For each address
-								for( $i = 1; $i <= self::$number_o_address; $i++ ) {
-			
+							// ADDRESSES
+								echo '<tr><td colspan="4"><br><small>Physical or Mailing Address.</small>';
+								for( $i = 1; $i <= $total_addr; $i++ ) {
 									echo (
 										'<tr valign="top">'.
 											'<th colspan="2" scope="row">Address '. $i .'</th>'.
@@ -487,36 +489,44 @@
 												'<input id="clientcms_options[addr'. $i .'city]" type="text" name="clientcms_options[addr'. $i .'city]" value="' . esc_attr( $options["addr{$i}city"] ) . '" placeholder="City">'.
 												'<input id="clientcms_options[addr'. $i .'state]" type="text" name="clientcms_options[addr'. $i .'state]" value="' . esc_attr( $options["addr{$i}state"] ) . '" placeholder="State">'.
 												'<input id="clientcms_options[addr'. $i .'zip]" type="text" name="clientcms_options[addr'. $i .'zip]" value="' . esc_attr( $options["addr{$i}zip"] ) . '" placeholder="Zip">'.
+												'<input id="clientcms_options[addr'. $i .'country]" type="text" name="clientcms_options[addr'. $i .'country]" value="' . esc_attr( $options["addr{$i}country"] ) . '" placeholder="Country">'.
 											'</td>'.
 										'</tr>'
 									);
-			
 								}
 
 
 
 
 
-						?></table>
+						echo '</table>';
 
 
-						<hr />
-						<h3>Social Media</h3>
-						<span>Shortcode: [socialbox]   |   css:div.socialbox</span><br><br>
-						<table>
-							<tr valign="top">
-								<th scope="row">RSS</th>
-								<td><input id="clientcms_options[rssurladd]" type="checkbox" value="1" <?php if( 1 == $options['rssurladd']) echo 'checked="checked"'; ?> name="clientcms_options[rssurladd]"></td>
-								<td><input id="clientcms_options[rssurl]" type="text" size="50" name="clientcms_options[rssurl]" value="<?php bloginfo('rss2_url'); ?>"  readonly></td>
-								<td><img class="icon" src="<?php echo self::iconLoc() ?>rss.png" />
-									Icon: <input type="text" size="30" value='[socialbox key="rss"]'  readonly>
-								</td>
-							</tr>
+						echo '<hr>'.
+							 '<h3>Social Media</h3>'.
+							 '<table>';
 
-							<?php
 
+							// RSS
+								if( 1 == $options["rssurladd"]) {
+									$checked = 'checked="checked"';
+								} else {
+									$checked = '';
+								}
+								echo (
+									'<tr valign="top">'.
+										'<th scope="row">RSS</th>'.
+										'<td><input id="clientcms_options[rssurladd]" type="checkbox" value="1" '.$checked.' name="clientcms_options[rssurladd]"></td>'.
+										'<td><input id="clientcms_options[rssurl]" type="text" size="50" name="clientcms_options[rssurl]" value="'.get_bloginfo('rss2_url') . '"  readonly></td>'.
+										'<td><img class="icon" src="' . self::iconLoc() . 'rss.png" />'.
+											'Icon: <input type="text" size="30" value=\'[socialbox key="rss"]\'  readonly>'.
+										'</td>'.
+									'</tr>'
+								);
+
+
+							//SOCIAL
 								$socials = self::$socialmedsbox;
-
 								foreach($socials as $social){
 									$display = $social['display'];
 									$css = $social['css'];
@@ -540,6 +550,8 @@
 								}
 
 						echo '</table>';
+
+
 
 						submit_button();
 

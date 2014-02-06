@@ -1,4 +1,4 @@
-/* 1Feb14 */
+/* 5Feb14 */
 /* Login Logo */
 .login #login > h1 a { 
 	background-image:url("../img/admin/logo-login.svg");
@@ -58,6 +58,12 @@
 	margin-right: 10px;
 	max-width: 20px;
 }
+.skivvy-weboptions-admin-fields input {
+	text-align: center;
+	border-radius: 5px;
+	padding: 0px;
+}
+
 .skivvy-websiteoptions tr img.icon:hover {
 	background: linear-gradient( to top, #373737 0px, #464646 5px) repeat scroll 0 0 #464646
 }

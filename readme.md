@@ -6,3 +6,12 @@ Clear and ordered function files
 Less automation and queries
 Fully flexible
 Minimilist core
+
+
+Social box usage
+
+
+```
+[socialbox]
+```
+This item displays all social icon .pngs that are checked above, wrapped in ul.socialbox.
