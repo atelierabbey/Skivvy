@@ -19,14 +19,14 @@ $htmltag .= '">'; echo $htmltag;
 		echo '<title>' . wp_title( '|', FALSE, 'right' ) . '</title>';
 
 	// Shortcut Icon - Favicon
-		echo '<link rel="shortcut icon" type="image/png" href="' . get_template_directory_uri() . '/img/favicon.png?v=1" />';
+		echo '<link rel="shortcut icon" type="image/png" href="' . get_template_directory_uri() . '/img/favicon.png?v=1">';
 
 	// RSS Link
-		echo '<link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="' . get_bloginfo('rss2_url') . '" />';
+		echo '<link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="' . get_bloginfo('rss2_url') . '">';
 
 	// Standard Stylesheets
-		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/css/func.css?ver=1" type="text/css" />';
-		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/style.css?ver=1" type="text/css" />';
+		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/css/func.css?ver=1" type="text/css">';
+		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/style.css?ver=1" type="text/css">';
 
 	// HTML5 Shiv for < IE9
 		echo '<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->';
