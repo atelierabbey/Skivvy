@@ -6,18 +6,12 @@
 	# Add / Delimiter='' /
 	# Add Custom (for address & Phone)
 	# Deprecate all old text functions
-	# Add or Update Formatting functions
-	#    // Options -> Formating -> Socialbox
 
 
 
 
 
 
-	static $number_o_phone = 2;
-	static $number_o_fax = 1;
-	static $number_o_email = 2;
-	static $number_o_address = 2;
 
 	static $socialmedsbox = array(
 		// array( 'display' => '', 'css' => '', 'slug'=>'' ),
