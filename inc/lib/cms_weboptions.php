@@ -394,7 +394,7 @@
 					echo '<form method="post" action="options.php">';
 						settings_fields( 'skivvy_options' );
 						$options = get_option( 'clientcms_options' );
-						echo '<h3>Contact Information</h3>';
+						echo '<h2>Contact Information</h2>';
 
 						$total_phone = 2;
 							if ( $options["number_of_phone"] ) $total_phone = $options["number_of_phone"];
@@ -409,35 +409,36 @@
 										'Number of Phones: <input id="clientcms_options[number_of_phone]" type="text" name="clientcms_options[number_of_phone]" value="'.$total_phone.'"  size="2"> | '.
 										'Number of Emails: <input id="clientcms_options[number_of_email]" type="text" name="clientcms_options[number_of_email]" value="'.$total_email.'"  size="2"> | '.
 										'Number of Addresses: <input id="clientcms_options[number_of_address]" type="text" name="clientcms_options[number_of_address]" value="'.$total_addr.'"  size="2">'.
-									'</div>'
+									'<div class="clear"></div></div>'
 								);
 						}
 
 
 
 
-						echo '<table width="1300">';
+
 
 
 							// PHONES
-								echo '<tr><td colspan="4"><small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small></tr>';
-								for( $i = 1; $i <= $total_phone; $i++ ) {
+								echo '<h3>Phone</h3>'.
+									 '<small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
+										for( $i = 1; $i <= $total_phone; $i++ ) {
 
-									if ( 1 == $options["ph{$i}txtadd"] && $options["ph{$i}txt"] ) {
-										$checked = 'checked="checked"';
-									} else {
-										$checked = '';
-									}
+											if ( 1 == $options["ph{$i}txtadd"] && $options["ph{$i}txt"] ) {
+												$checked = 'checked="checked"';
+											} else {
+												$checked = '';
+											}
 
-									echo (
-										'<tr valign="top">'.
-											'<td><img class="icon" src="' . self::iconLoc() . 'phone'. $i . '.png" ></td>'.
-											'<td><input id="clientcms_options[ph'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[ph'. $i .'txtadd]"'. $checked .'></td>'.
-											'<td>Phone '. $i .'</td>'.
-											'<td><input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["ph{$i}txt"] ).'" ></td>'.
-										'</tr>'
-									);
-								}
+											echo (
+												'<div class="skivvy-optionrow skivvy-optionphone">'.
+													'<span><input id="clientcms_options[ph'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[ph'. $i .'txtadd]"'. $checked .'></span>'.
+													'<span class="icon"><img src="' . self::iconLoc() . 'phone'. $i . '.png" ></span>'.
+													'<span>Phone '. $i .'</span>'.
+													'<span><input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["ph{$i}txt"] ).'" ></span>'.
+												'<div class="clear"></div></div>'
+											);
+										}
 
 
 
@@ -446,31 +447,25 @@
 
 
 							// EMAILS
-								echo '<tr><td colspan="4"><br><small>Email addresses</small>';
+								echo '<h3>Email</h3>';
 
+									for( $i = 1; $i <= $total_email; $i++ ) {
 
+										if ( 1 == $options["em{$i}txtadd"] && $options["em{$i}txt"] ) {
+												$checked = 'checked="checked"';
+										} else {
+												$checked = '';
+										}
 
-								for( $i = 1; $i <= $total_email; $i++ ) {
-
-									if ( 1 == $options["em{$i}txtadd"] && $options["em{$i}txt"] ) {
-											$checked = 'checked="checked"';
-									} else {
-											$checked = '';
+										echo (
+											'<div class="skivvy-optionrow skivvy-optionemail">'.
+												'<span><input id="clientcms_options[em' . $i . 'txtadd]" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[em' . $i . 'txtadd]"></span>'.
+												'<span class="icon"><img src="' . self::iconLoc() . 'email' . $i . '.png" ></span>'.
+												'<span>Email '. $i . '</span>'.
+												'<span><input id="clientcms_options[em' . $i . 'txt]" type="text" name="clientcms_options[em' . $i . 'txt]" value="' . esc_attr( $options["em{$i}txt"] ) . '" ></span>'.
+											'<div class="clear"></div></div>'
+										);
 									}
-
-									echo (
-										'<tr valign="top">'.
-											'<th scope="row">Email '. $i . '<div style="display:none;">' . $options["em{$i}txtadd"] . '</div>' . '</th>'.
-											'<td><input id="clientcms_options[em' . $i . 'txtadd]" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[em' . $i . 'txtadd]"></td>'.
-											'<td><input id="clientcms_options[em' . $i . 'txt]" type="text" name="clientcms_options[em' . $i . 'txt]" value="' . esc_attr( $options["em{$i}txt"] ) . '" ></td>'.
-											'<td>'.
-												'<img class="icon" src="' . self::iconLoc() . 'email' . $i . '.png" >' .
-												'Text:<input type="text" size="6" value="[txt_em' . $i . ']"  readonly>'.
-												'Icon: <input type="text" size="22" value="[socialbox key=\'email' . $i . '\']"  readonly>'.
-											'</td>'.
-										'</tr>'
-									);
-								}
 
 
 
@@ -478,20 +473,30 @@
 
 
 							// ADDRESSES
-								echo '<tr><td colspan="4"><br><small>Physical or Mailing Address.</small>';
+								echo '<h3>Address</h3>';
+
 								for( $i = 1; $i <= $total_addr; $i++ ) {
+
+									if ( 1 == $options["addr{$i}txtadd"] ) {
+											$checked = 'checked="checked"';
+									} else {
+											$checked = '';
+									}
+
 									echo (
-										'<tr valign="top">'.
-											'<th colspan="2" scope="row">Address '. $i .'</th>'.
-											'<td colspan="2">'. 
+										'<div class="skivvy-optionrow skivvy-optionaddr">'.
+											'<span><input id="clientcms_options[addr' . $i . 'txtadd]" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[addr' . $i . 'txtadd]"></span>'.
+											'<span class="icon"><img src="' . self::iconLoc() . 'address' . $i . '.png"></span>'.
+											'<span>Address '. $i .'</span>'.
+											'<span>'. 
 												'<input id="clientcms_options[addr'. $i .'street1]" type="text" name="clientcms_options[addr'. $i .'street1]" value="' . esc_attr( $options["addr{$i}street1"] ) . '" placeholder="Street 1">'.
 												'<input id="clientcms_options[addr'. $i .'street2]" type="text" name="clientcms_options[addr'. $i .'street2]" value="' . esc_attr( $options["addr{$i}street2"] ) . '" placeholder="Street 2">'.
 												'<input id="clientcms_options[addr'. $i .'city]" type="text" name="clientcms_options[addr'. $i .'city]" value="' . esc_attr( $options["addr{$i}city"] ) . '" placeholder="City">'.
 												'<input id="clientcms_options[addr'. $i .'state]" type="text" name="clientcms_options[addr'. $i .'state]" value="' . esc_attr( $options["addr{$i}state"] ) . '" placeholder="State">'.
 												'<input id="clientcms_options[addr'. $i .'zip]" type="text" name="clientcms_options[addr'. $i .'zip]" value="' . esc_attr( $options["addr{$i}zip"] ) . '" placeholder="Zip">'.
 												'<input id="clientcms_options[addr'. $i .'country]" type="text" name="clientcms_options[addr'. $i .'country]" value="' . esc_attr( $options["addr{$i}country"] ) . '" placeholder="Country">'.
-											'</td>'.
-										'</tr>'
+											'</span>'.
+										'<div class="clear"></div></div>'
 									);
 								}
 
@@ -499,13 +504,10 @@
 
 
 
-						echo '</table>';
 
 
 						echo '<hr>'.
-							 '<h3>Social Media</h3>'.
-							 '<table>';
-
+							 '<h3>Social Media</h3>';
 
 							// RSS
 								if( 1 == $options["rssurladd"]) {
@@ -514,14 +516,12 @@
 									$checked = '';
 								}
 								echo (
-									'<tr valign="top">'.
-										'<th scope="row">RSS</th>'.
-										'<td><input id="clientcms_options[rssurladd]" type="checkbox" value="1" '.$checked.' name="clientcms_options[rssurladd]"></td>'.
-										'<td><input id="clientcms_options[rssurl]" type="text" size="50" name="clientcms_options[rssurl]" value="'.get_bloginfo('rss2_url') . '"  readonly></td>'.
-										'<td><img class="icon" src="' . self::iconLoc() . 'rss.png" />'.
-											'Icon: <input type="text" size="30" value=\'[socialbox key="rss"]\'  readonly>'.
-										'</td>'.
-									'</tr>'
+									'<div class="skivvy-optionrow skivvy-optionsocial">'.
+										'<span class="add"><input id="clientcms_options[rssurladd]" type="checkbox" value="1" '.$checked.' name="clientcms_options[rssurladd]"></span>'.
+										'<span class="icon"><img src="' . self::iconLoc() . 'rss.png" /></span>'.
+										'<span class="name">RSS</span>'.
+										'<span class="input"><input id="clientcms_options[rssurl]" type="text" size="50" name="clientcms_options[rssurl]" value="'.get_bloginfo('rss2_url') . '"  readonly></span>'.
+									'<div class="clear"></div></div>'
 								);
 
 
@@ -533,23 +533,16 @@
 									$slug = $social['slug'];
 									if( 1 == $options["{$slug}urladd"]) { $checked = 'checked="checked"';} else { $checked = ''; }
 									$value = esc_attr( $options["{$slug}url"] );
-									echo
-										'<tr valign="top">'.
-											'<th scope="row">'.$display.'</th>'.
-											'<td>'.
-												'<input id="clientcms_options['.$slug.'urladd]" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$slug.'urladd]">'.
-											'</td>'.
-											'<td>'.
-												'<input id="clientcms_options['.$slug.'url]" type="text" size="50" name="clientcms_options['.$slug.'url]" value="'.$value.'" />'.
-											'</td>'.
-											'<td>'.
-												'<img class="icon" src="' . self::iconLoc() . $css . '.png" />'.
-												'Icon: <input type="text" size="30" value=\'[socialbox key="' . $css . '"]\' readonly>'.
-											'</td>'.
-										'</tr>';
+									echo (
+										'<div class="skivvy-optionrow skivvy-optionsocial">'.
+											'<span class="add"><input id="clientcms_options['.$slug.'urladd]" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$slug.'urladd]"></span>'.
+											'<span class="icon"><img src="' . self::iconLoc() . $css . '.png" /></span>'.
+											'<span class="name">'.$display.'</span>'.
+											'<span class="input"><input id="clientcms_options['.$slug.'url]" type="text" size="50" name="clientcms_options['.$slug.'url]" value="'.$value.'"></span>'.
+										'<div class="clear"></div></div>'
+										);
 								}
 
-						echo '</table>';
 
 
 
