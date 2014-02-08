@@ -268,6 +268,14 @@
 
 
 
+
+
+
+
+
+
+
+
 		/*****	[socialbox] Shortcode *****/
 			function socialbox_shortcode( $atts ){
 
@@ -314,7 +322,7 @@
 
 
 					// If no $key is set run all
-						$result = '<div class="socialbox">';
+						$result = '<ul class="socialbox">';
 
 						// Runs through the Socialmedbox variable's arrays
 							foreach($socials as $social){
@@ -349,11 +357,32 @@
 								$result .= '<a class="btn_phone2 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
 							}
 
-						$result .= '</div>';
+						$result .= '</ul>';
 
 				} return $result;
 
 			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -392,6 +421,8 @@
 
 						$total_phone = 2;
 							if ( $options["number_of_phone"] ) $total_phone = $options["number_of_phone"];
+						$total_fax = 1;
+							if ( $options["number_of_fax"] ) $total_fax = $options["number_of_fax"];
 						$total_email = 2;
 							if ( $options["number_of_email"] ) $total_email = $options["number_of_email"];
 						$total_addr = 2;
@@ -400,9 +431,10 @@
 						if ( is_admin() ) {
 							echo (
 									'<div class="skivvy-weboptions-admin-fields">'.
-										'Number of Phones: <input id="clientcms_options[number_of_phone]" type="text" name="clientcms_options[number_of_phone]" value="'.$total_phone.'"  size="2"> | '.
-										'Number of Emails: <input id="clientcms_options[number_of_email]" type="text" name="clientcms_options[number_of_email]" value="'.$total_email.'"  size="2"> | '.
-										'Number of Addresses: <input id="clientcms_options[number_of_address]" type="text" name="clientcms_options[number_of_address]" value="'.$total_addr.'"  size="2">'.
+										'Phones: <input id="clientcms_options[number_of_phone]" type="text" name="clientcms_options[number_of_phone]" value="'.$total_phone.'"  size="2"> | '.
+										'Faxes: <input id="clientcms_options[number_of_fax]" type="text" name="clientcms_options[number_of_fax]" value="'.$total_fax.'"  size="2"> | '.
+										'Emails: <input id="clientcms_options[number_of_email]" type="text" name="clientcms_options[number_of_email]" value="'.$total_email.'"  size="2"> | '.
+										'Addresses: <input id="clientcms_options[number_of_address]" type="text" name="clientcms_options[number_of_address]" value="'.$total_addr.'"  size="2">'.
 									'<div class="clear"></div></div>'
 								);
 						}
@@ -430,6 +462,33 @@
 													'<span class="icon"><img src="' . self::iconLoc() . 'phone'. $i . '.png" ></span>'.
 													'<span>Phone '. $i .'</span>'.
 													'<span><input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["ph{$i}txt"] ).'" ></span>'.
+												'<div class="clear"></div></div>'
+											);
+										}
+
+
+
+
+
+
+
+							// FAX
+								echo '<h3>FAX</h3>'.
+									 '<small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
+										for( $i = 1; $i <= $total_fax; $i++ ) {
+
+											if ( 1 == $options["fax{$i}txtadd"] && $options["fax{$i}txt"] ) {
+												$checked = 'checked="checked"';
+											} else {
+												$checked = '';
+											}
+
+											echo (
+												'<div class="skivvy-optionrow skivvy-optionfax">'.
+													'<span><input id="clientcms_options[fax'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[fax'. $i .'txtadd]"'. $checked .'></span>'.
+													'<span class="icon"><img src="' . self::iconLoc() . 'fax'. $i . '.png" ></span>'.
+													'<span>Fax '. $i .'</span>'.
+													'<span><input id="clientcms_options[fax'. $i .'txt]" type="text" name="clientcms_options[fax'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["fax{$i}txt"] ).'" ></span>'.
 												'<div class="clear"></div></div>'
 											);
 										}
