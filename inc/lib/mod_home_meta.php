@@ -1,14 +1,6 @@
 <?php if ( !class_exists( 'skivvy_home_meta' ) ) { class skivvy_home_meta {
 
 
-	static $list_o_meta = array(
-			'Bucket 1',
-			'Bucket 2',
-			'Bucket 3',
-			'Bucket 4',
-	);
-
-
 
 
 
@@ -41,6 +33,16 @@
 	function __construct() {
 			add_action( 'add_meta_boxes', array( $this, 'register_home_meta' ) );
 			add_action( 'save_post', array( $this, 'save_home_meta' ) );
+			
+			global $list_o_meta;
+			if (! isset($list_o_meta)) {
+				$list_o_meta = array(
+					'Bucket 1',
+					'Bucket 2',
+					'Bucket 3',
+					'Bucket 4',
+				);
+			}
 	}
 
 
@@ -51,13 +53,11 @@
 
 			$homeid = get_option( 'page_on_front' );
 
-			$home_meta = 'Home Meta';
-
 			if ( $homeid == $post->ID ) {
 				$slug = esc_attr( $home_meta );
 				add_meta_box( 
 					$slug,
-					$home_meta,
+					'Home Meta',
 					array( $this, 'render_home_meta' ),
 					'page',
 					'normal',
@@ -70,11 +70,12 @@
 	public function render_home_meta ( $home_meta ) {
 
 		global $post;
+		global $list_o_meta;
 
 		// Add an nonce field so we can check for it later.
 		wp_nonce_field( 'myplugin_inner_custom_box', 'myplugin_inner_custom_box_nonce' );
 		
-		foreach ( skivvy_home_meta::$list_o_meta as $home_meta ) {
+		foreach ( $list_o_meta as $home_meta ) {
 				$slug = 'home_meta_'.sanitize_title( $home_meta );?>
 				<fieldset title="<?php echo $slug; ?>_group" class="home-meta-fieldset <?php echo $slug; ?>_group">
 					<h4><?php echo $home_meta; ?></h4>
