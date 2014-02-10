@@ -68,7 +68,7 @@ article.content {}
 .cycle-slide {}
 .cycle-slide-active {}
 
-.cycle-pagerelement { display:none; }
+.cycle-pagerelement {}
 .cycle-next {}
 .cycle-pause {}
 .cycle-prev {}
