@@ -4,10 +4,11 @@
 	# Address Shortcode
 	# Add / style="text/icon/svg" /
 	# Add / Delimiter='' /
+	# Add fax & Address icons
 	# Add Custom (for address & Phone)
 	# Deprecate all old text functions
 	# Deprecate $list_o_social array of array into just one array
-
+	# Deprecate formatting functions, integrate with socialbox.
 
 
 	/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
@@ -20,29 +21,21 @@
 **
 */
 
+	static $version = '11Feb13';
 
 	// Construct initializtion
 		function __construct() {
 
-			$version = '11Feb13';
-
 			add_action( 'admin_init', 'skivvy_websiteoptions::theme_options_init');
 			add_action( 'admin_menu', 'skivvy_websiteoptions::theme_options_add_page'); 
-	
-			add_shortcode( 'text_phone', 'skivvy_websiteoptions::shortcode_textPhone');
-			add_shortcode( 'txt_ph2', 'skivvy_websiteoptions::shortcode_txtphtwo');
-			add_shortcode( 'txt_em1', 'skivvy_websiteoptions::shortcode_txtemone');
-			add_shortcode( 'txt_em2', 'skivvy_websiteoptions::shortcode_txtemtwo');
-			add_shortcode( 'txt_adr', 'skivvy_websiteoptions::shortcode_txtadr');
-			add_shortcode( 'txt_cty', 'skivvy_websiteoptions::shortcode_txtcty');
-			add_shortcode( 'txt_stt', 'skivvy_websiteoptions::shortcode_txtstt');
-			add_shortcode( 'txt_zip', 'skivvy_websiteoptions::shortcode_txtzip');	
 			add_shortcode( 'socialbox', 'skivvy_websiteoptions::socialbox_shortcode');
 
 			global $list_o_social;
 				if (!isset( $list_o_social ))	$list_o_social = array( 'Etsy', 'Facebook', 'Flickr', 'Google+', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
+
 			global $icon_location;
 				if (!isset( $icon_location ))	$icon_location = get_bloginfo('template_url').'/img/social/';
+
 		}
 
 	// Register the Options group
@@ -71,58 +64,6 @@
 
 
 
-/*
-**
-**		formats functions
-**
-*/
-
-
-
-	// FORMAT - Phone
-			function format_phone_data ($i,$options,$type='icon') {
-				if( $type = 'text' ) {
-					$option = $options["ph{$i}txtadd"];
-					$phone = explode(" ", $option);
-					return  '<a class="btn_phone'.$i.'" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'"></a>';
-				} else {
-					$slug = $social['slug'];
-					return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
-				}
-			}
-
-	// FORMAT - Email
-			function format_email_data ($social,$options) {
-				$slug = $social['slug'];
-				return '<a class="btn_'.$social['css'].'" href="mailto:'.$options["{$slug}txt"].'"></a>';
-			}
-
-	// FORMAT - Social Media
-			function format_socialbox_icons ($social,$options) {
-				$slug = $social['slug'];
-				return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
-			}
-
-	// FORMAT - Address
-			function format_address ( $input, $delimiter = ', ' ) {
-					$format = array (
-							'street1' => $input[0],
-							'street2' => $input[1],
-							'city'    => $input[2],
-							'state'   => $input[3],
-							'zip'     => $input[4]
-					);
-					$output  = $format['street1'];
-					$output .= $delimiter;
-					$output .= $format['street2'];
-					$output .= $delimiter;
-					$output .= $format['city'];
-					$output .= $delimiter;
-					$output .= $format['state'];
-					$output .= $delimiter;
-					$output .= $format['zip'];
-					return $output;
-			}
 
 
 
@@ -265,6 +206,7 @@ function render_website_options() {
 				global $select_options;
 				global $list_o_social;
 				global $icon_location;
+				global $version;
 				$options = get_option( 'clientcms_options' );
 
 
@@ -605,6 +547,51 @@ function render_website_options() {
 				if($options["ziptxt"]){ return '<span class="txt_zip">'.$options["ziptxt"].'</span>'; }
 			}
 
+
+	// FORMAT - Phone
+			function format_phone_data ($i,$options,$type='icon') {
+				if( $type = 'text' ) {
+					$option = $options["ph{$i}txtadd"];
+					$phone = explode(" ", $option);
+					return  '<a class="btn_phone'.$i.'" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'"></a>';
+				} else {
+					$slug = $social['slug'];
+					return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
+				}
+			}
+
+	// FORMAT - Email
+			function format_email_data ($social,$options) {
+				$slug = $social['slug'];
+				return '<a class="btn_'.$social['css'].'" href="mailto:'.$options["{$slug}txt"].'"></a>';
+			}
+
+	// FORMAT - Social Media
+			function format_socialbox_icons ($social,$options) {
+				$slug = $social['slug'];
+				return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
+			}
+
+	// FORMAT - Address
+			function format_address ( $input, $delimiter = ', ' ) {
+					$format = array (
+							'street1' => $input[0],
+							'street2' => $input[1],
+							'city'    => $input[2],
+							'state'   => $input[3],
+							'zip'     => $input[4]
+					);
+					$output  = $format['street1'];
+					$output .= $delimiter;
+					$output .= $format['street2'];
+					$output .= $delimiter;
+					$output .= $format['city'];
+					$output .= $delimiter;
+					$output .= $format['state'];
+					$output .= $delimiter;
+					$output .= $format['zip'];
+					return $output;
+			}
 
 
 
