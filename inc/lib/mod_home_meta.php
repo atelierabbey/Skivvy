@@ -1,20 +1,6 @@
 <?php if ( !class_exists( 'skivvy_home_meta' ) ) { class skivvy_home_meta {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
+/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
 
 
 
@@ -27,13 +13,13 @@
 
 
 
-	static $version = '7Feb14';
+	static $version = '11Feb14';
 
 
 	function __construct() {
 			add_action( 'add_meta_boxes', array( $this, 'register_home_meta' ) );
 			add_action( 'save_post', array( $this, 'save_home_meta' ) );
-			
+
 			global $list_o_meta;
 			if (! isset($list_o_meta)) {
 				$list_o_meta = array(
@@ -43,6 +29,7 @@
 					'Bucket 4',
 				);
 			}
+
 	}
 
 
@@ -80,7 +67,7 @@
 				<fieldset title="<?php echo $slug; ?>_group" class="home-meta-fieldset <?php echo $slug; ?>_group">
 					<h4><?php echo $home_meta; ?></h4>
 					<input type="text" class="home-meta-title" id="<?php echo $slug; ?>_title" name="<?php echo $slug; ?>_title" value="<?php echo esc_attr( get_post_meta( $post->ID, "{$slug}_title" , true ) ); ?>" size="25" placeholder="Title"><br>
-					<input type="text" class="home-meta-img" id="<?php echo $slug; ?>_img" name="<?php echo $slug; ?>_img" value="<?php echo esc_attr( get_post_meta( $post->ID, "{$slug}_img" , true ) ); ?>" size="25" placeholder="Image"><br>
+					<input type="text" class="home-meta-img" id="<?php echo $slug; ?>_img" name="<?php echo $slug; ?>_img" value="<?php echo esc_attr( get_post_meta( $post->ID, "{$slug}_img" , true ) ); ?>" size="25" placeholder="Image URL"><br>
 					<input type="text" class="home-meta-link" id="<?php echo $slug; ?>_link" name="<?php echo $slug; ?>_link" value="<?php echo esc_attr( get_post_meta( $post->ID, "{$slug}_link" , true ) ); ?>" size="25" placeholder="Link"><br>
 					<textarea class="home-meta-content" id="<?php echo $slug; ?>_content" name="<?php echo $slug; ?>_content" value="<?php echo esc_attr( get_post_meta( $post->ID, "{$slug}_content" , true ) ); ?>" col="63" placeholder="Content"></textarea>
 				</fieldset>

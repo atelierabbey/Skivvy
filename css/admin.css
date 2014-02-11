@@ -1,4 +1,4 @@
-/* 5Feb14 */
+/* 11Feb14 */
 /* Login Logo */
 .login #login > h1 a { 
 	background-image:url("../img/admin/logo-login.svg");
@@ -30,6 +30,22 @@
 	max-width: 100%;
 	height: auto;
 }
+
+/* Home Meta */
+.home-meta-content, .home-meta-link, .home-meta-img, .home-meta-title {
+    width: 100%;
+}
+.home-meta-content {
+    min-height: 100px;
+}
+
+.home-meta-fieldset {
+    display: inline;
+    margin-right: 20px;
+	min-width: 250px;
+    width: 40%;
+}
+
 
 /* Settings */
 #admin-settings-warning-box {
