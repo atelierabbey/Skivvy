@@ -1,4 +1,4 @@
-<?php #31Jan14
+<?php #11Feb14
 add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
@@ -30,11 +30,4 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 	#	include 'inc/lib/advanced_style.php'; 
 	#	include 'inc/lib/skivvy_tools-posttypes.php';
 
-// CURRENTLY NOT WORKING -----
-	#	include 'inc/lib/cms_webdata.php'; new skivvy_websitedata;
-	#	include 'inc/lib/mod_randimg.php'; 
-	#	include 'inc/lib/mod_rewrites.php';
-	#	include 'inc/lib/mod_siteclosed.php';
-	#	include 'inc/lib/mod_debug.php';
-	#	include 'inc/lib/markdown.php';
 ?>
