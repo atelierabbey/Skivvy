@@ -9,7 +9,7 @@
 	# Deprecate all old text functions
 	# Deprecate $list_o_social array of array into just one array
 	# Deprecate formatting functions, integrate with socialbox.
-
+	# CLEAN UP SOCIAL BOX TO HAVE AN ARRAY OF ARRAYS FOR EASE
 
 	/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
 
@@ -31,7 +31,7 @@
 			add_shortcode( 'socialbox', 'skivvy_websiteoptions::socialbox_shortcode');
 
 			global $list_o_social;
-				if (!isset( $list_o_social ))	$list_o_social = array( 'Etsy', 'Facebook', 'Flickr', 'Google+', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
+				if (!isset( $list_o_social ))	$list_o_social = array( 'Etsy', 'Facebook', 'Flickr', 'Google Plus', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
 
 			global $icon_location;
 				if (!isset( $icon_location ))	$icon_location = get_bloginfo('template_url').'/img/social/';
@@ -62,17 +62,158 @@
 
 
 
+static function optionafier( $input ) {
+	//$option_value['display'], $option_value['slug'], $option_value['slug_value'], $option_value['add_value']
+
+	$slugged = sanitize_title(str_replace(' ', '', $input));
+	$optionized = array (
+		'display' => $input,
+		'slug' => $slugged ,
+		'slug_value' => $slugged .'_value',
+		'add_value' => $slugged . '_add_value'
+	);
+	return $optionized; 
+}
 
 
 
 
 
+// NEW SOCIAL BOX
+
+function socialbox_shortcode( $atts ){
+
+			extract( shortcode_atts( array(
+				'open' => '<ul class="socialbox"><li>',
+				'between' => '</li><li>',
+				'close' => '</li></ul>',
+				'key' => '', 
+				'style' => 'png', 
+				'custom' => ''
+			), $atts ) );
+
+			$options = get_option( 'clientcms_options' );
+			global $list_o_social;
+			$total_phone = 2;
+				if ( $options["number_of_phone"] ) $total_phone = $options["number_of_phone"];
+			$total_fax = 1;
+				if ( $options["number_of_fax"] ) $total_fax = $options["number_of_fax"];
+			$total_email = 2;
+				if ( $options["number_of_email"] ) $total_email = $options["number_of_email"];
+			$total_addr = 2;
+				if ( $options["number_of_address"] ) $total_addr = $options["number_of_address"];
+
+
+		$socialbox_types = array();
+
+		// fill output
+			if ( !empty($key) ) {
+
+				$socialbox_types = explode(",", $key);
+
+			} else {
+
+				$socialbox_types[] = 'RSS';
+
+				foreach($list_o_social as $social){
+					$socialbox_types[] = $social;
+				}
+				for( $x = 1; $x <= $total_addr; $x++ ) {
+					$socialbox_types[] = "Addr {$x}";
+				}
+				for( $x = 1; $x <= $total_email; $x++ ) {
+					$socialbox_types[] = "Email {$x}";
+				}
+				for( $x = 1; $x <= $total_fax; $x++ ) {
+					$socialbox_types[] = "Fax {$x}";
+				}
+				for( $x = 1; $x <= $total_phone; $x++ ) {
+					$socialbox_types[] = "Phone {$x}";
+				}
+
+			}
+
+			$option_output = array();
+
+			foreach ($socialbox_types as $type) {
+				$option_output[] = self::optionafier( $type );
+			}
 
 
 
+		// RENDER - Social box
+			$result = $open;
+
+				$count_options = count($option_output);
+				$i = 0;
+
+				foreach( $option_output as $option_item ) {
+
+						$display = $option_item['display'];
+						$slug = $option_item['slug'];
+						$option = $options[$slug];
 
 
+					// RENDER - Social
+						foreach( $list_o_social as $social ){
 
+							$social_slug = sanitize_title(str_replace(' ', '', $social));
+
+							if (strpos($slug,$social_slug) !== false) {
+								$result .= "SOCIAL: . $display ({$slug})";
+							}
+
+						}
+
+
+					// RENDER - phone
+						if ( strpos($slug,'phone') !== false) {
+							$option = $options["{$slug}txt"];
+							$phone = explode(" ", $option);
+							
+							$class = "btn_{$slug} socialbox_icon";
+							$format = " (". $phone[1] . ") " . $phone[2] . " - " . $phone[3];
+
+							$option_start = '<a class="'.$class.'" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" target="_blank" title="Call us - '. $format . '">';
+							$option_start = '<a href="#">';
+							$option_middle = $format;
+							$option_end = '</a>';
+
+						}
+
+
+					// RENDER - fax
+						if (strpos($slug,'fax') !== false) {
+							$result .= 'FAX : ' . $display;
+						}
+
+					// RENDER - email
+						if (strpos($slug,'email') !== false) {
+							$result .= 'EMAIL : ' . $display;
+						}
+
+
+					// RENDER - address
+						if (strpos($slug,'addr') !== false) {
+							$result .= 'ADDRESS : ' . $display;
+						}
+
+
+					// concatenate renderings
+						$result .= $option_start;
+						$result .= $option_middle;
+						$result .= $option_end;
+						if(++$i !== $count_options) {
+							$result .= $between;
+						}
+				}
+
+			$result .= $close;
+
+			return $result;
+
+
+}
 
 
 
@@ -81,17 +222,22 @@
 
 
 /*
-**	Shortcodes
-**		[socialbox]
-**
+**	Shortcodes - [socialbox]
+**				$open/close : Wrapper elements, can be mixed with delimiter to seperate all of them 
+**				$key - Example : phone1,email2,fax1,facebook. comma separated. If left empty, will display all. If >1, wraps in ul.socialbox, each item will be li. 
+**				$output - Options : 'png' = a span with list  |  'svg' = outputs link around SVG code  |  'text' = outputs only text, no link.  |  'link', nolist
+**				$delimiter - // any character to delimit. Works only with phone, fax, or address
+**				$custom - // Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others => 
 */
-	function socialbox_shortcode( $atts ){
+	function old_socialbox_shortcode( $atts ){
 
 				extract( shortcode_atts( array(
-					'key' => '', // Example : phone1,email2,fax1,facebook. comma separated. If left empty, will display all. If >1, wraps in ul.socialbox, each item will be li. 
-					'output' => 'png', // Options : 'png' = a span with list  |  'svg' = outputs link around SVG code  |  'text' = outputs only text, no link.  |  'link', nolist
-					'delimiter' => '', // any character to delimit. Works only with phone, fax, or address
-					'custom' => '' // Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others => 
+					'open' => '<ul class="socialbox"><li>',
+					'delimiter' => '</li><li>',
+					'close' => '</li></ul>',
+					'key' => '', 
+					'output' => 'png', 
+					'custom' => ''
 				), $atts ) );
 
 
@@ -99,6 +245,7 @@
 				$options = get_option( 'clientcms_options' );
 
 
+				$result = $open;
 
 				if ($key) {
 
@@ -128,9 +275,7 @@
 
 				} else {
 
-
 					// If no $key is set run all
-						$result = '<ul class="socialbox">';
 
 						// Runs through the Socialmedbox variable's arrays
 							foreach($socials as $social){
@@ -165,9 +310,13 @@
 								$result .= '<a class="btn_phone2 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
 							}
 
-						$result .= '</ul>';
+						
 
-				} return $result;
+				}
+
+				$result .= $close;
+
+				return $result;
 
 	}
 
@@ -264,18 +413,16 @@ function render_website_options() {
 								echo '<h3>Phone</h3>'.'<small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
 								for( $i = 1; $i <= $total_phone; $i++ ) {
 
-									if ( 1 == $options["ph{$i}txtadd"] && $options["ph{$i}txt"] ) {
-										$checked = 'checked="checked"';
-									} else {
-										$checked = '';
-									}
+									$option_value = optionafier( "phone{$i}" );
+
+									if ( 1 == $options[$option_value['add_value']] && $options[ $option_value['slug_value']] ) { $checked = 'checked="checked"'; } else { $checked = ''; }
 
 									echo (
-										'<div class="skivvy-optionrow skivvy-optionphone">'.
-											'<span><input id="clientcms_options[ph'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[ph'. $i .'txtadd]"'. $checked .'></span>'.
-											'<span class="icon"><img src="' . $icon_location . 'phone'. $i . '.png" ></span>'.
-											'<span>Phone '. $i .'</span>'.
-											'<span><input id="clientcms_options[ph'. $i .'txt]" type="text" name="clientcms_options[ph'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["ph{$i}txt"] ).'" ></span>'.
+										'<div class="skivvy-optionrow skivvy-option-phone skivvy-contact-'. $option_value['slug'] .'">'.
+											'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" name="clientcms_options['. $option_value['add_value'] .']"'. $checked .'></span>'.
+											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" ></span>'.
+											'<span class="name">'. $option_value['display'] .'</span>'.
+											'<span class="input"><input id="clientcms_options['.  $option_value['slug_value'] .']" type="text" name="clientcms_options['.  $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr(  $option_value['slug_value'] ).'" ></span>'.
 										'<div class="clear"></div></div>'
 									);
 								}
@@ -290,18 +437,16 @@ function render_website_options() {
 								echo '<h3>FAX</h3>'.'<small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
 								for( $i = 1; $i <= $total_fax; $i++ ) {
 
-									if ( 1 == $options["fax{$i}txtadd"] && $options["fax{$i}txt"] ) {
-										$checked = 'checked="checked"';
-									} else {
-										$checked = '';
-									}
+									$option_value = optionafier( "fax{$i}" );
+
+									if ( 1 == $options[ $option_value['add_value'] ] && $options[ $option_value['slug_value'] ] ) { $checked = 'checked="checked"'; } else { $checked = '';}
 
 									echo (
-										'<div class="skivvy-optionrow skivvy-optionfax">'.
-											'<span><input id="clientcms_options[fax'. $i .'txtadd]" type="checkbox" value="1" name="clientcms_options[fax'. $i .'txtadd]"'. $checked .'></span>'.
-											'<span class="icon"><img src="' . $icon_location . 'fax'. $i . '.png" ></span>'.
-											'<span>Fax '. $i .'</span>'.
-											'<span><input id="clientcms_options[fax'. $i .'txt]" type="text" name="clientcms_options[fax'. $i .'txt]" placeholder="1 222 333 4444" value="'.esc_attr( $options["fax{$i}txt"] ).'" ></span>'.
+										'<div class="skivvy-optionrow skivvy-option-fax skivvy-contact-'. $option_value['slug'] .'">'.
+											'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" name="clientcms_options['. $option_value['add_value'] .']"'. $checked .'></span>'.
+											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" ></span>'.
+											'<span class="name">'. $option_value['display'] .'</span>'.
+											'<span class="input"><input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr( $options[ $option_value['slug_value'] ] ).'" ></span>'.
 										'<div class="clear"></div></div>'
 									);
 								}
@@ -316,18 +461,16 @@ function render_website_options() {
 								echo '<h3>Email</h3>';
 								for( $i = 1; $i <= $total_email; $i++ ) {
 
-									if ( 1 == $options["em{$i}txtadd"] && $options["em{$i}txt"] ) {
-											$checked = 'checked="checked"';
-									} else {
-											$checked = '';
-									}
+									$option_value = optionafier( "email{$i}" );
+
+									if ( 1 == $options[$option_value['add_value']] && $options[$option_value['slug_value']] ) { $checked = 'checked="checked"'; } else { $checked = ''; }
 
 									echo (
-										'<div class="skivvy-optionrow skivvy-optionemail">'.
-											'<span><input id="clientcms_options[em' . $i . 'txtadd]" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[em' . $i . 'txtadd]"></span>'.
-											'<span class="icon"><img src="' . $icon_location . 'email' . $i . '.png" ></span>'.
-											'<span>Email '. $i . '</span>'.
-											'<span><input id="clientcms_options[em' . $i . 'txt]" type="text" name="clientcms_options[em' . $i . 'txt]" value="' . esc_attr( $options["em{$i}txt"] ) . '" ></span>'.
+										'<div class="skivvy-optionrow skivvy-option-email skivvy-contact-'. $option_value['slug'] .'">'.
+											'<span class="add"><input id="clientcms_options['. $option_value['slug_value'] .']" type="checkbox" value="1" ' . $checked . ' name="clientcms_options['. $option_value['add_value'] .']"></span>'.
+											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] .'.png" ></span>'.
+											'<span class="name">'. $option_value['display'] . '</span>'.
+											'<span class="input"><input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" value="' . esc_attr( $options[ $option_value['slug_value'] ] ) . '" ></span>'.
 										'<div class="clear"></div></div>'
 									);
 								}
@@ -341,24 +484,22 @@ function render_website_options() {
 								echo '<h3>Address</h3>';
 								for( $i = 1; $i <= $total_addr; $i++ ) {
 
-									if ( 1 == $options["addr{$i}txtadd"] ) {
-											$checked = 'checked="checked"';
-									} else {
-											$checked = '';
-									}
+									$option_value = optionafier( "addr{$i}" );
+
+									if ( 1 == $options[$option_value['add_value']] ) { $checked = 'checked="checked"'; } else { $checked = '';}
 
 									echo (
-										'<div class="skivvy-optionrow skivvy-optionaddr">'.
-											'<span><input id="clientcms_options[addr' . $i . 'txtadd]" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[addr' . $i . 'txtadd]"></span>'.
-											'<span class="icon"><img src="' . $icon_location . 'address' . $i . '.png"></span>'.
-											'<span>Address '. $i .'</span>'.
-											'<span>'. 
-												'<input id="clientcms_options[addr'. $i .'street1]" type="text" name="clientcms_options[addr'. $i .'street1]" value="' . esc_attr( $options["addr{$i}street1"] ) . '" placeholder="Street 1">'.
-												'<input id="clientcms_options[addr'. $i .'street2]" type="text" name="clientcms_options[addr'. $i .'street2]" value="' . esc_attr( $options["addr{$i}street2"] ) . '" placeholder="Street 2">'.
-												'<input id="clientcms_options[addr'. $i .'city]" type="text" name="clientcms_options[addr'. $i .'city]" value="' . esc_attr( $options["addr{$i}city"] ) . '" placeholder="City">'.
-												'<input id="clientcms_options[addr'. $i .'state]" type="text" name="clientcms_options[addr'. $i .'state]" value="' . esc_attr( $options["addr{$i}state"] ) . '" placeholder="State">'.
-												'<input id="clientcms_options[addr'. $i .'zip]" type="text" name="clientcms_options[addr'. $i .'zip]" value="' . esc_attr( $options["addr{$i}zip"] ) . '" placeholder="Zip">'.
-												'<input id="clientcms_options[addr'. $i .'country]" type="text" name="clientcms_options[addr'. $i .'country]" value="' . esc_attr( $options["addr{$i}country"] ) . '" placeholder="Country">'.
+										'<div class="skivvy-optionrow skivvy-option-addr skivvy-contact-'. $option_value['slug'] .'">'.
+											'<span class="add"><input id="clientcms_options[' . $option_value['add_value'] . ']" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[' . $option_value['add_value'] . ']"></span>'.
+											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png"></span>'.
+											'<span class="name">'. $option_value['display'] .'</span>'.
+											'<span class="input">'. 
+												'<input id="clientcms_options['. $option_value['slug_value'] .'_street1]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_street1]" value="' . esc_attr( $options[$option_value['slug_value'] ."_street1"] ) . '" placeholder="Street 1">'.
+												'<input id="clientcms_options['. $option_value['slug_value'] .'_street2]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_street2]" value="' . esc_attr( $options[$option_value['slug_value'] ."_street2"] ) . '" placeholder="Street 2">'.
+												'<input id="clientcms_options['. $option_value['slug_value'] .'_city]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_city]" value="' . esc_attr( $options[$option_value['slug_value'] ."_city"] ) . '" placeholder="City">'.
+												'<input id="clientcms_options['. $option_value['slug_value'] .'_state]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_state]" value="' . esc_attr( $options[$option_value['slug_value'] ."_state"] ) . '" placeholder="State">'.
+												'<input id="clientcms_options['. $option_value['slug_value'] .'_zip]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_zip]" value="' . esc_attr( $options[$option_value['slug_value'] ."_zip"] ) . '" placeholder="Zip">'.
+												'<input id="clientcms_options['. $option_value['slug_value'] .'_country]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_country]" value="' . esc_attr( $options[$option_value['slug_value'] ."_country"] ) . '" placeholder="Country">'.
 											'</span>'.
 										'<div class="clear"></div></div>'
 									);
@@ -373,18 +514,20 @@ function render_website_options() {
 						echo '<hr>'.
 							 '<h3>Social Media</h3>';
 
+
+
 							// RSS
-								if( 1 == $options["rssurladd"]) {
-									$checked = 'checked="checked"';
-								} else {
-									$checked = '';
-								}
+								$option_value = optionafier( "RSS" );
+								//$option_value['display'], $option_value['slug'], $option_value['slug_value'], $option_value['add_value']
+
+								if( 1 == $options[ $option_value['add_value'] ] ) { $checked = 'checked="checked"'; } else { $checked = ''; }
+								
 								echo (
-									'<div class="skivvy-optionrow skivvy-optionsocial">'.
-										'<span class="add"><input id="clientcms_options[rssurladd]" type="checkbox" value="1" '.$checked.' name="clientcms_options[rssurladd]"></span>'.
-										'<span class="icon"><img src="' . $icon_location . 'rss.png" /></span>'.
-										'<span class="name">RSS</span>'.
-										'<span class="input"><input id="clientcms_options[rssurl]" type="text" size="50" name="clientcms_options[rssurl]" value="'.get_bloginfo('rss2_url') . '"  readonly></span>'.
+									'<div class="skivvy-optionrow skivvy-option-social skivvy-social-'.$option_value['slug'].'">'.
+										'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" '.$checked.' name="clientcms_options['. $option_value['add_value'] .']"></span>'.
+										'<span class="icon"><img src="' . $icon_location . $option_value['slug'] .'.png" /></span>'.
+										'<span class="name">'. $option_value['display'] .'</span>'.
+										'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'.get_bloginfo('rss2_url') . '" readonly></span>'.
 									'<div class="clear"></div></div>'
 								);
 
@@ -392,18 +535,16 @@ function render_website_options() {
 							//SOCIAL
 								foreach($list_o_social as $social){
 
-									$display = $social;
-									$css = sanitize_title(str_replace(' ', '', $social));
-									$slug = $css;
+									$option_value = optionafier( $social );
 
-									if( 1 == $options["{$slug}urladd"]) { $checked = 'checked="checked"';} else { $checked = ''; }
-									$value = esc_attr( $options["{$slug}url"] );
+									if ( 1 == $options[$option_value['add_value']] && $options[$option_value['slug_value']] ) { $checked = 'checked="checked"'; } else { $checked = ''; }
+
 									echo (
-										'<div class="skivvy-optionrow skivvy-optionsocial skivvy-social-'.$css.'">'.
-											'<span class="add"><input id="clientcms_options['.$slug.'urladd]" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$slug.'urladd]"></span>'.
-											'<span class="icon"><img src="' . $icon_location . $css . '.png" /></span>'.
-											'<span class="name">'.$display.'</span>'.
-											'<span class="input"><input id="clientcms_options['.$slug.'url]" type="text" size="50" name="clientcms_options['.$slug.'url]" value="'.$value.'"></span>'.
+										'<div class="skivvy-optionrow skivvy-optionsocial skivvy-social-'. $option_value['slug'] .'">'.
+											'<span class="add"><input id="clientcms_options['.$option_value['add_value'].']" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$option_value['add_value'].']"></span>'.
+											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" /></span>'.
+											'<span class="name">'.$option_value['display'].'</span>'.
+											'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'. esc_attr( $options[$option_value['slug_value']] ) .'"></span>'.
 										'<div class="clear"></div></div>'
 										);
 
