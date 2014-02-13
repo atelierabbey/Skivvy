@@ -483,9 +483,11 @@ function socialbox_shortcode( $atts ){
 						$item_title_alt = $item_middle = $item_display;
 
 						if ( !empty($key) OR $item_value AND $options_object[$option_item['add_value']] ) :
+							if ( $delimiter == '') $delimiter = '';
 
 										// PHONE & FAX
 											if ( $item_value && $item_type == 'phone' || $item_type == 'fax' ) :
+													
 													$phone = explode(" ", $item_value);
 													if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
 													elseif ($delimiter)	: $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
@@ -504,6 +506,36 @@ function socialbox_shortcode( $atts ){
 													$item_middle = $formatted;
 											endif;
 										// End PHONE & FAX
+
+
+										// ADDRESSES
+											/*
+											# Micro todo
+											# eliminate last delimiter
+											# add infinite var to $custom formatting
+											*/
+											if ( $item_value && $item_type == 'addr' ) :
+													
+													$address = explode(",", $item_value);
+
+													$i = 0;
+													$str = $formatted = '';
+													foreach ($address as $addr){
+																$formatted .= $addr;
+																$str .= $addr;
+																if ( $i++ !== count($address) ) {
+																	if ( $delimiter ) $formatted .= $delimiter; else $formatted .= ', ';
+																	$str .= ' ';
+																}
+													}
+													if ($custom) 
+														$formatted = str_replace(array('$a','$b','$c','$d'), $address, $custom );
+
+													$item_href = 'https://maps.google.com/?q='.$str;
+													$item_title_alt = "Map it - {$formatted}";
+													$item_middle = $formatted;
+											endif;
+										// End ADDRESSES
 
 
 										// EMAIL
