@@ -1,13 +1,11 @@
 <?php if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 
+	/*
 	# TEMP NOTES
-	# Address Shortcode
 	# Add fax & Address icons
-	# Add Custom (for address & Phone)
-	# Deprecate all old text functions
-	# Deprecate formatting functions, integrate with socialbox.
-
-	/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
+	# Add Custom (for address)
+	# Add Address link to googlemaps
+	*/
 
 
 
@@ -158,7 +156,7 @@ function render_website_options() {
 
 
 							// FAX
-								echo '<h3>FAX</h3>'.'<small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
+								echo '<h3>FAX</h3><small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
 								for( $i = 1; $i <= $total_fax; $i++ ) {
 
 									$option_value = self::optionafier( "fax{$i}" );
@@ -205,7 +203,7 @@ function render_website_options() {
 
 
 							// ADDRESSES
-								echo '<h3>Address</h3>';
+								echo '<h3>Address</h3><small>Please use commas to seperate the address sections; (i.e. "123 Te St., Testington, Testonia, 555555, USA" )</small>';
 								for( $i = 1; $i <= $total_addr; $i++ ) {
 
 									$option_value = self::optionafier( "addr{$i}" );
@@ -218,12 +216,7 @@ function render_website_options() {
 											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png"></span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
 											'<span class="input">'. 
-												'<input id="clientcms_options['. $option_value['slug_value'] .'_street1]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_street1]" value="' . esc_attr( $options[$option_value['slug_value'] ."_street1"] ) . '" placeholder="Street 1">'.
-												'<input id="clientcms_options['. $option_value['slug_value'] .'_street2]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_street2]" value="' . esc_attr( $options[$option_value['slug_value'] ."_street2"] ) . '" placeholder="Street 2">'.
-												'<input id="clientcms_options['. $option_value['slug_value'] .'_city]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_city]" value="' . esc_attr( $options[$option_value['slug_value'] ."_city"] ) . '" placeholder="City">'.
-												'<input id="clientcms_options['. $option_value['slug_value'] .'_state]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_state]" value="' . esc_attr( $options[$option_value['slug_value'] ."_state"] ) . '" placeholder="State">'.
-												'<input id="clientcms_options['. $option_value['slug_value'] .'_zip]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_zip]" value="' . esc_attr( $options[$option_value['slug_value'] ."_zip"] ) . '" placeholder="Zip">'.
-												'<input id="clientcms_options['. $option_value['slug_value'] .'_country]" type="text" name="clientcms_options['. $option_value['slug_value'] .'_country]" value="' . esc_attr( $options[$option_value['slug_value'] ."_country"] ) . '" placeholder="Country">'.
+												'<input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" value="' . esc_attr( $options[$option_value['slug_value']] ) . '" >'.
 											'</span>'.
 										'<div class="clear"></div></div>'
 									);
@@ -357,6 +350,15 @@ static function optionafier( $input ) {
 		);
 
 }
+
+
+
+
+
+
+
+
+
 
 
 

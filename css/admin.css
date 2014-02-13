@@ -94,7 +94,9 @@
 	border-radius: 5px;
 	padding: 0px;
 }
-
+.skivvy-option-addr .input input {
+    width: 600px;
+}
 
 /* Post Status */
 .status-publish {}
