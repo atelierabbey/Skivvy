@@ -1,4 +1,4 @@
-/* 3Feb14 */
+/* 13Feb14 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -125,51 +125,26 @@ ul.nobull > li { list-style:none; }
 /* ----------- Socialbox icons ----------- */
 ul.socialbox {margin:0;padding:0;}
 ul.socialbox li {margin:0;padding:0;list-style:none;display:inline;}
-
-a.socialbox_icon {width:32px;height:32px;background: none no-repeat scroll center center transparent;display:inline-block;}
-a.socialbox_icon span {text-align:-9999px;}
-a.btn_rss		{background-image:url('../img/social/rss.png');}
-a.btn_email1	{background-image:url('../img/social/email1.png');}
-a.btn_email2	{background-image:url('../img/social/email2.png');}
-a.btn_phone1	{background-image:url('../img/social/phone1.png');}
-a.btn_phone2	{background-image:url('../img/social/phone2.png');}
-a.btn_facebook	{background-image:url('../img/social/facebook.png');}
-a.btn_twitter	{background-image:url('../img/social/twitter.png');}
-a.btn_linkedin	{background-image:url('../img/social/linkedin.png');}
-a.btn_etsy		{background-image:url('../img/social/etsy.png');}
-a.btn_youtube	{background-image:url('../img/social/youtube.png');}
-a.btn_googleplus{background-image:url('../img/social/googleplus.png');}
-a.btn_instagram	{background-image:url('../img/social/instagram.png');}
-a.btn_pinterest	{background-image:url('../img/social/pinterest.png');}
-a.btn_flickr	{background-image:url('../img/social/flickr.png');}
-a.btn_vimeo		{background-image:url('../img/social/vimeo.png');}
-a.btn_extra1	{background-image:url('../img/social/extra1.png');}
-a.btn_extra2	{background-image:url('../img/social/extra2.png');}
-a.btn_extra3	{background-image:url('../img/social/extra3.png');}
-a.btn_extra4	{background-image:url('../img/social/extra4.png');}
-a.btn_extra5	{background-image:url('../img/social/extra5.png');}
-a.btn_extra6	{background-image:url('../img/social/extra6.png');}
-a.btn_extra7	{background-image:url('../img/social/extra7.png');}
-a.socialbox_icon.style-svg {background:none;}
-a.btn_rss.style-svg { }
-a.btn_email1.style-svg { }
-a.btn_email2.style-svg { }
-a.btn_phone1.style-svg { }
-a.btn_phone2.style-svg { }
-a.btn_facebook.style-svg { }
-a.btn_twitter.style-svg { }
-a.btn_linkedin.style-svg { }
-a.btn_etsy.style-svg { }
-a.btn_youtube.style-svg { }
-a.btn_googleplus.style-svg { }
-a.btn_instagram.style-svg { }
-a.btn_pinterest.style-svg { }
-a.btn_flickr.style-svg { }
-a.btn_vimeo.style-svg { }
-a.btn_extra1.style-svg { }
-a.btn_extra2.style-svg { }
-a.btn_extra3.style-svg { }
-a.btn_extra4.style-svg { }
-a.btn_extra5.style-svg { }
-a.btn_extra6.style-svg { }
-a.btn_extra7.style-svg { }
+.social_icon a {text-indent:-9999px; display:inline-block; width:32px; height:32px;background: none no-repeat scroll center center transparent;}
+.social_icon a.socialbox_rss		{background-image:url('../img/social/rss.png');}
+.social_icon a.socialbox_email1		{background-image:url('../img/social/email1.png');}
+.social_icon a.socialbox_email2		{background-image:url('../img/social/email2.png');}
+.social_icon a.socialbox_phone1		{background-image:url('../img/social/phone1.png');}
+.social_icon a.socialbox_phone2		{background-image:url('../img/social/phone2.png');}
+.social_icon a.socialbox_facebook	{background-image:url('../img/social/facebook.png');}
+.social_icon a.socialbox_twitter	{background-image:url('../img/social/twitter.png');}
+.social_icon a.socialbox_linkedin	{background-image:url('../img/social/linkedin.png');}
+.social_icon a.socialbox_etsy		{background-image:url('../img/social/etsy.png');}
+.social_icon a.socialbox_youtube	{background-image:url('../img/social/youtube.png');}
+.social_icon a.socialbox_googleplus	{background-image:url('../img/social/googleplus.png');}
+.social_icon a.socialbox_instagram	{background-image:url('../img/social/instagram.png');}
+.social_icon a.socialbox_pinterest	{background-image:url('../img/social/pinterest.png');}
+.social_icon a.socialbox_flickr		{background-image:url('../img/social/flickr.png');}
+.social_icon a.socialbox_vimeo		{background-image:url('../img/social/vimeo.png');}
+.social_icon a.socialbox_extra1		{background-image:url('../img/social/extra1.png');}
+.social_icon a.socialbox_extra2		{background-image:url('../img/social/extra2.png');}
+.social_icon a.socialbox_extra3		{background-image:url('../img/social/extra3.png');}
+.social_icon a.socialbox_extra4		{background-image:url('../img/social/extra4.png');}
+.social_icon a.socialbox_extra5		{background-image:url('../img/social/extra5.png');}
+.social_icon a.socialbox_extra6		{background-image:url('../img/social/extra6.png');}
+.social_icon a.socialbox_extra7		{background-image:url('../img/social/extra7.png');}
