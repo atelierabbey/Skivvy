@@ -15,7 +15,7 @@
 **
 */
 
-	static $version = '11Feb13';
+	static $version = '12Feb13';
 
 	// Construct initializtion
 		function __construct() {
@@ -523,7 +523,7 @@ function socialbox_shortcode( $atts ){
 													foreach ($address as $addr){
 																$formatted .= $addr;
 																$str .= $addr;
-																if ( $i++ !== count($address) ) {
+																if ( $addr !== count($address) ) {
 																	if ( $delimiter ) $formatted .= $delimiter; else $formatted .= ', ';
 																	$str .= ' ';
 																}
