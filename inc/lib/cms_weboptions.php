@@ -482,40 +482,58 @@ function socialbox_shortcode( $atts ){
 
 						if ( !empty($key) OR $item_value AND $options_object[$option_item['add_value']] ) :
 
-								// Phone & Fax
-									if ( $item_value && $item_type == 'phone' || $item_type == 'fax' ) {
-											$phone = explode(" ", $item_value);
-											if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
-											elseif ($delimiter)	: $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
-											else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
+										// PHONE & FAX
+											if ( $item_value && $item_type == 'phone' || $item_type == 'fax' ) :
+													$phone = explode(" ", $item_value);
+													if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
+													elseif ($delimiter)	: $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
+													else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
+													endif;
+
+													if ( $item_type == 'fax') {
+														$item_href ='fax:+';
+														$item_title_alt ='Facsimile - ';
+													} else {
+														$item_href = 'tel:+';
+														$item_title_alt = "Telephone - ";
+													};
+													$item_href .= $phone[0].$phone[1].$phone[2].$phone[3];
+													$item_title_alt .= "{$formatted}";
+													$item_middle = $formatted;
 											endif;
-
-											if ( $item_type == 'fax') {
-												$item_href ='fax:+';
-												$item_title_alt ='Facsimile - ';
-											} else {
-												$item_href = 'tel:+';
-												$item_title_alt = "Telephone - ";
-											};
-											$item_href .= $phone[0].$phone[1].$phone[2].$phone[3];
-											$item_title_alt .= "{$formatted}";
-											$item_middle = $formatted;
-									}
+										// End PHONE & FAX
 
 
+										// EMAIL
+											if ( $item_value && $item_type == 'email' ) :
+													$item_href = "mailto:{$item_value}";
+													$item_title_alt = "Email - {$item_value}";
+													$item_middle = $item_value;
+											endif;
+										// End EMAIL
 
 
-								if ( $style !== 'text' ) {
-										$item_start_wrap = '<li>';
-										$item_end_wrap = '</li>';
-										$item_start = '<a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
-										$item_end = '</a>';
-								}
+										// SOCIAL
+											if ( $item_value && $item_type == 'social' ) :
+													$item_href = "{$item_value}";
+													$item_title_alt = "Visit - {$item_display}";
+													$item_middle = $item_display;
+											endif;
+										// End SOCIAL
 
 
-					// OUTPUT - Item
-					$socialbox_middle .= $item_start_wrap . $item_start . $item_middle . $item_end . $item_end_wrap;
-				endif; } 
+
+										if ( $style !== 'text' ) {
+												$item_start_wrap = '<li>';
+												$item_end_wrap = '</li>';
+												$item_start = '<a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
+												$item_end = '</a>';
+										}
+		
+		
+							// OUTPUT - Item
+							$socialbox_middle .= $item_start_wrap . $item_start . $item_middle . $item_end . $item_end_wrap;
+						endif; } 
 
 
 
