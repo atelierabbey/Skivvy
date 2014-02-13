@@ -386,8 +386,8 @@ function socialbox_shortcode( $atts ){
 
 				// Shortcode options
 						@	$key				- comma seperated values of which items to render
-						@	$style				- Options : 'png' = a span with list  |  'svg' = outputs link around SVG code  |  'text' = outputs only text, no link.  |  'link', nolist
-						@	$class
+						@	$style				- Options : 'png' | 'svg' | 'text' = outputs only text, no link. | 'link', nolist
+						@	$class				- Custom class attributes
 						@	$custom				- Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others =>
 						@	$delimiter			- any character to delimit. Works only with phone, fax, or address
 
@@ -447,18 +447,6 @@ function socialbox_shortcode( $atts ){
 
 
 
-		// $style_class
-			switch ($style) {
-					case 'link' : $style_class = 'social_link'; break;
-					case 'text' : $style_class = 'social_text'; break;
-					case 'svg' : $style_class = 'social_svg'; break;
-					default : $style_class = 'social_icon'; break;
-			}
-
-
-
-
-
 
 
 	/*
@@ -472,33 +460,38 @@ function socialbox_shortcode( $atts ){
 
 
 			// RENDER - Socialbox - open
-				$socialbox_open = '<ul class="socialbox ' . $class . ' '. $style_class .'">';
+				switch ($style) {
+					case 'link' : $style_class = 'social_link'; break;
+					case 'text' : $style_class = 'social_text'; break;
+					case 'svg' : $style_class = 'social_svg'; break;
+					default : $style_class = 'social_icon'; break;
+				}
+				$socialbox_open = '<ul class="socialbox ' . $style_class . ' ' . $class . '">';
 
 
 
 
 			// RENDER - Socialbox - Items
 				foreach( $option_output as $option_item ) {
+					// Item Variables
+						$item_slug = $option_item['slug'];
+						$item_type = $option_item['option_type']; // phone, fax, addr, email, or social
+						$item_value = $options_object[ $option_item['slug_value'] ];
+						$item_display = $option_item['display']; 
 
-					$item_slug = $option_item['slug'];
-					$item_type = $option_item['option_type']; // phone, fax, addr, email, or social
-					$item_value = $options_object[ $option_item['slug_value'] ];
+					 // These values are temporary. But, if is selected by Key, and no value is to replace it, it will produce the value.
+						$item_href = '#';
+						$item_title_alt = $item_middle = $item_display;
 
-					// If key is filled out or if option is available to add to socialbox
-						if ( !empty( $key ) || $options_object[ $option_item['add_value'] ] ) :
+						if ( $options_object[$option_item['add_value']] && $item_value ) { $usable = true; } else { $usable = false; }
+						if ( !empty($key) OR $usable ) :
 
-							// Item Variables
-
-
-								$item_href = '#'; // This value is temporary. But, if is selected by Key, and no value is to replace it, will produce a "#"
-								$item_middle = $option_item['display'];
-								$item_title_alt = '';
 
 
 
 								// Phone
-									if ( $item_type == 'phone' && !empty($item_value) ) {
-
+									if ( $item_type == 'phone' && $item_value ) {
+										
 										$phone = explode(" ", $item_value);
 
 										if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
@@ -506,8 +499,10 @@ function socialbox_shortcode( $atts ){
 										else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
 										endif;
 
+										$item_middle = $formatted;
+
 										$item_href = 'tel:+'.$phone[0].$phone[1].$phone[2].$phone[3];
-										$item_middle = $option_item['display'];
+										$item_title_alt = "Telephone - {$formatted}";
 									}
 
 
