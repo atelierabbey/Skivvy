@@ -31,7 +31,7 @@
 			add_shortcode( 'socialbox', 'skivvy_websiteoptions::socialbox_shortcode');
 
 			global $list_o_social;
-				if (!isset( $list_o_social ))	$list_o_social = array( 'Etsy', 'Facebook', 'Flickr', 'Google Plus', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
+				if (!isset( $list_o_social ))	$list_o_social = array( 'RSS', 'Etsy', 'Facebook', 'Flickr', 'Google Plus', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
 
 			global $icon_location;
 				if (!isset( $icon_location ))	$icon_location = get_bloginfo('template_url').'/img/social/';
@@ -243,7 +243,7 @@ function render_website_options() {
 							 '<h3>Social Media</h3>';
 
 
-
+/*
 							// RSS
 								$option_value = self::optionafier( "RSS" );
 								//$option_value['display'], $option_value['slug'], $option_value['slug_value'], $option_value['add_value']
@@ -257,7 +257,7 @@ function render_website_options() {
 										'<span class="name">'. $option_value['display'] .'</span>'.
 										'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'.get_bloginfo('rss2_url') . '" readonly></span>'.
 									'<div class="clear"></div></div>'
-								);
+								); //*/
 
 
 							//SOCIAL
@@ -267,12 +267,17 @@ function render_website_options() {
 
 									if ( 1 == $options[$option_value['add_value']] && $options[$option_value['slug_value']] ) { $checked = 'checked="checked"'; } else { $checked = ''; }
 
+									if ( $option_value['slug'] == 'rss' ) {
+										$options[$option_value['slug_value']] = get_bloginfo('rss2_url');
+										$readonly = 'readonly';
+									}
+
 									echo (
 										'<div class="skivvy-optionrow skivvy-optionsocial skivvy-social-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['.$option_value['add_value'].']" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$option_value['add_value'].']"></span>'.
 											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" /></span>'.
 											'<span class="name">'.$option_value['display'].'</span>'.
-											'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'. esc_attr( $options[$option_value['slug_value']] ) .'"></span>'.
+											'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'. esc_attr( $options[$option_value['slug_value']] ) .'" '. $readonly. '></span>'.
 										'<div class="clear"></div></div>'
 										);
 
@@ -338,7 +343,6 @@ static function optionafier( $input ) {
 		if ( preg_match('/fax/', $slugged) ) $option_type = 'fax';
 		if ( preg_match('/addr/', $slugged) ) $option_type = 'addr';
 		if ( preg_match('/email/', $slugged) ) $option_type = 'email';
-		if ( preg_match('/rss/', $slugged) ) $option_type = 'social';
 		foreach ( $list_o_social as $social ) {
 					if ( strpos( sanitize_title(str_replace(' ', '', $social)), $slugged ) !== false ) {
 							$option_type = 'social';
@@ -357,8 +361,6 @@ static function optionafier( $input ) {
 
 
 }
-
-
 
 
 
@@ -437,7 +439,6 @@ function socialbox_shortcode( $atts ){
 				$socialbox_types = explode(",", $key);
 			} else {
 				$socialbox_types = array();
-				$socialbox_types[] = 'RSS';
 				foreach( $list_o_social as $social    ) $socialbox_types[] = $social;
 				for( $x = 1; $x <= $total_addr;  $x++ ) $socialbox_types[] = "Addr {$x}";
 				for( $x = 1; $x <= $total_email; $x++ ) $socialbox_types[] = "Email {$x}";
