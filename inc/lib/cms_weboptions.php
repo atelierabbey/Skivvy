@@ -114,14 +114,11 @@ function render_website_options() {
 
 
 					// Set number of Phones, Faxes, Emails, & Addresses
-						$total_phone = 2;
-							if ( $options["number_of_phone"] ) $total_phone = $options["number_of_phone"];
-						$total_fax = 1;
-							if ( $options["number_of_fax"] ) $total_fax = $options["number_of_fax"];
-						$total_email = 2;
-							if ( $options["number_of_email"] ) $total_email = $options["number_of_email"];
-						$total_addr = 2;
-							if ( $options["number_of_address"] ) $total_addr = $options["number_of_address"];
+
+						if ( $options["number_of_phone"]   ) { $total_phone = $options["number_of_phone"]; } else { $total_phone = 2; }
+						if ( $options["number_of_fax"]     ) { $total_fax = $options["number_of_fax"]; } else { $total_fax = 1; }
+						if ( $options["number_of_email"]   ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
+						if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
 
 						if ( is_admin() ) {
 							echo (
@@ -153,7 +150,7 @@ function render_website_options() {
 											'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" name="clientcms_options['. $option_value['add_value'] .']"'. $checked .'></span>'.
 											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" ></span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
-											'<span class="input"><input id="clientcms_options['.  $option_value['slug_value'] .']" type="text" name="clientcms_options['.  $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr(  $option_value['slug_value'] ).'" ></span>'.
+											'<span class="input"><input id="clientcms_options['.  $option_value['slug_value'] .']" type="text" name="clientcms_options['.  $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr( $options[ $option_value['slug_value'] ] ).'" ></span>'.
 										'<div class="clear"></div></div>'
 									);
 								}
@@ -310,57 +307,6 @@ function render_website_options() {
 
 
 
-static function option_renderizer ( $input, $custom = '', $delimiter = '', $style = '') {
-
-			global $list_o_social;
-
-			$render_item = self::optionafier( $input );
-				// $render_item['display']
-				// $render_item['slug']
-				// $render_item['slug_value']
-				// $render_item['add_value']
-
-			$options_value = get_option( 'clientcms_options' );
-			$options_add_value = $options_value[ $render_item['add_value'] ];
-			$options_value = $options_value[ $render_item['slug_value'] ];
-
-
-			$option_start = '<a href="#">';
-			$option_middle = $render_item['display'];
-			$option_end = '</a>';
-
-
-			// RENDER - Social
-				foreach ( $list_o_social as $social )
-							if ( strpos( $render_item['display'], $render_item['display'] ) !== false ) {
-									$option_middle = $render_item['display'];
-							}
-
-			// RENDER - phone
-				if ( strpos( $slug, $render_item['slug'] ) !== false) {
-
-					$phone = explode( " ", $option_value );
-
-					$class = "btn_{$slug} socialbox_icon";
-					$format = " (". $phone[1] . ") " . $phone[2] . " - " . $phone[3];
-
-					$option_start = '<a class="'.$class.'" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" target="_blank" title="Call us - '. $format . '">';
-					$option_middle = $format;
-					$option_end = '</a>';
-				}
-
-			// RENDER - fax
-
-			// RENDER - email
-
-			// RENDER - address
-
-
-
-
-		return array( 'start' => $option_start, 'middle' => $option_middle, 'end' => $option_end );
-}
-
 
 
 
@@ -376,16 +322,53 @@ static function option_renderizer ( $input, $custom = '', $delimiter = '', $styl
 
 
 static function optionafier( $input ) {
-	// self::optionafier( $input ) | $option_value['display'], $option_value['slug'], $option_value['slug_value'], $option_value['add_value']
 
-	$slugged = sanitize_title(str_replace(' ', '', $input));
-	$optionized = array (
-		'display' => ucfirst(strtolower($input)),
-		'slug' => $slugged ,
-		'slug_value' => $slugged .'_value',
-		'add_value' => $slugged . '_add_value'
-	);
-	return $optionized; 
+		global $list_o_social;
+
+		// $option_value = self::optionafier( $input )
+			// $option_value['display']
+			// $option_value['slug']
+			// $option_value['slug_value']
+			// $option_value['add_value']
+			// $option_value['option_type']
+
+		$slugged = sanitize_title(str_replace(' ', '', $input));
+
+
+
+		$small_input = strtolower($input);
+
+		if ( strpos( 'rss', $small_input ) !== false )
+							$option_type = 'social';
+
+		foreach ( $list_o_social as $social )
+					if ( strpos( $social, $small_input ) !== false )
+							$option_type = 'social';
+
+		if ( strpos( 'phone', $small_input ) !== false )
+					$option_type = 'phone';
+
+		if ( strpos( 'fax', $small_input ) !== false )
+					$option_type = 'fax';
+
+		if ( strpos( 'email', $small_input ) !== false )
+					$option_type = 'email';
+
+		if ( strpos( 'addr', $small_input ) !== false )
+					$option_type = 'addr';	
+
+
+
+		$optionized = array (
+			'display' => ucfirst($small_input),	// Standardized User identifier, not used in any algorithm. 
+			'slug' => $slugged ,						// Used in identifing css
+			'slug_value' => $slugged .'_value',			// Used in form creation
+			'add_value' => $slugged . '_add_value',		// Used in form creation
+			'option_type' => $option_type				// Identifies what type of data it is.
+		);
+		return $optionized; 
+
+
 }
 
 
@@ -414,56 +397,141 @@ static function optionafier( $input ) {
 */
 function socialbox_shortcode( $atts ){
 
-			extract( shortcode_atts( array(
-				'open' => '<ul class="socialbox"><li>',
-				'between' => '</li><li>',
-				'close' => '</li></ul>',
-				'key' => '', 
-				'style' => 'png', 
-				'custom' => ''
-			), $atts ) );
 
-			
-			global $list_o_social;
-			$options = get_option( 'clientcms_options' );
-			if ( $options["number_of_phone"] ) { $total_phone = $options["number_of_phone"]; } else { $total_phone = 2; }
-			if ( $options["number_of_fax"] ) { $total_fax = $options["number_of_fax"]; } else { $total_fax = 1; }
-			if ( $options["number_of_email"] ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
-			if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
+		/*	Variables
 
-		// Create usable array
+				// Shortcode options
+						@	$key				- comma seperated values of which items to render
+						@	$style				- 
+						@	$class
+						@	$custom
+						@	$delimiter
+
+
+				// Global variables
+						@	$list_o_social		- array of social items
+
+
+				// Locally defined Variables
+						@	$options_object		- array of all set options
+						@	$total_phone		- Limits the number of generated phone output, if set in Website Options, use saved value, default = 2
+						@	$total_fax			- Limits fax, default 1
+						@	$total_email		- Limits email, default 2
+						@	$total_addr			- Limits addresses, default 2
+
+
+				// Generated variables
+						@	$socialbox_types	- array of possible outputs. Defined via $key if not empty, else generates all
+						@	$option_output		- array of arrays. DEFINED by optionafier() each $socialbox_types
+						@	$style_class		- DEFINED by $style, if empty, defaults to 'social_icon'
+						@	$socialbox_result	- Generated result of all items
+
+		*/
+		extract( shortcode_atts( array(
+			'key' => '',
+			'style' => '',
+			'class' => '',
+			'custom' => '',
+			'delimiter' => ''
+		), $atts ) );
+
+		global $list_o_social;
+
+		$options_object = get_option( 'clientcms_options' );
+
+		if ( $options["number_of_phone"]   ) { $total_phone = $options["number_of_phone"]; } else { $total_phone = 2; }
+		if ( $options["number_of_fax"]     ) { $total_fax = $options["number_of_fax"]; } else { $total_fax = 1; }
+		if ( $options["number_of_email"]   ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
+		if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
+
+		// Create Option array
 			if ( !empty($key) ) {
 				$socialbox_types = explode(",", $key);
 			} else {
 				$socialbox_types = array();
 				$socialbox_types[] = 'RSS';
-				foreach($list_o_social as $social)      $socialbox_types[] = $social;
+				foreach( $list_o_social as $social    ) $socialbox_types[] = $social;
 				for( $x = 1; $x <= $total_addr;  $x++ ) $socialbox_types[] = "Addr {$x}";
 				for( $x = 1; $x <= $total_email; $x++ ) $socialbox_types[] = "Email {$x}";
 				for( $x = 1; $x <= $total_fax;   $x++ ) $socialbox_types[] = "Fax {$x}";
 				for( $x = 1; $x <= $total_phone; $x++ ) $socialbox_types[] = "Phone {$x}";
 			}
 			$option_output = array();
-			foreach ($socialbox_types as $type) $option_output[] = self::optionafier( $type );
+			foreach ($socialbox_types as $type)
+					$option_output[] = self::optionafier( $type );
+
+		// $style_class
+			switch ($style) {
+					case 'link' : $style_class = 'social_link'; break;
+					case 'text' : $style_class = 'social_text'; break;
+					case 'svg' : $style_class = 'social_svg'; break;
+					default : $style_class = 'social_icon'; break;
+			}
 
 
-		// RENDER - Social box
-			$result = $open;
 
-				$count_options = count($option_output);
-				$i = 0;
-				foreach( $option_output as $option_item ) {
-					$option_array = self::option_renderizer ( $option_item['display'] , $custom = '', $delimiter = '', $style = '');
-					$result .= $option_array['start'];
-					$result .= $option_array['middle'];
-					$result .= $option_array['end'];
-					if(++$i !== $count_options) $result .= $between;
-				}
 
-			$result .= $close;
 
-			return $result;
 
+
+	/*
+	**
+	**		RENDER SOCIALBOX
+	**
+	*/
+
+
+
+
+
+			// RENDER - Socialbox - open
+				$socialbox_open = '<ul class="socialbox ' . $class . ' '. $style_class .'">';
+
+
+
+
+
+			// RENDER - Socialbox - Items
+				$socialbox_middle ='';
+				foreach( $option_output as $option_item ) {	if ( $options_object[ $option_item['add_value'] ] ) :
+
+
+
+
+								$item_start = '<li><a class="social_'. $option_item['slug'] .' socialbox_'. $option_item['option_type'] .'" ';
+								$item_start .= 'href="'.$options_object[ $option_item['slug_value'] ].'" ';
+								$item_start .= 'target="_blank" >';
+
+
+
+
+								$item_middle = $option_item['display'];
+
+
+
+
+								$item_end = '</a></li>';
+
+
+
+
+					// OUTPUT - Item
+					$socialbox_middle .= $item_start . $item_middle. $item_end;
+				endif; } 
+
+
+
+
+
+			// RENDER - Socialbox close
+			$socialbox_close .= '</ul>';
+
+
+
+
+
+	// OUTPUT - Socialbox
+	return $socialbox_open . $socialbox_middle . $socialbox_close;
 }
 
 
