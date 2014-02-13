@@ -506,7 +506,7 @@ function socialbox_shortcode( $atts ){
 										else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
 										endif;
 
-										$item_href = 'tel:+'. $phone[0].$phone[1].$phone[2].$phone[3];
+										$item_href = 'tel:+'.$phone[0].$phone[1].$phone[2].$phone[3];
 										$item_middle = $option_item['display'];
 									}
 
