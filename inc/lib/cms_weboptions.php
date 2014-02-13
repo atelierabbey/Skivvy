@@ -516,7 +516,10 @@ function socialbox_shortcode( $atts ){
 										// SOCIAL
 											if ( $item_value && $item_type == 'social' ) :
 													$item_href = "{$item_value}";
+													
 													$item_title_alt = "Visit - {$item_display}";
+													if ($item_slug == 'rss')
+															$item_title_alt = "Follow - {$item_display}";
 													$item_middle = $item_display;
 											endif;
 										// End SOCIAL
@@ -713,141 +716,6 @@ function socialbox_shortcode( $atts ){
 				return $result;
 
 	}
-		/*****	Shortcode [text_phone phone="1" delimiter="-"] functions *****/
-			function shortcode_textPhone($atts){
-				extract( shortcode_atts( array(
-					'phone' => '1',
-					'delimiter' => '',
-					'custom' => ''
-				), $atts ) );
-				$options = get_option( 'clientcms_options' );
-				if($options["ph{$phone}txt"]){
-					$phone = explode(" ", $options["ph{$phone}txt"]);
-					if ($custom) : 
-						$formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
-						elseif($delimiter): $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
-						else: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
-					endif;
-					return '<a class="txt_phone{$phone}" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
-				}
-			}
-
-
-
-		/*****	Shortcodes for Email *****/
-			function shortcode_txtemone(){
-				$options = get_option( 'clientcms_options' );
-				if($options["em1txt"]){
-					return '<span class="txt_emailone">'.$options["em1txt"].'</span>';
-				}
-			}
-			function shortcode_txtemtwo(){
-				$options = get_option( 'clientcms_options' );
-				if($options["em2txt"]){return '<span class="txt_emailtwo">'.$options["em2txt"].'</span>';}
-			}
-
-
-
-		/*****	Shortcode address *****/
-
-			function shortcode_address( $atts ) {
-				$options = get_option( 'clientcms_options' );
-				// {$phone}
-				$input = array (
-						$options["addr1_strt1_txt"],
-						$options["addr1_strt2_txt"],
-						$options["addr1_ctytxt"],
-						$options["addr1_stttxt"],
-						$options["addr1_ziptxt"]
-				);
-
-				if($options["ph{$phone}txt"]){
-					$phone = explode(" ", $options["ph{$phone}txt"]);
-					if ($custom) : 
-						$formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
-						elseif($delimiter): $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
-						else: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
-					endif;
-					return '<a class="txt_phone{$phone}" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'">'.$formatted.'</a>';
-				}
-
-				format_address ( $input, $delimiter = ', ' );
-			}
-
-
-
-			// Deprecated, Sooner or later to be removed.
-			function shortcode_txtadr(){
-					extract( shortcode_atts( array(
-						'address' => '1',
-						'delimiter' => ', ',
-						'custom' => ''
-					), $atts ) );
-					$options = get_option( 'clientcms_options' );
-					if($options["adrtxt"]){ return '<span class="txt_address">'.$options["adrtxt"].'</span>'; }
-			}
-
-			function shortcode_txtcty(){
-				$options = get_option( 'clientcms_options' );
-				if($options["ctytxt"]){ return '<span class="txt_city">'.$options["ctytxt"].'</span>'; }
-			}
-
-			function shortcode_txtstt(){
-				$options = get_option( 'clientcms_options' );
-				if($options["stttxt"]){ return '<span class="txt_state">'.$options["stttxt"].'</span>'; }
-			}
-
-			function shortcode_txtzip(){
-				$options = get_option( 'clientcms_options' );
-				if($options["ziptxt"]){ return '<span class="txt_zip">'.$options["ziptxt"].'</span>'; }
-			}
-
-
-	// FORMAT - Phone
-			function format_phone_data ($i,$options,$type='icon') {
-				if( $type = 'text' ) {
-					$option = $options["ph{$i}txtadd"];
-					$phone = explode(" ", $option);
-					return  '<a class="btn_phone'.$i.'" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'"></a>';
-				} else {
-					$slug = $social['slug'];
-					return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
-				}
-			}
-
-	// FORMAT - Email
-			function format_email_data ($social,$options) {
-				$slug = $social['slug'];
-				return '<a class="btn_'.$social['css'].'" href="mailto:'.$options["{$slug}txt"].'"></a>';
-			}
-
-	// FORMAT - Social Media
-			function format_socialbox_icons ($social,$options) {
-				$slug = $social['slug'];
-				return '<a class="btn_'.$social['css'].' socialbox_icon" href="'.$options["{$slug}url"].'" target="_blank" title="'.$social['display'].'"></a>';
-			}
-
-	// FORMAT - Address
-			function format_address ( $input, $delimiter = ', ' ) {
-					$format = array (
-							'street1' => $input[0],
-							'street2' => $input[1],
-							'city'    => $input[2],
-							'state'   => $input[3],
-							'zip'     => $input[4]
-					);
-					$output  = $format['street1'];
-					$output .= $delimiter;
-					$output .= $format['street2'];
-					$output .= $delimiter;
-					$output .= $format['city'];
-					$output .= $delimiter;
-					$output .= $format['state'];
-					$output .= $delimiter;
-					$output .= $format['zip'];
-					return $output;
-			}
-
 
 
 
