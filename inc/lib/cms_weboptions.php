@@ -335,7 +335,7 @@ static function optionafier( $input ) {
 		global $list_o_social;
 
 
-		$display = ucfirst(strtolower($input));
+		$display = ucfirst(strtolower(str_replace(' ', '', $input)));
 		$slugged = sanitize_title(str_replace(' ', '', $input));
 
 		if ( preg_match('/phone/', $slugged) ) $option_type = 'phone';
