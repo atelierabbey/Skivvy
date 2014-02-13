@@ -334,7 +334,6 @@ static function optionafier( $input ) {
 
 		global $list_o_social;
 
-
 		$display = ucfirst(strtolower(str_replace(' ', '', $input)));
 		$slugged = sanitize_title(str_replace(' ', '', $input));
 
@@ -349,7 +348,6 @@ static function optionafier( $input ) {
 					}
 		}
 
-
 		return array (
 			'display' => $display,						// Standardized User identifier, not used in any algorithm. 
 			'slug' => $slugged ,						// Used in identifing css
@@ -357,7 +355,6 @@ static function optionafier( $input ) {
 			'add_value' => $slugged . '_add_value',		// Used in form creation
 			'option_type' => $option_type				// Identifies what type of data it is. OUTPUTS phone, fax, addr, email, or social
 		);
-
 
 }
 
@@ -483,27 +480,29 @@ function socialbox_shortcode( $atts ){
 						$item_href = '#';
 						$item_title_alt = $item_middle = $item_display;
 
-						if ( $options_object[$option_item['add_value']] && $item_value ) { $usable = true; } else { $usable = false; }
-						if ( !empty($key) OR $usable ) :
+						if ( !empty($key) OR $item_value AND $options_object[$option_item['add_value']] ) :
 
+								// Phone & Fax
+									if ( $item_value && $item_type == 'phone' || $item_type == 'fax' ) {
+											$phone = explode(" ", $item_value);
+											if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
+											elseif ($delimiter)	: $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
+											else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
+											endif;
 
-
-
-								// Phone
-									if ( $item_type == 'phone' && $item_value ) {
-										
-										$phone = explode(" ", $item_value);
-
-										if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
-										elseif ($delimiter)	: $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
-										else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
-										endif;
-
-										$item_middle = $formatted;
-
-										$item_href = 'tel:+'.$phone[0].$phone[1].$phone[2].$phone[3];
-										$item_title_alt = "Telephone - {$formatted}";
+											if ( $item_type == 'fax') {
+												$item_href ='fax:+';
+												$item_title_alt ='Facsimile - ';
+											} else {
+												$item_href = 'tel:+';
+												$item_title_alt = "Telephone - ";
+											};
+											$item_href .= $phone[0].$phone[1].$phone[2].$phone[3];
+											$item_title_alt .= "{$formatted}";
+											$item_middle = $formatted;
 									}
+
+
 
 
 								if ( $style !== 'text' ) {
