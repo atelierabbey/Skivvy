@@ -320,53 +320,40 @@ function render_website_options() {
 
 
 
-
+// $option_value = self::optionafier( $input )
+	// $option_value['display']
+	// $option_value['slug']
+	// $option_value['slug_value']
+	// $option_value['add_value']
+	// $option_value['option_type']
 static function optionafier( $input ) {
 
 		global $list_o_social;
 
-		// $option_value = self::optionafier( $input )
-			// $option_value['display']
-			// $option_value['slug']
-			// $option_value['slug_value']
-			// $option_value['add_value']
-			// $option_value['option_type']
 
+		$display = ucfirst(strtolower($input));
 		$slugged = sanitize_title(str_replace(' ', '', $input));
 
-
-
-		$small_input = strtolower($input);
-
-		if ( strpos( 'rss', $small_input ) !== false )
+		if ( preg_match('/phone/', $slugged) ) $option_type = 'phone';
+		if ( preg_match('/fax/', $slugged) ) $option_type = 'fax';
+		if ( preg_match('/addr/', $slugged) ) $option_type = 'addr';
+		if ( preg_match('/email/', $slugged) ) $option_type = 'email';
+		if ( preg_match('/rss/', $slugged) ) $option_type = 'social';
+		foreach ( $list_o_social as $social ) {
+					if ( strpos( sanitize_title(str_replace(' ', '', $social)), $slugged ) !== false ) {
 							$option_type = 'social';
-
-		foreach ( $list_o_social as $social )
-					if ( strpos( $social, $small_input ) !== false )
-							$option_type = 'social';
-
-		if ( strpos( 'phone', $small_input ) !== false )
-					$option_type = 'phone';
-
-		if ( strpos( 'fax', $small_input ) !== false )
-					$option_type = 'fax';
-
-		if ( strpos( 'email', $small_input ) !== false )
-					$option_type = 'email';
-
-		if ( strpos( 'addr', $small_input ) !== false )
-					$option_type = 'addr';	
+							$display = $social;
+					}
+		}
 
 
-
-		$optionized = array (
-			'display' => ucfirst($small_input),	// Standardized User identifier, not used in any algorithm. 
+		return array (
+			'display' => $display,						// Standardized User identifier, not used in any algorithm. 
 			'slug' => $slugged ,						// Used in identifing css
 			'slug_value' => $slugged .'_value',			// Used in form creation
 			'add_value' => $slugged . '_add_value',		// Used in form creation
 			'option_type' => $option_type				// Identifies what type of data it is.
 		);
-		return $optionized; 
 
 
 }
@@ -388,12 +375,11 @@ static function optionafier( $input ) {
 
 
 /*
+**
+**
 **	Shortcodes - [socialbox]
-**				$open/close : Wrapper elements, can be mixed with delimiter to seperate all of them 
-**				$key - Example : phone1,email2,fax1,facebook. comma separated. If left empty, will display all. If >1, wraps in ul.socialbox, each item will be li. 
-**				$output - Options : 'png' = a span with list  |  'svg' = outputs link around SVG code  |  'text' = outputs only text, no link.  |  'link', nolist
-**				$delimiter - // any character to delimit. Works only with phone, fax, or address
-**				$custom - // Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others => 
+**
+**
 */
 function socialbox_shortcode( $atts ){
 
@@ -402,10 +388,10 @@ function socialbox_shortcode( $atts ){
 
 				// Shortcode options
 						@	$key				- comma seperated values of which items to render
-						@	$style				- 
+						@	$style				- Options : 'png' = a span with list  |  'svg' = outputs link around SVG code  |  'text' = outputs only text, no link.  |  'link', nolist
 						@	$class
-						@	$custom
-						@	$delimiter
+						@	$custom				- Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others =>
+						@	$delimiter			- any character to delimit. Works only with phone, fax, or address
 
 
 				// Global variables
@@ -444,6 +430,8 @@ function socialbox_shortcode( $atts ){
 		if ( $options["number_of_email"]   ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
 		if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
 
+
+
 		// Create Option array
 			if ( !empty($key) ) {
 				$socialbox_types = explode(",", $key);
@@ -459,6 +447,8 @@ function socialbox_shortcode( $atts ){
 			$option_output = array();
 			foreach ($socialbox_types as $type)
 					$option_output[] = self::optionafier( $type );
+
+
 
 		// $style_class
 			switch ($style) {
@@ -490,17 +480,21 @@ function socialbox_shortcode( $atts ){
 
 
 
-
 			// RENDER - Socialbox - Items
-				$socialbox_middle ='';
-				foreach( $option_output as $option_item ) {	if ( $options_object[ $option_item['add_value'] ] ) :
+				foreach( $option_output as $option_item ) {
+					// If key is filled out or if option is available to add to socialbox
+					if ( !empty($key) || $options_object[ $option_item['add_value'] ] ) :
 
 
+								$item_slug = $option_item['slug'];
+								$item_href = $options_object[ $option_item['slug_value'] ];
+								$item_type = $option_item['option_type'];
 
 
-								$item_start = '<li><a class="social_'. $option_item['slug'] .' socialbox_'. $option_item['option_type'] .'" ';
-								$item_start .= 'href="'.$options_object[ $option_item['slug_value'] ].'" ';
-								$item_start .= 'target="_blank" >';
+								if ( $style !== 'text' ) {
+										$item_start = '<li><a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href=" '. $item_href .'" target="_blank">';
+										$item_end = '</a><pre>'. $option_item['option_type'] .'</pre></li>';
+								}
 
 
 
@@ -510,13 +504,8 @@ function socialbox_shortcode( $atts ){
 
 
 
-								$item_end = '</a></li>';
-
-
-
-
 					// OUTPUT - Item
-					$socialbox_middle .= $item_start . $item_middle. $item_end;
+					$socialbox_middle .= $item_start . $item_middle . $item_end;
 				endif; } 
 
 
