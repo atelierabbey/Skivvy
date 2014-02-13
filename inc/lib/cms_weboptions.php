@@ -2,14 +2,10 @@
 
 	# TEMP NOTES
 	# Address Shortcode
-	# Add / style="text/icon/svg" /
-	# Add / Delimiter='' /
 	# Add fax & Address icons
 	# Add Custom (for address & Phone)
 	# Deprecate all old text functions
-	# Deprecate $list_o_social array of array into just one array
 	# Deprecate formatting functions, integrate with socialbox.
-	# CLEAN UP SOCIAL BOX TO HAVE AN ARRAY OF ARRAYS FOR EASE
 
 	/////// [ Belt line ] //////  Not touching below the belt, keep it PG.
 
@@ -267,17 +263,20 @@ function render_website_options() {
 
 									if ( 1 == $options[$option_value['add_value']] && $options[$option_value['slug_value']] ) { $checked = 'checked="checked"'; } else { $checked = ''; }
 
-									if ( $option_value['slug'] == 'rss' ) {
-										$options[$option_value['slug_value']] = get_bloginfo('rss2_url');
-										$readonly = 'readonly';
+									$readonly = '';
+									$message = '';
+									if ( $option_value['slug'] == 'rss'  ) {
+										if ( $options[$option_value['slug_value']] == '') { $options[$option_value['slug_value']] = get_bloginfo('rss2_url'); }
+										//$readonly = 'readonly'
+										$message = ' <small>Note: Changing RSS does not change the default RSS value. If erased, returns to default rss 2</small>';
 									}
-
+//*/
 									echo (
 										'<div class="skivvy-optionrow skivvy-optionsocial skivvy-social-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['.$option_value['add_value'].']" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$option_value['add_value'].']"></span>'.
 											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" /></span>'.
 											'<span class="name">'.$option_value['display'].'</span>'.
-											'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'. esc_attr( $options[$option_value['slug_value']] ) .'" '. $readonly. '></span>'.
+											'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'. esc_attr( $options[$option_value['slug_value']] ) .'" '. $readonly. '>'.$message.'</span>'.
 										'<div class="clear"></div></div>'
 										);
 
@@ -356,14 +355,11 @@ static function optionafier( $input ) {
 			'slug' => $slugged ,						// Used in identifing css
 			'slug_value' => $slugged .'_value',			// Used in form creation
 			'add_value' => $slugged . '_add_value',		// Used in form creation
-			'option_type' => $option_type				// Identifies what type of data it is.
+			'option_type' => $option_type				// Identifies what type of data it is. OUTPUTS phone, fax, addr, email, or social
 		);
 
 
 }
-
-
-
 
 
 
@@ -483,30 +479,48 @@ function socialbox_shortcode( $atts ){
 
 			// RENDER - Socialbox - Items
 				foreach( $option_output as $option_item ) {
+
+					$item_slug = $option_item['slug'];
+					$item_type = $option_item['option_type']; // phone, fax, addr, email, or social
+					$item_value = $options_object[ $option_item['slug_value'] ];
+
 					// If key is filled out or if option is available to add to socialbox
-					if ( !empty($key) || $options_object[ $option_item['add_value'] ] ) :
+						if ( !empty( $key ) || $options_object[ $option_item['add_value'] ] ) :
+
+							// Item Variables
 
 
-								$item_slug = $option_item['slug'];
-								$item_href = $options_object[ $option_item['slug_value'] ];
-								$item_type = $option_item['option_type'];
+								$item_href = '#'; // This value is temporary. But, if is selected by Key, and no value is to replace it, will produce a "#"
+								$item_middle = $option_item['display'];
+								$item_title_alt = '';
+
+
+
+								// Phone
+									if ( $item_type == 'phone' && !empty($item_value) ) {
+
+										$phone = explode(" ", $item_value);
+
+										if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
+										elseif ($delimiter)	: $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
+										else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
+										endif;
+
+										$item_href = 'tel:+'. $phone[0].$phone[1].$phone[2].$phone[3];
+										$item_middle = $option_item['display'];
+									}
 
 
 								if ( $style !== 'text' ) {
-										$item_start = '<li><a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href=" '. $item_href .'" target="_blank">';
-										$item_end = '</a><pre>'. $option_item['option_type'] .'</pre></li>';
+										$item_start_wrap = '<li>';
+										$item_end_wrap = '</li>';
+										$item_start = '<a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
+										$item_end = '</a>';
 								}
 
 
-
-
-								$item_middle = $option_item['display'];
-
-
-
-
 					// OUTPUT - Item
-					$socialbox_middle .= $item_start . $item_middle . $item_end;
+					$socialbox_middle .= $item_start_wrap . $item_start . $item_middle . $item_end . $item_end_wrap;
 				endif; } 
 
 
