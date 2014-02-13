@@ -11,9 +11,10 @@ $htmltag .= '">'; echo $htmltag;
 
 	// Meta data
 		echo '<meta charset="utf-8">';
+		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';
 		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">';
 		echo '<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">';
-		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';
+		echo '<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'; // Don't autodetect phonenumbers and create links in iphone safari & blackberry
 
 	// Site Title
 		echo '<title>' . wp_title( '|', FALSE, 'right' ) . '</title>';
