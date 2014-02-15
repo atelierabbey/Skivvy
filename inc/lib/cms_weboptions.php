@@ -15,7 +15,7 @@
 **
 */
 
-	static $version = '12Feb13';
+	static $version = '15Feb13';
 
 	// Construct initializtion
 		function __construct() {
@@ -558,11 +558,12 @@ function socialbox_shortcode( $atts ){
 											endif;
 										// End SOCIAL
 
-
-
-										if ( $style !== 'text' ) {
+										if ( $style !== 'link' ) {
 												$item_start_wrap = '<li>';
 												$item_end_wrap = '</li>';
+										}
+
+										if ( $style !== 'text' ) {
 												$item_start = '<a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
 												$item_end = '</a>';
 										}
