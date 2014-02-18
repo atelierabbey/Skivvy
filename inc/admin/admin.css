@@ -1,14 +1,14 @@
-/* 11Feb14 */
+/* 17Feb14 */
 /* Login Logo */
 .login #login > h1 a { 
-	background-image:url("../img/admin/logo-login.svg");
+	background-image:url("logo-login.svg");
 	background-size:auto auto;
 	width:auto;
 }
 
 /* Dashboard logo */
 #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default #wp-admin-bar-wp-logo .ab-icon {
-	background: url('../img/admin/logo-adminbar.svg') no-repeat scroll 0 6px transparent !important;
+	background: url('logo-adminbar.svg') no-repeat scroll 0 6px transparent !important;
 	width:30px !important;
 }
 #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
@@ -32,8 +32,13 @@
 }
 
 /* Home Meta */
-.home-meta-content, .home-meta-link, .home-meta-img, .home-meta-title {
+.home-meta-content,
+.home-meta-link,
+.home-meta-title {
     width: 100%;
+}
+.home-meta-img {
+	width:80%;	
 }
 .home-meta-content {
     min-height: 100px;
@@ -45,7 +50,9 @@
 	min-width: 250px;
     width: 40%;
 }
-
+.home-meta-fieldset label {
+    display: block;
+}
 
 /* Settings */
 #admin-settings-warning-box {
