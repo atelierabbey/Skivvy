@@ -58,8 +58,6 @@
 	public function admin_scripts_home_meta() {
 		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
-		wp_register_script('my-upload', WP_PLUGIN_URL.'/my-script.js', array('jquery','media-upload','thickbox'));
-		wp_enqueue_script('my-upload');
 	}
 	public function admin_styles_home_meta() {
 		wp_enqueue_style('thickbox');
