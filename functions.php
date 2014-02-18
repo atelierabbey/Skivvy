@@ -21,7 +21,7 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 
 // Library - It's not nice to write in things from the library.
 	#	include 'inc/lib/skivvy_websiteoptions.php'; new skivvy_websiteoptions;
-	#	include 'inc/lib/skivvy_homemeta.php'; $list_o_meta = array('Bucket 1','Bucket 2','Bucket 3','Bucket 4'); new skivvy_home_meta ;
+	#	include 'inc/lib/skivvy_meta-home.php'; $list_o_meta = array('Bucket 1','Bucket 2','Bucket 3','Bucket 4'); new skivvy_home_meta ;
 	#	include 'inc/lib/skivvy_toolbox.php';
 	#	include 'inc/lib/skivvy_toolbox-styles.php'; 
 	#	include 'inc/lib/skivvy_toolbox-posttypes.php';
