@@ -1,20 +1,14 @@
 <?php if ( !class_exists( 'skivvy_home_meta' ) ) : class skivvy_home_meta {
 
 /*	---- TUDEUX ----
-#
-#	# create public function to pull meta on front-page.php via object or array.
-#
-#
-#
 #	FUTURE :
 #		Register widget to pull each meta type. 
 #		Ability to rearrange elements rendering? Drag n Drop?
 #
-#
 */
 
 
-	static $version = '11Feb14';
+	static $version = '18Feb14';
 
 
 	function __construct() {

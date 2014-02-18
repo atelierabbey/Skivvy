@@ -275,7 +275,6 @@ function hide_profile_fields( $contactmethods ) {
 **		ADMIN BAR - Cleanup
 **
 */
-
 	function skivvy_admin_bar() {
 		global $wp_admin_bar;
 
