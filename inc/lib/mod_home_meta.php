@@ -2,12 +2,9 @@
 
 /*	---- TUDEUX ----
 #
-#	# Fix save Function
 #	# create public function to pull meta on front-page.php via object or array.
-#	# create image upload - http://tommcfarlin.com/wordpress-upload-meta-box/
 #
 #
-#	-- http://codex.wordpress.org/Function_Reference/add_meta_box
 #
 #	FUTURE :
 #		Register widget to pull each meta type. 
@@ -22,10 +19,9 @@
 
 	function __construct() {
 			add_action('admin_enqueue_scripts',  array( $this, 'admin_scripts_home_meta' ));
-			add_action('admin_print_styles',  array( $this, 'admin_styles_home_meta' ));
 			add_action('add_meta_boxes', array( $this, 'register_home_meta' ) );
 			add_action('save_post', array( $this, 'save_home_meta' ), 10, 2 );
-
+			add_shortcode( 'homemeta', array( $this, 'home_meta_shortcode' ) );
 			global $list_o_meta;
 			if (! isset($list_o_meta)) {
 				$list_o_meta = array(
@@ -58,8 +54,6 @@
 	public function admin_scripts_home_meta() {
 		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
-	}
-	public function admin_styles_home_meta() {
 		wp_enqueue_style('thickbox');
 	}
 
@@ -71,10 +65,10 @@
 
 
 
-
-
-
-
+/*
+**		RENDER - Homemeta box
+**
+*/
 	public function render_home_meta () {
 
 			global $post;
@@ -91,9 +85,13 @@
 					<fieldset title="<?php echo $slug; ?>_group" class="home-meta-fieldset <?php echo $slug; ?>_group">
 						<h4><?php echo $home_meta; ?></h4>
 						<label for="<?php echo $slug; ?>_title">Title</label><input type="text"		class="home-meta-title"			id="<?php echo $slug; ?>_title"			name="<?php echo $slug; ?>_title"		value="<?php echo esc_attr( get_post_meta( $post->ID , "{$slug}_title" , TRUE) ); ?>"	size="25"	placeholder="Title">
-						<label for="<?php echo $slug; ?>_img">Image</label><input type="text"		class="home-meta-img"			id="<?php echo $slug; ?>_img"			name="<?php echo $slug; ?>_img"			value="<?php echo esc_attr( get_post_meta( $post->ID , "{$slug}_img" , TRUE) ); ?>"		size="25"	placeholder="Image URL">
+						<div>
+							<label for="<?php echo $slug; ?>_img">Image URL</label><?php
+							if (get_post_meta( $post->ID , "{$slug}_img" , TRUE))
+								echo '<img src="'. get_post_meta( $post->ID , "{$slug}_img" , TRUE) .'" width="32" height="32">'; ?><input type="text"		class="home-meta-img"			id="<?php echo $slug; ?>_img"			name="<?php echo $slug; ?>_img"			value="<?php echo esc_attr( get_post_meta( $post->ID , "{$slug}_img" , TRUE) ); ?>"		size="25"	placeholder="Image URL">
 							<input type="button"	class="home-meta-img-button"	id="<?php echo $slug; ?>_img_button"	name="<?php echo $slug; ?>_img_button"	value="Upload" >
-						<label for="<?php echo $slug; ?>_link">Link</label><input type="text"		class="home-meta-link"			id="<?php echo $slug; ?>_link"			name="<?php echo $slug; ?>_link"		value="<?php echo esc_attr( get_post_meta( $post->ID , "{$slug}_link" , TRUE) ); ?>"	size="25"	placeholder="Link">
+						</div>
+						<label for="<?php echo $slug; ?>_link">Link URL</label><input type="text"		class="home-meta-link"			id="<?php echo $slug; ?>_link"			name="<?php echo $slug; ?>_link"		value="<?php echo esc_attr( get_post_meta( $post->ID , "{$slug}_link" , TRUE) ); ?>"	size="25"	placeholder="Link URL">
 						<label for="<?php echo $slug; ?>_content">Text</label><textarea				class="home-meta-content"		id="<?php echo $slug; ?>_content"		name="<?php echo $slug; ?>_content"		col="63"	placeholder="Content"><?php echo esc_attr( get_post_meta( $post->ID , "{$slug}_content" , TRUE) ); ?></textarea>
 						<script>jQuery(document).ready( function( $ ) {
 							var _custom_media = true,
@@ -125,11 +123,6 @@
 			<?php
 			endforeach;
 	}
-
-
-
-
-
 	public function save_home_meta ( $post_id, $post ) {
 			global $list_o_meta;
 			$is_autosave = wp_is_post_autosave( $post_id );
@@ -149,6 +142,64 @@
 				update_post_meta( $post_id, "{$slug}_content", sanitize_text_field( $_POST["{$slug}_content"] ) );
 			}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function home_meta_shortcode ($atts ) {
+
+	extract( shortcode_atts( array(
+		'key' => '',
+		'output' => '',
+	), $atts ) );
+
+	$slug = '_home_meta_'.sanitize_title( $key );
+	switch ($output) {
+		case 'title': //{$slug}_title
+			$title = get_post_meta( get_option( 'page_on_front' ) , "{$slug}_title" , TRUE);
+			if ($title) 
+				$output = $title;
+			else
+				$output = $slug;
+			break;
+		case 'image': // {$slug}_img
+			$output = get_post_meta( get_option( 'page_on_front' ) , "{$slug}_img" , TRUE);
+			break;
+		case 'link': // {$slug}_link
+			$output = get_post_meta( get_option( 'page_on_front' ) , "{$slug}_link" , TRUE);
+			break;
+		case 'content' : // {$slug}_content
+			$output = get_post_meta( get_option( 'page_on_front' ) , "{$slug}_content" , TRUE);
+			break;
+		default :
+			$output = $key;
+	}
+
+	return $output;
+
+}
+
+
+
+
 
 
 } endif;?>
