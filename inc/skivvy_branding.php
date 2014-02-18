@@ -1,4 +1,4 @@
-<?php #31Jan14
+<?php #17Feb14
 
 /*
  *
@@ -31,28 +31,35 @@ function skinfo($what='Version') {
 
 
 	function skivvy_footer_admin() {
-		echo 'Fueled by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';
+		echo 'CMS by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';
 	}
 		add_filter('admin_footer_text', 'skivvy_footer_admin');
-
 
 	function skivvy_footer_version(){
 		echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';
 	}
 		add_filter( 'update_footer', 'skivvy_footer_version', 11 );
 
+	// Admin Styles & Scripts
+	function skivvy_admin_script_style() {
 
-	function skivvy_admin_css() {
-		wp_enqueue_style( 'skivvy_admin_css', get_template_directory_uri().'/css/admin.css' , '' , '' );
+		// Styles
+		wp_register_style( 'skivvy_admin_style', get_template_directory_uri().'/inc/admin/admin.css', false, skinfo('Version'), 'screen' );
+		wp_enqueue_style( 'skivvy_admin_style' );
+		// Scripts
+		wp_register_script( 'skivvy_admin_script', get_template_directory_uri().'/inc/admin/admin.js', false, skinfo('Version'), true );
+		wp_enqueue_script( 'skivvy_admin_script' );
+
 	}
-		add_action('admin_print_styles','skivvy_admin_css');
-		add_action( 'login_head', 'skivvy_admin_css' );
+	add_action( 'admin_enqueue_scripts', 'skivvy_admin_script_style' );
+	add_action( 'login_enqueue_scripts', 'skivvy_admin_script_style' );
 
 
+	// Redirect Login Log link to Homepage
 	function skivvy_login_logo_url() {
 		return get_bloginfo( 'url' );
 	}
-		add_filter( 'login_headerurl', 'skivvy_login_logo_url' );
+	add_filter( 'login_headerurl', 'skivvy_login_logo_url' );
 
 
 	// Adds a warning box to the settings page Uses the same style box as the WordPress Update "update-nag"
