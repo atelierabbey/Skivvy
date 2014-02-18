@@ -5,6 +5,24 @@
 
 
 
+/*
+**
+**		ADMIN SIDE MENU - Cleanup
+**
+*/
+	function skivvy_remove_menu_pages() {
+		#	remove_menu_page( $menu_slug ); // Dashboard
+		#	remove_menu_page( 'edit.php' ); // Posts
+		#	remove_menu_page( 'upload.php' ); // Media
+			remove_menu_page( 'link-manager.php' ); // Links
+			remove_menu_page( 'edit-comments.php' ); // Comments
+		#	remove_menu_page( 'themes.php' ); // Appearance
+		#	remove_submenu_page( 'themes.php', 'widgets.php' ); // Appearance > Widgets
+		#	remove_menu_page( 'plugins.php' ); // Plugins
+		#	remove_menu_page( 'users.php' ); // Users
+		#	remove_menu_page( 'tools.php' ); // Tools
+		#	remove_menu_page( 'options-general.php' ); // Settings 
+	} add_action( 'admin_menu', 'skivvy_remove_menu_pages' );
 
 
 
@@ -138,23 +156,6 @@ function skivvy_wp_title( $title, $separator ) {
 
 
 
-/*
-**
-**		ADMIN SIDE MENU - Cleanup
-**
-*/
-	function skivvy_remove_menu_pages() {
-		#	remove_menu_page( $menu_slug ); // Dashboard
-		#	remove_menu_page( 'edit.php' ); // Posts
-		#	remove_menu_page( 'upload.php' ); // Media
-		#	remove_menu_page( 'edit-comments.php' ); // Comments
-		#	remove_menu_page( 'themes.php' ); // Appearance
-		#	remove_submenu_page( 'themes.php', 'widgets.php' ); // Appearance > Widgets
-		#	remove_menu_page( 'plugins.php' ); // Plugins
-		#	remove_menu_page( 'users.php' ); // Users
-		#	remove_menu_page( 'tools.php' ); // Tools
-		#	remove_menu_page( 'options-general.php' ); // Settings 
-	} add_action( 'admin_menu', 'skivvy_remove_menu_pages' );
 
 
 
@@ -274,83 +275,67 @@ function hide_profile_fields( $contactmethods ) {
 **		ADMIN BAR - Cleanup
 **
 */
-/*
+
 	function skivvy_admin_bar() {
 		global $wp_admin_bar;
 
-		// Remove WP logo on 
-		#	$wp_admin_bar->remove_menu('wp-logo');
-		#	$wp_admin_bar->remove_menu('site-name');
-		#	$wp_admin_bar->remove_menu('comments');
-		#	$wp_admin_bar->remove_menu('new-content');
-		#	$wp_admin_bar->remove_menu('edit');
-		#	$wp_admin_bar->remove_menu('my-account');
-		#	$wp_admin_bar->remove_menu('search');
+			// Wp-Logo
+				#	$wp_admin_bar->remove_menu('wp-logo');
+					$wp_admin_bar->remove_menu('about');
+					$wp_admin_bar->remove_menu('wporg');
+					$wp_admin_bar->remove_menu('documentation');
+					$wp_admin_bar->remove_menu('support-forums');
+					$wp_admin_bar->remove_menu('feedback');
 
-	// My Account Greeting
-		#	$my_account = $wp_admin_bar -> get_node('my-account');
+			// Site Name
+				#	$wp_admin_bar->remove_menu('site-name');
+				#	$wp_admin_bar->remove_menu('dashboard');
+					$wp_admin_bar->remove_menu('view-site');
+				#	$wp_admin_bar->remove_menu('updates');
+					$wp_admin_bar->remove_menu('comments');
+				#	$wp_admin_bar->remove_menu('w3tc');
+				#	$wp_admin_bar->remove_menu('themes');
+					$wp_admin_bar->remove_menu('customize');
+				#	$wp_admin_bar->remove_menu('media');
+				#	$wp_admin_bar->remove_menu('link');	
+				#	$wp_admin_bar->add_menu( array('id' => 'logout','title' => __('Log Out'),'parent' => 'site-name','href' => wp_logout_url( )) );			// Adds Log-out
+					$wp_admin_bar->add_menu( array('id' => 'post','title' => __('Posts'),'parent' => 'site-name','href' => self_admin_url('edit.php')) );	// Adds Posts
 
+			// New
+				#	$wp_admin_bar->remove_menu('new-content');
+					$wp_admin_bar->remove_menu('new-media');
+					$wp_admin_bar->remove_menu('new-link');
+					$wp_admin_bar->remove_menu('new-user');
+					$wp_admin_bar->remove_menu('new-theme');
+				#	$wp_admin_bar->remove_menu('new-plugin');
 
-	// Remove stuff 
-		#	$newtitle = '';
-		#	$newtitle = str_replace( 'Howdy,', 'back!', $my_account->title );
-		#	$wp_admin_bar->add_node( array( 'id' => 'my-account','title' => $newtitle, ) );
-		#	$wp_admin_bar->remove_menu('wp-logo');          // Remove the WordPress logo
-		#	$wp_admin_bar->remove_menu('about');            // Remove the about WordPress link
-		#	$wp_admin_bar->remove_menu('wporg');            // Remove the WordPress.org link
-		#	$wp_admin_bar->remove_menu('documentation');    // Remove the WordPress documentation link
-		#	$wp_admin_bar->remove_menu('support-forums');   // Remove the support forums link
-		#	$wp_admin_bar->remove_menu('feedback');         // Remove the feedback link
-		#	$wp_admin_bar->remove_menu('site-name');        // Remove the site name menu
-		#	$wp_admin_bar->remove_menu('view-site');        // Remove the view site link
-		#	$wp_admin_bar->remove_menu('updates');          // Remove the updates link
-		#	$wp_admin_bar->remove_menu('comments');         // Remove the comments link
-		#	$wp_admin_bar->remove_menu('w3tc');             // If you use w3 total cache remove the performance link
-		#	$wp_admin_bar->remove_menu('my-account');       // Remove the user details tab
-		#	$wp_admin_bar->remove_menu('new-content');		// Remove the content link
-		#	$wp_admin_bar->remove_menu('new-media');
-		#	$wp_admin_bar->remove_menu('new-link'); 
-		#	$wp_admin_bar->remove_menu('new-user');
-		#	$wp_admin_bar->remove_menu('new-theme'); 
-		#	$wp_admin_bar->remove_menu('new-plugin');
-		#	$wp_admin_bar->remove_menu('dashboard'); 
-		#	$wp_admin_bar->remove_menu('themes');
-		#	$wp_admin_bar->remove_menu('customize');
-		#	$wp_admin_bar->remove_menu('search');
-		#	$wp_admin_bar->remove_menu('media');
-		#	$wp_admin_bar->remove_menu('link');
-		#	$wp_admin_bar->remove_menu('user');
-			foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {  
-		#		$menu_id_d  = 'blog-' . $blog->userblog_id . '-d';   // Dashboard var
-		#		$menu_id_n  = 'blog-' . $blog->userblog_id . '-n';   // New Post var
-		#		$menu_id_c  = 'blog-' . $blog->userblog_id . '-c';   // Manage Comments var
-		#		$menu_id_v  = 'blog-' . $blog->userblog_id . '-v';   // Visit Site var
-		#		$wp_admin_bar->remove_menu($menu_id_d);              // Remove Dashboard Link
-		#		$wp_admin_bar->remove_menu($menu_id_n);              // Remove New Post Link
-		#		$wp_admin_bar->remove_menu($menu_id_c);              // Remove Manage Comments Link
-		#		$wp_admin_bar->remove_menu($menu_id_v);              // Remove Visit Site Link
-			} 
+			// Edit
+				#	$wp_admin_bar->remove_menu('edit');
+
+			// Right side
+					$wp_admin_bar->remove_menu('search');
+				#	$wp_admin_bar->remove_menu('my-account');
+				#	$wp_admin_bar->remove_menu('edit-profile');
+				#	$wp_admin_bar->remove_menu('user');
+
+					// My Account Greeting
+						$new_greeting = 'Hi,';
+						$my_account = $wp_admin_bar -> get_node('my-account');
+						$wp_admin_bar->add_node( array( 'id' => 'my-account','title' => str_replace( 'Howdy,', $new_greeting, $my_account->title ) ) );
 
 
-		//// ---- Add stuff ---- ////
-		$wp_admin_bar->add_menu( array(
-			'parent' => 'new-content', // use 'false' for a root menu, or pass the ID of the parent menu
-			'id' => 'new_media', // link ID, defaults to a sanitized title value
-			'title' => __('Media'), // link title
-			'href' => admin_url( 'media-new.php'), // name of file
-			'meta' => false // array of any of the following options: array( 'html' => '', 'class' => '', 'onclick' => '', target => '', title => '' );
-		));
+		//  ---- Add Stuff template
+		//	$wp_admin_bar->add_menu( array(
+		//		'parent' => 'new-content', // use 'false' for a root menu, or pass the ID of the parent menu
+		//		'id' => 'new_media', // link ID, defaults to a sanitized title value
+		//		'title' => __('Media'), // link title
+		//		'href' => admin_url( 'media-new.php'), // name of file
+		//		'meta' => false // array of any of the following options: array( 'html' => '', 'class' => '', 'onclick' => '', target => '', title => '' );
+		//	));
 
-		// Add Log out Button to Site Name
-			#	$wp_admin_bar->add_menu( array('id' => 'logout','title' => __('Log Out'),'parent' => 'site-name','href' => wp_logout_url( )) ); 
+	} add_action('wp_before_admin_bar_render', 'skivvy_admin_bar', 0);
 
-		// Add Posts under Site Name
-			#	$wp_admin_bar->add_menu( array('id' => 'post','title' => __('Posts'),'parent' => 'site-name','href' => self_admin_url('edit.php')) ); 
 
-	} 
-	add_action('wp_before_admin_bar_render', 'skivvy_admin_bar', 0);
-
-	//*/
 
 
 

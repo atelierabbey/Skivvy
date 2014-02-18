@@ -4,6 +4,7 @@
 	# TEMP NOTES
 	# Add fax & Address icons
 	# Add Custom (for address)
+	# Add Site name WP-adminbar link
 	*/
 
 
