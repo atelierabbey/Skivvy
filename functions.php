@@ -20,10 +20,10 @@ add_action( 'after_setup_theme', 'skivvy_setup' ); function skivvy_setup() {
 		include 'inc/skivvy_branding.php';
 
 // Library - It's not nice to write in things from the library.
-	#	include 'inc/lib/cms_weboptions.php'; new skivvy_websiteoptions;
-	#	include 'inc/lib/mod_home_meta.php'; $list_o_meta = array('Bucket 1','Bucket 2','Bucket 3','Bucket 4'); new skivvy_home_meta ;
-	#	include 'inc/lib/mod_buckets.php';
+	#	include 'inc/lib/skivvy_weboptions.php'; new skivvy_websiteoptions;
 	#	include 'inc/lib/skivvy_toolbox.php';
+	#	include 'inc/lib/skivvy_home_meta.php'; $list_o_meta = array('Bucket 1','Bucket 2','Bucket 3','Bucket 4'); new skivvy_home_meta ;
+	#	include 'inc/lib/mod_buckets.php';
 	#	include 'inc/lib/advanced_style.php'; 
 	#	include 'inc/lib/skivvy_tools-posttypes.php';
 	#	include 'inc/lib/mod_browserdetect.php';

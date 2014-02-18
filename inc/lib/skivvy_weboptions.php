@@ -4,7 +4,6 @@
 	# TEMP NOTES
 	# Add fax & Address icons
 	# Add Custom (for address)
-	# Add Address link to googlemaps
 	*/
 
 
