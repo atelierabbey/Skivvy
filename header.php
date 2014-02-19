@@ -53,7 +53,7 @@ wp_head(); ?></head>
 
 
 	?></div>
-	<nav class="access"><?php
+	<nav class="access animated"><?php
 
 		// MAIN NAV MENU
 			wp_nav_menu( array(
