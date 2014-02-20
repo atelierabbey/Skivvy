@@ -123,7 +123,6 @@ ul.nobull > li { list-style:none; }
 ul.socialbox {margin:0;padding:0;}
 ul.socialbox li {margin:0;padding:0;list-style:none;display:inline;}
 .social_icon a {text-indent:-9999px; border-radius: 5px;display:inline-block; width:32px; height:32px;background: none no-repeat scroll center center transparent;}
-.social_icon a.socialbox_rss		{background-image:url('../img/social/rss.png');}
 .social_icon a.socialbox_email		{background-image:url('../img/social/email1.png');}
 .social_icon a.socialbox_email2		{background-image:url('../img/social/email2.png');}
 .social_icon a.socialbox_phone		{background-image:url('../img/social/phone1.png');}
@@ -132,6 +131,7 @@ ul.socialbox li {margin:0;padding:0;list-style:none;display:inline;}
 .social_icon a.socialbox_fax2		{background-image:url('../img/social/fax2.png');}
 .social_icon a.socialbox_addr		{background-image:url('../img/social/addr1.png');}
 .social_icon a.socialbox_addr2		{background-image:url('../img/social/addr2.png');}
+.social_icon a.socialbox_rss		{background-image:url('../img/social/rss.png');}
 .social_icon a.socialbox_facebook	{background-image:url('../img/social/facebook.png');}
 .social_icon a.socialbox_twitter	{background-image:url('../img/social/twitter.png');}
 .social_icon a.socialbox_linkedin	{background-image:url('../img/social/linkedin.png');}
