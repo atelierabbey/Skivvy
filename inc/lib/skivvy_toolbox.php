@@ -1,11 +1,11 @@
-<?php #24Aug13
+<?php #21Feb14
 /*
  *
  *		FUNCTIONS
  *
  */
 
-//// ---- the_snippet() function to replace the_excerpt() ---- //// the_snippet(72,'Read More');
+//// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
 function the_snippet($length=55,$readmore='Read More') {
   global $post;
   $text = $post->post_content;
@@ -16,7 +16,18 @@ function the_snippet($length=55,$readmore='Read More') {
   echo wp_trim_words($text,$length,$more_link); 
 } 
 
+// ---- get_the_thumbnail_caption() ---- //// Returns the caption for attached featured image featured image
+function get_the_thumbnail_caption() {
+	global $post;
 
+	$thumbnail_id    = get_post_thumbnail_id($post->ID);
+	$thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+
+	if ($thumbnail_image && isset($thumbnail_image[0])) {
+		$caption = $thumbnail_image[0]->post_excerpt;
+	}
+	return $caption;
+}
 
 
 
