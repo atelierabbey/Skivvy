@@ -131,10 +131,10 @@ ul.socialbox li {margin:0;padding:0;list-style:none;display:inline;}
 .social_icon a.socialbox_email5,.social_icon a.socialbox_phone5,.social_icon a.socialbox_fax5,.social_icon a.socialbox_addr5,.social_icon a.socialbox_extra5{background-color:#5ba445;}
 .social_icon a.socialbox_email6,.social_icon a.socialbox_phone6,.social_icon a.socialbox_fax6,.social_icon a.socialbox_addr6,.social_icon a.socialbox_extra6{background-color:#e25d4c;}
 .social_icon a.socialbox_email7,.social_icon a.socialbox_phone7,.social_icon a.socialbox_fax7,.social_icon a.socialbox_addr7,.social_icon a.socialbox_extra7{background-color:#f2923b;}
-.social_icon a.socialbox_rss		{background-color:#F36F24;}
-.social_icon a.socialbox_facebook	{background-color:#3B579D;}
-.social_icon a.socialbox_twitter	{background-color:#55ACEE;}
-.social_icon a.socialbox_linkedin	{background-color:#007BB6;}
+.social_icon a.socialbox_rss		{background-color:#F36F24;} /* http://www.mozilla.org/en-US/foundation/feed-icon-guidelines/ */
+.social_icon a.socialbox_facebook	{background-color:#3B579D;} /* https://www.facebookbrand.com/ */
+.social_icon a.socialbox_twitter	{background-color:#55ACEE;} /* https://about.twitter.com/press/brand-assets */
+.social_icon a.socialbox_linkedin	{background-color:#007BB6;} /* http://press.linkedin.com/logo-images */
 .social_icon a.socialbox_etsy		{background-color:#D15600;} /* http://www.etsy.com/help/article/481 */
 .social_icon a.socialbox_youtube	{background-color:#eee;} /* https://www.youtube.com/yt/brand/using-logo.html */
 .social_icon a.socialbox_googleplus	{background-color:#dd4b39;} /* https://developers.google.com/+/branding-guidelines */
