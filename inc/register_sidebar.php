@@ -1,5 +1,5 @@
-<?php #7May13
-function d4widgets_init() {
+<?php #26Feb14 - http://generatewp.com/sidebar/
+function skivvy_register_sidebars() {
 	register_sidebar( array(
 		'name' => 'Sidebar 1',
 		'id' => 'primary-widget-area',
@@ -45,4 +45,4 @@ function d4widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );//*/
-} add_action( 'widgets_init', 'd4widgets_init' ); ?>
+} add_action( 'widgets_init', 'skivvy_register_sidebars' ); ?>

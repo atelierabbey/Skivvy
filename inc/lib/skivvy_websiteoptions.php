@@ -2,7 +2,6 @@
 
 	/*
 	# TEMP NOTES
-	# Add fax & Address icons
 	# Add Custom (for address)
 	# Add Site name WP-adminbar link
 	*/
@@ -22,6 +21,7 @@
 
 			add_action( 'admin_init', 'skivvy_websiteoptions::theme_options_init');
 			add_action( 'admin_menu', 'skivvy_websiteoptions::theme_options_add_page'); 
+			add_action('wp_before_admin_bar_render', 'skivvy_websiteoptions::theme_options_admin_bar', 0); // Adds Menu item under site name
 			add_shortcode( 'socialbox', 'skivvy_websiteoptions::socialbox_shortcode');
 
 			global $list_o_social;
@@ -49,8 +49,16 @@
 		}
 
 
-
-
+		public function theme_options_admin_bar() {
+			global $wp_admin_bar;
+			$wp_admin_bar->add_menu( array(
+				'parent' => 'site-name', // use 'false' for a root menu, or pass the ID of the parent menu
+				'id' => 'website_options', // link ID, defaults to a sanitized title value
+				'title' => __('Website Options'), // link title
+				'href' => admin_url( 'themes.php?page=website_options'), // name of file
+				'meta' => false // array of any of the following options: array( 'html' => '', 'class' => '', 'onclick' => '', target => '', title => '' );
+			));
+		}
 
 
 

@@ -293,12 +293,14 @@ function hide_profile_fields( $contactmethods ) {
 				#	$wp_admin_bar->remove_menu('updates');
 					$wp_admin_bar->remove_menu('comments');
 				#	$wp_admin_bar->remove_menu('w3tc');
-				#	$wp_admin_bar->remove_menu('themes');
+					$wp_admin_bar->remove_menu('themes');
 					$wp_admin_bar->remove_menu('customize');
 				#	$wp_admin_bar->remove_menu('media');
 				#	$wp_admin_bar->remove_menu('link');	
 				#	$wp_admin_bar->add_menu( array('id' => 'logout','title' => __('Log Out'),'parent' => 'site-name','href' => wp_logout_url( )) );			// Adds Log-out
 					$wp_admin_bar->add_menu( array('id' => 'post','title' => __('Posts'),'parent' => 'site-name','href' => self_admin_url('edit.php')) );	// Adds Posts
+					$wp_admin_bar->add_menu( array('id' => 'pages','title' => __('Pages'),'parent' => 'site-name','href' => self_admin_url('edit.php?post_type=page')) );	// Adds Posts
+
 
 			// New
 				#	$wp_admin_bar->remove_menu('new-content');
