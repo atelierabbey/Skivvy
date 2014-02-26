@@ -2,8 +2,9 @@
 
 	/*
 	# TEMP NOTES
-	# Add Custom (for address)
-	# Add Site name WP-adminbar link
+	# Address - Add Custom
+	# Address - Eliminate last delimiter
+	# Address - add infinite var to $custom formatting
 	*/
 
 
@@ -14,7 +15,7 @@
 **
 */
 
-	static $version = '15Feb13';
+	static $version = '26Feb13';
 
 	// Construct initializtion
 		function __construct() {
@@ -82,7 +83,6 @@
 **		Render Website Options Page
 **
 */
-
 function render_website_options() {
 
 				global $select_options;
@@ -134,11 +134,6 @@ function render_website_options() {
 						}
 
 
-
-
-
-
-
 							// PHONES
 								echo '<h3>Phone</h3>'.'<small>Please use spaces to seperate the sections of digits; (i.e. "1 555 444 7777" )</small>';
 								for( $i = 1; $i <= $total_phone; $i++ ) {
@@ -156,11 +151,6 @@ function render_website_options() {
 										'<div class="clear"></div></div>'
 									);
 								}
-
-
-
-
-
 
 
 							// FAX
@@ -182,11 +172,6 @@ function render_website_options() {
 								}
 
 
-
-
-
-
-
 							// EMAILS
 								echo '<h3>Email</h3>';
 								for( $i = 1; $i <= $total_email; $i++ ) {
@@ -204,10 +189,6 @@ function render_website_options() {
 										'<div class="clear"></div></div>'
 									);
 								}
-
-
-
-
 
 
 							// ADDRESSES
@@ -240,8 +221,7 @@ function render_website_options() {
 							 '<h3>Social Media</h3>';
 
 
-/*
-							// RSS
+						/*	// RSS
 								$option_value = self::optionafier( "RSS" );
 								//$option_value['display'], $option_value['slug'], $option_value['slug_value'], $option_value['add_value']
 
@@ -271,7 +251,7 @@ function render_website_options() {
 										//$readonly = 'readonly'
 										$message = ' <small>Note: Changing RSS does not change the default RSS value. If erased, returns to default rss 2</small>';
 									}
-//*/
+
 									echo (
 										'<div class="skivvy-optionrow skivvy-optionsocial skivvy-social-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['.$option_value['add_value'].']" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$option_value['add_value'].']"></span>'.
@@ -294,71 +274,6 @@ function render_website_options() {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $option_value = self::optionafier( $input )
-	// $option_value['display']
-	// $option_value['slug']
-	// $option_value['slug_value']
-	// $option_value['add_value']
-	// $option_value['option_type']
-static function optionafier( $input ) {
-
-		global $list_o_social;
-
-		$display = ucfirst(strtolower(str_replace(' ', '', $input)));
-		$slugged = sanitize_title(str_replace(' ', '', $input));
-
-		if ( preg_match('/phone/', $slugged) ) $option_type = 'phone';
-		if ( preg_match('/fax/', $slugged) ) $option_type = 'fax';
-		if ( preg_match('/addr/', $slugged) ) $option_type = 'addr';
-		if ( preg_match('/email/', $slugged) ) $option_type = 'email';
-		foreach ( $list_o_social as $social ) {
-					if ( strpos( sanitize_title(str_replace(' ', '', $social)), $slugged ) !== false ) {
-							$option_type = 'social';
-							$display = $social;
-					}
-		}
-
-		return array (
-			'display' => $display,						// Standardized User identifier, not used in any algorithm. 
-			'slug' => $slugged ,						// Used in identifing css
-			'slug_value' => $slugged .'_value',			// Used in form creation
-			'add_value' => $slugged . '_add_value',		// Used in form creation
-			'option_type' => $option_type				// Identifies what type of data it is. OUTPUTS phone, fax, addr, email, or social
-		);
-
-}
-
 
 
 
@@ -418,6 +333,8 @@ function socialbox_shortcode( $atts ){
 						@	$socialbox_result	- Generated result of all items
 
 		*/
+
+	// Shortcode attributes
 		extract( shortcode_atts( array(
 			'key' => '',
 			'style' => '',
@@ -426,10 +343,10 @@ function socialbox_shortcode( $atts ){
 			'delimiter' => ''
 		), $atts ) );
 
+
+	//	Get list of max options
 		global $list_o_social;
-
 		$options_object = get_option( 'clientcms_options' );
-
 		if ( $options["number_of_phone"]   ) { $total_phone = $options["number_of_phone"]; } else { $total_phone = 2; }
 		if ( $options["number_of_fax"]     ) { $total_fax = $options["number_of_fax"]; } else { $total_fax = 1; }
 		if ( $options["number_of_email"]   ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
@@ -461,11 +378,6 @@ function socialbox_shortcode( $atts ){
 	**		RENDER SOCIALBOX
 	**
 	*/
-
-
-
-
-
 			// RENDER - Socialbox - open
 				switch ($style) {
 					case 'link' : $style_class = 'social_link'; break;
@@ -517,11 +429,6 @@ function socialbox_shortcode( $atts ){
 
 
 										// ADDRESSES
-											/*
-											# Micro todo
-											# eliminate last delimiter
-											# add infinite var to $custom formatting
-											*/
 											if ( $item_value && $item_type == 'addr' ) :
 													
 													$address = explode(",", $item_value);
@@ -575,8 +482,8 @@ function socialbox_shortcode( $atts ){
 												$item_start = '<a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
 												$item_end = '</a>';
 										}
-		
-		
+
+
 							// OUTPUT - Item
 							$socialbox_middle .= $item_start_wrap . $item_start . $item_middle . $item_end . $item_end_wrap;
 						endif; } 
@@ -610,156 +517,37 @@ function socialbox_shortcode( $atts ){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///// DEPRECATED - I Wanna delete this crap so bad....
-
-	function old_socialbox_shortcode( $atts ){
-
-				extract( shortcode_atts( array(
-					'open' => '<ul class="socialbox"><li>',
-					'delimiter' => '</li><li>',
-					'close' => '</li></ul>',
-					'key' => '', 
-					'output' => 'png', 
-					'custom' => ''
-				), $atts ) );
-
-
-				global $list_o_social;
-				$options = get_option( 'clientcms_options' );
-
-
-				$result = $open;
-
-				if ($key) {
-
-					// Non-Dynamic Rss, Phones, & Emails
-						if ( $key === 'rss' && $options["rssurl"] ) {
-							$result .= '<a class="btn_rss" href="'.$options["rssurl"].'" target="_blank"></a>';
-						}
-
-					// For each number of phones
-						for( $i = 1; $i <= self::$number_o_email; $i++ ) {
-							if ( $key === "email{$i}" && $options["em{$i}txt"] )
-								$result .= self::format_email_data ($i,$options) ;
-						}
-
-					// For each number of phones
-						for( $i = 1; $i <= self::$number_o_phone; $i++ ) {
-							if ( $key === "phone{$i}" && $options["ph{$i}txt"] )
-								$result .= self::format_phone_data ($i,$options) ;
-						}
-
-					// Run each $socialmedia key vs. $css, if == run formatting
-						foreach ($list_o_social as $social) {
-							if ($key == $social['css'])
-								$result .= self::format_socialbox_icons ($social,$options);
-						}
-
-
-				} else {
-
-					// If no $key is set run all
-
-						// Runs through the Socialmedbox variable's arrays
-							foreach($socials as $social){
-								$css = sanitize_title( $social );
-								$slug = sanitize_title( $social );
-
-								if($options["{$slug}url"]){
-									if( $key === $css ) 
-										$result .=  self::format_socialbox_icons ($social,$options);
-									if ( 1 == $options["{$slug}urladd"] )
-										$result .= self::format_socialbox_icons ($social,$options);
-								}
-
-							}
-
-						// These are non-dynamic versions of the phone, email, and rss, they will be removed later.
-							if (1 == $options["rssurladd"]) {
-								$result .= '<a class="btn_rss socialbox_icon" href="'.$options["rssurl"].'" target="_blank"></a>';
-							}
-							if (1 == $options["em1txtadd"] && $options["em1txt"]){
-								$result .= '<a class="btn_email1 socialbox_icon" href="mailto:'.$options["em1txt"].'" title="Email - '.$options["em1txt"].'"></a>';
-							}
-							if (1 == $options["em2txtadd"] && $options["em2txt"]){
-								$result .= '<a class="btn_email2 socialbox_icon" href="mailto:'.$options["em2txt"].'" title="Email - '.$options["em2txt"].'"></a>';
-							}
-							if (1 == $options["phtxtadd"]  && $options["ph1txt"]){
-								$phone = explode(" ", $options["ph1txt"]);
-								$result .= '<a class="btn_phone1 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
-							}
-							if (1 == $options["ph2txtadd"] && $options["ph2txt"]){
-								$phone = explode(" ", $options["ph2txt"]);
-								$result .= '<a class="btn_phone2 socialbox_icon" href="tel:+'.$phone[0].$phone[1].$phone[2].$phone[3].'" title="Call- '.$options["ph1txt"].'"></a>';
-							}
-
-						
-
-				}
-
-				$result .= $close;
-
-				return $result;
-
-	}
-
-
+// $option_value = self::optionafier( $input )
+	// $option_value['display']
+	// $option_value['slug']
+	// $option_value['slug_value']
+	// $option_value['add_value']
+	// $option_value['option_type']
+static function optionafier( $input ) {
+
+		global $list_o_social;
+
+		$display = ucfirst(strtolower(str_replace(' ', '', $input)));
+		$slugged = sanitize_title(str_replace(' ', '', $input));
+
+		if ( preg_match('/phone/', $slugged) ) $option_type = 'phone';
+		if ( preg_match('/fax/', $slugged) ) $option_type = 'fax';
+		if ( preg_match('/addr/', $slugged) ) $option_type = 'addr';
+		if ( preg_match('/email/', $slugged) ) $option_type = 'email';
+		foreach ( $list_o_social as $social ) {
+					if ( strpos( sanitize_title(str_replace(' ', '', $social)), $slugged ) !== false ) {
+							$option_type = 'social';
+							$display = $social;
+					}
+		}
+
+		return array (
+			'display' => $display,						// Standardized User identifier, not used in any algorithm. 
+			'slug' => $slugged ,						// Used in identifing css
+			'slug_value' => $slugged .'_value',			// Used in form creation
+			'add_value' => $slugged . '_add_value',		// Used in form creation
+			'option_type' => $option_type				// Identifies what type of data it is. OUTPUTS phone, fax, addr, email, or social
+		);
+}
 
 }}?>
