@@ -1,4 +1,4 @@
-/* 19Feb14 */
+/* 26Feb14 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -119,26 +119,3 @@ ul.nobull > li { list-style:none; }
 /* `Push Space >> 12 Columns */.container_12 .push_1 {left: 80px;}.container_12 .push_2 {left: 160px;}.container_12 .push_3 {left: 240px;}.container_12 .push_4 {left: 320px;}.container_12 .push_5 {left: 400px;}.container_12 .push_6 {left: 480px;}.container_12 .push_7 {left: 560px;}.container_12 .push_8 {left: 640px;}.container_12 .push_9 {left: 720px;}.container_12 .push_10 {left: 800px;}.container_12 .push_11 {left: 880px;}
 /* `Pull Space >> 12 Columns */.container_12 .pull_1 {left: -80px;}.container_12 .pull_2 {left: -160px;}.container_12 .pull_3 {left: -240px;}.container_12 .pull_4 {left: -320px;}.container_12 .pull_5 {left: -400px;}.container_12 .pull_6 {left: -480px;}.container_12 .pull_7 {left: -560px;}.container_12 .pull_8 {left: -640px;}.container_12 .pull_9 {left: -720px;}.container_12 .pull_10 {left: -800px;}.container_12 .pull_11 {left: -880px;}
 
-/* ----------- Socialbox icons ----------- */
-ul.socialbox {margin:0;padding:0;}
-ul.socialbox li {margin:0;padding:0;list-style:none;display:inline;}
-.social_icon a {text-indent:-9999px; border-radius: 5px;display:inline-block; background: none no-repeat scroll center center transparent;}
-.social_icon a, .social_icon a.img {width:32px; height:32px;}
-.social_icon a.socialbox_email1,.social_icon a.socialbox_phone1,.social_icon a.socialbox_fax1,.social_icon a.socialbox_addr1,.social_icon a.socialbox_extra1{background-color:#dae1e4;}
-.social_icon a.socialbox_email2,.social_icon a.socialbox_phone2,.social_icon a.socialbox_fax2,.social_icon a.socialbox_addr2,.social_icon a.socialbox_extra2{background-color:#cae1f1;}
-.social_icon a.socialbox_email3,.social_icon a.socialbox_phone3,.social_icon a.socialbox_fax3,.social_icon a.socialbox_addr3,.social_icon a.socialbox_extra3{background-color:#4292cb;}
-.social_icon a.socialbox_email4,.social_icon a.socialbox_phone4,.social_icon a.socialbox_fax4,.social_icon a.socialbox_addr4,.social_icon a.socialbox_extra4{background-color:#f8e396;}
-.social_icon a.socialbox_email5,.social_icon a.socialbox_phone5,.social_icon a.socialbox_fax5,.social_icon a.socialbox_addr5,.social_icon a.socialbox_extra5{background-color:#5ba445;}
-.social_icon a.socialbox_email6,.social_icon a.socialbox_phone6,.social_icon a.socialbox_fax6,.social_icon a.socialbox_addr6,.social_icon a.socialbox_extra6{background-color:#e25d4c;}
-.social_icon a.socialbox_email7,.social_icon a.socialbox_phone7,.social_icon a.socialbox_fax7,.social_icon a.socialbox_addr7,.social_icon a.socialbox_extra7{background-color:#f2923b;}
-.social_icon a.socialbox_rss		{background-color:#F36F24;} /* http://www.mozilla.org/en-US/foundation/feed-icon-guidelines/ */
-.social_icon a.socialbox_facebook	{background-color:#3B579D;} /* https://www.facebookbrand.com/ */
-.social_icon a.socialbox_twitter	{background-color:#55ACEE;} /* https://about.twitter.com/press/brand-assets */
-.social_icon a.socialbox_linkedin	{background-color:#007BB6;} /* http://press.linkedin.com/logo-images */
-.social_icon a.socialbox_etsy		{background-color:#D15600;} /* http://www.etsy.com/help/article/481 */
-.social_icon a.socialbox_youtube	{background-color:#eee;} /* https://www.youtube.com/yt/brand/using-logo.html */
-.social_icon a.socialbox_googleplus	{background-color:#dd4b39;} /* https://developers.google.com/+/branding-guidelines */
-.social_icon a.socialbox_instagram	{background-color:#555;} /* http://help.instagram.com/304689166306603 */
-.social_icon a.socialbox_pinterest	{background-color:#555;} /* http://business.pinterest.com/brand-guidelines/ */
-.social_icon a.socialbox_flickr		{background-color:#eee;} /* https://www.flickr.com/about/goodies/ */
-.social_icon a.socialbox_vimeo		{background-color:#1AB7EA;} /* http://vimeo.com/about/brand_guidelines */

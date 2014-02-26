@@ -28,10 +28,14 @@
 
 
 
+
+
+
+
 /*
 **
 **		Custom Editor
-**
+**		http://codex.wordpress.org/Roles_and_Capabilities#Capabilities
 */
 	function custom_admin_menu() {
 		$user = new WP_User(get_current_user_id());
@@ -50,9 +54,9 @@
 						#	__('Appearance'),
 							__('Tools'),
 						#	__('Users'),
-						#	__('Settings'),
+							__('Settings'),
 							__('Comments'),
-						#	__('Plugins'),
+							__('Plugins'),
 			);
 			end ($menu);
 			while (prev($menu)){
@@ -68,9 +72,8 @@
 		$editor->add_cap('create_users');
 		$editor->add_cap('edit_users');
 		$editor->add_cap('edit_theme_options');
-		$editor->add_cap('manage_options');  
-	}
-	add_action('admin_menu', 'custom_admin_menu');
+		# $editor->add_cap('manage_options');  
+	} add_action('admin_menu', 'custom_admin_menu');
 
 
 

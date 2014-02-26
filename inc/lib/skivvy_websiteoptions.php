@@ -1,14 +1,5 @@
 <?php if ( ! class_exists( 'skivvy_websiteoptions' ) ) { class skivvy_websiteoptions {
 
-	/*
-	# TEMP NOTES
-	# Address - Add Custom
-	# Address - Eliminate last delimiter
-	# Address - add infinite var to $custom formatting
-	*/
-
-
-
 /*
 **
 **		Initialization functions
@@ -117,7 +108,7 @@ function render_website_options() {
 						if ( $options["number_of_email"]   ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
 						if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
 
-						if ( is_admin() ) {
+						if ( current_user_can('edit_themes') ) {
 							echo (
 									'<div class="skivvy-weboptions-admin-fields">'.
 										'Phones: <input id="clientcms_options[number_of_phone]" type="text" name="clientcms_options[number_of_phone]" value="'.$total_phone.'"  size="2"> | '.
@@ -140,7 +131,7 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-phone skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" name="clientcms_options['. $option_value['add_value'] .']"'. $checked .'></span>'.
-											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" ></span>'.
+											'<span class="icon"><img src="' . $icon_location .'phone.png" ></span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
 											'<span class="input"><input id="clientcms_options['.  $option_value['slug_value'] .']" type="text" name="clientcms_options['.  $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr( $options[ $option_value['slug_value'] ] ).'" ></span>'.
 										'<div class="clear"></div></div>'
@@ -159,7 +150,7 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-fax skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" name="clientcms_options['. $option_value['add_value'] .']"'. $checked .'></span>'.
-											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" ></span>'.
+											'<span class="icon"><img src="' . $icon_location . 'fax.png" ></span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
 											'<span class="input"><input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr( $options[ $option_value['slug_value'] ] ).'" ></span>'.
 										'<div class="clear"></div></div>'
@@ -178,7 +169,7 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-email skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['. $option_value['slug_value'] .']" type="checkbox" value="1" ' . $checked . ' name="clientcms_options['. $option_value['add_value'] .']"></span>'.
-											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] .'.png" ></span>'.
+											'<span class="icon"><img src="' . $icon_location . 'email.png" ></span>'.
 											'<span class="name">'. $option_value['display'] . '</span>'.
 											'<span class="input"><input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" value="' . esc_attr( $options[ $option_value['slug_value'] ] ) . '" ></span>'.
 										'<div class="clear"></div></div>'
@@ -197,7 +188,7 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-addr skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options[' . $option_value['add_value'] . ']" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[' . $option_value['add_value'] . ']"></span>'.
-											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png"></span>'.
+											'<span class="icon"><img src="' . $icon_location . 'addr.png"></span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
 											'<span class="input">'. 
 												'<input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" value="' . esc_attr( $options[$option_value['slug_value']] ) . '" >'.
@@ -214,23 +205,6 @@ function render_website_options() {
 
 						echo '<hr>'.
 							 '<h3>Social Media</h3>';
-
-
-						/*	// RSS
-								$option_value = self::optionafier( "RSS" );
-								//$option_value['display'], $option_value['slug'], $option_value['slug_value'], $option_value['add_value']
-
-								if( 1 == $options[ $option_value['add_value'] ] ) { $checked = 'checked="checked"'; } else { $checked = ''; }
-								
-								echo (
-									'<div class="skivvy-optionrow skivvy-option-social skivvy-social-'.$option_value['slug'].'">'.
-										'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" '.$checked.' name="clientcms_options['. $option_value['add_value'] .']"></span>'.
-										'<span class="icon"><img src="' . $icon_location . $option_value['slug'] .'.png" /></span>'.
-										'<span class="name">'. $option_value['display'] .'</span>'.
-										'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'.get_bloginfo('rss2_url') . '" readonly></span>'.
-									'<div class="clear"></div></div>'
-								); //*/
-
 
 							//SOCIAL
 								foreach($list_o_social as $social){
@@ -321,7 +295,7 @@ function socialbox_shortcode( $atts ){
 	// Shortcode attributes
 		extract( shortcode_atts( array(
 			'key' => '',
-			'style' => '',
+			'style' => 'png',
 			'class' => '',
 			'custom' => '',
 			'delimiter' => ''
@@ -336,6 +310,8 @@ function socialbox_shortcode( $atts ){
 		if ( $options["number_of_email"]   ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
 		if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
 
+	// Social Image Location
+		global $icon_location;
 
 	// Create Option array
 		if ( !empty($key) ) {
@@ -368,7 +344,7 @@ function socialbox_shortcode( $atts ){
 					case 'svg' : $style_class = 'social_svg'; break;
 					default : $style_class = 'social_icon'; break;
 				}
-				$socialbox_open = '<ul class="socialbox ' . $style_class . ' ' . $class . '">';
+				$socialbox_open = '<ul class="socialbox ' . $class . ' ' . $style_class . '">';
 
 
 
@@ -386,7 +362,8 @@ function socialbox_shortcode( $atts ){
 						$item_title_alt = $item_middle = $item_display;
 
 						if ( !empty($key) OR $item_value AND $options_object[$option_item['add_value']] ) :
-							if ( $delimiter == '') $delimiter = '';
+
+										if ( $delimiter == '') $delimiter = null;
 
 										// PHONE & FAX
 											if ( $item_value && $item_type == 'phone' || $item_type == 'fax' ) :
@@ -413,25 +390,37 @@ function socialbox_shortcode( $atts ){
 
 										// ADDRESSES
 											if ( $item_value && $item_type == 'addr' ) :
-													
-													$address = explode(",", $item_value);
 
-													$i = 0;
+													$address = explode(",", $item_value);
 													$str = $formatted = '';
 													foreach ($address as $addr){
-																$formatted .= $addr;
-																$str .= $addr;
-																if ( $addr !== count($address) ) {
-																	if ( $delimiter ) $formatted .= $delimiter; else $formatted .= ', ';
-																	$str .= ' ';
-																}
+														$str .= $addr;
 													}
-													if ($custom) 
-														$formatted = str_replace(array('$a','$b','$c','$d'), $address, $custom );
 
+
+													if ($custom) {
+															$formatted = str_replace(array('$a','$b','$c','$d','$e','$f','$g','$h'), $address, $custom );
+													} elseif ($delimiter) {
+															$i = 0;
+															foreach ($address as $addr){
+																		$formatted .= $addr;
+																		$str .= $addr;
+																		if ( $addr !== count($address) ) {
+																			if ( $delimiter ) $formatted .= $delimiter; else $formatted .= ', ';
+																			$str .= ' ';
+																		}
+															}
+													} else {
+														$addr_middles  = $address[0]; // Street
+														$addr_middles .= '<br>';
+														$addr_middles .= $address[1]; // City
+														$addr_middles .= ', ';
+														$addr_middles .= $address[2]; // State
+														$addr_middles .= $address[3]; // Zip
+													}
 													$item_href = 'https://maps.google.com/?q='.$str;
-													$item_title_alt = "Map it - {$formatted}";
-													$item_middle = $formatted;
+													$item_title_alt = "Map it - {$item_value}";
+													$item_middle = $addr_middles;
 											endif;
 										// End ADDRESSES
 
@@ -456,15 +445,13 @@ function socialbox_shortcode( $atts ){
 											endif;
 										// End SOCIAL
 
-										if ( $style !== 'link' ) {
-												$item_start_wrap = '<li>';
-												$item_end_wrap = '</li>';
-										}
 
-										if ( $style !== 'text' ) {
-												$item_start = '<a class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'" href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
-												$item_end = '</a>';
-										}
+									$item_start = '<li class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'"><a href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
+									$item_end = '</a></li>';
+									if ( $style === 'text' ) {
+											$item_start = '<li class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'"><span>';
+											$item_end = '</span></li>';
+									}
 
 
 							// OUTPUT - Item
