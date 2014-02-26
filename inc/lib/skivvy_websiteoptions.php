@@ -11,26 +11,21 @@
 
 /*
 **
-**			Initialization functions
+**		Initialization functions
 **
 */
 
-	static $version = '26Feb13';
+		static $version = '26Feb13';
 
-	// Construct initializtion
 		function __construct() {
-
-			add_action( 'admin_init', 'skivvy_websiteoptions::theme_options_init');
-			add_action( 'admin_menu', 'skivvy_websiteoptions::theme_options_add_page'); 
-			add_action('wp_before_admin_bar_render', 'skivvy_websiteoptions::theme_options_admin_bar', 0); // Adds Menu item under site name
-			add_shortcode( 'socialbox', 'skivvy_websiteoptions::socialbox_shortcode');
-
-			global $list_o_social;
-				if (!isset( $list_o_social ))	$list_o_social = array( 'RSS', 'Etsy', 'Facebook', 'Flickr', 'Google Plus', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
-
-			global $icon_location;
-				if (!isset( $icon_location ))	$icon_location = get_bloginfo('template_url').'/img/social/';
-
+				add_action( 'admin_init', 'skivvy_websiteoptions::theme_options_init');
+				add_action( 'admin_menu', 'skivvy_websiteoptions::theme_options_add_page'); 
+				add_action('wp_before_admin_bar_render', 'skivvy_websiteoptions::theme_options_admin_bar', 0); // Adds Menu item under site name
+				add_shortcode( 'socialbox', 'skivvy_websiteoptions::socialbox_shortcode');
+				global $list_o_social;
+					if (!isset( $list_o_social ))	$list_o_social = array( 'RSS', 'Etsy', 'Facebook', 'Flickr', 'Google Plus', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
+				global $icon_location;
+					if (!isset( $icon_location ))	$icon_location = get_bloginfo('template_url').'/img/social/';
 		}
 
 	// Register the Options group
@@ -49,8 +44,8 @@
 			);
 		}
 
-
-		public function theme_options_admin_bar() {
+	// Add menu item to admin bar
+		static function theme_options_admin_bar() {
 			global $wp_admin_bar;
 			$wp_admin_bar->add_menu( array(
 				'parent' => 'site-name', // use 'false' for a root menu, or pass the ID of the parent menu
@@ -298,41 +293,30 @@ function render_website_options() {
 **
 **
 **	Shortcodes - [socialbox]
-**
+**		Variables
+**			// Shortcode options
+**					@	$key				- comma seperated values of which items to render
+**					@	$style				- Options : 'png' | 'svg' | 'text' = outputs only text, no link. | 'link', nolist
+**					@	$class				- Custom class attributes
+**					@	$custom				- Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others =>
+**					@	$delimiter			- any character to delimit. Works only with phone, fax, or address
+**			// Global variables
+**					@	$list_o_social		- array of social items
+**			// Locally defined Variables
+**					@	$options_object		- array of all set options
+**					@	$total_phone		- Limits the number of generated phone output, if set in Website Options, use saved value, default = 2
+**					@	$total_fax			- Limits fax, default 1
+**					@	$total_email		- Limits email, default 2
+**					@	$total_addr			- Limits addresses, default 2
+**			// Generated variables
+**					@	$socialbox_types	- array of possible outputs. Defined via $key if not empty, else generates all
+**					@	$option_output		- array of arrays. DEFINED by optionafier() each $socialbox_types
+**					@	$style_class		- DEFINED by $style, if empty, defaults to 'social_icon'
+**					@	$socialbox_result	- Generated result of all items
 **
 */
 function socialbox_shortcode( $atts ){
 
-
-		/*	Variables
-
-				// Shortcode options
-						@	$key				- comma seperated values of which items to render
-						@	$style				- Options : 'png' | 'svg' | 'text' = outputs only text, no link. | 'link', nolist
-						@	$class				- Custom class attributes
-						@	$custom				- Examples: for phone = +$a,$b/$c*$d  |  for addr = $street1, $street2 <br> $city, $state <br> $zip  | for others =>
-						@	$delimiter			- any character to delimit. Works only with phone, fax, or address
-
-
-				// Global variables
-						@	$list_o_social		- array of social items
-
-
-				// Locally defined Variables
-						@	$options_object		- array of all set options
-						@	$total_phone		- Limits the number of generated phone output, if set in Website Options, use saved value, default = 2
-						@	$total_fax			- Limits fax, default 1
-						@	$total_email		- Limits email, default 2
-						@	$total_addr			- Limits addresses, default 2
-
-
-				// Generated variables
-						@	$socialbox_types	- array of possible outputs. Defined via $key if not empty, else generates all
-						@	$option_output		- array of arrays. DEFINED by optionafier() each $socialbox_types
-						@	$style_class		- DEFINED by $style, if empty, defaults to 'social_icon'
-						@	$socialbox_result	- Generated result of all items
-
-		*/
 
 	// Shortcode attributes
 		extract( shortcode_atts( array(
@@ -353,21 +337,20 @@ function socialbox_shortcode( $atts ){
 		if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
 
 
-
-		// Create Option array
-			if ( !empty($key) ) {
-				$socialbox_types = explode(",", $key);
-			} else {
-				$socialbox_types = array();
-				foreach( $list_o_social as $social    ) $socialbox_types[] = $social;
-				for( $x = 1; $x <= $total_addr;  $x++ ) $socialbox_types[] = "Addr {$x}";
-				for( $x = 1; $x <= $total_email; $x++ ) $socialbox_types[] = "Email {$x}";
-				for( $x = 1; $x <= $total_fax;   $x++ ) $socialbox_types[] = "Fax {$x}";
-				for( $x = 1; $x <= $total_phone; $x++ ) $socialbox_types[] = "Phone {$x}";
-			}
-			$option_output = array();
-			foreach ($socialbox_types as $type)
-					$option_output[] = self::optionafier( $type );
+	// Create Option array
+		if ( !empty($key) ) {
+			$socialbox_types = explode(",", $key);
+		} else {
+			$socialbox_types = array();
+			foreach( $list_o_social as $social    ) $socialbox_types[] = $social;
+			for( $x = 1; $x <= $total_addr;  $x++ ) $socialbox_types[] = "Addr {$x}";
+			for( $x = 1; $x <= $total_email; $x++ ) $socialbox_types[] = "Email {$x}";
+			for( $x = 1; $x <= $total_fax;   $x++ ) $socialbox_types[] = "Fax {$x}";
+			for( $x = 1; $x <= $total_phone; $x++ ) $socialbox_types[] = "Phone {$x}";
+		}
+		$option_output = array();
+		foreach ($socialbox_types as $type)
+				$option_output[] = self::optionafier( $type );
 
 
 
@@ -517,12 +500,14 @@ function socialbox_shortcode( $atts ){
 
 
 
-// $option_value = self::optionafier( $input )
+/*
+	// $option_value = self::optionafier( $input )
 	// $option_value['display']
 	// $option_value['slug']
 	// $option_value['slug_value']
 	// $option_value['add_value']
 	// $option_value['option_type']
+*/
 static function optionafier( $input ) {
 
 		global $list_o_social;
