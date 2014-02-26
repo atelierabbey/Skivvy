@@ -342,7 +342,7 @@ function socialbox_shortcode( $atts ){
 					case 'link' : $style_class = 'social_link'; break;
 					case 'text' : $style_class = 'social_text'; break;
 					case 'svg' : $style_class = 'social_svg'; break;
-					default : $style_class = 'social_icon'; break;
+					case 'png' : $style_class = 'social_icon'; break;
 				}
 				$socialbox_open = '<ul class="socialbox ' . $class . ' ' . $style_class . '">';
 
@@ -446,12 +446,16 @@ function socialbox_shortcode( $atts ){
 										// End SOCIAL
 
 
+
+							// ITEM Wrappers
+
+							if ( $style === 'text' ) {
+									$item_start = '<li class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'"><span>';
+									$item_end = '</span></li>';
+							} else {
 									$item_start = '<li class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'"><a href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
 									$item_end = '</a></li>';
-									if ( $style === 'text' ) {
-											$item_start = '<li class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'"><span>';
-											$item_end = '</span></li>';
-									}
+							}
 
 
 							// OUTPUT - Item
