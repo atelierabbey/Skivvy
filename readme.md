@@ -124,6 +124,10 @@ Social box has a hierachy of what to listent to in the attributes. Left to right
 
 # Home Meta Buckets
 
+Default Array of buckets, edit or modify before the "new skivvy_home_meta;", the array name is "$list_o_meta"
+````php
+<?php $list_o_meta = array('Bucket 1','Bucket 2','Bucket 3','Bucket 4'); new skivvy_home_meta; ?>
+````
 
 BOTH LINK AND IMAGE output a URL, not the code to make an image or link.
 
