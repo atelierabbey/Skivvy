@@ -143,3 +143,28 @@ or
   echo get_post_meta( get_option( 'page_on_front' ) , "_home_meta_bucket-1_content" , TRUE);
 ````
 
+
+----
+
+## SHORTCODES
+
+##### Lorem ipsum - in inc/lib/skivvy_toolbox.php
+````
+[lorem words="75"]
+````
+
+##### Bloginfo - equivalent to the bloginfo function of WordPress - in inc/lib/skivvy_toolbox.php
+````
+[bloginfo key="name"]
+````
+
+
+----
+
+## FUNCTIONS
+
+##### the_snippet($length=55,$readmore='Read More')
+   Usable alternate to the "the_excerpt()"
+````php
+<?php the_snippet($length=55,$readmore='Read More'); ?>
+````
