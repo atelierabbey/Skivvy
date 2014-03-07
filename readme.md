@@ -89,7 +89,7 @@ This produces a comma seperated address in text.
 
 Also hyphen seperated phone numbers like this 1-222-333-4444
 ````
-[socialbox key=”phone1″ delimiter=”-” style=”text”]
+[socialbox key="phone1" delimiter="-" style="text"]
 ````
 
 ### Custom Layouts
