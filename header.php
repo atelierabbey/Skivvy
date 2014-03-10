@@ -1,4 +1,4 @@
-<!DOCTYPE html><html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>"><head><?php
+<!DOCTYPE html> <html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>"><head><?php
 	// Meta data
 		echo '<meta charset="utf-8">';
 		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';
