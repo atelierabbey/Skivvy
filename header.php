@@ -1,14 +1,4 @@
-<!DOCTYPE html><?php
-
-// HTML Tag
-$htmltag = '<html dir="ltr" lang="en-US" class="'; 
-	if (function_exists('css_browser_selector')){ $htmltag .= css_browser_selector() . ' '; }
-	if (function_exists('skinfo')){ $htmltag .= skinfo('Version'); }
-$htmltag .= '">'; echo $htmltag;
-
-?>
-<head><?php
-
+<!DOCTYPE html><html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>"><head><?php
 	// Meta data
 		echo '<meta charset="utf-8">';
 		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';

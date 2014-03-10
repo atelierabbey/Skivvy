@@ -23,6 +23,44 @@ function skinfo($what='Version') {
 	}
 }
 
+
+
+
+/*
+	// Add specific CSS class by filter
+	add_filter('html_classes','my_class_names');
+	function my_class_names($classes) {
+		// add 'class-name' to the $classes array
+		$classes[] = 'class-name';
+		// return the $classes array
+		return $classes;
+	}
+*/
+function html_classes( $class = array() ) {
+
+	$classes = array();
+
+	// Adds Skivvy version
+	$classes[] = skinfo('Version');
+
+
+	if ( ! empty( $class ) ) {
+			if ( !is_array( $class ) )
+					$class = preg_split( '#\s+#', $class );
+			$classes = array_merge( $classes, $class );
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+	$all_classes = apply_filters( 'html_classes', $classes, $class );
+
+	// Separates classes with a single space, collates classes
+	echo join( ' ', $all_classes );
+}
+
+
+
+
+
 /*
  *
  *		WP-Admin branding
