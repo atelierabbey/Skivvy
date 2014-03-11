@@ -1,25 +1,24 @@
-/* 26Feb14 */
-.skivvy-websiteoptions h2 {color:red !important;}
-ul.socialbox {margin:0;padding:0;}
-ul.socialbox li {margin:0;padding:0;list-style:none;display:inline;}
-.social_icon a {text-indent:-9999px; border-radius: 5px;display:inline-block; background: none no-repeat scroll center center transparent;}
-.social_icon a {width:32px; height:32px;}
-.social_icon a img {height:26px;width:26px; padding: 3px;}
-.social_icon .socialbox_email1 a,.social_icon .socialbox_phone1 a,.social_icon .socialbox_fax1 a,.social_icon .socialbox_addr1 a,.social_icon .socialbox_extra1 a{background-color:#dae1e4;}
-.social_icon .socialbox_email2 a,.social_icon .socialbox_phone2 a,.social_icon .socialbox_fax2 a,.social_icon .socialbox_addr2 a,.social_icon .socialbox_extra2 a{background-color:#cae1f1;}
-.social_icon .socialbox_email3 a,.social_icon .socialbox_phone3 a,.social_icon .socialbox_fax3 a,.social_icon .socialbox_addr3 a,.social_icon .socialbox_extra3 a{background-color:#4292cb;}
-.social_icon .socialbox_email4 a,.social_icon .socialbox_phone4 a,.social_icon .socialbox_fax4 a,.social_icon .socialbox_addr4 a,.social_icon .socialbox_extra4 a{background-color:#f8e396;}
-.social_icon .socialbox_email5 a,.social_icon .socialbox_phone5 a,.social_icon .socialbox_fax5 a,.social_icon .socialbox_addr5 a,.social_icon .socialbox_extra5 a{background-color:#5ba445;}
-.social_icon .socialbox_email6 a,.social_icon .socialbox_phone6 a,.social_icon .socialbox_fax6 a,.social_icon .socialbox_addr6 a,.social_icon .socialbox_extra6 a{background-color:#e25d4c;}
-.social_icon .socialbox_email7 a,.social_icon .socialbox_phone7 a,.social_icon .socialbox_fax7 a,.social_icon .socialbox_addr7 a,.social_icon .socialbox_extra7 a{background-color:#f2923b;}
-.social_icon .socialbox_rss	a			{background-color:#F36F24;} /* http://www.mozilla.org/en-US/foundation/feed-icon-guidelines/ */
-.social_icon .socialbox_facebook a		{background-color:#3B579D;} /* https://www.facebookbrand.com/ */
-.social_icon .socialbox_twitter a		{background-color:#55ACEE;} /* https://about.twitter.com/press/brand-assets */
-.social_icon .socialbox_linkedin a		{background-color:#007BB6;} /* http://press.linkedin.com/logo-images */
-.social_icon .socialbox_etsy a			{background-color:#D15600;} /* http://www.etsy.com/help/article/481 */
-.social_icon .socialbox_youtube a		{background-color:#eee;} /* https://www.youtube.com/yt/brand/using-logo.html */
-.social_icon .socialbox_googleplus a	{background-color:#dd4b39;} /* https://developers.google.com/+/branding-guidelines */
-.social_icon .socialbox_instagram a		{background-color:#555;} /* http://help.instagram.com/304689166306603 */
-.social_icon .socialbox_pinterest a		{background-color:#555;} /* http://business.pinterest.com/brand-guidelines/ */
-.social_icon .socialbox_flickr a		{background-color:#eee;} /* https://www.flickr.com/about/goodies/ */
-.social_icon .socialbox_vimeo a			{background-color:#1AB7EA;} /* http://vimeo.com/about/brand_guidelines */
+/* 27Feb14 */
+.socialbox, .socialbox li {margin:0;padding:0;} ul.socialbox li {display:inline-block;list-style:none;}
+.social_icon li {width:32px; height:32px; margin:2px;overflow:hidden;}
+.social_icon a {border-radius: 5px;display:inline-block; background: none no-repeat scroll center center #DAE1E4; width:100%; height:100%;}
+.social_icon a img, .social_svg a img, .social_svg a svg { height: auto; margin: 6px; width: 20px; }
+.social_svg path, .social_svg rect, .social_svg circle, .social_svg polygon, .social_svg text {fill:#fff;}
+.social_icon .socialbox_email1 a, .social_icon .socialbox_phone1 a, .social_icon .socialbox_fax1 a, .social_icon .socialbox_addr1 a{background-color:#dae1e4;}
+.social_icon .socialbox_email2 a, .social_icon .socialbox_phone2 a, .social_icon .socialbox_fax2 a, .social_icon .socialbox_addr2 a{background-color:#cae1f1;}
+.social_icon .socialbox_email3 a, .social_icon .socialbox_phone3 a, .social_icon .socialbox_fax3 a, .social_icon .socialbox_addr3 a{background-color:#4292cb;}
+.social_icon .socialbox_email4 a, .social_icon .socialbox_phone4 a, .social_icon .socialbox_fax4 a, .social_icon .socialbox_addr4 a{background-color:#f8e396;}
+.social_icon .socialbox_email5 a, .social_icon .socialbox_phone5 a, .social_icon .socialbox_fax5 a, .social_icon .socialbox_addr5 a{background-color:#5ba445;}
+.social_icon .socialbox_email6 a, .social_icon .socialbox_phone6 a, .social_icon .socialbox_fax6 a, .social_icon .socialbox_addr6 a{background-color:#e25d4c;}
+.social_icon .socialbox_email7 a, .social_icon .socialbox_phone7 a, .social_icon .socialbox_fax7 a, .social_icon .socialbox_addr7 a{background-color:#f2923b;}
+.social_icon .socialbox_rss a {background-color:#F36F24;} /* http://www.mozilla.org/en-US/foundation/feed-icon-guidelines/ */
+.social_icon .socialbox_facebook a {background-color:#3B579D;} /* https://www.facebookbrand.com/ */
+.social_icon .socialbox_twitter a {background-color:#55ACEE;} /* https://about.twitter.com/press/brand-assets */
+.social_icon .socialbox_linkedin a {background-color:#007BB6;} /* http://press.linkedin.com/logo-images */
+.social_icon .socialbox_etsy a {background-color:#D15600;} /* http://www.etsy.com/help/article/481 */
+.social_icon .socialbox_youtube a {background-color:#cd201f;} #youtube-lozenge path {fill: #fff;}
+.social_icon .socialbox_googleplus a {background-color:#dd4b39;} /* https://developers.google.com/+/branding-guidelines */
+.social_icon .socialbox_instagram a {background-color:#555;} /* http://help.instagram.com/304689166306603 */
+.social_icon .socialbox_pinterest a {background-color:#CB2027;} #pinterest-p {fill:#fff;}/* http://business.pinterest.com/brand-guidelines/ */
+.social_icon .socialbox_flickr a {background-color:#eee;} #flickr_pink {fill:#FF0084;} #flickr_blue {fill:#0063DC;} /* https://www.flickr.com/about/goodies/ */
+.social_icon .socialbox_vimeo a {background-color:#1AB7EA;} /* http://vimeo.com/about/brand_guidelines */
