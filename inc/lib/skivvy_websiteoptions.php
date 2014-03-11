@@ -6,15 +6,17 @@
 **
 */
 
-		static $version = '26Feb13';
+		static $version = '27Feb13';
 
 		function __construct() {
 				add_action( 'admin_init', 'skivvy_websiteoptions::theme_options_init');
 				add_action( 'admin_menu', 'skivvy_websiteoptions::theme_options_add_page'); 
 				add_action('wp_before_admin_bar_render', 'skivvy_websiteoptions::theme_options_admin_bar', 0); // Adds Menu item under site name
+				add_action( 'wp_enqueue_scripts', 'skivvy_websiteoptions::socialbox_styles' ); // enqueues front-end style
+				add_action( 'admin_enqueue_scripts', 'skivvy_websiteoptions::socialbox_styles' ); // enqueues admin style
 				add_shortcode( 'socialbox', 'skivvy_websiteoptions::socialbox_shortcode');
 				global $list_o_social;
-					if (!isset( $list_o_social ))	$list_o_social = array( 'RSS', 'Etsy', 'Facebook', 'Flickr', 'Google Plus', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube', 'Extra 1', 'Extra 2', 'Extra 3', 'Extra 4', 'Extra 5', 'Extra 6', 'Extra 7' );
+					if (!isset( $list_o_social ))	$list_o_social = array( 'RSS', 'Etsy', 'Facebook', 'Flickr', 'Google Plus', 'Instagram', 'LinkedIn', 'Pinterest', 'Twitter', 'Vimeo', 'Youtube' );
 				global $icon_location;
 					if (!isset( $icon_location ))	$icon_location = get_bloginfo('template_url').'/img/social/';
 		}
@@ -33,6 +35,13 @@
 				'website_options', // menu slug
 				'skivvy_websiteoptions::render_website_options'
 			);
+		}
+
+	// Register 'socialbox.css'
+		public function socialbox_styles() {
+			global $version;
+			wp_register_style( 'socialbox_style', get_bloginfo('template_url').'/css/socialbox.css', false, $version );
+			wp_enqueue_style( 'socialbox_style' );
 		}
 
 	// Add menu item to admin bar
@@ -64,6 +73,8 @@
 
 
 
+
+
 /*
 **
 **		Render Website Options Page
@@ -73,11 +84,39 @@ function render_website_options() {
 
 				global $select_options;
 				global $list_o_social;
-				global $icon_location;
 				global $version;
 				$options = get_option( 'clientcms_options' );
 
-
+				echo('
+					<style>/* Website options */
+						.skivvy-optionsupdate h3 {
+							background: none repeat scroll 0 0 #008000;
+							border-radius: 5px;
+							color: #FFFFFF;
+							padding: 5px;
+							text-align: center;
+							width: 250px;
+						}
+						.skivvy-optionrow {
+							line-height: 42px;
+						}
+						.skivvy-optionrow span {
+							display: block;
+							float: left;
+						}
+						.skivvy-optionrow .name {
+							display: inline-block;
+							width: 80px;
+						}
+						.skivvy-weboptions-admin-fields input {
+							text-align: center;
+							border-radius: 5px;
+							padding: 0px;
+						}
+						.skivvy-option-addr .input input {
+							width: 600px;
+					}
+					</style>');
 
 				echo '<div class="wrap skivvy-websiteoptions">';
 					screen_icon();
@@ -131,7 +170,8 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-phone skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" name="clientcms_options['. $option_value['add_value'] .']"'. $checked .'></span>'.
-											'<span class="icon"><img src="' . $icon_location .'phone.png" ></span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='png']").'</span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='svg']").'</span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
 											'<span class="input"><input id="clientcms_options['.  $option_value['slug_value'] .']" type="text" name="clientcms_options['.  $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr( $options[ $option_value['slug_value'] ] ).'" ></span>'.
 										'<div class="clear"></div></div>'
@@ -150,7 +190,8 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-fax skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['. $option_value['add_value'] .']" type="checkbox" value="1" name="clientcms_options['. $option_value['add_value'] .']"'. $checked .'></span>'.
-											'<span class="icon"><img src="' . $icon_location . 'fax.png" ></span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='png']").'</span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='svg']").'</span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
 											'<span class="input"><input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" placeholder="1 222 333 4444" value="'.esc_attr( $options[ $option_value['slug_value'] ] ).'" ></span>'.
 										'<div class="clear"></div></div>'
@@ -169,7 +210,8 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-email skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['. $option_value['slug_value'] .']" type="checkbox" value="1" ' . $checked . ' name="clientcms_options['. $option_value['add_value'] .']"></span>'.
-											'<span class="icon"><img src="' . $icon_location . 'email.png" ></span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='png']").'</span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='svg']").'</span>'.
 											'<span class="name">'. $option_value['display'] . '</span>'.
 											'<span class="input"><input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" value="' . esc_attr( $options[ $option_value['slug_value'] ] ) . '" ></span>'.
 										'<div class="clear"></div></div>'
@@ -188,7 +230,8 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-option-addr skivvy-contact-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options[' . $option_value['add_value'] . ']" type="checkbox" value="1" ' . $checked . ' name="clientcms_options[' . $option_value['add_value'] . ']"></span>'.
-											'<span class="icon"><img src="' . $icon_location . 'addr.png"></span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='png']").'</span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='svg']").'</span>'.
 											'<span class="name">'. $option_value['display'] .'</span>'.
 											'<span class="input">'. 
 												'<input id="clientcms_options['. $option_value['slug_value'] .']" type="text" name="clientcms_options['. $option_value['slug_value'] .']" value="' . esc_attr( $options[$option_value['slug_value']] ) . '" >'.
@@ -224,7 +267,8 @@ function render_website_options() {
 									echo (
 										'<div class="skivvy-optionrow skivvy-optionsocial skivvy-social-'. $option_value['slug'] .'">'.
 											'<span class="add"><input id="clientcms_options['.$option_value['add_value'].']" type="checkbox" value="1" '.$checked.' name="clientcms_options['.$option_value['add_value'].']"></span>'.
-											'<span class="icon"><img src="' . $icon_location . $option_value['slug'] . '.png" /></span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='png']").'</span>'.
+											'<span class="icon">'.do_shortcode("[socialbox key='{$option_value['slug']}' style='svg']").'</span>'.
 											'<span class="name">'.$option_value['display'].'</span>'.
 											'<span class="input"><input id="clientcms_options['.$option_value['slug_value'].']" type="text" size="50" name="clientcms_options['.$option_value['slug_value'].']" value="'. esc_attr( $options[$option_value['slug_value']] ) .'" '. $readonly. '>'.$message.'</span>'.
 										'<div class="clear"></div></div>'
@@ -310,7 +354,7 @@ function socialbox_shortcode( $atts ){
 		if ( $options["number_of_email"]   ) { $total_email = $options["number_of_email"]; } else { $total_email = 2; }
 		if ( $options["number_of_address"] ) { $total_addr = $options["number_of_address"]; } else { $total_addr = 2; }
 
-	// Social Image Location
+	// Icon Location
 		global $icon_location;
 
 	// Create Option array
@@ -337,144 +381,155 @@ function socialbox_shortcode( $atts ){
 	**		RENDER SOCIALBOX
 	**
 	*/
-			// RENDER - Socialbox - open
-				switch ($style) {
-					case 'link' : $style_class = 'social_link'; break;
-					case 'text' : $style_class = 'social_text'; break;
-					case 'svg' : $style_class = 'social_svg'; break;
-					case 'png' : $style_class = 'social_icon'; break;
-				}
-				$socialbox_open = '<ul class="socialbox ' . $class . ' ' . $style_class . '">';
+		// RENDER each Item
+		$item_number = 1;
+		foreach( $option_output as $option_item ) :
+			// Item Variables
+				$item_slug = $option_item['slug'];
+				$item_type = $option_item['option_type']; // phone, fax, addr, email, or social
+				$item_value = $options_object[ $option_item['slug_value'] ];
+				$item_display = $option_item['display']; 
+				$item_href = '#';
+				$item_title_alt = $formatted = $item_middle = $item_display;
+
+				if ( !empty($key) OR $item_value AND $options_object[$option_item['add_value']] ) :
 
 
-
-
-			// RENDER - Socialbox - Items
-				foreach( $option_output as $option_item ) {
-					// Item Variables
-						$item_slug = $option_item['slug'];
-						$item_type = $option_item['option_type']; // phone, fax, addr, email, or social
-						$item_value = $options_object[ $option_item['slug_value'] ];
-						$item_display = $option_item['display']; 
-
-					 // These values are temporary. But, if is selected by Key, and no value is to replace it, it will produce the value.
-						$item_href = '#';
-						$item_title_alt = $item_middle = $item_display;
-
-						if ( !empty($key) OR $item_value AND $options_object[$option_item['add_value']] ) :
-
-										if ( $delimiter == '') $delimiter = null;
-
-										// PHONE & FAX
-											if ( $item_value && $item_type == 'phone' || $item_type == 'fax' ) :
-													
-													$phone = explode(" ", $item_value);
-													if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
-													elseif ($delimiter)	: $formatted = $phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
-													else				: $formatted = '('.$phone[1].') '.$phone[2].'-'.$phone[3];
-													endif;
-
-													if ( $item_type == 'fax') {
-														$item_href ='fax:+';
-														$item_title_alt ='Facsimile - ';
-													} else {
-														$item_href = 'tel:+';
-														$item_title_alt = "Telephone - ";
-													};
-													$item_href .= $phone[0].$phone[1].$phone[2].$phone[3];
-													$item_title_alt .= "{$formatted}";
-													$item_middle = $formatted;
+							// ------ PHONE & FAX ------ //
+								if ( $item_value && $item_type == 'phone' || $item_type == 'fax' ) :
+											$phone = explode(" ", $item_value);
+											if     ($custom)	: $formatted = str_replace(array('$a','$b','$c','$d'), $phone, $custom );
+											elseif ($delimiter)	: $formatted = $phone[0].$delimiter.$phone[1].$delimiter.$phone[2].$delimiter.$phone[3];
+											else				: $formatted = $phone[0].' ('.$phone[1].') '.$phone[2].'-'.$phone[3];
 											endif;
-										// End PHONE & FAX
+											if ( $item_type == 'fax') {
+												$item_href ='fax:+';
+												$item_title_alt ='Facsimile - ';
+											} else {
+												$item_href = 'tel:+';
+												$item_title_alt = "Telephone - ";
+											};
+											$item_href .= $phone[0].$phone[1].$phone[2].$phone[3];
+											$item_title_alt .= "{$formatted}";
+								endif; // End PHONE & FAX
 
 
-										// ADDRESSES
-											if ( $item_value && $item_type == 'addr' ) :
 
-													$address = explode(",", $item_value);
-													$str = $formatted = '';
+							// ------ ADDRESSES ------ //
+								if ( $item_value && $item_type == 'addr' ) :
+											$address = explode(",", $item_value);
+											$str = $formatted = '';
+											foreach ($address as $addr){
+												$str .= $addr;
+											}
+										// Custom Format
+											if ($custom) {
+													$formatted = str_replace(array('$a','$b','$c','$d','$e','$f','$g','$h'), $address, $custom );
+										// Delimited format
+											} elseif ($delimiter) {
+													$i = 0;
 													foreach ($address as $addr){
-														$str .= $addr;
+																$formatted .= $addr;
+																if ( $i++ !== count($address)-1 )
+																	$formatted .= $delimiter;
 													}
+										// Standard Format
+											} else {
+												$formatted  = $address[0]; // Street
+												$formatted .= '<br>';
+												$formatted .= $address[1]; // City
+												$formatted .= ', ';
+												$formatted .= $address[2]; // State
+												$formatted .= $address[3]; // Zip
+											}
+											$item_href = 'https://maps.google.com/?q='.$str;
+											$item_title_alt = "Map it - {$item_value}";
+								endif; // End ADDRESSES
 
 
-													if ($custom) {
-															$formatted = str_replace(array('$a','$b','$c','$d','$e','$f','$g','$h'), $address, $custom );
-													} elseif ($delimiter) {
-															$i = 0;
-															foreach ($address as $addr){
-																		$formatted .= $addr;
-																		$str .= $addr;
-																		if ( $addr !== count($address) ) {
-																			if ( $delimiter ) $formatted .= $delimiter; else $formatted .= ', ';
-																			$str .= ' ';
-																		}
-															}
+
+							// ------ EMAIL ------ //
+								if ( $item_type == 'email' ) :
+											$item_href = "mailto:{$item_value}";
+											$item_title_alt = "Email - {$item_value}";
+											$formatted = $item_value;
+								endif; // End EMAIL
+
+
+
+							// ------ SOCIAL ------ //
+								if ($item_type == 'social' ) :
+										$item_title_alt = "Follow on {$item_display}";
+										$formatted = $item_display;
+										if ( $item_value )
+												$item_href = "{$item_value}";
+								endif; // End SOCIAL
+
+
+
+						// OUTPUT - Item
+							$item_start = '<a href="'. $item_href .'" target="_blank" title="' . esc_attr($item_title_alt) . '">';
+							$item_end = '</a>';
+							switch ($style) {
+									case 'link':
+												$style_class = 'social_text social_link';
+												$item_middle = $formatted;
+												break;
+									case 'text':
+												$style_class = 'social_text social_txt';
+												$item_middle = $formatted;
+												$item_start = '<span>';
+												$item_end = '</span>';
+												break;
+									case 'svg':
+												$style_class = 'social_icon social_svg';
+
+												// Get SVG icon w/ fallback PNG
+													$slug_svg = $icon_location.$item_slug.'.svg';
+													$type_svg = $icon_location.$item_type.'.svg';
+													$slug_png = $icon_location.$item_slug.'.png';
+													$type_png = $icon_location.$item_type.'.png';
+													if ( file_exists ( $slug_file ) || $item_type === 'social' ) {
+														$output = stream_get_contents(fopen($slug_svg,"r") );
 													} else {
-														$addr_middles  = $address[0]; // Street
-														$addr_middles .= '<br>';
-														$addr_middles .= $address[1]; // City
-														$addr_middles .= ', ';
-														$addr_middles .= $address[2]; // State
-														$addr_middles .= $address[3]; // Zip
+														$output = stream_get_contents(fopen($type_svg,"r") );
 													}
-													$item_href = 'https://maps.google.com/?q='.$str;
-													$item_title_alt = "Map it - {$item_value}";
-													$item_middle = $addr_middles;
-											endif;
-										// End ADDRESSES
+													if (file_exists ( $slug_png ) || $item_type === 'social' ) {
+														$fallback = '<foreignObject><img src="'.$slug_png.'" alt="'.$item_type.'"></foreignObject></svg>';
+													} else {
+														$fallback = '<foreignObject><img src="'.$type_png.'" alt="'.$item_type.'"></foreignObject></svg>';
+													}
+													$item_middle = str_replace( '</svg>', $fallback, $output );
+												break;
+									case 'png':
+												$style_class = 'social_icon social_png';
 
-
-										// EMAIL
-											if ( $item_value && $item_type == 'email' ) :
-													$item_href = "mailto:{$item_value}";
-													$item_title_alt = "Email - {$item_value}";
-													$item_middle = $item_value;
-											endif;
-										// End EMAIL
-
-
-										// SOCIAL
-											if ( $item_value && $item_type == 'social' ) :
-													$item_href = "{$item_value}";
-													
-													$item_title_alt = "Visit - {$item_display}";
-													if ($item_slug == 'rss')
-															$item_title_alt = "Follow - {$item_display}";
-													$item_middle = $item_display;
-											endif;
-										// End SOCIAL
-
-
-
-							// ITEM Wrappers
-
-							if ( $style === 'text' ) {
-									$item_start = '<li class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'"><span>';
-									$item_end = '</span></li>';
-							} else {
-									$item_start = '<li class="socialbox_' . $item_slug . ' socialbox_' . $item_type .'"><a href="'. $item_href .'" target="_blank" title="' . $item_title_alt . '">';
-									$item_end = '</a></li>';
+												// Get PNG icon
+													$slug_png = $icon_location.$item_slug.'.png';
+													$type_png = $icon_location.$item_type.'.png';
+													if (file_exists ( $slug_png ) || $item_type === 'social' ) {
+														$item_middle = '<img src="'.$slug_png.'" alt="'.$item_type.'">';
+													} else {
+														$item_middle = '<img src="'.$type_png.'" alt="'.$item_type.'">';
+													}
+												break;
 							}
-
-
-							// OUTPUT - Item
-							$socialbox_middle .= $item_start_wrap . $item_start . $item_middle . $item_end . $item_end_wrap;
-						endif; } 
-
-
-
-
-
-			// RENDER - Socialbox close
-			$socialbox_close .= '</ul>';
+							$item_start_wrap = '<li class="socialitem_' . $item_number . ' socialbox_' . $item_slug .  ' socialbox_' . $item_type .'">';
+							$item_end_wrap   = '</li>';
+					$socialbox_middle .= $item_start_wrap . $item_start . $item_middle . $item_end . $item_end_wrap;
+					$item_number++;
+				endif;
+		endforeach;
 
 
 
 
 
-	// OUTPUT - Socialbox
-	return $socialbox_open . $socialbox_middle . $socialbox_close;
+	// Socialbox output
+		$socialbox_open   = '<ul class="socialbox ' . $class . ' ' . $style_class . '">';
+		$socialbox_close .= '</ul>';
+
+		return $socialbox_open . $socialbox_middle . $socialbox_close;
 }
 
 
@@ -483,6 +538,43 @@ function socialbox_shortcode( $atts ){
 
 
 
+
+
+/*
+
+
+static function render_socialbox_icon_png() {
+		// Output SVG w/ PNG fallback
+			$slug_svg = $icon_location.$item_slug.'.svg';
+			$type_svg = $icon_location.$item_type.'.svg';
+			$slug_png = $icon_location.$item_slug.'.png';
+			$type_png = $icon_location.$item_type.'.png';
+			if ( file_exists ( $slug_file ) || $item_type === 'social' ) {
+				$output = stream_get_contents(fopen($slug_svg,"r") );
+			} else {
+				$output = stream_get_contents(fopen($type_svg,"r") );
+			}
+			if (file_exists ( $slug_png ) || $item_type === 'social' ) {
+				$fallback = '<foreignObject><img src="'.$slug_png.'" alt="'.$item_type.'"></foreignObject></svg>';
+			} else {
+				$fallback = '<foreignObject><img src="'.$type_png.'" alt="'.$item_type.'"></foreignObject></svg>';
+			}
+			$item_middle = str_replace( '</svg>', $fallback, $output );
+		
+		
+		// Output PNG
+			$slug_png = $icon_location.$item_slug.'.png';
+			$type_png = $icon_location.$item_type.'.png';
+			if (file_exists ( $slug_png ) || $item_type === 'social' ) {
+				$item_middle = '<img src="'.$slug_png.'" alt="'.$item_type.'">';
+			} else {
+				$item_middle = '<img src="'.$type_png.'" alt="'.$item_type.'">';
+			}
+}
+static function render_icon_svg() {
+
+}
+//*/
 
 
 
@@ -507,8 +599,8 @@ static function optionafier( $input ) {
 		$slugged = sanitize_title(str_replace(' ', '', $input));
 
 		if ( preg_match('/phone/', $slugged) ) $option_type = 'phone';
-		if ( preg_match('/fax/', $slugged) ) $option_type = 'fax';
-		if ( preg_match('/addr/', $slugged) ) $option_type = 'addr';
+		if ( preg_match('/fax/'  , $slugged) ) $option_type = 'fax';
+		if ( preg_match('/addr/' , $slugged) ) $option_type = 'addr';
 		if ( preg_match('/email/', $slugged) ) $option_type = 'email';
 		foreach ( $list_o_social as $social ) {
 					if ( strpos( sanitize_title(str_replace(' ', '', $social)), $slugged ) !== false ) {
