@@ -5,7 +5,6 @@
 	background-size:auto auto;
 	width:auto;
 }
-
 /* Dashboard logo */
 #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default #wp-admin-bar-wp-logo .ab-icon {
 	background: url('logo-adminbar.svg') no-repeat scroll 0 6px transparent !important;
@@ -53,7 +52,6 @@
 .home-meta-fieldset label {
     display: block;
 }
-
 /* Settings */
 #admin-settings-warning-box {
 	background: #F00;
@@ -65,44 +63,6 @@
 	padding: 7px;
 	text-align: center;
 	width: 710px;
-}
-.skivvy-optionsupdate h3 {
-    background: none repeat scroll 0 0 #008000;
-    border-radius: 5px;
-    color: #FFFFFF;
-    padding: 5px;
-    text-align: center;
-    width: 250px;
-}
-/* Website options */
-.skivvy-optionrow {
-    line-height: 32px;
-}
-
-.skivvy-optionrow span {
-    display: block;
-    float: left;
-}
-.skivvy-websiteoptions .skivvy-optionrow .icon img {
-    height: auto;
-    max-width: 20px;
-    padding: 1px 5px;
-}
-.skivvy-websiteoptions .skivvy-optionrow .icon img:hover {
-	background: linear-gradient( to top, #373737 0px, #464646 5px) repeat scroll 0 0 #464646
-}
-
-.skivvy-optionrow .name {
-    display: inline-block;
-    width: 80px;
-}
-.skivvy-weboptions-admin-fields input {
-	text-align: center;
-	border-radius: 5px;
-	padding: 0px;
-}
-.skivvy-option-addr .input input {
-    width: 600px;
 }
 /* Post Status */
 .status-publish {}
