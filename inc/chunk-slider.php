@@ -28,15 +28,15 @@
 				'orderby' => 'none'
 			)); while ( $slidequery->have_posts() ) { $slidequery->the_post();
 
-				$image_id = get_post_thumbnail_id();
-				$image_url = wp_get_attachment_image_src($image_id,'full', true);
+				$image_url = wp_get_attachment_image_src(get_post_thumbnail_id(),'full', true);
+				// Background image code. if undesired, Hash out $background_image
+					$background_image = 'background-image:url(\'' . $image_url[0] . '\');';
 
 				// SLIDE 
-					echo '<div class="cycle-slide slide-' . get_the_ID() . '" style="position:absolute;' . 'background-image:url(\'' . $image_url[0] . '\');'. '">';
-						# echo '<h1>' . get_the_title() . '</h1>';
+					echo '<div class="cycle-slide slide-' . get_the_ID() . '" style="position:absolute;' . $background_image . '">';
+						# the_title('<h1>', '</h1>');
 						# the_content();
 					echo '</div>';
-
 
 
 			} wp_reset_postdata(); 

@@ -4,9 +4,9 @@ Author:			D4 Advanced Media
 Author URI:		http://www.d4webdesign.com/
 Theme URI:		https://github.com/atelierabbey/Skivvy
 Description:	Almost naked theme.
-Version:		26Feb14
+Version:		7Mar14
+License:		The GNU General Public License (GPL-2.0)
 */
-@import url("css/socialbox.css");
 html {
 	background-color:#fff;
 	font: 14px/16px Verdana, Geneva, Tahoma, sans-serif;

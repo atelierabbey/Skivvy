@@ -1,14 +1,14 @@
-# Copyright (C) 2014 Atelier Abbey
+# Copyright (C) 2013 the WordPress team
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Skivvy 24Jan14\n"
-"Report-Msgid-Bugs-To: https://github.com/atelierabbey/Skivvy/issues\n"
-"POT-Creation-Date: 2014-01-24 14:24:00+00:00\n"
+"Project-Id-Version: Twenty Fourteen 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/twentyfourteen\n"
+"POT-Creation-Date: 2013-07-28 22:14:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
