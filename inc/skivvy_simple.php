@@ -1,4 +1,4 @@
-<?php #18Feb14
+<?php #11Apr14
 
 
 
@@ -158,8 +158,17 @@ function skivvy_wp_title( $title, $separator ) {
 
 
 
-
-
+/*
+**
+**		Remove XML-RPC function by default to remove DDOS Ping attacks
+**		Read more - http://labs.sucuri.net/?is-my-wordpress-ddosing
+**
+*/
+add_filter( 'xmlrpc_methods', 'remove_xmlrpc_pingback_ping' );
+function remove_xmlrpc_pingback_ping( $methods ) {
+	unset( $methods['pingback.ping'] );
+	return $methods;
+} ;
 
 
 
