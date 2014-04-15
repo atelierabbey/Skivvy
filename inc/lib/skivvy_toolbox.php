@@ -32,6 +32,10 @@ function get_the_thumbnail_caption() {
 
 
 
+
+
+
+
 /*
  *
  *		SHORTCODES
