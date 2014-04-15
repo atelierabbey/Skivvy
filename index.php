@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
 <section class="page-content"><?php
 
 
@@ -24,14 +23,5 @@
 
 
 ?></section>
-
-<aside class="sidebar"><?php
-
-		// The Sidebar
-		get_sidebar();
-
-
-?></aside>
-
-
+<?php get_sidebar();?>
 <?php get_footer(); ?>
