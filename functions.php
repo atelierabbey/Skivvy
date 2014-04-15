@@ -19,6 +19,5 @@ include 'inc/skivvy_register.php';
 // Theme tools
 #	include 'inc/lib/skivvy_toolbox.php';
 #	include 'inc/lib/skivvy_toolbox-styles.php';
-#	include 'inc/lib/mod_browserdetect.php';
 
 ?>
