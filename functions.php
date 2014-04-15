@@ -11,20 +11,14 @@ function skivvy_setup() {
 	#	add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
 	#	$lang_location = get_template_directory_uri() . '/inc'; load_theme_textdomain( 'skivvy', $lang_location ); $locale_file = $lang_location . '/' . get_locale() . '.php'; if ( is_readable( $locale_file )){ require_once( $locale_file );}
 }
-add_action( 'after_setup_theme', 'skivvy_setup' ); 
+add_action( 'after_setup_theme', 'skivvy_setup' );
 include 'inc/skivvy_simple.php';
 include 'inc/skivvy_branding.php';
 include 'inc/skivvy_register.php';
 
-
-
-
-// Library - It's not nice to write in things from the library.
-#	include 'inc/lib/skivvy_websiteoptions.php'; new skivvy_websiteoptions;
-#	include 'inc/lib/skivvy_home_meta.php'; $list_o_meta = array('Bucket 1','Bucket 2','Bucket 3','Bucket 4'); new skivvy_home_meta ;
+// Theme tools
 #	include 'inc/lib/skivvy_toolbox.php';
-#	include 'inc/lib/skivvy_toolbox-styles.php'; 
-#	include 'inc/lib/skivvy_toolbox-posttypes.php';
-#	include 'inc/lib/mod_buckets.php';
+#	include 'inc/lib/skivvy_toolbox-styles.php';
 #	include 'inc/lib/mod_browserdetect.php';
+
 ?>
