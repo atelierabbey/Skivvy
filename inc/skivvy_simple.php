@@ -1,4 +1,4 @@
-<?php #18Feb14
+<?php #11Apr14
 
 
 
@@ -149,15 +149,26 @@ function skivvy_wp_title( $title, $separator ) {
 		remove_action('wp_head', 'index_rel_link');
 		remove_action('wp_head', 'wlwmanifest_link');
 		remove_action('wp_head', 'feed_links_extra', 3);
-		remove_action('wp_head', 'start_post_rel_link', 10, 0);
-		remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
-		remove_action('wp_head', 'parent_post_rel_link', 10, 0);
+		#	remove_action('wp_head', 'start_post_rel_link', 10, 0);
+		#	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
+		#	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
+		#	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+		#	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 
 
 
 
-
-
+/*
+**
+**		Remove XML-RPC function by default to remove DDOS Ping attacks
+**		Read more - http://labs.sucuri.net/?is-my-wordpress-ddosing
+**
+*/
+add_filter( 'xmlrpc_methods', 'remove_xmlrpc_pingback_ping' );
+function remove_xmlrpc_pingback_ping( $methods ) {
+	unset( $methods['pingback.ping'] );
+	return $methods;
+} ;
 
 
 
