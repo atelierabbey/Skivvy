@@ -19,7 +19,7 @@
 
 
 	// Anti-collapse Space.
-		echo "&nbsp;"
+		echo "&nbsp;";
 
 
 ?></section>
