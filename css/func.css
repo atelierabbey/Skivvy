@@ -62,13 +62,13 @@ ul li ul li {list-style: circle;}
 .alignleft { float:left }
 .alignright { float:right }
 .wp-caption { border:1px solid #666; text-align:center; background:#ccc; padding:10px; margin:10px }
-.gallery {margin: 0 auto;width: 800px;}
+.gallery {margin: 0 auto;width:auto;}
 .gallery-item img {float: left;margin: 5px;}
 
 /* ----------- HELPERS ----------- */
 br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 /* http://sonspring.com/journal/clearing-floats */
-.clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0;}
+.clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0;float:none;}
 /* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
 .clearfix:before,.clearfix:after,.container_12:before,.container_12:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}
 .clearfix:after,.container_12:after {clear: both;}
@@ -76,11 +76,11 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 .preloader {margin-left:-9999px;position:absolute;}
 .redalert{color:#fff;background-color:red;}
 .screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+.hide,.hidden{display:none;}
 ul.nobull { padding:0; }
 ul.nobull > li { list-style:none; }
 
-
-/* ----------- Nav - up to 3-tier drop down ----------- */
+/* ----------- 3-Tier Nav - Default ----------- */
 /* Tier 1 */
 .access ul {position: relative;display:inline-table;list-style:none;margin:0;padding:0;}
 .access ul:after {content:"";clear:both;display:block;}
@@ -93,18 +93,8 @@ ul.nobull > li { list-style:none; }
 /* Tier 3 */
 .access ul ul ul {position: absolute; left: 100%; top:0;margin:0;padding:0;}
 /* ----------- 3-Tier Nav - Animated ----------- */
-.animated ul li > ul {
-	display:block;
-	position:absolute;
-	visibility:hidden;
-	z-index:1;
-	opacity:0;
-	transition: opacity 0.2s ease-in-out 0s;
-}
-.animated ul li:hover > ul {
-	visibility:visible;
-	opacity: 1;
-}
+.animated ul li > ul {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.2s ease-in-out 0s;}
+.animated ul li:hover > ul {visibility:visible;opacity: 1;}
 
 /* ----------- 960 Grid System ~ Core CSS. Learn more ~ http://960.gs/  Licensed under GPL and MIT. ----------- */
 /* `Container */.container_12 { margin-left: auto; margin-right: auto; width: 960px;}

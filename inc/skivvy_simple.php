@@ -1,6 +1,44 @@
-<?php #11Apr14
+<?php #22Apr14
 
 
+
+/*
+**
+**		Skivvy Auto-Options
+**
+*/
+function skivvy_autooptions() {
+	$the_theme_status = get_option( 'theme_setup_status' );
+	if ( $the_theme_status !== '1' ) {
+		// Setup Default WordPress settings
+		$core_settings = array(
+			'show_avatars' => false,
+			'avatar_default' => 'mystery',
+			'avatar_rating' => 'G',
+			'default_role' => 'editor',
+			'comments_per_page' => 20,
+			'uploads_use_yearmonth_folders' => false,
+		);
+		foreach ( $core_settings as $k => $v ) {update_option( $k, $v );}
+
+		// Delete dummy post, page and comment.
+		wp_delete_post( 1, true );
+		wp_delete_post( 2, true );
+		wp_delete_comment( 1 );
+
+		update_option( 'theme_setup_status', '1' );
+		$msg = '<div class="error"><p>The '.get_option( 'current_theme' ).' theme has changed your WordPress default <a href="' . admin_url( 'options-general.php' ) . '" title="See Settings">settings</a> and deleted default posts & comments.</p></div>';
+		add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
+	}
+	// Else if we are re-activing the theme
+	elseif ( $the_theme_status === '1' and isset( $_GET['activated'] ) ) {
+		$msg = '
+		<div class="updated">
+			<p>The ' . get_option( 'current_theme' ) . ' theme was successfully re-activated.</p>
+		</div>';
+		add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
+	}
+} 
 
 
 
@@ -143,17 +181,17 @@ function skivvy_wp_title( $title, $separator ) {
 **		WP_HEAD() - Cleanup
 **
 */ 
-		remove_action('wp_head', 'rsd_link');
-		remove_action('wp_head', 'wp_generator');
-		remove_action('wp_head', 'feed_links', 2);
-		remove_action('wp_head', 'index_rel_link');
-		remove_action('wp_head', 'wlwmanifest_link');
-		remove_action('wp_head', 'feed_links_extra', 3);
+			remove_action('wp_head', 'rsd_link');
+			remove_action('wp_head', 'wp_generator');
+		#	remove_action('wp_head', 'feed_links', 2);
+			remove_action('wp_head', 'index_rel_link');
+			remove_action('wp_head', 'wlwmanifest_link');
+			remove_action('wp_head', 'feed_links_extra', 3);
 		#	remove_action('wp_head', 'start_post_rel_link', 10, 0);
 		#	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 		#	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
-		#	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-		#	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
+		#	remove_action('wp_head', 'wp_shortlink_wp_head');
+		#	remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
 
 
 
@@ -180,9 +218,11 @@ function remove_xmlrpc_pingback_ping( $methods ) {
 **		Removes "Private" & "Protected" from titles
 **
 */
-	add_filter( 'private_title_format',   'remove_the_title_stuff' );
-	add_filter( 'protected_title_format', 'remove_the_title_stuff' );
-	function remove_the_title_stuff( $title ) { return '%s'; }
+add_filter( 'private_title_format',   'remove_the_title_stuff' );
+add_filter( 'protected_title_format', 'remove_the_title_stuff' );
+function remove_the_title_stuff( $title ) {
+	return '%s';
+}
 
 
 
@@ -196,8 +236,10 @@ function remove_xmlrpc_pingback_ping( $methods ) {
 **		@ Stolen from twentyten
 **
 */
-	add_filter( 'gallery_style', 'skivvy_remove_gallery_css' );
-	function skivvy_remove_gallery_css( $css ) { return preg_replace( "#<style type='text/css'>(.*?)</style>#s", '', $css ); }
+add_filter( 'gallery_style', 'skivvy_remove_gallery_css' );
+function skivvy_remove_gallery_css( $css ) {
+	return preg_replace( "#<style type='text/css'>(.*?)</style>#s", '', $css );
+}
 
 
 
@@ -247,7 +289,10 @@ add_filter('transient_update_plugins', 'update_active_plugins');
 **		Add All Settings link for great access to DB
 **
 */
-function all_settings_link() {add_options_page(__('All Settings'), __('All Settings'), 'administrator', 'options.php');} add_action('admin_menu', 'all_settings_link');
+function all_settings_link() {
+	add_options_page(__('All Settings'), __('All Settings'), 'administrator', 'options.php');
+}
+add_action('admin_menu', 'all_settings_link');
 
 
 
@@ -303,16 +348,18 @@ function hide_profile_fields( $contactmethods ) {
 **		Move the Author Metabox to Publish Metabox
 **
 */
-	add_action( 'admin_menu', 'remove_author_metabox' );
-	add_action( 'post_submitbox_misc_actions', 'move_author_to_publish_metabox' );
-	function remove_author_metabox() { remove_meta_box( 'authordiv', 'post', 'normal' ); }
-	function move_author_to_publish_metabox() {
+add_action( 'admin_menu', 'remove_author_metabox' );
+add_action( 'post_submitbox_misc_actions', 'move_author_to_publish_metabox' );
+function remove_author_metabox() {
+	remove_meta_box( 'authordiv', 'post', 'normal' );
+}
+function move_author_to_publish_metabox() {
 		global $post_ID;
 		$post = get_post( $post_ID );
 		echo '<div id="author" class="misc-pub-section" style="border-top-style:solid; border-top-width:1px; border-top-color:#EEEEEE; border-bottom-width:0px;">Author: ';
 		post_author_meta_box( $post );
 		echo '</div>';
-	}
+}
 
 
 
@@ -325,7 +372,7 @@ function hide_profile_fields( $contactmethods ) {
 **		ADMIN BAR - Cleanup
 **
 */
-	function skivvy_admin_bar() {
+function skivvy_admin_bar() {
 		global $wp_admin_bar;
 
 			// Wp-Logo
@@ -384,7 +431,8 @@ function hide_profile_fields( $contactmethods ) {
 		//		'meta' => false // array of any of the following options: array( 'html' => '', 'class' => '', 'onclick' => '', target => '', title => '' );
 		//	));
 
-	} add_action('wp_before_admin_bar_render', 'skivvy_admin_bar', 0);
+}
+add_action('wp_before_admin_bar_render', 'skivvy_admin_bar', 0);
 
 
 
