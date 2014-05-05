@@ -34,7 +34,7 @@ register_nav_menus( array(
 /*
 function skivvy_register_sidebars() {
 	register_sidebar( array(
-		'name' => 'Sidebar 1',
+		'name' => __( 'Sidebar name', 'skivvy' ),
 		'id' => 'primary-widget-area',
 		'description' => 'The primary widget area',
 		'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
