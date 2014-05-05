@@ -2,7 +2,7 @@
 
 	include 'inc/skivvy_register.php'; // Registry for theme specific posttypes, taxonomy, menus, widget areas, scripts, styles, etc.
 	include 'inc/skivvy_simple.php'; // Various areas of clean up code, admin area, and various other functions of unneeded defaults
-	include 'inc/skivvy_branding.php'; // Custom developer branding
+	include 'inc/admin/skivvy_branding.php'; // Custom developer branding
 #	include 'inc/lib/skivvy_toolbox.php'; // Various shortcodes and functions available for use throughout theme. 
 #	include 'inc/lib/skivvy_toolbox-styles.php'; // Various functions that allow for additional CSS styling options
 
