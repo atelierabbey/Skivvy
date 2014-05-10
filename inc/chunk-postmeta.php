@@ -1,4 +1,4 @@
-<?php
+<div class="post-meta"><?php
 
 
 	// POST AUTHOR
@@ -68,4 +68,4 @@
 		}
 
 
-endif; ?>
+endif; ?></div>

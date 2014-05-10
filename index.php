@@ -1,37 +1,18 @@
 <?php get_header(); ?>
+<section class="content">
+	<section class="page-content"><?php
 
-<section class="page-content"><?php
+		if ( is_front_page() ) get_template_part( 'inc/chunk' , 'slider' ); // Slider
 
+		get_template_part( 'inc/chunk' , 'title' ); // The Title
 
-	// Slider
-		if ( is_front_page() ) get_template_part( 'inc/chunk' , 'slider' );
+		get_template_part( 'inc/chunk' , 'content' ); // The Content
 
+		get_template_part( 'inc/chunk' , 'pagination' ); // Pagination
 
-	// Post Meta for Singles
-		if ( is_single() ) {
-			echo '<div class="page-meta">';
-				get_template_part( 'inc/chunk' , 'postmeta' );
-			echo '</div>';
-		}
+		echo "&nbsp;"; // Anti-collapse Space.
 
-
-	// The Content
-		get_template_part( 'inc/chunk' , 'content'  );
-
-
-	// Anti-collapse Space.
-		echo "&nbsp;"
-
-
-?></section>
-
-<aside class="sidebar"><?php
-
-		// The Sidebar
-		get_sidebar();
-
-
-?></aside>
-
-
+	?></section>
+	<?php // get_sidebar();?>
+</section>
 <?php get_footer(); ?>
