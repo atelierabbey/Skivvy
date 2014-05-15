@@ -1,4 +1,6 @@
-	<footer><?php
+<footer>
+	<div class="page-wrapper">
+		<?php
 			if ( is_active_sidebar( 'first-footer-widget-area'  ) ) : ?><ul class="nobull footsidebar-1"><?php dynamic_sidebar( 'first-footer-widget-area' ); ?></ul><?php endif;
 			if ( is_active_sidebar( 'second-footer-widget-area' ) ) : ?><ul class="nobull footsidebar-2"><?php dynamic_sidebar( 'second-footer-widget-area' ); ?></ul><?php endif;
 			if ( is_active_sidebar( 'third-footer-widget-area'  ) ) : ?><ul class="nobull footsidebar-3"><?php dynamic_sidebar( 'third-footer-widget-area' ); ?></ul><?php endif;
@@ -18,8 +20,8 @@
 			_e( '<a href="http://www.d4webdesign.com/" title="Reno Web Design" target="_blank">Web Design</a> by D4', 'skivvy' ) ;
 
 		?></div>
-	</footer>
-</div>
+	</div>
+</footer>
 <?php 
 
 	// includes Analytics.php code

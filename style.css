@@ -55,9 +55,12 @@ footer {}
 
 /* CONTENT */
 .page-wrapper {
-	width:980px;
+	width:90%;
+	min-width:320px;
+	max-width:1400px;
 	margin: 0 auto;
-	padding: 0 0 0 0;
+	padding: 20px;
+	position:relative;
 }
 .page-title
 .content {}
@@ -85,3 +88,4 @@ footer {}
 #per-slide-template {font-size:24px;}
 #per-slide-template span { cursor:pointer; color:#000; }
 #per-slide-template span.cycle-pager-active { color:#333 }
+

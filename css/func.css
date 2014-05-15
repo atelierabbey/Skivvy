@@ -1,4 +1,4 @@
-/* 26Feb14 */
+/* 15May14 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -57,13 +57,6 @@ ul li {list-style: disc;}
 ul li ul li {list-style: circle;}
 @media print {* {background: transparent !important;color: #000 !important; /* Black prints faster: h5bp.com/s */box-shadow: none !important;text-shadow: none !important;}a,a:visited {text-decoration: underline;}a[href]:after {content: " (" attr(href) ")";}abbr[title]:after {content: " (" attr(title) ")";}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after {content: "";}pre,blockquote {border: 1px solid #999;page-break-inside: avoid;}thead {display: table-header-group; /* h5bp.com/t */}tr,img {page-break-inside: avoid;}img {max-width: 100% !important;}@page {margin: 0.5cm;}p,h2,h3 {orphans: 3;widows: 3;}h2,h3 {page-break-after: avoid;}}
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}/* Force Firefox to show image placeholders */
-/* ----------- WORDPRESS DEFAULTS ----------- */
-.aligncenter { display:block; margin:0 auto }
-.alignleft { float:left }
-.alignright { float:right }
-.wp-caption { border:1px solid #666; text-align:center; background:#ccc; padding:10px; margin:10px }
-.gallery {margin: 0 auto;width:auto;}
-.gallery-item img {float: left;margin: 5px;}
 
 /* ----------- HELPERS ----------- */
 br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
@@ -79,6 +72,24 @@ br.clear { clear:both; display:block; height:1px; margin:-1px 0 0 0 }
 .hide,.hidden{display:none;}
 ul.nobull { padding:0; }
 ul.nobull > li { list-style:none; }
+ul.nobull > li > ul > li { list-style:disc; }
+ul.nobull > li > ul > li li { list-style:circle; }
+.textleft {text-align:left;}
+.textright {text-align:right;}
+.textcenter {text-align:center;}
+.textjustify {text-align:justify;}
+.onehalf {width:50%;}
+.onethird {width:33%;}
+.twothird {width:66%;}
+.onefourth {width:25%;}
+.threefourth {width:75%;}
+.alignleft, .responsive-left{float:left;}
+.alignright, .responsive-right{float:right;}
+.aligncenter {display:block; margin:0 auto;}
+.wp-caption {border:1px solid #666; text-align:center; background:#ccc; padding:10px; margin:10px;}
+.gallery {margin: 0 auto;width:auto;}
+.gallery-item img {float: left;margin: 5px;}
+
 
 /* ----------- 3-Tier Nav - Default ----------- */
 /* Tier 1 */

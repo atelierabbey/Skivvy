@@ -31,8 +31,8 @@
 wp_head(); ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
 <div class="preloader"></div>
-<div class="page-wrapper">
-	<header>
+<header>
+	<div class="page-wrapper">
 		<div class="logo"><?php
 
 			// LOGO
@@ -66,5 +66,6 @@ wp_head(); ?></head>
 				));
 
 		?></nav>
-	</header>
-	<div class="clear"></div>
+		<div class="clear"></div>
+	</div>
+</header>
