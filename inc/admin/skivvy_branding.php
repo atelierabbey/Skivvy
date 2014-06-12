@@ -84,7 +84,7 @@ function html_classes( $class = array() ) {
 	// Admin Head hook
 		function skivvy_admin_head(){
 			// Shortcut Icon - Favicon
-				echo '<link rel="shortcut icon" type="image/png" href="' . get_template_directory_uri() . '/img/favicon.png?v=1">';
+				echo '<link rel="shortcut icon" type="image/png" href="' . get_template_directory_uri() . '/img/favicon.png?v='. time() . '">';
 		}
 		add_action('admin_head', 'skivvy_admin_head');
 
