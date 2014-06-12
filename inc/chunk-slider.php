@@ -9,9 +9,10 @@
 			echo ( 
 				'<div '.
 					' class="cycle-slideshow"'. // Initializing class, default for cycle2
-					' data-cycle-pager="#per-slide-template"'. // Connects to #per-slide-template box below
+				#	' data-cycle-pager="#per-slide-template"'. // Connects to #per-slide-template box below
 					' data-cycle-slides=".cycle-slide"'. // identifies the class identifier for slides
 					' data-pause-on-hover="true"'. // Pause on hover
+					' data-timeout="4000"'. // The time between slide transitions in milliseconds.
 					' style="position:relative;"'.
 				'>'
 			);
