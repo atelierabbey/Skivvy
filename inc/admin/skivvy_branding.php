@@ -67,30 +67,38 @@ function html_classes( $class = array() ) {
  *
  */
 
+	// Admin Styles & Scripts
+		function skivvy_admin_script_style() {
+	
+			// Styles
+			wp_register_style( 'skivvy_admin_style', get_template_directory_uri().'/inc/admin/admin.css', false, skinfo('Version'), 'screen' );
+			wp_enqueue_style( 'skivvy_admin_style' );
+			// Scripts
+			wp_register_script( 'skivvy_admin_script', get_template_directory_uri().'/inc/admin/admin.js', false, skinfo('Version'), true );
+			wp_enqueue_script( 'skivvy_admin_script' );
+	
+		}
+		add_action( 'admin_enqueue_scripts', 'skivvy_admin_script_style' );
+		add_action( 'login_enqueue_scripts', 'skivvy_admin_script_style' );
+	
+	// Admin Head hook
+	function skivvy_admin_head(){
+		// Shortcut Icon - Favicon
+			echo '<link rel="shortcut icon" type="image/png" href="' . get_template_directory_uri() . '/img/favicon.png?v=1">';
+	}
+	add_action('admin_head', 'skivvy_admin_head');
 
+	// 
 	function skivvy_footer_admin() {
 		echo 'CMS by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Design by <a href="'.skinfo("AuthorURI").'" target="_blank">'.skinfo('Author').'</a>';
 	}
-		add_filter('admin_footer_text', 'skivvy_footer_admin');
+	add_filter('admin_footer_text', 'skivvy_footer_admin');
 
 	function skivvy_footer_version(){
 		echo '<small>CMS: ' .get_bloginfo( 'version', 'display' ) .' | Theme: '. skinfo('Version').'</small>';
 	}
-		add_filter( 'update_footer', 'skivvy_footer_version', 11 );
+	add_filter( 'update_footer', 'skivvy_footer_version', 11 );
 
-	// Admin Styles & Scripts
-	function skivvy_admin_script_style() {
-
-		// Styles
-		wp_register_style( 'skivvy_admin_style', get_template_directory_uri().'/inc/admin/admin.css', false, skinfo('Version'), 'screen' );
-		wp_enqueue_style( 'skivvy_admin_style' );
-		// Scripts
-		wp_register_script( 'skivvy_admin_script', get_template_directory_uri().'/inc/admin/admin.js', false, skinfo('Version'), true );
-		wp_enqueue_script( 'skivvy_admin_script' );
-
-	}
-	add_action( 'admin_enqueue_scripts', 'skivvy_admin_script_style' );
-	add_action( 'login_enqueue_scripts', 'skivvy_admin_script_style' );
 
 
 	// Redirect Login Log link to Homepage
