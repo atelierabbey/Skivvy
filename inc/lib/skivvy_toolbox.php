@@ -53,9 +53,9 @@ function get_the_thumbnail_caption() {
 		'three_fourth', 'three_fourth_last',
 	);
 	foreach( $tags as $tag ) {
-		add_shortcode( $tag, 'shortcode_skivv_div' );
+		add_shortcode( $tag, 'shortcode_skiv_div' );
 	}
-	function shortcode_skivv_div( $atts, $content = null, $tag) {
+	function shortcode_skiv_div( $atts, $content = null, $tag) {
 			extract( shortcode_atts( array(
 				'style' => '',
 				'class' => ''

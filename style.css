@@ -65,7 +65,8 @@ footer {}
 .page-title
 .content {}
 .page-content {}
-
+.one_half, .one_third, .two_third, .one_fourth, .three_fourth {float:left;}
+.skivdiv-content {margin: 2px; padding:5px;}
 /* BLOG */
 .post-content {}
 .post-title {}

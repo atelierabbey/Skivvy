@@ -78,11 +78,11 @@ ul.nobull > li > ul > li li { list-style:circle; }
 .textright {text-align:right;}
 .textcenter {text-align:center;}
 .textjustify {text-align:justify;}
-.onehalf {width:50%;}
-.onethird {width:33%;}
-.twothird {width:66%;}
-.onefourth {width:25%;}
-.threefourth {width:75%;}
+.one_half {width:50%;}
+.one_third {width:33%;}
+.two_third {width:66%;}
+.one_fourth {width:25%;}
+.three_fourth {width:75%;}
 .alignleft, .responsive-left{float:left;}
 .alignright, .responsive-right{float:right;}
 .aligncenter {display:block; margin:0 auto;}
@@ -106,4 +106,3 @@ ul.nobull > li > ul > li li { list-style:circle; }
 /* ----------- 3-Tier Nav - Animated ----------- */
 .animated ul li > ul {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.2s ease-in-out 0s;}
 .animated ul li:hover > ul {visibility:visible;opacity: 1;}
-
