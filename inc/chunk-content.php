@@ -48,20 +48,25 @@ if ( have_posts() ) :
 				/// Post Loops
 				echo '<article class="post-content ' . $class_count . '">';
 
+						// Post Thumbnail
+							if ( has_post_thumbnail() ) {
+								the_post_thumbnail();
+							}
+
 						// Post Title
-						echo '<h3 class="post-title">'.
-								'<a href="' . get_permalink() . '" title="' . __( 'View - ' , 'skivvy' ) . the_title_attribute( 'echo=0' ) . '" rel="bookmark">'.
-									get_the_title() .
-								'</a>'.
-							 '</h3>';
+							echo '<h3 class="post-title">'.
+									'<a href="' . get_permalink() . '" title="' . __( 'View - ' , 'skivvy' ) . the_title_attribute( 'echo=0' ) . '" rel="bookmark">'.
+										get_the_title() .
+									'</a>'.
+								 '</h3>';
 
 						// Post Meta
 							get_template_part( 'inc/chunk' , 'postmeta' );
 
 						// Post excerpt
-						echo '<div class="post-snippet">'.
-								get_the_excerpt().
-							 '</div>';
+							echo '<div class="post-snippet">'.
+									get_the_excerpt().
+								 '</div>';
 
 				echo '</article>';
 
