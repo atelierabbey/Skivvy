@@ -88,6 +88,11 @@ function get_the_thumbnail_caption() {
 			return $output;
 	}
 
+// Use: [clearall]
+	function shortcode_clearall() {
+		return '<div class="clear"></div>';
+	} add_shortcode( 'clearall', 'shortcode_clearall' );
+
 //// Use: [bloginfo key='name']
 	function shortcode_bloginfo( $atts ) {
 		extract(shortcode_atts(array(
