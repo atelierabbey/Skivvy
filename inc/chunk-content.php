@@ -38,15 +38,23 @@ if ( have_posts() ) :
 				the_post(); 
 
 				// Post Counter classes
-				$class_count = 'post-' . $i;
-				if ( $i == 1 ) $class_count .= ' first';
-				if ( $i % 2 == 0 ) : $class_count =  ' even';
-				else : $class_count = ' odd';
-				endif;
+					$class_count = 'post-' . $i;
+					if ( $i == 1 ) $class_count .= ' first';
+					if ( $i % 2 == 0 ) : $class_count =  ' even';
+					else : $class_count = ' odd';
+					endif;
+
+				// Post Category Class
+					$categories = get_the_category();
+					$cats_slugs = ' ';
+					foreach($categories as $category) {
+						$cats_slugs .= $category->slug;
+						$cats_slugs .= ' ';
+					}
 
 
 				/// Post Loops
-				echo '<article class="post-content ' . $class_count . '">';
+				echo '<article class="post-content ' . $class_count . $cats_slugs . ' postid-'.get_the_ID().'">';
 
 						// Post Thumbnail
 							if ( has_post_thumbnail() ) {
