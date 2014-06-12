@@ -36,7 +36,7 @@
 	// Category, tag, and taxonomy
 	if ( is_category() || is_tag() || is_tax() ) :
 			term_description();
-
+	/*
 	// Search
 	elseif ( is_search() ) :
 		// Or if search, show Result Search Count
@@ -45,7 +45,7 @@
 			$count = $allsearch->post_count;
 			printf( __( '<h2>Showing %1$s  results for: %2$s</h2>', 'skivvy' ), $count , $key );
 			wp_reset_query(); 
-
+	//*/
 	// Author
 	elseif ( is_author() || get_the_author_meta( 'description' ) ) : 
 		the_author_meta( 'description' );

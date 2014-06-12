@@ -21,8 +21,17 @@ if ( have_posts() ) :
 	// If Everything else
 		else :
 
+			// Or if search, show Result Search Count
+				if ( is_search() ) {
+						$allsearch = &new WP_Query("s=$s&showposts=-1");
+						$key = wp_specialchars($s, 1);
+						$count = $allsearch->post_count;
+						printf( __( '<div class="search-meta">Showing %1$s results for: %2$s</div>', 'skivvy' ), $count , $key );
+						wp_reset_query(); 
+				}
+
 			// post counter
-			$i = 1;
+				$i = 1;
 
 			while ( have_posts() ) :
 
