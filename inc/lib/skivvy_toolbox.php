@@ -1,4 +1,4 @@
-<?php #21Feb14
+<?php #12Jun14
 /*
  *		-------------------------------------------------------
  *		FUNCTIONS
@@ -7,13 +7,13 @@
 
 //// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
 function the_snippet($length=55,$readmore='Read More') {
-  global $post;
-  $text = $post->post_content;
-  $text = strip_shortcodes( $text );
-  $text = apply_filters('the_content', $text);
-  $text = str_replace(']]>', ']]&gt;', $text);
-  $more_link = '... <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
-  echo wp_trim_words($text,$length,$more_link); 
+	global $post;
+	$text = $post->post_content;
+	$text = strip_shortcodes( $text );
+	$text = apply_filters('the_content', $text);
+	$text = str_replace(']]>', ']]&gt;', $text);
+	$more_link = '... <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+	echo wp_trim_words($text,$length,$more_link); 
 } 
 
 // ---- get_the_thumbnail_caption() ---- //// Returns the caption for attached featured image featured image
@@ -43,22 +43,58 @@ function get_the_thumbnail_caption() {
  *		SHORTCODES
  *		-------------------------------------------------------
  */
-//// ---- Use: [bloginfo key='name']
+
+//// Use: [skivdiv key="" class="$class" style="$style"]
+	$tags = array(
+		'one_half', 'one_half_last',
+		'one_third', 'one_third_last',
+		'two_third', 'two_third_last',
+		'one_fourth', 'one_fourth_last',
+		'three_fourth', 'three_fourth_last',
+	);
+	foreach( $tags as $tag ) {
+		add_shortcode( $tag, 'shortcode_skivv_div' );
+	}
+	function shortcode_skivv_div( $atts, $content = null, $tag) {
+			extract( shortcode_atts( array(
+				'style' => '',
+				'class' => ''
+			), $atts ) );
+
+			// $style
+				if ( !empty($style) ) {
+					$style = ' style="'.$style.';"';
+				}
+			// $class
+				if ( $class != '' ) {
+					$class = ' ' . $class;
+				}
+			// $last
+				$last = '';
+				if ( strpos( $tag, '_last' ) !== false ) {
+					$tag = str_replace( '_last', ' last', $tag);
+					$last = true;
+				}
+
+			// Output
+				$output  =	'<div class="' . $tag . $class  . '" '. $style . '>';
+				$output .=		'<div class="skivdiv-content">';
+				$output .=			do_shortcode($content);
+				$output .=		'</div>';
+				$output .=	'</div>';
+				if ( $last === true ) {
+					$output .= '<div class="clear"></div>';
+				}
+			return $output;
+	}
+
+//// Use: [bloginfo key='name']
 	function shortcode_bloginfo( $atts ) {
-	   extract(shortcode_atts(array(
-		   'key' => '',
-	   ), $atts));
-	   return get_bloginfo( $key );
+		extract(shortcode_atts(array(
+			'key' => '',
+		), $atts));
+		return get_bloginfo( $key );
 	} add_shortcode( 'bloginfo', 'shortcode_bloginfo' );
-
-//<img src='[randimg src="/wp-content/themes/Skivvy/img/social"]'> 
-	function shortcode_randomimage( $atts ) {
-		extract( shortcode_atts( array(
-			'src' => get_template_directory_uri().'/img/random'
-		), $atts ) );
-		return "/wp-content/themes/Skivvy/inc/module_randimg.php?src=$src";
-	} add_shortcode( 'randimg', 'shortcode_randomimage' );
-
 
 /// Use [lorem words="55"]
 function shortcode_loremipsum ( $atts ) {

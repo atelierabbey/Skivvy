@@ -5,17 +5,17 @@
 
 //// ---- Add the top level parent page to the body class ---- ////
 function parent_body_class($classes) {
-    global $wpdb, $post;
-    if (is_page()) {
-        if ($post->post_parent) {
-            $parent  = end(get_post_ancestors($current_page_id));
-        } else {
-            $parent = $post->ID;
-        }
-        $post_data = get_post($parent, ARRAY_A);
-        $classes[] = 'section-' . $post_data['post_name'];
-    }
-    return $classes;
+	global $wpdb, $post;
+	if (is_page()) {
+		if ($post->post_parent) {
+			$parent  = end(get_post_ancestors($current_page_id));
+		} else {
+			$parent = $post->ID;
+		}
+		$post_data = get_post($parent, ARRAY_A);
+		$classes[] = 'section-' . $post_data['post_name'];
+	}
+	return $classes;
 } add_filter('body_class','parent_body_class');
 
 
@@ -26,8 +26,7 @@ function parent_body_class($classes) {
 function rss_post_thumbnail($content) {
 	global $post;
 	if(has_post_thumbnail($post->ID)) {
-		$content = '<p>' . get_the_post_thumbnail($post->ID) .
-		'</p>' . get_the_content();
+		$content = '<p>' . get_the_post_thumbnail($post->ID) .'</p>' . get_the_content();
 	}
 	return $content;
 }
