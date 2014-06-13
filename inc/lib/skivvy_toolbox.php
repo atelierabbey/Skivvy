@@ -46,6 +46,7 @@ function get_the_thumbnail_caption() {
 
 //// Use: [skivdiv key="" class="$class" style="$style"]
 	$tags = array(
+		'one_full',
 		'one_half', 'one_half_last',
 		'one_third', 'one_third_last',
 		'two_third', 'two_third_last',
@@ -80,6 +81,7 @@ function get_the_thumbnail_caption() {
 				$output  =	'<div class="' . $tag . $class  . '" '. $style . '>';
 				$output .=		'<div class="skivdiv-content">';
 				$output .=			do_shortcode($content);
+				$output .=		'<div class="clear"></div>';
 				$output .=		'</div>';
 				$output .=	'</div>';
 				if ( $last === true ) {
