@@ -81,7 +81,9 @@ footer {}
 .cycle-slide {}
 .cycle-slide-active {}
 
-.cycle-pagerelement {}
+.cycle-pagerelement {
+	cursor:pointer;
+}
 .cycle-next {}
 .cycle-pause {}
 .cycle-prev {}
