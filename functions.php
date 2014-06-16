@@ -3,9 +3,9 @@
 	include 'inc/skivvy_register.php'; // Registry for theme specific posttypes, taxonomy, menus, widget areas, scripts, styles, etc.
 	include 'inc/skivvy_simple.php'; // Various areas of clean up code, admin area, and various other functions of unneeded defaults
 	include 'inc/admin/skivvy_branding.php'; // Custom developer branding
-	include 'inc/lib/skivvy_func_user.php'; // Usable Functions 
-	include 'inc/lib/skivvy_func_auto.php'; // Auto Functions 
 	include 'inc/lib/skivvy_shortcodes.php'; // Shortcodes
+	include 'inc/lib/skivvy_func_user.php'; // Usable Functions 
+#	include 'inc/lib/skivvy_func_auto.php'; // Auto Functions 
 
 // Added wp-upload MIME types  - https://www.sitepoint.com/web-foundations/mime-types-complete-list/
 function skivvy_add_custom_mime_types($mimes){
