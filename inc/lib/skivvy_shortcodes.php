@@ -20,6 +20,7 @@
 			extract( shortcode_atts( array(
 				'style' => '',
 				'class' => '',
+				'title' => ''
 			), $atts ) );
 
 			// $style
@@ -36,9 +37,22 @@
 					$tag = str_replace( '_last', ' last', $tag);
 					$last = true;
 				}
+			// $title
+				$newtitle = '';
+				$titleclass = '';
+				if ( $title != '' ) {
+					$titleclass = ' ' . sanitize_title( $title );
+					if ( $tag == 'one_full' ) {
+						$newtitle = '<h2>' . $title . '</h2>';
+					} else {
+						$newtitle = '<h3>' . $title . '</h3>';
+					}
+				}
+
 
 			// Output
-				$output  =	'<div class="' . $tag . $class  . '" '. $style . '>';
+				$output  =	'<div class="' . $tag . $class . $titleclass . '" '. $style . '>';
+				$output .=	$newtitle;
 				$output .=		'<div class="skivdiv-content">';
 				$output .=			do_shortcode($content);
 				$output .=		'<div class="clear"></div>';
