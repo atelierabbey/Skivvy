@@ -4,7 +4,15 @@
  *		SHORTCODES
  *		-------------------------------------------------------
  */
-//// Use: [skivdiv key="" class="$class" style="$style" title="$title"]
+ 
+/*
+** 		SHORTCODE - SKIVDIV
+**		Use: [$tag 
+**				class="$class"		// Any CSS class(es)
+**				style="$style"		// any inline CSS 
+**				title="$title"		// Renders either H2 (one full) or H3 (on all else) just before the "div.skivdiv-content" & addes a sanitized CSS class to the overall wrapper
+**		]
+*/
 	$tags = array(
 		'one_full',
 		'one_half', 'one_half_last',
@@ -55,7 +63,7 @@
 				$output .=	$newtitle;
 				$output .=		'<div class="skivdiv-content">';
 				$output .=			do_shortcode($content);
-				$output .=		'<div class="clear"></div>';
+				$output .=			'<div class="clear"></div>';
 				$output .=		'</div>';
 				$output .=	'</div>';
 				if ( $last === true ) {
