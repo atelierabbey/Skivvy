@@ -5,20 +5,31 @@
  *		-------------------------------------------------------
  */
 
-//// ---- Add the top level parent page to the body class ---- ////
-function parent_body_class($classes) {
-	global $wpdb, $post;
-	if (is_page()) {
-		if ($post->post_parent) {
-			$parent  = end(get_post_ancestors($current_page_id));
-		} else {
-			$parent = $post->ID;
+// Skivvy Body Classes
+	function skivvy_body_classes($classes) {
+		global $wpdb, $post;
+
+		if (is_page()) {
+
+			// Parent Page Post class -- Add the top level parent page to the body class 
+				if ($post->post_parent) {
+					$parent  = end(get_post_ancestors($current_page_id));
+				} else {
+					$parent = $post->ID;
+				}
+				$post_data = get_post($parent, ARRAY_A);
+				$classes[] = 'section-' . $post_data['post_name'];
+
+			// .subpage page class
+				if ( ! is_front_page() ) {
+					$classes[] = 'subpage';
+				}
+
 		}
-		$post_data = get_post($parent, ARRAY_A);
-		$classes[] = 'section-' . $post_data['post_name'];
-	}
-	return $classes;
-} add_filter('body_class','parent_body_class');
+		return $classes;
+
+	} add_filter('body_class','skivvy_body_classes');
+
 
 
 
