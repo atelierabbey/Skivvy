@@ -8,8 +8,8 @@
 /*
 ** 		SHORTCODE - SKIVDIV
 **		Use: [$tag 
-**				class="$class"		// Any CSS class(es)
-**				style="$style"		// any inline CSS 
+**				class="$class"		// Any CSS class(es). Space seperate.
+**				style="$style"		// any inline CSS. Add as normal in the " style='' " attribute.
 **				title="$title"		// Renders either H2 (one full) or H3 (on all else) just before the "div.skivdiv-content" & addes a sanitized CSS class to the overall wrapper
 **		]
 */

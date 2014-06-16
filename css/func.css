@@ -1,4 +1,4 @@
-/* 15May14 */
+/* 16Jun14 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -74,9 +74,9 @@ ul.nobull { padding:0; }
 ul.nobull > li { list-style:none; }
 ul.nobull > li > ul > li { list-style:disc; }
 ul.nobull > li > ul > li li { list-style:circle; }
-.textleft {text-align:left;}
-.textright {text-align:right;}
-.textcenter {text-align:center;}
+.textleft, .titleleft h2, .titleleft h3 {text-align:left;}
+.textright, .titleright h2, .titleright h3 {text-align:right;}
+.textcenter, .titlecenter h2, .titlecenter h3 {text-align:center;}
 .textjustify {text-align:justify;}
 .one_half {width:50%;}
 .one_third {width:33%;}
