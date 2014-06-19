@@ -9,6 +9,7 @@
 
 			// Title Generator
 					if ( is_home()       ) : echo get_the_title( get_option( 'page_for_posts' ) );
+				elseif ( is_post_type_archive() ) : post_type_archive_title();
 				elseif ( is_day()        ) : printf( __( 'Day: %s', 'skivvy' ), get_the_date() );
 				elseif ( is_month()      ) : printf( __( 'Month: %s', 'skivvy' ), get_the_date( 'F Y' ) );
 				elseif ( is_year()       ) : printf( __( 'Year: %s', 'skivvy' ), get_the_date( 'Y' ) );
