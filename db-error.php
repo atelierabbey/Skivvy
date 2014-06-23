@@ -9,7 +9,7 @@
 	// Text copy
 	$sitetitle = 'Database connection error';
 	$h1tag = 'Database error';
-	$ptag = "Hello, We\'re sorry but the site is having some trouble at the moment. We are doing our best to bring everything back online,<br />Bookmark us and come back later. We apologize for the inconvience.";
+	$ptag = "Hello, We're sorry but the site is having some trouble at the moment. We are doing our best to bring everything back online,<br />Bookmark us and come back later. We apologize for the inconvience.";
 
 	// Styling
 	$bodystyling = "background:#ddd; text-align:center; padding-top:20px;";
