@@ -1,9 +1,8 @@
 Less is More.
 Consistent Structure
-Built in plugins over wp-plugins
-Only one deep rabbit holing
+Reduce rabbit holing
 Clear and ordered function files
-Less automation and queries
+Less automation and queries for straight echoes
 Fully flexible
 Minimilist core
 
