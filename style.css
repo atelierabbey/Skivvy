@@ -4,7 +4,7 @@ Author:			Atelier Abbey
 Author URI:		http://www.atelierabbey.org/
 Theme URI:		https://github.com/atelierabbey/Skivvy
 Description:	Almost naked theme.
-Version:		12Jun14
+Version:		24Jun14
 License:		The GNU General Public License (GPL-2.0)
 */
 html {
@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
 	margin: 0 0 1em;
 }
-a, a:link, a:visited {
+a, a:link, a:visited, a[href^=tel], a[href^=tel]:link, a[href^=tel]:visited, a[href^=tel]:active, a[href^=tel]:hover {
 	color:#0000EE;
 } 
 a:hover {
