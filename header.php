@@ -1,9 +1,12 @@
-<!DOCTYPE html><html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>"><head><?php
-	// Meta data
-		echo '<meta charset="utf-8">';
-		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';
-		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">';
-		echo '<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">';
+<!DOCTYPE html><html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>"><head><meta charset="utf-8"><?php
+
+
+
+		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';// Meta description, important for SEO. Defaults to blog's description. 
+
+
+		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">'; // Sets default width and scale to be dependent on the device. 
+		echo '<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">';	// Force IE to render most recent engine for installed browser. And enable Chrome Frame
 		echo '<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'; // Don't autodetect phonenumbers and create links in iphone safari & blackberry
 
 	// Site Title
