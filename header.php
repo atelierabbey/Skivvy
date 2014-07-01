@@ -10,7 +10,7 @@
 		echo '<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'; // Don't autodetect phonenumbers and create links in iphone safari & blackberry
 
 	// Site Title
-		echo '<title>' . wp_title( '|', FALSE, 'right' ) . '</title>';
+		echo '<title>' . wp_title( '-', FALSE, 'right' ) . '</title>';
 
 	// Shortcut Icon - Favicon
 		echo '<link rel="shortcut icon" type="image/png" href="' . get_stylesheet_directory_uri() . '/img/favicon.png?v=1">';

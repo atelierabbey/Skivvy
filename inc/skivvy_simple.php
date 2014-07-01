@@ -142,7 +142,7 @@ function skivvy_wp_title( $title, $separator ) {
 	if (is_404() ) { $title = "404 Not Found $separator "; }
 	$filtered_title = $title . get_bloginfo( 'name', 'display' );
 	$filtered_title .= ( ! empty( $description ) && ( is_home() || is_front_page() || is_404() ) ) ? " $separator $description" : '';
-	$filtered_title .= ( 2 <= $paged || 2 <= $page ) ? ' | ' . sprintf( __( 'Page %s' ), max( $paged, $page ) ) : '';
+	$filtered_title .= ( 2 <= $paged || 2 <= $page ) ? ' - ' . sprintf( __( 'Page %s' ), max( $paged, $page ) ) : '';
 	return $filtered_title;
 
 } add_filter( 'wp_title', 'skivvy_wp_title', 10, 2 );
