@@ -7,9 +7,9 @@ Description:	Almost naked theme.
 Version:		3Jul14
 License:		The GNU General Public License (GPL-2.0)
 */
-html {background-color:#fff;font: 14px/16px Verdana, Geneva, Tahoma, sans-serif;}
+html {background-color:#fff;color:#000;font-size:14px; line-height:16px;font-family: Verdana, Geneva, Tahoma, sans-serif;}
 body {position:relative;}
-h1, h2, h3, h4, h5, h6 {font-family: Verdana, Geneva, Tahoma, sans-serif;}
+h1, h2, h3, h4, h5, h6 {}
 p {margin: 0 0 1em;}
 a, a:link, a:visited, a[href^=tel], a[href^=tel]:link, a[href^=tel]:visited, a[href^=tel]:active, a[href^=tel]:hover {color:#0000EE;} 
 a:hover {color:#EE00EE;}
