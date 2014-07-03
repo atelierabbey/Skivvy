@@ -25,6 +25,10 @@
 		'two_third', 'two_third_last',
 		'one_fourth', 'one_fourth_last',
 		'three_fourth', 'three_fourth_last',
+		'one_fifth', 'one_fifth_last',
+		'two_fifth', 'two_fifth_last',
+		'three_fifth', 'three_fifth_last',
+		'four_fifth', 'four_fifth_last',
 	);
 	foreach( $tags as $tag ) {
 		add_shortcode( $tag, 'shortcode_skiv_div' );

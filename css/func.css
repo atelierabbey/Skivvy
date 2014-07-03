@@ -20,7 +20,6 @@ q {quotes: none;}
 q:before,q:after {content: '';content: none;}
 abbr[title] {border-bottom: 1px dotted;}
 b, strong {font-weight: bold;}
-blockquote {margin: 1em 40px;}
 dfn, i, em {font-style: italic;}
 mark { background: #ff0; color: #000;}
 pre {white-space: pre;white-space: pre-wrap;word-wrap: break-word;}
@@ -82,6 +81,10 @@ ul.nobull > li > ul > li li { list-style:circle; }
 .two_third {width:66%;}
 .one_fourth {width:25%;}
 .three_fourth {width:75%;}
+.one_fifth {width:20%;}
+.two_fifth {width:40%;}
+.three_fifth {width:60%;}
+.four_fifth {width:80%;}
 .alignleft, .responsive-left{float:left;}
 .alignright, .responsive-right{float:right;}
 .aligncenter {display:block; margin:0 auto;}
