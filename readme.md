@@ -25,11 +25,13 @@ Use:
 - param - Comma seperated string in order of parameters. CANNOT PASS AN ARRAY! 
 - echoes - If the function echoes content, $echoes should equal '1', else default = '0'. Shortcodes must return a value.
 
+
 #### Raw
 This is not technically a shortcode, it utilizes filters on all content pages. It removes the wp_texturizer and wp_autop for use with code.
 ````
 [raw]Non-formatted by Wordpress[/raw]
 ````
+
 
 ##### Lorem ipsum - in inc/lib/skivvy_toolbox.php
 ````
