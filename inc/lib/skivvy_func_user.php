@@ -20,7 +20,7 @@ function the_snippet($length=55,$readmore='Read More') {
 function get_the_thumbnail_caption() {
 	global $post;
 
-	$thumbnail_id	= get_post_thumbnail_id($post->ID);
+	$thumbnail_id    = get_post_thumbnail_id($post->ID);
 	$thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
 
 	if ($thumbnail_image && isset($thumbnail_image[0])) {
