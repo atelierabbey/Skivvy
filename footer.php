@@ -7,6 +7,7 @@
 			if ( is_active_sidebar( 'third-footer-widget-area'  ) ) : ?><ul class="nobull footsidebar-3 one_fourth"><?php dynamic_sidebar( 'third-footer-widget-area' ); ?></ul><?php endif;
 			if ( is_active_sidebar( 'fourth-footer-widget-area' ) ) : ?><ul class="nobull footsidebar-4 one_fourth last"><?php dynamic_sidebar( 'fourth-footer-widget-area' ); ?></ul><?php endif;
 		?>
+			<div class="clear"></div>
 		</div>
 		<div class="footer-copyright"><?php
 	
