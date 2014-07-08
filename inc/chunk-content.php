@@ -120,4 +120,4 @@ else :
 	}
 	echo $output;
 
-endif; ?><div class="clear"></div>
+endif; ?>

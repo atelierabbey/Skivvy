@@ -1,23 +1,25 @@
 <?php
 
 
-	echo '<ul class="post-navigation nobull">';
+	echo '<ul class="post-navigation nobull clearfix">';
 
 
-			$prev_start = '<li class="post-prev">';
+			$prev_start = '<li class="post-prev alignleft">';
 			$prev_end = '</li>';
-			$next_start = '<li class="post-next">';
+			$next_start = '<li class="post-next alignright">';
 			$next_end = '</li>';
 
 			if ( is_home() || is_day() || is_month() || is_year() || is_tax() || is_category() || is_tag() || is_author() || is_archive() || is_search() ) {
 
 						echo $prev_start;
-							previous_posts_link ( __('Previous' , 'skivvy') );
+							previous_posts_link ( __('Previous Page' , 'skivvy') );
 						echo $prev_end;
 
 						echo $next_start;
-							next_posts_link ( __('Next' , 'skivvy') );
+							next_posts_link ( __('Next Page' , 'skivvy') );
 						echo $next_end;
+
+						# posts_nav_link(' | ','&larr; Previous Page','Next Page &rarr;');
 
 			} elseif ( is_attachment() ) {
 
@@ -41,6 +43,6 @@
 
 			}
 
-	echo '<div class="clear"></div></ul>';
+	echo '</ul>';
 
 ?>
