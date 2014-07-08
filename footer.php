@@ -1,11 +1,13 @@
 <footer>
 	<div class="page-wrapper">
+		<div class="footer-content">
 		<?php
-			if ( is_active_sidebar( 'first-footer-widget-area'  ) ) : ?><ul class="nobull footsidebar-1"><?php dynamic_sidebar( 'first-footer-widget-area' ); ?></ul><?php endif;
-			if ( is_active_sidebar( 'second-footer-widget-area' ) ) : ?><ul class="nobull footsidebar-2"><?php dynamic_sidebar( 'second-footer-widget-area' ); ?></ul><?php endif;
-			if ( is_active_sidebar( 'third-footer-widget-area'  ) ) : ?><ul class="nobull footsidebar-3"><?php dynamic_sidebar( 'third-footer-widget-area' ); ?></ul><?php endif;
-			if ( is_active_sidebar( 'fourth-footer-widget-area' ) ) : ?><ul class="nobull footsidebar-4"><?php dynamic_sidebar( 'fourth-footer-widget-area' ); ?></ul><?php endif;
+			if ( is_active_sidebar( 'first-footer-widget-area'  ) ) : ?><ul class="nobull footsidebar-1 one_fourth"><?php dynamic_sidebar( 'first-footer-widget-area' ); ?></ul><?php endif;
+			if ( is_active_sidebar( 'second-footer-widget-area' ) ) : ?><ul class="nobull footsidebar-2 one_fourth"><?php dynamic_sidebar( 'second-footer-widget-area' ); ?></ul><?php endif;
+			if ( is_active_sidebar( 'third-footer-widget-area'  ) ) : ?><ul class="nobull footsidebar-3 one_fourth"><?php dynamic_sidebar( 'third-footer-widget-area' ); ?></ul><?php endif;
+			if ( is_active_sidebar( 'fourth-footer-widget-area' ) ) : ?><ul class="nobull footsidebar-4 one_fourth last"><?php dynamic_sidebar( 'fourth-footer-widget-area' ); ?></ul><?php endif;
 		?>
+		</div>
 		<div class="footer-copyright"><?php
 	
 			// Auto generate year. if 
