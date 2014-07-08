@@ -41,7 +41,7 @@ wp_head(); ?></head>
 			// LOGO
 				echo 
 				'<a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
-					'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="Logo">' .
+					'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
 				'</a>';
 
 
