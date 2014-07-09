@@ -153,6 +153,14 @@ Default classes to Wordpress's image alignment. Also helpful for floating left a
 Contains SVG filters that applies to an image or HTML content. There is little browser support for these and should be used on decorative items.
 
 ----
+##### .blurry
+````html
+<img src="whateves.jpg" class="blurry">
+````
+[EXPERIMENTAL] 
+Contains SVG filters that clurs the content, Either image or text. The resource.svg contains the value of the blur as  stdDeviation="1"
+
+----
 
 ## FUNCTIONS
 
