@@ -145,6 +145,13 @@ Default classes to Wordpress's image alignment. Also helpful for floating left a
 
 
 
+##### .greyscale
+````html
+<img src="whateves.jpg" class="greyscale">
+````
+[EXPERIMENTAL] 
+Contains SVG filters that applies to an image or HTML content. There is little browser support for these and should be used on decorative items.
+
 ----
 
 ## FUNCTIONS

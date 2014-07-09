@@ -1,4 +1,4 @@
-/* 7Jul14 */
+/* 8Jul14 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -32,7 +32,7 @@ legend { border: 0; padding: 0;white-space: normal; *margin-left: -7px; }
 button, input,select, textarea {font-size: 100%; margin: 0; vertical-align: baseline; *vertical-align: middle; }
 button, input { line-height: normal;}
 button, select {text-transform: none;}
-button,html input[type="button"], input[type="reset"],input[type="submit"] {-webkit-appearance: button; cursor: pointer; *overflow: visible; }
+button,html input[type="button"], input[type="reset"],input[type="submit"] {-webkit-appearance: button; cursor: pointer; *overflow: visible; border:0; }
 button[disabled], html input[disabled] {cursor: default;}
 input[type="checkbox"],input[type="radio"] {box-sizing: border-box; padding: 0; *height: 13px; *width: 13px; }
 input[type="search"] {-webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box;}
@@ -50,6 +50,7 @@ h3 {font-size:1.2em;margin: 0 0 1em;}
 h4 {font-size:1em;margin: 0 0 0.8em;}
 h5 {font-size:.8em;margin: 0 0 0.67em;}
 h6 {font-size:.65em;margin: 0 0 0.33em;}
+a, a:visited, a:focus, a:active, a:hover {color:inherit;}
 p, pre {margin: 0 0 1em;}
 ul li {list-style: disc;}
 ul li ul li {list-style: circle;}
@@ -58,8 +59,8 @@ ul li ul li {list-style: circle;}
 
 /* ----------- HELPERS ----------- */
 .clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0;float:none;}
-/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */ .clearfix:before,.clearfix:after,.container_12:before,.container_12:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}.clearfix:after,.container_12:after {clear: both;}.clearfix,.container_12 {*zoom: 1;}
-/* http://css-tricks.com/snippets/css/clear-fix/ */ .group:after {content: "";display: table;clear: both;}
+.clearfix:before,.clearfix:after,.container_12:before,.container_12:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}.clearfix:after,.container_12:after {clear: both;}.clearfix,.container_12 {*zoom: 1;}
+.group:after {content: "";display: table;clear: both;}
 .preloader {margin-left:-9999px;position:absolute;}
 .redalert{color:#fff;background-color:red;}
 .screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
@@ -81,6 +82,7 @@ ul.nobull { padding:0; }ul.nobull > li { list-style:none; }ul.nobull > li > ul >
 .alignleft, .responsive-left{float:left;}
 .alignright, .responsive-right{float:right;}
 .aligncenter {display:block; margin:0 auto;}
+.greyscale {filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-ms-filter: grayscale(100%); -o-filter: grayscale(100%);filter: url(resources.svg#greyscale);filter: gray;-webkit-filter: grayscale(1);}
 .wp-caption {border:1px solid #666; text-align:center; background:#ccc; padding:10px; margin:10px;}
 .gallery {margin: 0 auto;width:auto;}
 .gallery-item img {float: left;margin: 5px;}
