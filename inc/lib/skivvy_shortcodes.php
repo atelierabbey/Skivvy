@@ -1,4 +1,4 @@
-<?php #16Jun14
+<?php #1Sep14
 /*
  *		-------------------------------------------------------
  *		SHORTCODES
@@ -11,11 +11,15 @@
 **				class="$class"		// Any CSS class(es). Space seperate.
 **				style="$style"		// any inline CSS. Add as normal in the " style='' " attribute.
 **				title="$title"		// Renders either H2 (one full) or H3 (on all else) just before the "div.skivdiv-content" & addes a sanitized CSS class to the overall wrapper
+**				before="$before"    // Adds content before open the skiv-div
+**				after="$after"      // Adds content after closing the skiv-div
+**				prepend="$prepend"	// Adds content after opening the skiv-div (before the title's h3/h2)
 **
 **			// Function attributes - Deals with turning the SkivDiv into a functional area.
 **				func="$func"        // name of function to be called, works with $param. i.e. $func($param);
 **				param="$param"      // Comma seperated string in order of parameters. CANNOT PASS AN ARRAY! 
 **				echoes="$echoes"    // If the function echoes content, $echoes should equal '1', else default = '0'. Shortcodes must return a value.
+**				
 **		]
 */
 	$tags = array(
@@ -35,12 +39,15 @@
 	}
 	function shortcode_skiv_div( $atts, $content = null, $tag) {
 			extract( shortcode_atts( array(
-				'style'  => '',
-				'class'  => '',
-				'title'  => '',
-				'func'   => '',
-				'param'  => '',
-				'echoes' => 0
+				'style'   => '',
+				'class'   => '',
+				'title'   => '',
+				'func'    => '',
+				'param'   => '',
+				'prepend' => '',
+				'before'  => '',
+				'after'   => '',
+				'echoes'  => 0
 			), $atts ) );
 
 			// $style
@@ -71,7 +78,7 @@
 
 
 			// RENDERING ------
-				$output  =	'<div class="' . $tag . $class . $titleclass . '" '. $style . '>';
+				$output  =	$prepend . '<div class="' . $tag . $class . $titleclass . '" '. $style . '>';
 					$output .=	$newtitle;
 					if ( $tag == 'one_full' ) $output .= '<div class="page-wrapper">';
 					$output .=		'<div class="skivdiv-content">';
@@ -97,7 +104,6 @@
 				}
 			return $output;
 	}
-
 
 // Use [raw]Non-formatted by Wordpress[/raw]
 	// This is not technically a shortcode, it utilizes filters on all content pages. 
