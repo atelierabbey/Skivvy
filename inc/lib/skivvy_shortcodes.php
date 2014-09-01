@@ -78,7 +78,7 @@
 
 
 			// RENDERING ------
-				$output  =	$prepend . '<div class="' . $tag . $class . $titleclass . '" '. $style . '>';
+				$output  =	 $before . '<div class="' . $tag . $class . $titleclass . '" '. $style . '>' . $prepend;
 					$output .=	$newtitle;
 					if ( $tag == 'one_full' ) $output .= '<div class="page-wrapper">';
 					$output .=		'<div class="skivdiv-content">';
@@ -98,13 +98,12 @@
 					$output .=			'<div class="clear"></div>';
 					$output .=		'</div>';
 					if ( $tag == 'one_full' ) $output .= '</div>';
-					$output .=	'</div>';
+					$output .=	'</div>' . $after;
 				if ( $last === true ) {
 					$output .= '<div class="clear"></div>';
 				}
 			return $output;
 	}
-
 // Use [raw]Non-formatted by Wordpress[/raw]
 	// This is not technically a shortcode, it utilizes filters on all content pages. 
 	function skivvy_raw_formatter($content) {
