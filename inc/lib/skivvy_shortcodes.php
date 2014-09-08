@@ -23,6 +23,7 @@
 **		]
 */
 	$tags = array(
+		'fullwidth',
 		'one_full',
 		'one_half', 'one_half_last',
 		'one_third', 'one_third_last',
