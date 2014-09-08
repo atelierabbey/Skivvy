@@ -36,20 +36,19 @@ wp_head(); ?></head>
 <div class="preloader"></div>
 <header>
 	<div class="page-wrapper">
-		<div class="logo"><?php
+		<?php
 
-			// LOGO
+			// Logo
 				echo 
-				'<a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
-					'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
-				'</a>';
+				'<div class="logo">'.
+					'<a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
+						'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
+					'</a>'.
+				'</div>';
 
-
-		?></div>
-		<nav class="access animated"><?php
-
-			// MAIN NAV MENU
+			// Main Menu
 				wp_nav_menu( array(
+					'items_wrap'      => '<nav class="access animated"><ul>%3$s</ul></nav>',
 					'theme_location'  => 'main',
 					'menu'            => '',
 					'container'       => FALSE,
@@ -63,12 +62,23 @@ wp_head(); ?></head>
 					'after'           => '',
 					'link_before'     => '',
 					'link_after'      => '',
-					'items_wrap'      => '<ul>%3$s</ul>',
 					'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
 					'walker'          => ''
 				));
 
-		?></nav>
+			// Mobile Menu
+				wp_nav_menu( array(
+					'items_wrap'      => '<nav class="mobile-menu"><form><select onchange="if (this.value) window.location.href=this.value">%3$s</select></form></nav>',
+					'theme_location'  => 'mobile',
+					'container'       => FALSE,
+					'echo'            => TRUE,
+					'fallback_cb'     => 'main',
+					'link_before'     => '<option>',
+					'link_after'      => '</option>',
+					'depth'           => -1,
+					'walker'          => new Walker_Nav_Mobile(),
+				));
+		?>
 		<div class="clear"></div>
 	</div>
 </header>

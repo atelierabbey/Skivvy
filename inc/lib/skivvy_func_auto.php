@@ -37,6 +37,7 @@
 
 
 
+
 //// ---- Add featured images to RSS feed ---- ////
 	function rss_post_thumbnail($content) {
 		global $post;

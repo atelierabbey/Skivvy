@@ -17,7 +17,8 @@
 **
 */
 register_nav_menus( array(
-	'main' => __( 'Main Navigation' ),
+	'main' => __( 'Main Menu' ),
+	'mobile' =>  __( 'Mobile Menu' ),
 	'sitemap' => __( 'Site Map' ),
 ) );
 
