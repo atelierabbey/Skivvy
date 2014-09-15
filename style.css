@@ -62,3 +62,31 @@ footer {}
 #per-slide-template span { cursor:pointer; color:#000; }
 #per-slide-template span.cycle-pager-active { color:#333 }
 
+
+/* ----------------- Responsive ------------------- */
+
+/* Netbook and up */
+@media all and (min-width: 1025px) {
+
+}
+
+/* Tablet - Landscape*/
+@media all and (max-width: 1024px) and (min-width: 787px) {
+
+}
+
+/* Tablet - Portrait*/
+@media all and (max-width: 786px) and (min-width: 361px) {
+
+}
+
+/* Large Mobile - Landscape */
+@media all and (max-width: 640px)  {
+
+}
+
+/* Large Mobile */
+@media all and (max-width: 360px) {
+
+}
+
