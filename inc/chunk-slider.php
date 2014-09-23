@@ -6,7 +6,7 @@
 
 
 	// Start SLIDE WRAP
-			echo ( 
+			echo (
 				'<div '.
 					' class="cycle-slideshow"'. // Initializing class, default for cycle2
 				#	' data-cycle-pager="#per-slide-template"'. // Connects to #per-slide-template box below
@@ -23,24 +23,28 @@
 
 	// SLIDE LOOP
 			$slidequery = new WP_Query(array(
-				'post_type' => 'jCycle_slider',
+				'post_type' => 'skivvy_slider',
 				'posts_per_page' => 5,
 				'order' => 'ASC',
 				'orderby' => 'none'
 			)); while ( $slidequery->have_posts() ) { $slidequery->the_post();
 
-				$image_url = wp_get_attachment_image_src(get_post_thumbnail_id(),'full', true);
-				// Background image code. if undesired, Hash out $background_image
+				$background_image = '';
+				if (has_post_thumbnail()) {
+					$image_url = wp_get_attachment_image_src(get_post_thumbnail_id(),'full', true);
+					// Background image code. if undesired, Hash out $background_image
 					$background_image = 'background-image:url(\'' . $image_url[0] . '\');';
+				}
 
-				// SLIDE 
+				// SLIDE
 					echo '<div class="cycle-slide slide-' . get_the_ID() . '" style="position:absolute;' . $background_image . '">';
+						# do_shortcode('[video_bg]').
 						# the_title('<h1>', '</h1>');
-						# the_content();
+						 the_content();
 					echo '</div>';
 
 
-			} wp_reset_postdata(); 
+			} wp_reset_postdata();
 
 
 
