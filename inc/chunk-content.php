@@ -30,6 +30,12 @@ if ( have_posts() ) :
 						wp_reset_query(); 
 				}
 
+				if ( is_author() || get_the_author_meta( 'description' ) ) {
+					the_author_meta( 'description' );
+				}
+
+
+
 			// post counter
 				$i = 1;
 
