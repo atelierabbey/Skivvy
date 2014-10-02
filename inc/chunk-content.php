@@ -46,8 +46,8 @@ if ( have_posts() ) :
 				// Post Counter classes
 					$class_count = 'post-' . $i;
 					if ( $i == 1 ) $class_count .= ' first';
-					if ( $i % 2 == 0 ) : $class_count =  ' even';
-					else : $class_count = ' odd';
+					if ( $i % 2 == 0 ) : $class_count .=  ' even';
+					else : $class_count .= ' odd';
 					endif;
 
 				// Post Category Class
