@@ -93,7 +93,7 @@ ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .textjustify, .justified {text-align:justify;}
 .justified:after {content:'';width:100%;font-size: 0;line-height: 0;}
 .justified, .access ul.justified {display: block;}
-.justified > *, .access ul.justified:after {display: inline-block;}
+.justified > *, justified:after, .access ul.justified:after {display: inline-block;}
 .access ul.justified li {float:none;}
 
 .one_half {width:50%;}
