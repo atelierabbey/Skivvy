@@ -48,7 +48,7 @@ wp_head(); ?></head>
 
 			// Main Menu
 				wp_nav_menu( array(
-					'items_wrap'      => '<nav class="access animated"><ul>%3$s</ul></nav>',
+					'items_wrap'      => '<nav class="access animated"><ul class="main-menu">%3$s</ul></nav>',
 					'theme_location'  => 'main',
 					'menu'            => '',
 					'container'       => FALSE,
