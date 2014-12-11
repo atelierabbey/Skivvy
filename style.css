@@ -67,18 +67,18 @@ footer {}
 
 /* ----------------- Responsive ------------------- */
 
-/* Netbook and up */
+/* Laptop and up */
 @media all and (min-width: 1025px) {
 
 }
 
 /* Tablet - Landscape*/
-@media all and (max-width: 1024px) and (min-width: 787px) {
+@media all and (max-width: 1024px) {
 
 }
 
 /* Tablet - Portrait*/
-@media all and (max-width: 786px) and (min-width: 361px) {
+@media all and (max-width: 786px)  {
 
 }
 
