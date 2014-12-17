@@ -1,4 +1,4 @@
-/* 25Nov14 */
+/* 17Dec14 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -50,7 +50,8 @@ h3 {font-size:1.2em;margin: 0 0 1em;}
 h4 {font-size:1em;margin: 0 0 0.8em;}
 h5 {font-size:.8em;margin: 0 0 0.67em;}
 h6 {font-size:.65em;margin: 0 0 0.33em;}
-a, a:visited, a:focus, a:active, a:hover {color:inherit;}
+a, a:visited, a:focus, a:active, a:hover, a[href^=tel], a[href^=tel]:link, a[href^=tel]:visited, a[href^=tel]:active, a[href^=tel]:hover {color:inherit;}
+a[href^=tel] { cursor: default;}
 p, pre {margin: 0 0 1em;}
 ul li {list-style: disc;}
 ul li ul li {list-style: circle;}
@@ -64,16 +65,16 @@ li ol, li ul {margin:0;}
 /* Tier 1 */
 .access .main-menu {position: relative;display:inline-table;list-style:none;margin:0;padding:0;}
 .access .main-menu:after {content:"";clear:both;display:block;}
-.access .main-menu > li {position:relative;float:left;list-style:none;margin:0;padding:0;}
-.access .main-menu > li a {display:block;white-space:nowrap;}
+.access .main-menu li {position:relative;float:left;list-style:none;margin:0;padding:0;}
+.access .main-menu li a {display:block;white-space:nowrap;}
 /* Tier 2 */
 .access .main-menu .sub-menu {display:none;position:absolute;top: 100%;margin:0;padding:0;}
 .access .main-menu .sub-menu li {float:none;position: relative;margin:0;padding:0;}
-.access .main-menu li:hover > .sub-menu {display:block;}
+.access .main-menu li:hover .sub-menu {display:block;}
 /* Tier 3 */
 .access .main-menu .sub-menu .sub-menu {position: absolute; left: 100%; top:0;margin:0;padding:0;}
 /* ----------- 3-Tier Nav - Animated ----------- */
-.animated .main-menu li > .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.2s ease-in-out 0s;}
+.animated .main-menu .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.5s ease 0s;}
 .animated .main-menu li:hover > .sub-menu {visibility:visible;opacity: 1;}
 
 /* ----------- HELPERS ----------- */

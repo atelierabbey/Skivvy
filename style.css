@@ -4,29 +4,30 @@ Author:			Atelier Abbey
 Author URI:		http://www.atelierabbey.org/
 Theme URI:		https://github.com/atelierabbey/Skivvy
 Description:	Almost naked theme.
-Version:		11Dec14
+Version:		17Dec14
 License:		The GNU General Public License (GPL-2.0)
 */
 html {background-color:#fff;color:#000;font-size:14px; line-height:16px;font-family: Verdana, Geneva, Tahoma, sans-serif;}
 body {position:relative;}
 h1, h2, h3, h4, h5, h6 {}
 p {margin: 0 0 1em;}
-a, a:link, a:visited, a[href^=tel], a[href^=tel]:link, a[href^=tel]:visited, a[href^=tel]:active, a[href^=tel]:hover {color:#0000EE;} 
+a, a:link, a:visited {color:#0000EE;}
 a:hover {color:#EE00EE;}
 ul, ol { padding: 0 0 0 40px;}
 blockquote { border-left:1px solid #696969; padding-left:10px;margin: 1em 40px; }
 button,input,select,textarea {padding:5px;margin:5px 0;}
 button, a.button, html input[type="button"], input[type="reset"], input[type="submit"] {border-radius: 3px;padding: 8px 15px;}
 
-
 /* CONTENT */
-.page-wrapper {width:90%;min-width:320px;max-width:1400px;margin: 0 auto;padding: 20px;position:relative;}
+.page-wrapper {width:calc(100% - 20px);min-width:320px;max-width:1280px;margin: 20px auto;position:relative;}
+.subpage .content .page-wrapper {width:980px;}
 .page-title
 .content {}
 .page-content {}
 .one_half, .one_third, .two_third, .one_fourth, .three_fourth {float:left;}
-.skivdiv-content {margin: 2px; padding:5px;}
-.post-content {}
+.skivdiv-content {padding:0 2px;}
+.post-content {margin-top:10px;padding-top:10px;border-top:1px solid #bbb;}
+.post-content.first {margin:0;padding:0;border:0;}
 .post-title {}
 .post-snippet {}
 .post-navigation {}
@@ -39,14 +40,15 @@ header {}
 .logo {}
 .access {}
 .access .main-menu {}
-.access .main-menu a {}
+.access .main-menu a {padding:3px 5px;color:#222;}
 .access .main-menu li {}
-.access .main-menu li:hover {}
+.access .main-menu > li.current_page_item {}
 .access .main-menu li a {}
+.access .main-menu li a:hover {}
 .access .main-menu .sub-menu {}
 .access .main-menu .sub-menu li {}
-.access .main-menu .sub-menu li:hover {}
-.access .main-menu .sub-menu li a{}
+.access .main-menu .sub-menu li a {background-color:#eee;}
+.access .main-menu .sub-menu li a:hover {background-color:#ddd;}
 .mobile-menu {display: none;}
 footer {}
 .footer-copyright {font-size:0.75em;}
@@ -78,7 +80,7 @@ footer {}
 }
 
 /* Tablet - Portrait*/
-@media all and (max-width: 786px)  {
+@media all and (max-width: 768px)  {
 
 }
 

@@ -9,6 +9,12 @@
 	function skivvy_body_classes($classes) {
 		global $wpdb, $post;
 
+		// .subpage for all non-front_page
+			if ( ! is_front_page() ) {
+				$classes[] = 'subpage';
+			}
+
+		// page classes
 		if (is_page()) {
 
 			// .section-{$parentpage} - Parent Page Post class -- Add the top level parent page to the body class
@@ -19,11 +25,6 @@
 				}
 				$post_data = get_post($parent, ARRAY_A);
 				$classes[] = 'section-' . $post_data['post_name'];
-
-			// .subpage page class
-				if ( ! is_front_page() ) {
-					$classes[] = 'subpage';
-				}
 
 		}
 
