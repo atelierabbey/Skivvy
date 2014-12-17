@@ -24,7 +24,6 @@ button, a.button, html input[type="button"], input[type="reset"], input[type="su
 .page-title
 .content {}
 .page-content {}
-.one_half, .one_third, .two_third, .one_fourth, .three_fourth {float:left;}
 .skivdiv-content {padding:0 2px;}
 .post-content {margin-top:10px;padding-top:10px;border-top:1px solid #bbb;}
 .post-content.first {margin:0;padding:0;border:0;}

@@ -106,6 +106,7 @@ ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .two_fifth {width:40%;}
 .three_fifth {width:60%;}
 .four_fifth {width:80%;}
+.one_half, .one_third, .two_third, .one_fourth, .three_fourth {display:inline-block;box-sizing:border-box;}
 .alignleft, .responsive-left{float:left;}
 .alignright, .responsive-right{float:right;}
 .aligncenter {display:block; margin:0 auto;}
