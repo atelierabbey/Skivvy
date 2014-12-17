@@ -20,7 +20,9 @@
 
 			_e( sprintf( 'Copyright &copy; %1$s <a href="%2$s" title="%3$s" rel="home">%4$s</a>. All Rights Reserved. ' , $date, home_url('/'), esc_attr( get_bloginfo( 'name', 'display' ) ), get_bloginfo( 'name' )), 'skivvy' );
 
-			_e( '<a href="http://www.d4webdesign.com/" title="Reno Web Design" rel="nofollow" target="_blank">Web Design</a> by D4', 'skivvy' ) ;
+			if (function_exists('skinfo')) {
+				_e( '<a href="'. skinfo('AuthorURI') . '" title="" rel="nofollow" target="_blank">Web Design</a> by '. skinfo('Author') , 'skivvy' ) ;
+			}
 
 		?></div>
 	</div>
