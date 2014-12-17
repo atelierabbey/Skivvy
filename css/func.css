@@ -87,6 +87,7 @@ li ol, li ul {margin:0;}
 ul.nobull { padding:0; } ul.nobull > li { list-style:none;}
 ul.nobull > li > ul > li { list-style:disc; }
 ul.nobull > li > ul > li > ul > li { list-style:circle; }
+.flatlist, .flatlist li { display: inline; }
 .textleft, .titleleft h2, .titleleft h3 {text-align:left;}
 .textright, .titleright h2, .titleright h3 {text-align:right;}
 .textcenter, .titlecenter h2, .titlecenter h3 {text-align:center;}
@@ -95,7 +96,6 @@ ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .justified, .access ul.justified {display: block;}
 .justified > *, justified:after, .access ul.justified:after {display: inline-block;}
 .access ul.justified li {float:none;}
-
 .one_half {width:50%;}
 .one_third {width:33%;}
 .two_third {width:66%;}
