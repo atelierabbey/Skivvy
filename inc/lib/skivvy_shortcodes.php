@@ -4,10 +4,10 @@
  *		SHORTCODES
  *		-------------------------------------------------------
  */
- 
+
 /*
 ** 		SHORTCODE - SKIVDIV
-**		Use: [$tag 
+**		Use: [$tag
 **				class="$class"		// Any CSS class(es). Space seperate.
 **				style="$style"		// any inline CSS. Add as normal in the " style='' " attribute.
 **				title="$title"		// Renders either H2 (one full) or H3 (on all else) just before the "div.skivdiv-content" & addes a sanitized CSS class to the overall wrapper
@@ -17,9 +17,9 @@
 **
 **			// Function attributes - Deals with turning the SkivDiv into a functional area.
 **				func="$func"        // name of function to be called, works with $param. i.e. $func($param);
-**				param="$param"      // Comma seperated string in order of parameters. CANNOT PASS AN ARRAY! 
+**				param="$param"      // Comma seperated string in order of parameters. CANNOT PASS AN ARRAY!
 **				echoes="$echoes"    // If the function echoes content, $echoes should equal '1', else default = '0'. Shortcodes must return a value.
-**				
+**
 **		]
 */
 	$tags = array(
@@ -105,27 +105,6 @@
 				}
 			return $output;
 	}
-// Use [raw]Non-formatted by Wordpress[/raw]
-	// This is not technically a shortcode, it utilizes filters on all content pages. 
-	function skivvy_raw_formatter($content) {
-		$new_content = '';
-		$pattern_full = '{(\[raw\].*?\[/raw\])}is';
-		$pattern_contents = '{\[raw\](.*?)\[/raw\]}is';
-		$pieces = preg_split($pattern_full, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
-
-
-		foreach ($pieces as $piece) {
-			if (preg_match($pattern_contents, $piece, $matches)) {
-				$new_content .= $matches[1];
-			} else {
-				$new_content .= wptexturize(wpautop($piece));
-			}
-		}
-		return $new_content;
-	}
-	remove_filter('the_content', 'wpautop');
-	remove_filter('the_content', 'wptexturize');
-	add_filter('the_content', 'skivvy_raw_formatter', 99);
 
 
 
