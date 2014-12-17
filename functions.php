@@ -1,11 +1,12 @@
-<?php #16Jun14
+<?php #17Dec14
 
 	include 'inc/skivvy_register.php'; // Registry for theme specific posttypes, taxonomy, menus, widget areas, scripts, styles, etc.
 	include 'inc/skivvy_simple.php'; // Various areas of clean up code, admin area, and various other functions of unneeded defaults
 	include 'inc/admin/skivvy_branding.php'; // Custom developer branding
+	include 'inc/admin/skivvy_admin_func_auto.php'; // Admin specific functions, not associated with branding
 	include 'inc/lib/skivvy_shortcodes.php'; // Shortcodes
-	include 'inc/lib/skivvy_func_user.php'; // Usable Functions 
-#	include 'inc/lib/skivvy_func_auto.php'; // Auto Functions 
+	include 'inc/lib/skivvy_func_user.php'; // Usable Functions
+	include 'inc/lib/skivvy_func_auto.php'; // Auto Functions
 
 // Added wp-upload MIME types  - https://www.sitepoint.com/web-foundations/mime-types-complete-list/
 function skivvy_add_custom_mime_types($mimes){
@@ -29,7 +30,7 @@ function skivvy_setup() {
 		#	skivvy_autooptions();
 
 	// Add Widget/sidebar functionality
-		#	add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes 
+		#	add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes
 		#	add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
 		#	add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
 
