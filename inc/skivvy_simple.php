@@ -38,8 +38,20 @@ function skivvy_autooptions() {
 		</div>';
 		add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
 	}
-} 
+}
 
+
+/*
+**
+**		Removes img width/height attributes in content
+**
+*/
+function remove_width_attribute( $html ) {
+   $html = preg_replace( '/(width|height)="\d*"\s/', "", $html );
+   return $html;
+}
+add_filter( 'post_thumbnail_html', 'remove_width_attribute', 10 );
+add_filter( 'image_send_to_editor', 'remove_width_attribute', 10 );
 
 
 
@@ -59,7 +71,7 @@ function skivvy_autooptions() {
 		#	remove_menu_page( 'plugins.php' ); // Plugins
 		#	remove_menu_page( 'users.php' ); // Users
 		#	remove_menu_page( 'tools.php' ); // Tools
-		#	remove_menu_page( 'options-general.php' ); // Settings 
+		#	remove_menu_page( 'options-general.php' ); // Settings
 	} add_action( 'admin_menu', 'skivvy_remove_menu_pages' );
 
 
@@ -81,7 +93,7 @@ function skivvy_autooptions() {
 			foreach ($user->roles as $role)
 				$role = $role;
 		}
-		if($role == "editor") { 
+		if($role == "editor") {
 			global $menu;
 			$restricted = array(
 						#	__('Dashboard'),
@@ -101,16 +113,16 @@ function skivvy_autooptions() {
 				$value = explode(' ',$menu[key($menu)][0]);
 				if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){unset($menu[key($menu)]);}
 			}
-			
+
 				remove_submenu_page( 'themes.php', 'themes.php' );
-			#	remove_submenu_page( 'themes.php', 'nav-menus.php' ); 
+			#	remove_submenu_page( 'themes.php', 'nav-menus.php' );
 		}
 		$editor = get_role('editor');
 		$editor->add_cap('list_users');
 		$editor->add_cap('create_users');
 		$editor->add_cap('edit_users');
 		$editor->add_cap('edit_theme_options');
-		# $editor->add_cap('manage_options');  
+		# $editor->add_cap('manage_options');
 	} add_action('admin_menu', 'custom_admin_menu');
 
 
@@ -134,8 +146,8 @@ function skivvy_wp_title( $title, $separator ) {
 	global $paged, $page;
 	$description = get_bloginfo( 'description', 'display' );
 
-	if (is_feed()) { return $title; }		
-	if (is_category()) { $title = "Category: $title";}	
+	if (is_feed()) { return $title; }
+	if (is_category()) { $title = "Category: $title";}
 	if (is_tag()) { $title = "Tag: $title";}
 	if (is_search()) { $title = "Search: $title"; }
 	if (post_password_required($post) ) { $title = "Protected: $title"; }
@@ -180,7 +192,7 @@ function skivvy_wp_title( $title, $separator ) {
 **
 **		WP_HEAD() - Cleanup
 **
-*/ 
+*/
 			remove_action('wp_head', 'rsd_link');
 			remove_action('wp_head', 'wp_generator');
 		#	remove_action('wp_head', 'feed_links', 2);
@@ -232,7 +244,7 @@ function remove_the_title_stuff( $title ) {
 
 /*
 **
-**		Removes the default gallery shortcode css 
+**		Removes the default gallery shortcode css
 **		@ Stolen from twentyten
 **
 */
@@ -324,7 +336,7 @@ function hide_profile_fields( $contactmethods ) {
 			unset($contactmethods['aim']);
 			unset($contactmethods['jabber']);
 			unset($contactmethods['yim']);
-		
+
 	// Add - the_author_meta('facebook', $current_author->ID)
 		#	$contactmethods['contact_phone_office']     = 'Office Phone';
 		#	$contactmethods['contact_phone_mobile']     = 'Mobile Phone';
@@ -393,7 +405,7 @@ function skivvy_admin_bar() {
 					$wp_admin_bar->remove_menu('themes');
 					$wp_admin_bar->remove_menu('customize');
 				#	$wp_admin_bar->remove_menu('media');
-				#	$wp_admin_bar->remove_menu('link');	
+				#	$wp_admin_bar->remove_menu('link');
 				#	$wp_admin_bar->add_menu( array('id' => 'logout','title' => __('Log Out'),'parent' => 'site-name','href' => wp_logout_url( )) );			// Adds Log-out
 					$wp_admin_bar->add_menu( array('id' => 'post','title' => __('Posts'),'parent' => 'site-name','href' => self_admin_url('edit.php')) );	// Adds Posts
 					$wp_admin_bar->add_menu( array('id' => 'pages','title' => __('Pages'),'parent' => 'site-name','href' => self_admin_url('edit.php?post_type=page')) );	// Adds Posts
@@ -451,20 +463,20 @@ add_action('wp_before_admin_bar_render', 'skivvy_admin_bar', 0);
 		return array(
 			'index.php', // this represents the dashboard link
 			'edit.php?post_type=events', // this is a custom post type menu
-			'edit.php?post_type=news', 
-			'edit.php?post_type=articles', 
-			'edit.php?post_type=faqs', 
+			'edit.php?post_type=news',
+			'edit.php?post_type=articles',
+			'edit.php?post_type=faqs',
 			'edit.php?post_type=mentors',
 			'edit.php?post_type=testimonials',
 			'edit.php?post_type=services',
 			'edit.php?post_type=page', // this is the default page menu
-			'edit.php', // this is the default POST admin menu 
+			'edit.php', // this is the default POST admin menu
 		);
 	}
 	add_filter('custom_menu_order', 'custom_menu_order');
 	add_filter('menu_order', 'custom_menu_order');
 	//*/
-	
+
 
 
 
