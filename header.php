@@ -2,10 +2,10 @@
 
 
 
-		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';// Meta description, important for SEO. Defaults to blog's description. 
+		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';// Meta description, important for SEO. Defaults to blog's description.
 
 
-		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">'; // Sets default width and scale to be dependent on the device. 
+		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">'; // Sets default width and scale to be dependent on the device.
 		echo '<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">';	// Force IE to render most recent engine for installed browser. And enable Chrome Frame
 		echo '<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'; // Don't autodetect phonenumbers and create links in iphone safari & blackberry
 
@@ -29,7 +29,7 @@
 		if ( ! wp_script_is( 'jquery' , 'queue' ) ) {
 				wp_enqueue_script( 'jquery' );
 		}
-		
+
 
 wp_head(); ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
@@ -39,7 +39,7 @@ wp_head(); ?></head>
 		<?php
 
 			// Logo
-				echo 
+				echo
 				'<div class="logo">'.
 					'<a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
 						'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
@@ -48,7 +48,7 @@ wp_head(); ?></head>
 
 			// Main Menu
 				wp_nav_menu( array(
-					'items_wrap'      => '<nav class="access animated"><ul class="main-menu">%3$s</ul></nav>',
+					'items_wrap'      => '<nav class="access animated dropdown"><ul class="main-menu">%3$s</ul></nav>',
 					'theme_location'  => 'main',
 					'menu'            => '',
 					'container'       => FALSE,
