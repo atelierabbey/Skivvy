@@ -8,10 +8,8 @@
 			get_template_part( 'inc/chunk' , 'title' ); // The Title
 
 			get_template_part( 'inc/chunk' , 'content' ); // The Content
-			
-			if ( ! is_page() ) get_template_part( 'inc/chunk' , 'pagination' ); // Pagination
 
-			echo '&nbsp;'; // Anti-collapse Space.
+			if ( ! is_page() ) get_template_part( 'inc/chunk' , 'pagination' ); // Pagination
 
 		?></section>
 		<?php // get_sidebar();?>
