@@ -11,7 +11,7 @@
 
 		if (is_page()) {
 
-			// .section-{$parentpage} - Parent Page Post class -- Add the top level parent page to the body class 
+			// .section-{$parentpage} - Parent Page Post class -- Add the top level parent page to the body class
 				if ($post->post_parent) {
 					$parent  = end(get_post_ancestors($current_page_id));
 				} else {
@@ -34,7 +34,28 @@
 
 
 
+function html_classes( $class = array() ) {
 
+	$classes = array();
+
+	// Adds Skivvy version
+	if (function_exists('skinfo')){
+		$classes[] = skinfo('Version');
+	}
+
+
+	if ( ! empty( $class ) ) {
+			if ( !is_array( $class ) )
+					$class = preg_split( '#\s+#', $class );
+			$classes = array_merge( $classes, $class );
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+	$all_classes = apply_filters( 'html_classes', $classes, $class );
+
+	// Separates classes with a single space, collates classes
+	echo join( ' ', $all_classes );
+}
 
 
 
@@ -78,10 +99,10 @@
 				if( count( $item ) ) return $container[0]. preg_replace( '#<\?[^>]*\?>#', '', preg_replace( '#<!\[CDATA\[([^<]+)\]\]>#', '\\1', skivvy_advmenus_level( $item )->asXML() ) ) . $container[1];
 				else return $container[0] . $output . $container[1];
 			} add_filter( 'wp_nav_menu', 'skivvy_advmenus' );
-			
+
 		// Adds .odd-menu-item , .even-menu-item , .last-menu-item , .first-menu-item  to the Nav menu
 			function skivvy_advmenus_level( $xml ) {
-	
+
 				if( 0 < $count = count( $xml->li ) ) {
 					$i = 1;
 					foreach( $xml->li as $item ) {
@@ -89,7 +110,7 @@
 						// Adds Even Odd classes
 							if( $i % 2 ) $attributes['class'] = 'odd-menu-item ' . $attributes['class'];
 							else $attributes['class'] = 'even-menu-item ' . $attributes['class'];
-	
+
 						// Adds parent class if has submenu
 							if( $item->ul ) {
 								$attributes['class'] = 'parent-menu-item ' . $attributes['class'];
@@ -99,7 +120,7 @@
 								$attributes['class'] = 'parent-menu-item ' . $attributes['class'];
 								skivvy_advmenus_level( $item->menu );
 							}
-	
+
 						// Adds First and Last class
 							if( $i == $count ) $attributes['class'] = 'last-menu-item ' . $attributes['class'];
 							if( $i == 1 ) $attributes['class'] = 'first-menu-item ' . $attributes['class'];
@@ -107,9 +128,9 @@
 					}
 				}
 				return $xml;
-	
+
 			}
-	
+
 	} // Ends if class_exists('SimpleXMLElement') */
 
 
@@ -124,7 +145,7 @@
 	function css_browser_selector( $classes ) {
 
 			// $ua = null
-			$ua = ($ua) ? strtolower($ua) : strtolower($_SERVER['HTTP_USER_AGENT']);		
+			$ua = ($ua) ? strtolower($ua) : strtolower($_SERVER['HTTP_USER_AGENT']);
 
 			$g = 'gecko';
 			$w = 'webkit';
@@ -136,7 +157,7 @@
 			}
 				//$b[] = $ua;
 			// browser
-			
+
 			// ie11 - 26Feb14 mozilla/5.0 (windows nt 6.3; wow64; trident/7.0; matbjs; rv:11.0) like gecko gecko win
 			//ie10 - 26Feb14 mozilla/5.0 (compatible; msie 10.0; windows nt 6.2; trident/6.0) ie ie1 win
 			//ie9  - 26Feb14 mozilla/5.0 (compatible; msie 9.0; windows nt 6.1; trident/5.0) ie ie9 win
@@ -147,7 +168,7 @@
 			}	else if(strstr($ua, 'firefox/27')) {
 					$b[] = 'ff27';
 			}	else if(strstr($ua, 'firefox/2 ')) {
-					$b[] = $g . 'ff2';		
+					$b[] = $g . 'ff2';
 			}	else if(strstr($ua, 'firefox/3.5')) {
 					$b[] = $g . 'ff3 ff3_5';
 			}	else if(strstr($ua, 'firefox/3 ')) {
@@ -168,25 +189,25 @@
 					$b[] = $g;
 			}
 
-			// platform				
+			// platform
 			if(strstr($ua, 'j2me')) {
 					$b[] = 'mobile';
 			} else if(strstr($ua, 'iphone')) {
-					$b[] = 'iphone';		
+					$b[] = 'iphone';
 			} else if(strstr($ua, 'ipod')) {
-					$b[] = 'ipod';		
+					$b[] = 'ipod';
 			} else if(strstr($ua, 'mac')) {
-					$b[] = 'mac';		
+					$b[] = 'mac';
 			} else if(strstr($ua, 'darwin')) {
-					$b[] = 'mac';		
+					$b[] = 'mac';
 			} else if(strstr($ua, 'webtv')) {
-					$b[] = 'webtv';		
+					$b[] = 'webtv';
 			} else if(strstr($ua, 'win')) {
-					$b[] = 'win';		
+					$b[] = 'win';
 			} else if(strstr($ua, 'freebsd')) {
-					$b[] = 'freebsd';		
+					$b[] = 'freebsd';
 			} else if(strstr($ua, 'x11') || strstr($ua, 'linux')) {
-					$b[] = 'linux';		
+					$b[] = 'linux';
 			}
 
 			return $b;
@@ -272,7 +293,7 @@
 
 			// check if we have a number
 			if ($version==null || $version=="") {$version="?";}
-			
+
 			$mainVersion = $version;
 			if (strpos($version, '.') !== false)
 			{
@@ -293,7 +314,7 @@
 				'pattern'   => $pattern
 			);
 		}
-	} 
+	}
 		*/
 }
 add_filter('html_classes','css_browser_selector', 10 );
