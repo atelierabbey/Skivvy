@@ -43,10 +43,15 @@ function html_classes( $class = array() ) {
 		$classes[] = skinfo('Version');
 	}
 
+	// Adds .autohide-adminbar when logged in
+	/*
+	if ( is_user_logged_in() ) {
+		$classes[] = 'autohide-adminbar';
+	} //*/
 
 	if ( ! empty( $class ) ) {
 			if ( !is_array( $class ) )
-					$class = preg_split( '#\s+#', $class );
+				$class = preg_split( '#\s+#', $class );
 			$classes = array_merge( $classes, $class );
 	}
 
