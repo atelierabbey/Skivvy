@@ -1,6 +1,6 @@
 /* 17Feb14 */
 /* Login Logo */
-.login #login > h1 a { 
+.login #login > h1 a {
 	background-image:url("logo-login.svg");
 	background-size:auto auto;
 	width:auto;
@@ -30,28 +30,6 @@
 	height: auto;
 }
 
-/* Home Meta */
-.home-meta-content,
-.home-meta-link,
-.home-meta-title {
-    width: 100%;
-}
-.home-meta-img {
-	width:80%;	
-}
-.home-meta-content {
-    min-height: 100px;
-}
-
-.home-meta-fieldset {
-    display: inline;
-    margin-right: 20px;
-	min-width: 250px;
-    width: 40%;
-}
-.home-meta-fieldset label {
-    display: block;
-}
 /* Settings */
 #admin-settings-warning-box {
 	background: #F00;
