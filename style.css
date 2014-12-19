@@ -20,6 +20,7 @@ button, a.button, html input[type="button"], input[type="reset"], input[type="su
 
 /* CONTENT */
 .page-wrapper {width:calc(100% - 20px);min-width:320px;max-width:1280px;margin: 20px auto;position:relative;}
+.page-template-template_fullwidth .content > .page-wrapper {max-width: none;width: 100%;}
 .subpage .content .page-wrapper {width:980px;}
 .page-title {}
 .content {}
