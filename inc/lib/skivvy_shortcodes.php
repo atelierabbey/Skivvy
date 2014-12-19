@@ -34,6 +34,8 @@
 		'two_fifth', 'two_fifth_last',
 		'three_fifth', 'three_fifth_last',
 		'four_fifth', 'four_fifth_last',
+		'one_sixth','one_sixth_last',
+		'five_sixth', 'five_sixth_last'
 	);
 	foreach( $tags as $tag ) {
 		add_shortcode( $tag, 'shortcode_skiv_div' );
@@ -70,7 +72,7 @@
 				$titleclass = '';
 				if ( $title != '' ) {
 					$titleclass = ' ' . sanitize_title( $title );
-					if ( $tag == 'one_full' ) {
+					if ( $tag == 'one_full' || $tag == 'fullwidth' ) {
 						$newtitle = '<h2>' . $title . '</h2>';
 					} else {
 						$newtitle = '<h3>' . $title . '</h3>';
