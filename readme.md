@@ -11,18 +11,35 @@ The Skivvy Decree
 
 ## SHORTCODES
 
-#### Skiv-Divs 
+#### Skiv-Divs
 Use:
 ````
-[$tag class="" style="" title="" func="" param="" echoes=""]
+[$tag id="" class="" style="" title="" func="" param="" echoes=""]
 ````
-- $tag (required) - Division name. Accepted values = 'one_full', 'one_half', 'one_half_last','one_third', 'one_third_last', 'two_third', 'two_third_last', 'one_fourth', 'one_fourth_last', 'three_fourth', 'three_fourth_last'
+#### $tag (required)
+Division name. Accepted values:
+	- 'fullwidth',
+	- 'one_full',
+	- 'one_half', 'one_half_last',
+	- 'one_third', 'one_third_last',
+	- 'two_third', 'two_third_last',
+	- 'one_fourth', 'one_fourth_last',
+	- 'three_fourth', 'three_fourth_last',
+	- 'one_fifth', 'one_fifth_last',
+	- 'two_fifth', 'two_fifth_last',
+	- 'three_fifth', 'three_fifth_last',
+	- 'four_fifth', 'four_fifth_last',
+	- 'one_sixth','one_sixth_last',
+	- 'five_sixth', 'five_sixth_last'
+
+#### Attributes
+- id - Adds an ID to it. I know, right?
 - class - Passes into the container div's classes. Any CSS class(es). Space seperate.
 - style - Add as normal in the " style='' " attribute. any inline CSS.
 - title - Renders either H2 (one full) or H3 (on all else) just before the "div.skivdiv-content" & addes a sanitized CSS class to the overall wrapper
 	// Function attributes - Deals with turning the SkivDiv into a functional area.
 - func - name of function to be called, works with $param. i.e. $func($param);
-- param - Comma seperated string in order of parameters. CANNOT PASS AN ARRAY! 
+- param - Comma seperated string in order of parameters. CANNOT PASS AN ARRAY!
 - echoes - If the function echoes content, $echoes should equal '1', else default = '0'. Shortcodes must return a value.
 
 
@@ -124,7 +141,7 @@ Image replacement of text. screenreader throws text way behind the screen, stage
 	I'm justified in my actions!
 </div>
 ````
-Text alignment is such a common CSS element... I think it's insane that it's not it's own class. 
+Text alignment is such a common CSS element... I think it's insane that it's not it's own class.
 
 
 ##### .textleft / .textright / .textcenter / .textjustify
@@ -149,7 +166,7 @@ Default classes to Wordpress's image alignment. Also helpful for floating left a
 ````html
 <img src="whateves.jpg" class="greyscale">
 ````
-[EXPERIMENTAL] 
+[EXPERIMENTAL]
 Contains SVG filters that applies to an image or HTML content. There is little browser support for these and should be used on decorative items.
 
 ----
@@ -157,7 +174,7 @@ Contains SVG filters that applies to an image or HTML content. There is little b
 ````html
 <img src="whateves.jpg" class="blurry">
 ````
-[EXPERIMENTAL] 
+[EXPERIMENTAL]
 Contains SVG filters that clurs the content, Either image or text. The resource.svg contains the value of the blur as  stdDeviation="1"
 
 ----

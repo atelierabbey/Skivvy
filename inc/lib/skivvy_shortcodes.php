@@ -8,6 +8,7 @@
 /*
 ** 		SHORTCODE - SKIVDIV
 **		Use: [$tag
+**				id="$id"				// Adds ID to it.. serious.
 **				class="$class"		// Any CSS class(es). Space seperate.
 **				style="$style"		// any inline CSS. Add as normal in the " style='' " attribute.
 **				title="$title"		// Renders either H2 (one full) or H3 (on all else) just before the "div.skivdiv-content" & addes a sanitized CSS class to the overall wrapper
@@ -42,6 +43,7 @@
 	}
 	function shortcode_skiv_div( $atts, $content = null, $tag) {
 			extract( shortcode_atts( array(
+				'id'      => '',
 				'style'   => '',
 				'class'   => '',
 				'title'   => '',
@@ -60,6 +62,10 @@
 			// $class
 				if ( $class != '' ) {
 					$class = ' ' . $class;
+				}
+			// $id
+				if ( $id != '' ) {
+					$id = ' id="' . $id . '"';
 				}
 			// $last
 				$last = '';
@@ -81,7 +87,7 @@
 
 
 			// RENDERING ------
-				$output  =	 $before . '<div class="' . $tag . $class . $titleclass . '" '. $style . '>' . $prepend;
+				$output  =	 $before . '<div' . $id . ' class="' . $tag . $class . $titleclass . '" '. $style . '>' . $prepend;
 					$output .=	$newtitle;
 					if ( $tag == 'one_full' ) $output .= '<div class="page-wrapper">';
 					$output .=		'<div class="skivdiv-content">';
