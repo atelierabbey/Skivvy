@@ -1,4 +1,4 @@
-/* 17Dec14 */
+/* 30Dec14 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;}
 table {border-collapse:collapse; border-spacing:0;}
@@ -108,7 +108,7 @@ ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .four_fifth {width:80%;}
 .one_sixth {width: 16.66%;}
 .five_sixth {width: 83.33%;}
-.one_half, .one_third, .two_third, .one_fourth, .three_fourth,.one_fifth,.two_fifth, .three_fifth, .four_fifth,.one_sixth, .five_sixth {display:inline-block;box-sizing:border-box;}
+.one_half, .one_third, .two_third, .one_fourth, .three_fourth,.one_fifth,.two_fifth, .three_fifth, .four_fifth,.one_sixth, .five_sixth {display:inline-block;box-sizing:border-box;vertical-align:top;}
 .alignleft, .responsive-left{float:left;}
 .alignright, .responsive-right{float:right;}
 .aligncenter {display:block; margin:0 auto;}
