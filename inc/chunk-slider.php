@@ -38,9 +38,11 @@
 
 				// SLIDE
 					echo '<div class="cycle-slide slide-' . get_the_ID() . '" style="position:absolute;' . $background_image . '">';
-						# do_shortcode('[video_bg]').
-						# the_title('<h1>', '</h1>');
-						 the_content();
+						echo '<div class="page-wrapper">';
+							# do_shortcode('[video_bg]').
+							# the_title('<h1>', '</h1>');
+							the_content();
+						echo '</div>';
 					echo '</div>';
 
 
