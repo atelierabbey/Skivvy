@@ -114,6 +114,60 @@
 			return $output;
 	}
 
+// Use: [blogfeed show="5" class="" length="55" morelink="Read More" alllink="See All Posts"]
+	function shortcode_blogfeed( $atts ) {
+	
+		// Shortcode Attrs & Variable set up
+		$atts = shortcode_atts(array(
+			'show'   => 5,
+			'class' => '',
+			'length'   => 55,
+			'morelink' => 'Read More',
+			'alllink' => 'See All Posts'
+		), $atts, 'blogfeed' );
+	
+		if ( $atts['alllink'] != '' ) {
+			$alllink = '<a class="blogfeed-all" href="' . get_permalink( get_option( 'page_for_posts' ) ) . '">' . $atts['alllink'] . '</a>';
+		} else {
+			$alllink = '';
+		}
+	
+	
+		$blogfeed = new WP_Query(array(
+			'posts_per_page' => $atts['show'],
+			'order' => 'DESC',
+			'orderby' => 'date'
+		));
+	
+		// Output building
+			$output = '<div class="blogfeed ' . $atts['class'] . '">';
+	
+				while ( $blogfeed->have_posts() ) {
+					$blogfeed->the_post();
+	
+					$output .= '<div class="post-block">';
+	
+						// Title
+							$output .= '<h4 class="post-title"><a href="' . get_permalink() . '" title="' . __( 'View - ' , 'skivvy' ) . the_title_attribute( 'echo=0' ) . '" rel="bookmark">' . get_the_title(). '</a></h4>';
+	
+						// Date
+							$output .= '<div class="post-meta">' . get_the_time('F j, Y') . '</div>';
+	
+						// Content
+							$output .= get_the_snippet( $atts['length'], $atts['morelink'] );
+	
+					$output .= '</div>';
+				}
+				wp_reset_postdata();
+	
+				$output .= $alllink;
+			$output .= '</div>';
+	
+		return $output;
+	
+	} add_shortcode( 'blogfeed', 'shortcode_blogfeed' );
+
+
 
 
 // Use: [clearall]
