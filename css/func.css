@@ -50,7 +50,7 @@ h3 {font-size:1.2em;margin: 0 0 1em;}
 h4 {font-size:1em;margin: 0 0 0.8em;}
 h5 {font-size:.8em;margin: 0 0 0.67em;}
 h6 {font-size:.65em;margin: 0 0 0.33em;}
-a, a:visited, a:focus, a:active, a:hover, a[href^=tel], a[href^=tel]:link, a[href^=tel]:visited, a[href^=tel]:active, a[href^=tel]:hover {color:inherit;}
+a, a:visited, a:focus, a:active, a:hover{color:inherit;}
 a[href^=tel] { cursor: default;}
 p, pre {margin: 0 0 1em;}
 ul li {list-style: disc;}
