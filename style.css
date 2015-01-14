@@ -7,7 +7,7 @@ Description:	Almost naked theme.
 Version:		30Dec14
 License:		The GNU General Public License (GPL-2.0)
 */
-html {background-color:#fff;color:#000;font-size:14px; line-height:16px;font-family: Verdana, Geneva, Tahoma, sans-serif;}
+html {background-color:#fff;color:#000;font-size:14px; line-height:1.5em;font-family: Verdana, Geneva, Tahoma, sans-serif;}
 body {position:relative;}
 h1, h2, h3, h4, h5, h6 {font-weight:bold;}
 p {margin: 0 0 1em;}
@@ -40,11 +40,10 @@ header {}
 .logo {}
 .access {}
 .access .main-menu {}
-.access .main-menu a {padding:3px 5px;color:#222;}
 .access .main-menu li {}
-.access .main-menu > li.current_page_item {}
-.access .main-menu li a {}
+.access .main-menu li a {padding:3px 5px;color:#222;}
 .access .main-menu li a:hover {}
+.access .main-menu > li.current_page_item {}
 .access .main-menu .sub-menu {}
 .access .main-menu .sub-menu li {}
 .access .main-menu .sub-menu li a {background-color:#eee;}
