@@ -32,6 +32,7 @@ register_nav_menus( array(
 **		REGISTER - Widget Areas
 **
 */
+/*
 function skivvy_register_sidebars() {
 	register_sidebar( array(
 		'name' => __( 'Sidebar name', 'skivvy' ),
