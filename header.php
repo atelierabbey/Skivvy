@@ -33,8 +33,7 @@
 
 wp_head(); ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
-<div class="preloader"></div>
-<header>
+<header id="header">
 	<div class="page-wrapper">
 		<?php
 
