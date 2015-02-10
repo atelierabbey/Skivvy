@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<section class="content">
+<section id="content">
 	<div class="page-wrapper">
 		<section class="page-content clearfix"><?php
 
