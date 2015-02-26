@@ -5,15 +5,38 @@
  *		-------------------------------------------------------
  */
 
-//// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
-function the_snippet($length=55,$readmore='Read More') {
+// get_the_snippet()
+function get_the_snippet( $length = 55, $readmore = 'Read More' ) {
 	global $post;
-	$text = $post->post_content;
+
+	if ( empty( $post ) ) {
+		return '';
+	}
+
+	if ( post_password_required() ) {
+		return __( 'There is no excerpt because this is a protected post.' );
+	}
+
+	$text = get_the_content('');
 	$text = strip_shortcodes( $text );
 	$text = apply_filters('the_content', $text);
-	$text = str_replace(']]>', ']]&gt;', $text);
-	$more_link = '... <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
-	echo wp_trim_words($text,$length,$more_link);
+	$text = str_replace('\]\]\>', ']]&gt;', $text);
+    $text = preg_replace('@<script[^>]*?>.*?</script>@si', '', $text);
+    $text = strip_tags($text, '<p>');
+    $words = explode(' ', $text, $length + 1);
+	if (count($words)> $length) {
+		array_pop($words);
+		array_push($words, '...');
+		$text = implode(' ', $words);
+	}
+
+	$text .= ' <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+	return $text;
+}
+
+//// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
+function the_snippet( $length=55, $readmore = 'Read More' ) {
+	echo apply_filters( 'the_snippet', get_the_snippet($length, $readmore) );
 }
 
 // ---- get_the_thumbnail_caption() ---- //// Returns the caption for attached featured image featured image
