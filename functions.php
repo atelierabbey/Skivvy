@@ -1,9 +1,9 @@
-<?php #25Feb15
+<?php #27Feb15
 
 	include 'inc/skivvy_register.php'; // Registry for theme specific posttypes, taxonomy, menus, widget areas, scripts, styles, etc.
 	include 'inc/skivvy_simple.php'; // Various areas of clean up code, admin area, and various other functions of unneeded defaults
 	include 'inc/lib/skivvy_shortcodes.php'; // Shortcodes
-	include 'inc/admin/skivvy_admin_func_auto.php'; // Admin functions
+	include 'inc/admin/index.php'; // Admin functions
 	include 'inc/lib/skivvy_func_user.php'; // Usable Functions
 	include 'inc/lib/skivvy_func_auto.php'; // Auto Functions
 
