@@ -1,16 +1,13 @@
 <!DOCTYPE html><html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>"><head><meta charset="utf-8"><?php
 
-
+	// Site Title & Meta Description
+		echo '<title>' . wp_title( '-', FALSE, 'right' ) . '</title>';
 
 		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';// Meta description, important for SEO. Defaults to blog's description.
-
 
 		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">'; // Sets default width and scale to be dependent on the device.
 		echo '<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">';	// Force IE to render most recent engine for installed browser. And enable Chrome Frame
 		echo '<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'; // Don't autodetect phonenumbers and create links in iphone safari & blackberry
-
-	// Site Title
-		echo '<title>' . wp_title( '-', FALSE, 'right' ) . '</title>';
 
 	// Shortcut Icon - Favicon
 		echo '<link rel="shortcut icon" type="image/png" href="' . get_stylesheet_directory_uri() . '/img/favicon.png?v=1">';
@@ -18,18 +15,8 @@
 	// RSS Link
 		#echo '<link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="' . get_bloginfo('rss2_url') . '">';
 
-	// Standard Stylesheets
-		echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/css/func.css?ver=1" type="text/css">';
-		echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/style.css?ver=1" type="text/css">';
-
 	// HTML5 Shiv for < IE9
 		echo '<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->';
-
-	// Load Jquery
-		if ( ! wp_script_is( 'jquery' , 'queue' ) ) {
-				wp_enqueue_script( 'jquery' );
-		}
-
 
 wp_head(); ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
