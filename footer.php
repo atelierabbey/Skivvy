@@ -28,16 +28,6 @@
 	</div>
 </footer>
 <?php
-
-	// includes Analytics.php code
-		require ( 'js/analytics.php' );
-
-	// includes custom.js
-		// Inside of this script, $() will work as an alias for jQuery() and other libraries also using $ will not be accessible under this shortcut
-		/* echo '<script src="' . get_stylesheet_directory_uri() . '/js/custom.js"></script>'; //*/
-
-
-	// Don't touch below this line
-		wp_footer();
+	wp_footer();
 ?></body>
 </html>
