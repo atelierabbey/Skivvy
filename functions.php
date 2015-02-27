@@ -2,8 +2,8 @@
 
 	include 'inc/skivvy_register.php'; // Registry for theme specific posttypes, taxonomy, menus, widget areas, scripts, styles, etc.
 	include 'inc/skivvy_simple.php'; // Various areas of clean up code, admin area, and various other functions of unneeded defaults
-	include 'inc/lib/skivvy_shortcodes.php'; // Shortcodes
 	include 'inc/admin/index.php'; // Admin functions
+	include 'inc/lib/skivvy_shortcodes.php'; // Shortcodes
 	include 'inc/lib/skivvy_func_user.php'; // Usable Functions
 	include 'inc/lib/skivvy_func_auto.php'; // Auto Functions
 
@@ -33,13 +33,6 @@
 				#	add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
 				#	add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
 
-			// Framework for global langauge set up
-				/*
-					$lang_location = get_template_directory_uri() . '/inc';
-					$locale_file = $lang_location . '/' . get_locale() . '.php';
-					load_theme_textdomain( 'skivvy', $lang_location );
-					if ( is_readable( $locale_file )){ require_once( $locale_file ); }
-				//*/
 		} add_action( 'after_setup_theme', 'skivvy_setup' );
 
 ?>
