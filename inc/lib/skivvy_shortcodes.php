@@ -43,6 +43,7 @@
 	}
 	function shortcode_skiv_div( $atts, $content = null, $tag) {
 			extract( shortcode_atts( array(
+				'autop'   => 'true',
 				'id'      => '',
 				'style'   => '',
 				'class'   => '',
@@ -92,7 +93,11 @@
 					if ( $tag == 'one_full' ) $output .= '<div class="page-wrapper">';
 					$output .=		'<div class="skivdiv-content">';
 						if ( $func == '' ) {
+							if ( 'autop' != 'true' ) {
 								$output .= do_shortcode($content);
+							} else {
+								$output .= wpautop(do_shortcode($content));
+							}
 						} else {
 							if ( $echoes === 0 ) {
 								// if $func( $param ) RETURN value
