@@ -7,15 +7,6 @@
 	include 'inc/lib/skivvy_func_user.php'; // Usable Functions
 	include 'inc/lib/skivvy_func_auto.php'; // Auto Functions
 
-	// Added wp-upload MIME types  - https://www.sitepoint.com/web-foundations/mime-types-complete-list/
-		function skivvy_add_custom_mime_types($mimes){
-			return array_merge($mimes,array (
-				'swf' => 'application/x-shockwave-flash',
-				'svg' => 'image/svg+xml'
-			));
-		} add_filter('upload_mimes','skivvy_add_custom_mime_types');
-
-
 	// Basic Setup
 		function skivvy_setup() {
 
@@ -24,6 +15,7 @@
 					add_theme_support( 'html5', array('comment-list','search-form','comment-form','gallery') );
 				#	add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
 				#	add_theme_support( 'automatic-feed-links' );
+				#	add_theme_support( 'woocommerce' );
 
 			// Customizable options that run at Theme activation. in inc/skivvy_simple.php
 				#	skivvy_autooptions();
