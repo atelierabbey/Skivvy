@@ -4,6 +4,7 @@
 //		Menu
 //		Javascripts & Styles
 //		Widgets Area
+//		MIME Types
 //		Post Types
 
 
@@ -51,7 +52,14 @@
 
 
 
-
+// REGISTER - MIME types
+		// Added wp-upload MIME types  - https://www.sitepoint.com/web-foundations/mime-types-complete-list/
+	function skivvy_add_custom_mime_types($mimes){
+		return array_merge($mimes,array (
+			'swf' => 'application/x-shockwave-flash',
+			'svg' => 'image/svg+xml'
+		));
+	} add_filter('upload_mimes','skivvy_add_custom_mime_types');
 
 
 //  REGISTER - Post Types
