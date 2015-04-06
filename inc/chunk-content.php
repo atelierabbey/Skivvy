@@ -64,7 +64,7 @@ if ( have_posts() ) :
 
 						// Post Thumbnail
 							if ( has_post_thumbnail() ) {
-								the_post_thumbnail();
+								echo '<div class="post-thumb">' . get_the_post_thumbnail( get_the_ID(), 'thumbnail') . '</div>';
 							}
 
 						// Post Title
