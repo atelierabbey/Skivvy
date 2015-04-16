@@ -36,8 +36,11 @@ button, a.button, html input[type="button"], input[type="reset"], input[type="su
 
 /* ---- CONTENT ---- */
 #content {}
+.subpage #content .page-wrapper {max-width:980px;}
 .page-template-template_fullwidth #content > .page-wrapper {max-width: none;width: 100%;padding:0;}
-.subpage #content .page-wrapper {width:980px;}
+.page-template-template_fullwidth #content .page-title {max-width:880px;margin:0 auto;}
+.page-template-template_fullwidth #content .fullwidth .skivdiv-content {padding: 0 10%;}
+
 .page-title {}
 .page-content {}
 .post-content {margin-top:10px;padding-top:10px;border-top:1px solid #bbb;}
