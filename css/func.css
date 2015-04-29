@@ -58,6 +58,7 @@ ul li ul li {list-style: circle;}
 ol li {list-style: decimal;}
 ol li ol li {list-style: lower-alpha;}
 li ol, li ul {margin:0;}
+p:empty {display:none;}
 @media print {* {background: transparent !important;color: #000 !important; /* Black prints faster: h5bp.com/s */ box-shadow: none !important;text-shadow: none !important;}a,a:visited {text-decoration: underline;}a[href]:after {content: " (" attr(href) ")";}abbr[title]:after {content: " (" attr(title) ")";}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after {content: "";}pre,blockquote {border: 1px solid #999;page-break-inside: avoid;}thead {display: table-header-group; /* h5bp.com/t */}tr,img {page-break-inside: avoid;}img {max-width: 100% !important;}@page {margin: 0.5cm;}p,h2,h3 {orphans: 3;widows: 3;}h2,h3 {page-break-after: avoid;}}
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}/* Force Firefox to show image placeholders */
 
