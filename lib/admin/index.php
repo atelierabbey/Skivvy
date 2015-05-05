@@ -165,10 +165,10 @@ function hide_profile_fields( $contactmethods ) {
 	function skivvy_admin_script_style() {
 
 		// Styles
-		wp_register_style( 'skivvy_admin_style', get_template_directory_uri().'/inc/admin/admin.css', false, skinfo('Version'), 'screen' );
+		wp_register_style( 'skivvy_admin_style', get_template_directory_uri().'/lib/admin/admin.css', false, skinfo('Version'), 'screen' );
 		wp_enqueue_style( 'skivvy_admin_style' );
 		// Scripts
-		wp_register_script( 'skivvy_admin_script', get_template_directory_uri().'/inc/admin/admin.js', false, skinfo('Version'), true );
+		wp_register_script( 'skivvy_admin_script', get_template_directory_uri().'/lib/admin/admin.js', array('jquery'), skinfo('Version'), true );
 		wp_enqueue_script( 'skivvy_admin_script' );
 
 	}
