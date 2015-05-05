@@ -1,40 +1,40 @@
-<!DOCTYPE html><html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>"><head><meta charset="utf-8"><?php
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>">
+<head><?php
 
-	// Site Title & Meta Description
-		echo '<title>' . wp_title( '-', FALSE, 'right' ) . '</title>';
+	echo (
+			'<meta charset="utf-8">'.
+			'<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">'. // Force IE to render most recent engine for installed browser. And enable Chrome Frame
+			'<meta content="width=device-width, initial-scale=1.0" name="viewport">'. // Sets default width and scale to be dependent on the device.
+		#	'<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'. // Don't autodetect phonenumbers and create links in iphone safari & blackberry
 
-		echo '<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">';// Meta description, important for SEO. Defaults to blog's description.
+		// Title, Description, Favicon & Apple touch
+			'<title>' . wp_title( '-', FALSE, 'right' ) . '</title>'.
+			'<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">'. // Meta description, important for SEO. Defaults to blog's description.
+			'<link rel="shortcut icon" type="image/png" href="' . get_stylesheet_directory_uri() . '/img/favicon.png?v=1">'.
+		#	'<link rel="apple-touch-icon" href="' . get_stylesheet_directory_uri() . '/apple-touch-icon.png">'.
 
-		echo '<meta content="width=device-width, initial-scale=1.0" name="viewport">'; // Sets default width and scale to be dependent on the device.
-		echo '<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">';	// Force IE to render most recent engine for installed browser. And enable Chrome Frame
-		echo '<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'; // Don't autodetect phonenumbers and create links in iphone safari & blackberry
+			'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->'// HTML5 Shiv for < IE9
 
-	// Shortcut Icon - Favicon
-		echo '<link rel="shortcut icon" type="image/png" href="' . get_stylesheet_directory_uri() . '/img/favicon.png?v=1">';
+	);
 
-	// RSS Link
-		#echo '<link rel="alternate" type="application/rss+xml" title="RSS 2.0 Feed" href="' . get_bloginfo('rss2_url') . '">';
-
-	// HTML5 Shiv for < IE9
-		echo '<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->';
-
-wp_head(); ?></head>
+	wp_head();
+?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
 <header id="header">
 	<div class="page-wrapper">
 		<?php
 
 			// Logo
-				echo
-				'<div class="logo">'.
-					'<a href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
+				echo (
+					'<a id="logo" class="alignleft" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
 						'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
-					'</a>'.
-				'</div>';
+					'</a>'
+				);
 
 			// Main Menu
 				wp_nav_menu( array(
-					'items_wrap'      => '<nav class="access animated dropdown"><ul class="main-menu">%3$s</ul></nav>',
+					'items_wrap'      => '<nav id="nav-main" class="access animated dropdown alignright"><ul class="nobull main-menu">%3$s</ul></nav>',
 					'theme_location'  => 'main',
 					'menu'            => '',
 					'container'       => FALSE,
@@ -53,17 +53,18 @@ wp_head(); ?></head>
 				));
 
 			// Mobile Menu
-				wp_nav_menu( array(
-					'items_wrap'      => '<nav class="mobile-menu"><form><select onchange="if (this.value) window.location.href=this.value">%3$s</select></form></nav>',
-					'theme_location'  => 'mobile',
-					'container'       => FALSE,
-					'echo'            => TRUE,
-					'fallback_cb'     => 'main',
-					'link_before'     => '<option>',
-					'link_after'      => '</option>',
-					'depth'           => -1,
-					'walker'          => new Walker_Nav_Mobile(),
-				));
+				echo (
+						'<div id="toggle-mobile" class="alignright fa fa-bars fa-2x"></div>'.
+						'<div class="clear"></div>'.
+						wp_nav_menu( array(
+							'items_wrap'      => '<nav id="nav-mobile" style="display:none;"><ul class="nobull textcenter">%3$s</ul></nav>',
+							'theme_location'  => 'mobile',
+							'container'       => FALSE,
+							'echo'            => FALSE,
+							'fallback_cb'     => 'main',
+							'depth'           => -1
+						))
+					);
 		?>
 		<div class="clear"></div>
 	</div>

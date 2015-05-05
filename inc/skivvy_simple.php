@@ -65,7 +65,6 @@ function skivvy_autooptions() {
 
 
 // WP_HEAD() - Cleanup
-
 			remove_action('wp_head', 'rsd_link');
 			remove_action('wp_head', 'wp_generator');
 		#	remove_action('wp_head', 'feed_links', 2);
@@ -86,6 +85,9 @@ function skivvy_autooptions() {
 			get_template_part( '/js/analytics' );
 
 	} add_action( 'wp_footer', 'skivvy_footer' );
+
+
+
 
 
 
@@ -119,62 +121,23 @@ function skivvy_autooptions() {
 	}
 	add_filter( 'gallery_style', 'skivvy_remove_gallery_css' );
 
-
-
-
-/* NOT WORKING CURRENTLY
- * URL rewriting
- *
- * Rewrites currently do not happen for child themes (or network installs)
- * @todo https://github.com/retlehs/roots/issues/461
- *
- * Rewrite:
- *   /wp-content/themes/themename/css/ to /css/
- *   /wp-content/themes/themename/js/  to /js/
- *   /wp-content/themes/themename/img/ to /img/
- *   /wp-content/plugins/              to /plugins/
- *
- * If you aren't using Apache, alternate configuration settings can be found in the docs.
- *
- * @link https://github.com/retlehs/roots/blob/master/doc/rewrites.md
- */
-/*
-function roots_add_rewrites($content) {
-  global $wp_rewrite;
-  $roots_new_non_wp_rules = array(
-    'assets/css/(.*)'      => THEME_PATH . '/assets/css/$1',
-    'assets/js/(.*)'       => THEME_PATH . '/assets/js/$1',
-    'assets/img/(.*)'      => THEME_PATH . '/assets/img/$1',
-    'plugins/(.*)'         => RELATIVE_PLUGIN_PATH . '/$1'
-  );
-  $wp_rewrite->non_wp_rules = array_merge($wp_rewrite->non_wp_rules, $roots_new_non_wp_rules);
-  return $content;
+// Disable Emojis - By Ryan Hellyer @ https://geek.hellyer.kiwi/ - License: GPL2
+function disable_emojis() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+} add_action( 'init', 'disable_emojis' );
+function disable_emojis_tinymce( $plugins ) {
+	if ( is_array( $plugins ) ) {
+		return array_diff( $plugins, array( 'wpemoji' ) );
+	} else {
+		return array();
+	}
 }
 
-function roots_clean_urls($content) {
-  if (strpos($content, RELATIVE_PLUGIN_PATH) > 0) {
-    return str_replace('/' . RELATIVE_PLUGIN_PATH,  '/plugins', $content);
-  } else {
-    return str_replace('/' . THEME_PATH, '', $content);
-  }
-}
-
-if (!is_multisite() && !is_child_theme()) {
-  if (current_theme_supports('rewrites')) {
-    add_action('generate_rewrite_rules', 'roots_add_rewrites');
-  }
-
-  if (!is_admin() && current_theme_supports('rewrites')) {
-    $tags = array(
-      'plugins_url',
-      'bloginfo',
-      'stylesheet_directory_uri',
-      'template_directory_uri',
-      'script_loader_src',
-      'style_loader_src'
-    );
-
-    add_filters($tags, 'roots_clean_urls');
-  }
-} //*/
 ?>
