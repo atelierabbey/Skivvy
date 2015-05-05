@@ -28,12 +28,12 @@ button, a.button, html input[type="button"], input[type="reset"], input[type="su
 .post-navigation {}
 .page-meta, .post-meta {font-size:0.75em;color:#555;}
 .post-next, .post-prev {}
-.skivdiv-content {padding:0 2px;}
-
+.skivdiv-content {padding:10px;}
+.fullwidth > .skivdiv-content {padding:0;}
 .subpage #content .page-wrapper {max-width:980px;}
 .page-template-template_fullwidth #content > .page-wrapper {max-width: none;width: 100%;padding:0;}
 .page-template-template_fullwidth #content .page-title {max-width:880px;margin:0 auto;}
-.page-template-template_fullwidth #content .fullwidth .skivdiv-content {padding: 0 10%;}
+.page-template-template_fullwidth #content .fullwidth > .skivdiv-content {padding: 0 10%;}
 
 
 /* ---- HEADER ---- */
@@ -72,29 +72,45 @@ button, a.button, html input[type="button"], input[type="reset"], input[type="su
 
 /* ----------------- Responsive ------------------- */
 
-/* Laptop and up */
 @media all and (min-width: 1025px) {
 
 }
 
-/* Tablet - Landscape*/
-@media all and (max-width: 1024px) {
 
+@media all and (max-width: 1024px) {
+	.two_third, .three_fourth, .five_sixth, .two_fifth, .three_fifth, .four_fifth {margin:0 auto;float:none;clear: both;width:100%;}
 }
 
-/* Tablet - Portrait*/
 @media all and (min-width: 769px)  {#nav-mobile,#toggle-mobile {display:none !important;}}
 @media all and (max-width: 768px)  {
 	#nav-main {display: none;}
 	#nav-mobile,#toggle-mobile {display: block;}
+	.fullwidth .one_fourth:nth-child(3), .fullwidth .one_fifth:nth-child(4), .fullwidth .one_sixth:nth-child(4) {clear: left;}
+	.one_half, .one_third.last {margin:0 auto;float:none;clear: both;}
+	.one_half {width:100%;}
+	.one_third, .one_fourth {width:50%;}
+	.one_fifth, .one_sixth {width:33.33%;}
 }
-/* Large Mobile - Landscape */
+
 @media all and (max-width: 640px)  {
-
+	.fullwidth .one_fifth:nth-child(4) {clear:none;}
+	.fullwidth .one_fifth:nth-child(3) {clear: left;}
+	.one_third, .one_fifth.last {float: none;clear: both;margin:0 auto;}
+	.one_third {width:100%;}
+	.one_fifth {width:50%}
 }
 
-/* Large Mobile */
-@media all and (max-width: 360px) {
+@media all and (max-width: 480px)  {
+	.fullwidth .one_fifth:nth-child(3) {clear:none;}
+	.fullwidth .one_fifth:nth-child(3) {clear: left;}
+	.one_fourth {float: none;clear: both;margin:0 auto;}
+	.one_fourth {width:100%;}
+	.one_sixth {width:50%;}
+	.fullwidth .one_sixth:nth-child(2n+1) {clear: left;}
+}
 
+@media all and (max-width: 360px) {
+	.one_fifth, .one_sixth {float: none;clear: both;margin:0 auto;}
+	.one_fifth, .one_sixth {width:100%;}
 }
 
