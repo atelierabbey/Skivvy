@@ -1,28 +1,11 @@
-<?php #16Mar15
+<?php #05May15
 /*
  *		-------------------------------------------------------
  *		SHORTCODES
  *		-------------------------------------------------------
  */
 
-/*
-** 		SHORTCODE - SKIVDIV
-**		Use: [$tag
-**				id="$id"				// Adds ID to it.. serious.
-**				class="$class"		// Any CSS class(es). Space seperate.
-**				style="$style"		// any inline CSS. Add as normal in the " style='' " attribute.
-**				title="$title"		// Renders either H2 (one full) or H3 (on all else) just before the "div.skivdiv-content" & addes a sanitized CSS class to the overall wrapper
-**				before="$before"    // Adds content before open the skiv-div
-**				after="$after"      // Adds content after closing the skiv-div
-**				prepend="$prepend"	// Adds content after opening the skiv-div (before the title's h3/h2)
-**
-**			// Function attributes - Deals with turning the SkivDiv into a functional area.
-**				func="$func"        // name of function to be called, works with $param. i.e. $func($param);
-**				param="$param"      // Comma seperated string in order of parameters. CANNOT PASS AN ARRAY!
-**				echoes="$echoes"    // If the function echoes content, $echoes should equal '1', else default = '0'. Shortcodes must return a value.
-**
-**		]
-*/
+// Use: [$tag id="" class="$class" style="$style" title="$title" before="$before" after="$after" prepend="$prepend"	 func="$func"  param="$param" echoes="$echoes" ]
 	$tags = array(
 		'fullwidth',
 		'one_full',
@@ -118,7 +101,7 @@
 				}
 			return $output;
 	}
-/*
+
 // Use: [blogfeed show="5" class="" length="55" morelink="Read More" alllink="See All Posts"]
 	function shortcode_blogfeed( $atts ) {
 
@@ -171,16 +154,71 @@
 		return $output;
 
 	} add_shortcode( 'blogfeed', 'shortcode_blogfeed' );
-//*/
+
+// Use: [bucket title="" img="" linkto="" linktext="" class="" id="" style=""][/bucket]
+	function shortcode_bucket( $atts, $content = null ) {
+		$attr = shortcode_atts( array(
+			'title'=>'',
+			'img'=>'',
+			'linkto'=>'#',
+			'morelink'=>'',
+			'class'=>'',
+			'id'=>'',
+			'style'=>'',
+			'target' => ''
+		), $atts );
 
 
+		// Container
+			if ( $attr['id'] != '' ) {
+				$id = ' id="' . $attr['id'] .'" ';
+			}
+			if ( $attr['class'] != '' ) {
+				$class = ' class="bucket-chunk '. $attr['class'] .'"';
+			} else {
+				$class = ' class="bucket-chunk"';
+			}
+
+		// Title
+			if ( $attr['img'] ) $background = 'style="'.'"';
+
+		// Link
+			if ( $attr['target'] ) $target = ' target="'. $attr['target'] .'"';
+			if ( $attr['morelink'] != '' ) {
+				$linktitle = ' title="'. $attr['linktext']  . ' - ' . $attr['title'] .'"';
+			} else {
+				$linktitle = ' title="'. $attr['title'] .'"';
+			}
+		// Content
+			$innercontent ='';
+			if ( $content != null || $attr['morelink'] != '' ) {
+				$innercontent = '<div class="bucket-content">';
+					$innercontent .= wpautop(do_shortcode($content));
+					$innercontent .= '<a class="readmorebtn" ' . $linktitle . $target .'href="'. $attr['linkto'] .'">';
+						$innercontent .= $attr['morelink'];
+					$innercontent .= '</a>';
+				$innercontent .= '</div>';
+			}
+
+		// RENDER
+			$output = '<div'. $id . $class . '>';
+				$output .= '<h3' . $background . '>';
+					$output .= '<a' . $linktitle . $target .'href="'. $attr['linkto'] .'">';
+						$output .= $attr['title'];
+					$output .= '</a>';
+				$output .= '</h3>';
+				$output .= $innercontent;
+			$output .= '</div>';
+			return $output;
+
+	} add_shortcode( 'bucket', 'shortcode_bucket' );
 
 // Use: [clearall]
 	function shortcode_clearall() {
 		return '<div class="clear"></div>';
 	} add_shortcode( 'clearall', 'shortcode_clearall' );
 
-//// Use: [bloginfo key='name']
+// Use: [bloginfo key='name']
 	function shortcode_bloginfo( $atts ) {
 		extract(shortcode_atts(array(
 			'key' => '',
@@ -188,13 +226,13 @@
 		return get_bloginfo( $key );
 	} add_shortcode( 'bloginfo', 'shortcode_bloginfo' );
 
-/// Use [lorem words="55"]
-function shortcode_loremipsum ( $atts ) {
-	extract( shortcode_atts( array(
-			'words' => 55
-		), $atts ) );
-	$lipsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.';
-	return wp_trim_words( $lipsum , $words , '' );
-} add_shortcode( 'lorem', 'shortcode_loremipsum' );
+// Use: [lorem words="55"]
+	function shortcode_loremipsum ( $atts ) {
+		extract( shortcode_atts( array(
+				'words' => 55
+			), $atts ) );
+		$lipsum = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.';
+		return wp_trim_words( $lipsum , $words , '' );
+	} add_shortcode( 'lorem', 'shortcode_loremipsum' );
 
 ?>
