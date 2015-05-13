@@ -4,9 +4,9 @@
 	echo '<ul class="post-navigation nobull clearfix">';
 
 
-			$prev_start = '<li class="post-prev alignleft">';
+			$prev_start = '<li class="post-prev alignleft button">';
 			$prev_end = '</li>';
-			$next_start = '<li class="post-next alignright">';
+			$next_start = '<li class="post-next alignright button">';
 			$next_end = '</li>';
 
 			if ( is_home() || is_day() || is_month() || is_year() || is_tax() || is_category() || is_tag() || is_author() || is_archive() || is_search() ) {
