@@ -29,14 +29,12 @@
 		// STYLES - wp_register_style( $handle, $src, $deps, $ver, $media );
 			wp_register_style( 'skivvy-func',  get_stylesheet_directory_uri() . '/css/func.css', false, '4May15', 'all');
 			wp_register_style( 'skivvy-print',  get_stylesheet_directory_uri() . '/css/print.css', array('skivvy-func'), '4May15', 'print');
-			wp_register_style( 'skivvy-icons', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', array('skivvy-func'), '4.3.0', 'all');
 			wp_register_style( 'skivvy-font', 'http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic', array('skivvy-func'), '1', 'all');
 			wp_register_style( 'skivvy-style', get_stylesheet_directory_uri() . '/style.css', array('skivvy-func'), '1', 'all');
 
 		// ENQUEUE | NOTE: Comment out here if undesired.
 			wp_enqueue_script('skivvy-custom');
 			wp_enqueue_style('skivvy-print');
-			wp_enqueue_style('skivvy-icons');
 			wp_enqueue_style('skivvy-font');
 			wp_enqueue_style('skivvy-style');
 
