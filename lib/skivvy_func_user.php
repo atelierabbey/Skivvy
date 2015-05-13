@@ -30,7 +30,9 @@ function get_the_snippet( $length = 55, $readmore = 'Read More' ) {
 		$text = implode(' ', $words);
 	}
 
-	$text .= ' <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+	if ( $readmore != '' ) {
+		$text .= ' <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+	}
 	return $text;
 }
 
