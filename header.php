@@ -3,7 +3,7 @@
 <head><?php
 
 	echo (
-			'<meta charset="utf-8">'.
+			'<meta charset="'. get_bloginfo( 'charset' ).'">'.
 			'<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">'. // Force IE to render most recent engine for installed browser. And enable Chrome Frame
 			'<meta content="width=device-width, initial-scale=1.0" name="viewport">'. // Sets default width and scale to be dependent on the device.
 		#	'<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'. // Don't autodetect phonenumbers and create links in iphone safari & blackberry
@@ -21,7 +21,7 @@
 	wp_head();
 ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
-<header id="header">
+<header role="banner" id="header">
 	<div class="page-wrapper">
 		<?php
 
@@ -34,7 +34,7 @@
 
 			// Main Menu
 				wp_nav_menu( array(
-					'items_wrap'      => '<nav id="nav-main" class="access animated dropdown alignright"><ul class="nobull main-menu">%3$s</ul></nav>',
+					'items_wrap'      => '<nav role="navigation" id="nav-main" class="access animated dropdown alignright"><ul class="nobull main-menu">%3$s</ul></nav>',
 					'theme_location'  => 'main',
 					'menu'            => '',
 					'container'       => FALSE,
@@ -54,10 +54,10 @@
 
 			// Mobile Menu
 				echo (
-						'<div id="toggle-mobile" class="alignright fa fa-bars fa-2x"></div>'.
+						'<button id="toggle-mobile" class="alignright"></button>'.
 						'<div class="clear"></div>'.
 						wp_nav_menu( array(
-							'items_wrap'      => '<nav id="nav-mobile" style="display:none;"><ul class="nobull textcenter">%3$s</ul></nav>',
+							'items_wrap'      => '<nav role="navigation" id="nav-mobile" style="display:none;"><ul class="nobull textcenter">%3$s</ul></nav>',
 							'theme_location'  => 'mobile',
 							'container'       => FALSE,
 							'echo'            => FALSE,

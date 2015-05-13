@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <section id="content">
 	<div class="page-wrapper">
-		<section class="page-content clearfix"><?php
+		<section role="main" class="page-content clearfix"><?php
 
 			if ( is_front_page() ) get_template_part( 'inc/chunk' , 'slider' ); // Slider
 
