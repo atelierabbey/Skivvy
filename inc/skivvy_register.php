@@ -1,11 +1,11 @@
 <?php
-
 // http://generatewp.com
 //		Menu
 //		Javascripts & Styles
 //		Widgets Area
 //		MIME Types
 //		Post Types
+//		Theme Setup
 
 
 
@@ -84,6 +84,26 @@
 
 
 
+// Basic Theme Setup Setup
+	function skivvy_setup() {
+
+		// WP-Theme Support - http://codex.wordpress.org/Function_Reference/add_theme_support
+				add_theme_support( 'title-tag' );
+				add_theme_support( 'post-thumbnails' );
+				add_theme_support( 'html5', array('search-form','comment-form','comment-list','gallery','caption','widgets') );
+				add_theme_support( 'automatic-feed-links' );
+			#	add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
+			#	add_theme_support( 'woocommerce' );
+
+		// Customizable options that run at Theme activation. in inc/skivvy_simple.php
+			#	skivvy_autooptions();
+
+		// Add Widget/sidebar functionality
+			#	add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes
+			#	add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
+			#	add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
+
+	} add_action( 'after_setup_theme', 'skivvy_setup' );
 
 
 ?>
