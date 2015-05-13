@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US" class="<?php if (function_exists('html_classes')){ html_classes(); } ?>">
+<html <?php language_attributes(); ?> class="<?php if (function_exists('html_classes')){ html_classes(); } ?>">
 <head><?php
 
 	echo (
