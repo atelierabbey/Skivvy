@@ -11,10 +11,11 @@
 		function skivvy_setup() {
 
 			// WP-Theme Support - http://codex.wordpress.org/Function_Reference/add_theme_support
+					add_theme_support( 'title-tag' );
 					add_theme_support( 'post-thumbnails' );
-					add_theme_support( 'html5', array('comment-list','search-form','comment-form','gallery') );
-				#	add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
+					add_theme_support( 'html5', array('search-form','comment-form','comment-list','gallery','caption','widgets') );
 				#	add_theme_support( 'automatic-feed-links' );
+				#	add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
 				#	add_theme_support( 'woocommerce' );
 
 			// Customizable options that run at Theme activation. in inc/skivvy_simple.php
