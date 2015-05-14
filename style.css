@@ -1,11 +1,15 @@
 /*
-Theme Name:		Skivvy
-Author:			Atelier Abbey
-Author URI:		http://www.atelierabbey.org/
-Theme URI:		https://github.com/atelierabbey/Skivvy
-Description:	Almost naked theme.
-Version:		4May15
-License:		The GNU General Public License (GPL-2.0)
+Theme Name:			Skivvy
+Author:				Atelier Abbey
+Author URI:			http://www.atelierabbey.org/
+GitHub Theme URI:	atelierabbey/Skivvy
+GitHub Theme URI:	https://github.com/atelierabbey/Skivvy
+GitHub Branch:    	master
+Theme URI:			https://github.com/atelierabbey/Skivvy
+
+Description:		Near-naked boilerplate for quick development of unique sites
+Version:			14May15
+License:			The GNU General Public License (GPL-2.0)
 */
 /* ---- CONTENT ---- */
 html {background-color:#fff;color:#000;font:14px/1.75em 'Open Sans', sans-serif;}
