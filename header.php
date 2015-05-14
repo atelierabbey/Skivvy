@@ -28,35 +28,32 @@
 				'</a>'.
 
 			// Mobile Toggle
-				'<button id="toggle-mobile" class="alignright"></button>'.
+				'<button id="mobile-toggle" class="alignright"></button>'.
 
 			// Main Menu
-				wp_nav_menu( array(
-					'container'       => 'nav',
-					'container_class' => 'alignright',
-					'container_id'    => 'nav-main',
-					'menu_class'      => 'nobull dropdown animated flyoutright', // Menu functionality classes
-					'menu_id'         => 'main-menu',
-					'items_wrap'      => '<ul role="navigation" id="%1$s" class="%2$s">%3$s</ul>',
-					'theme_location'  => 'main',
-					'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
-					'echo'            => false
-				)).
+				'<nav role="navigation">'.
+						wp_nav_menu( array(
+							'container'       => false,
+							'menu_class'      => 'alignright nobull dropdown animated flyoutright', // Menu functionality classes
+							'menu_id'         => 'main-menu',
+							'theme_location'  => 'main',
+							'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
+							'echo'            => false
+						)).
 
-			'<div class="clear"></div>'.
+					'<div class="clear"></div>'.
 
-			// Mobile Menu
-				wp_nav_menu( array(
-					'container'       => 'nav',
-					'container_class' => 'hidden clearfix',
-					'container_id'    => 'nav-mobile',
-					'menu_class'      => 'nobull textcenter',
-					'menu_id'         => '',
-					'items_wrap'      => '<ul role="navigation" id="%1$s" class="%2$s">%3$s</ul>',
-					'theme_location'  => 'mobile',
-					'depth'           => -1,
-					'echo'            => false
-				))
+					// Mobile Menu
+						wp_nav_menu( array(
+							'container'       => false,
+							'menu_class'      => 'nobull textcenter clearfix',
+							'menu_id'         => 'mobile-nav',
+							'items_wrap'      => '<ul style="display:none;" id="%1$s" class="%2$s">%3$s</ul>',
+							'theme_location'  => 'mobile',
+							'depth'           => -1,
+							'echo'            => false
+						)).
+				'</nav>'
 		);
 
 	?></div>

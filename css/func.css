@@ -58,13 +58,14 @@ ul li ul li {list-style: circle;}
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}/* Force Firefox to show image placeholders */
 
 .clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0;float:none;}
-.clearfix:before,.clearfix:after,.container_12:before,.container_12:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}.clearfix:after,.container_12:after {clear: both;}.clearfix,.container_12 {*zoom: 1;}
+.clearfix:before,.clearfix:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}
+.clearfix:after,.container_12:after {clear: both;}
+.clearfix {*zoom: 1;}
 .group:after {content: "";display: table;clear: both;}
-.preloader {margin-left:-9999px;position:absolute;}
-.redalert{color:#fff;background-color:red;}
-.screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
-.hide, .hidden{display:none;}
-ul.nobull { padding:0; } ul.nobull > li { list-style:none;}
+.redalert {color:#fff;background-color:red;}
+.preloader, .screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+.hide, .hidden {display:none;}
+ul.nobull { padding:0; } ul.nobull > li {list-style:none;}
 ul.nobull > li > ul > li { list-style:disc; }
 ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .flatlist, .flatlist li { display: inline; }
