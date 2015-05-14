@@ -32,7 +32,7 @@
 
 			// Main Menu
 				wp_nav_menu( array(
-					'items_wrap'      => '<nav role="navigation" id="nav-main" class="access animated dropdown alignright dropright"><ul class="nobull main-menu">%3$s</ul></nav>',
+					'items_wrap'      => '<nav role="navigation" id="nav-main" class="access animated dropdown alignright flyoutright"><ul class="nobull main-menu">%3$s</ul></nav>',
 					'theme_location'  => 'main',
 					'menu'            => '',
 					'container'       => FALSE,

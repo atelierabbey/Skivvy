@@ -109,7 +109,7 @@ img.alignright {margin-left: 10px;}
 .dropdown .main-menu .sub-menu li {float:none;position: relative;margin:0;padding:0;}
 .dropdown .main-menu li:hover .sub-menu {display:block;}
 .dropdown .main-menu .sub-menu .sub-menu {position: absolute;right:100%;top:0;margin:0;padding:0;}
-.dropdown.dropright .main-menu .sub-menu {right:auto;left:0;}
-.dropdown.dropright .main-menu .sub-menu .sub-menu {right:auto;left:100%;}
+.dropdown.flyoutright .main-menu .sub-menu {right:auto;left:0;}
+.dropdown.flyoutright .main-menu .sub-menu .sub-menu {right:auto;left:100%;}
 .dropdown.animated .main-menu .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.5s ease 0s;}
 .dropdown.animated .main-menu li:hover > .sub-menu {visibility:visible;opacity: 1;}
