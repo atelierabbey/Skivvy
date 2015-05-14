@@ -55,6 +55,97 @@ function get_the_thumbnail_caption() {
 }
 
 
+if ( ! function_exists( chunkifier ) ) {
+	function chunkifier ( $args ) {
+
+		$attr = wp_parse_args( $args, array(
+			'tag' => '',
+			'content' => '',
+			'url'=>'#',
+			'target' => '',
+			'class'=>'',
+			'id'=>'',
+			'style'=>'',
+			'img'=>'',
+			'xtra' => 'false',
+			'title'=>'',
+			'more'=>''
+		));
+
+
+		// Container
+			// Container ID
+				$id = '';
+				if ( $attr['id'] != '' ){
+					$id = ' id="' . $attr['id'] .'" ';
+				}
+
+			// Container class
+				$class = '';
+				if ( $attr['class'] != '' ) {
+					$class = ' '. $attr['class'];
+				}
+
+			// Container style
+				$style = '';
+				if ( $attr['img'] ){
+					$style .= 'background-image:url('.$attr['img'].');';
+				}
+				if ( $attr['style'] ){
+					$style .= '' . $attr['style'];
+				}
+
+		// LinkGuts
+			$linkGuts = ' href="' . $attr['url'] .'"';
+
+			if ( $attr['target'] )
+				$linkGuts .= ' target="'. $attr['target'] .'"';
+
+			if ( $attr['more'] != '' ) {
+				$linkGuts .= ' title="'. $attr['linktext']  . ' - ' . $attr['title'] .'"';
+			} else {
+				$linkGuts .= ' title="'. $attr['title'] .'"';
+			}
+
+		// Extra Link
+			$outXLink = '';
+			if ( $attr['xtra'] != 'false' ) {
+				$outXLink = '<a class="' . $attr['tag'] . '-lynx" '. $linkGuts .'></a>';
+			}
+
+		// Title
+			$outTitle = '';
+			if ( $attr['title'] ) {
+				$outTitle = '<h3 class="' . $attr['tag'] . '-title"><a' . $linkGuts . '>' . $attr['title'] .'</a></h3>';
+			}
+
+		// Content
+			$outContent = '';
+			if ( $attr['content'] != '' ) {
+				$outContent = '<span class="' . $attr['tag'] . '-content">'. wpautop( do_shortcode( $attr['content'] ) ).'</span>';
+			}
+
+		// More
+			$outMore = '';
+			if ( $attr['more'] ) {
+				$outMore = '<a class="' . $attr['tag'] . '-more"' . $linkGuts . '>' . $attr['more'] . '</a>';
+			}
+
+		// RENDER
+			$output = '<div' . $id . ' class="' . $attr['tag'] . '-chunk'. $class . '" style="' . $style . '">';
+				$output .= '<div class="' . $attr['tag'] . '-wrap">';
+					$output .= $outXLink;
+					$output .= $outTitle;
+					$output .= $outContent;
+					$output .= $outMore;
+					$output .= '<div class="clear"></div>';
+				$output .= '</div>';
+			$output .= '</div>';
+		return $output;
+	}
+}
+
+
 /*
  *		-------------------------------------------------------
  *		WordPress Functional Extensions

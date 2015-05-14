@@ -34,9 +34,9 @@
 
 		// ENQUEUE | NOTE: Comment out here if undesired.
 			wp_enqueue_script('skivvy-custom');
-			wp_enqueue_style('skivvy-print');
-			wp_enqueue_style('skivvy-font');
-			wp_enqueue_style('skivvy-style');
+			wp_enqueue_style ('skivvy-print');
+			wp_enqueue_style ('skivvy-font');
+			wp_enqueue_style ('skivvy-style');
 
 
 	} add_action('wp_enqueue_scripts', 'skivvy_scriptnstyle_enqueuer');
