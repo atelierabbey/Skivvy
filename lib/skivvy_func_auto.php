@@ -79,7 +79,7 @@ function html_classes( $class = array() ) {
 
 
 
-
+/*
 //// ---- Advanced Menu Styling Classes ---- ////
 	if( class_exists( 'SimpleXMLElement' ) ) {
 		// Cleans up and counts number of menu items
