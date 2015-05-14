@@ -7,7 +7,7 @@
 }
 /* Dashboard logo */
 #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default #wp-admin-bar-wp-logo .ab-icon {
-	background: url('logo-adminbar.svg') no-repeat scroll 0 6px / 20px 20px transparent !important;
+	background: url('logo-adminbar.svg') no-repeat scroll center center / 20px 20px transparent !important;
 	width:30px !important;
 }
 #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
@@ -34,7 +34,6 @@
 #admin-settings-warning-box {
 	background: #F00;
 	border-radius: 5px;color: #FFF;
-	font-family: Verdana, Tahoma, Geneva, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	margin: 10px auto 0;
@@ -53,5 +52,3 @@
 .status-private.alternate, .status-private.alt {}
 .post-password-required {}
 .post-password-required.alternate, .post-password-required.alt {}
-
-
