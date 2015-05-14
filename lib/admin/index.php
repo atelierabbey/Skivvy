@@ -138,6 +138,21 @@ function hide_profile_fields( $contactmethods ) {
 		}
 	}
 
+// Custom admin
+	function skivvy_admin_color_schemes() {
+		wp_admin_css_color(
+			'skivvy-colors',
+			__( 'Skivs' ),
+			get_template_directory_uri() . '/lib/admin/admin-colors.css',
+			array(
+				'#25282b',
+				'#363b3f',
+				'#69a8bb',
+				'#e14b3b'
+			)
+		);
+	} add_action('admin_init', 'skivvy_admin_color_schemes');
+
 
 
 /*
