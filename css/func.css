@@ -101,15 +101,16 @@ img.alignright {margin-left: 10px;}
 .gallery-item img {float: left;margin: 5px;}
 .autohide-adminbar #wpadminbar {width: 37px;min-width: auto;overflow: hidden;transition: all .5s ease 0.24s;}
 .autohide-adminbar #wpadminbar:hover {width: 100%;overflow: visible;}
-.dropdown .main-menu {position: relative;display:inline-table;list-style:none;margin:0;padding:0;}
-.dropdown .main-menu:after {content:"";clear:both;display:block;}
-.dropdown .main-menu li {position:relative;float:left;list-style:none;margin:0;padding:0;}
-.dropdown .main-menu li a {display:block;white-space:nowrap;}
-.dropdown .main-menu .sub-menu {display:none;position:absolute;top:100%;margin:0;padding:0;right:0;}
-.dropdown .main-menu .sub-menu li {float:none;position: relative;margin:0;padding:0;}
-.dropdown .main-menu li:hover .sub-menu {display:block;}
-.dropdown .main-menu .sub-menu .sub-menu {position: absolute;right:100%;top:0;margin:0;padding:0;}
-.dropdown.flyoutright .main-menu .sub-menu {right:auto;left:0;}
-.dropdown.flyoutright .main-menu .sub-menu .sub-menu {right:auto;left:100%;}
-.dropdown.animated .main-menu .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.5s ease 0s;}
-.dropdown.animated .main-menu li:hover > .sub-menu {visibility:visible;opacity: 1;}
+#main-menu,#main-menu li {list-style: none}
+.dropdown {position: relative;display:inline-table;margin:0;padding:0;}
+.dropdown:after {content:"";clear:both;display:block;}
+.dropdown li {position:relative;float:left;margin:0;padding:0;}
+.dropdown li a {display:block;white-space:nowrap;}
+.dropdown .sub-menu {display:none;position:absolute;top:100%;margin:0;padding:0;right:0;}
+.dropdown .sub-menu li {float:none;position:relative;margin:0;padding:0;}
+.dropdown li:hover .sub-menu {display:block;}
+.dropdown .sub-menu .sub-menu {position: absolute;right:100%;top:0;margin:0;padding:0;}
+.dropdown.flyoutright .sub-menu {right:auto;left:0;}
+.dropdown.flyoutright .sub-menu .sub-menu {right:auto;left:100%;}
+.dropdown.animated .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.5s ease 0s;}
+.dropdown.animated li:hover > .sub-menu {visibility:visible;opacity: 1;}

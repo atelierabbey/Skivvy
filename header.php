@@ -20,50 +20,45 @@
 ?></head>
 <body id="page-<?php echo get_the_ID(); ?>" <?php body_class(); ?>>
 <header role="banner" id="header">
-	<div class="page-wrapper">
-		<?php
+	<div class="page-wrapper"><?php
 
+		echo (
 			// Logo
-				echo (
-					'<a id="logo" class="alignleft" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
-						'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
-					'</a>'
-				);
+				'<a id="logo" class="alignleft" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">' .
+					'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
+				'</a>'.
+
+			// Mobile Toggle
+				'<button id="toggle-mobile" class="alignright"></button>'.
 
 			// Main Menu
 				wp_nav_menu( array(
-					'items_wrap'      => '<nav role="navigation" id="nav-main" class="access animated dropdown alignright flyoutright"><ul class="nobull main-menu">%3$s</ul></nav>',
+					'container'       => 'nav',
+					'container_class' => 'alignright',
+					'container_id'    => 'nav-main',
+					'menu_class'      => 'nobull dropdown animated flyoutright', // Menu functionality classes
+					'menu_id'         => 'main-menu',
+					'items_wrap'      => '<ul role="navigation" id="%1$s" class="%2$s">%3$s</ul>',
 					'theme_location'  => 'main',
-					'menu'            => '',
-					'container'       => FALSE,
-					'container_class' => '',
-					'container_id'    => '',
-					'menu_class'      => '',
-					'menu_id'         => '',
-					'echo'            => TRUE,
-					'fallback_cb'     => 'wp_page_menu',
-					'before'          => '',
-					'after'           => '',
-					'link_before'     => '',
-					'link_after'      => '',
 					'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
-					'walker'          => ''
-				));
+					'echo'            => false
+				)).
+
+			'<div class="clear"></div>'.
 
 			// Mobile Menu
-				echo (
-						'<button id="toggle-mobile" class="alignright"></button>'.
-						'<div class="clear"></div>'.
-						wp_nav_menu( array(
-							'items_wrap'      => '<nav role="navigation" id="nav-mobile" style="display:none;"><ul class="nobull textcenter">%3$s</ul></nav>',
-							'theme_location'  => 'mobile',
-							'container'       => FALSE,
-							'echo'            => FALSE,
-							'fallback_cb'     => 'main',
-							'depth'           => -1
-						))
-					);
-		?>
-		<div class="clear"></div>
-	</div>
+				wp_nav_menu( array(
+					'container'       => 'nav',
+					'container_class' => 'hidden clearfix',
+					'container_id'    => 'nav-mobile',
+					'menu_class'      => 'nobull textcenter',
+					'menu_id'         => '',
+					'items_wrap'      => '<ul role="navigation" id="%1$s" class="%2$s">%3$s</ul>',
+					'theme_location'  => 'mobile',
+					'depth'           => -1,
+					'echo'            => false
+				))
+		);
+
+	?></div>
 </header>

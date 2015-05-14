@@ -42,13 +42,13 @@ button, a.button, html input[type="button"], input[type="reset"], input[type="su
 #header {}
 #logo {}
 #nav-main {}
-#nav-main .main-menu {}
-#nav-main .main-menu li a {padding:3px 5px;color:#222;}
-#nav-main .main-menu li a:hover {}
-#nav-main .main-menu li.current_page_item > a {}
-#nav-main .main-menu .sub-menu {}
-#nav-main .main-menu .sub-menu li a {background-color: #eee;border-bottom: 1px solid #ddd;padding: 5px 20px;}
-#nav-main .main-menu .sub-menu li a:hover {background-color:#ddd;}
+#main-menu {}
+#main-menu li a {padding:3px 5px;color:#222;}
+#main-menu li a:hover {}
+#main-menu li.current_page_item > a {}
+#main-menu .sub-menu {}
+#main-menu .sub-menu li a {background-color: #eee;border-bottom: 1px solid #ddd;padding: 5px 20px;}
+#main-menu .sub-menu li a:hover {background-color:#ddd;}
 #toggle-mobile {background:none scroll no-repeat center center transparent;cursor:pointer;}
 #nav-mobile {}
 
