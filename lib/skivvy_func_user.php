@@ -14,14 +14,14 @@ function get_the_snippet( $atts ) {
 		'more'           => 'Read More',
 		'length'         => '55',
 		'cut'            => 'words',		// Words or Letters
-		'ignoreexcerpt'  => 'true'
+		'ignoreexcerpt'  => 'false'
 	));
 
 
 	if ( post_password_required() ) {
 		return __( 'There is no excerpt because this is a protected post.' );
 	}
-	if ( has_excerpt( $post->ID ) ) {
+	if ( has_excerpt( $post->ID ) && $attr['ignoreexcerpt'] != 'false') {
 		$text = get_the_excerpt();
 	} else {
 		$text = get_the_content();
@@ -46,14 +46,14 @@ function get_the_snippet( $atts ) {
 
 //// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
 function the_snippet( $length=55, $readmore = 'Read More' ) {
-	$attr = wp_parse_args( $atts, array(
+	$attr = array(
 		'more'           => $readmore,
 		'length'         => $length,
 		'cut'            => 'words',		// Words or Letters
-		'ignoreexcerpt'  => 'true'
-	));
+		'ignoreexcerpt'  => 'false'
+	);
 
-	echo apply_filters( 'the_snippet', get_the_snippet($length, $readmore) );
+	echo apply_filters( 'the_snippet', get_the_snippet( $attr ) );
 }
 
 // ---- get_the_thumbnail_caption() ---- //// Returns the caption for attached featured image featured image
