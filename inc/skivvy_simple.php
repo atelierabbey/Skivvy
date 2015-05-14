@@ -74,11 +74,20 @@
 		remove_action('wp_head', 'feed_links_extra', 3);				// <link rel="alternate" type="application/rss+xml" title="Skivvy » Hello world! Comments Feed" href="http://url.com/hello-world/feed/">
 
 
+	function skivvy_head() {
+		echo (
+			'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->' // HTML5 Shiv for < IE9
+		#	.'<link rel="profile" href="http://gmpg.org/xfn/11">'
+
+		);
+	} add_action( 'wp_head', 'skivvy_head' );
+
+
 //  WP_FOOT()
-	function skivvy_footer() {
+	function skivvy_foot() {
 		// includes Analytics.php code
 			get_template_part( '/js/analytics' );
-	} add_action( 'wp_footer', 'skivvy_footer' );
+	} add_action( 'wp_footer', 'skivvy_foot' );
 
 
 
