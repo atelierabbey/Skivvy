@@ -1,8 +1,8 @@
 /* 17Feb14 */
 /* Login Logo */
 .login #login > h1 a {
-	background-image:url("logo-login.svg");
-	background-size:auto auto;
+	background-image:url('logo-login.svg');
+	background-size:contain;
 	width:auto;
 }
 /* Dashboard logo */
