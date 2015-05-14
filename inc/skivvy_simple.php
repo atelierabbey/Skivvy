@@ -1,42 +1,38 @@
-<?php #22Apr14
+<?php #13May15
 
-/*
-**
-**		Skivvy Auto-Options
-**
-*/
-function skivvy_autooptions() {
-	$the_theme_status = get_option( 'theme_setup_status' );
-	if ( $the_theme_status !== '1' ) {
-		// Setup Default WordPress settings
-		$core_settings = array(
-			'show_avatars' => false,
-			'avatar_default' => 'mystery',
-			'avatar_rating' => 'G',
-			'default_role' => 'editor',
-			'comments_per_page' => 20,
-			'uploads_use_yearmonth_folders' => false,
-		);
-		foreach ( $core_settings as $k => $v ) {update_option( $k, $v );}
+//	Skivvy Auto-Options
+	function skivvy_autooptions() {
+		$the_theme_status = get_option( 'theme_setup_status' );
+		if ( $the_theme_status !== '1' ) {
+			// Setup Default WordPress settings
+			$core_settings = array(
+				'show_avatars' => false,
+				'avatar_default' => 'mystery',
+				'avatar_rating' => 'G',
+				'default_role' => 'editor',
+				'comments_per_page' => 20,
+				'uploads_use_yearmonth_folders' => false,
+			);
+			foreach ( $core_settings as $k => $v ) {update_option( $k, $v );}
 
-		// Delete dummy post, page and comment.
-		wp_delete_post( 1, true );
-		wp_delete_post( 2, true );
-		wp_delete_comment( 1 );
+			// Delete dummy post, page and comment.
+			wp_delete_post( 1, true );
+			wp_delete_post( 2, true );
+			wp_delete_comment( 1 );
 
-		update_option( 'theme_setup_status', '1' );
-		$msg = '<div class="error"><p>The '.get_option( 'current_theme' ).' theme has changed your WordPress default <a href="' . admin_url( 'options-general.php' ) . '" title="See Settings">settings</a> and deleted default posts & comments.</p></div>';
-		add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
+			update_option( 'theme_setup_status', '1' );
+			$msg = '<div class="error"><p>The '.get_option( 'current_theme' ).' theme has changed your WordPress default <a href="' . admin_url( 'options-general.php' ) . '" title="See Settings">settings</a> and deleted default posts & comments.</p></div>';
+			add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
+		}
+		// Else if we are re-activing the theme
+		elseif ( $the_theme_status === '1' and isset( $_GET['activated'] ) ) {
+			$msg = '
+			<div class="updated">
+				<p>The ' . get_option( 'current_theme' ) . ' theme was successfully re-activated.</p>
+			</div>';
+			add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
+		}
 	}
-	// Else if we are re-activing the theme
-	elseif ( $the_theme_status === '1' and isset( $_GET['activated'] ) ) {
-		$msg = '
-		<div class="updated">
-			<p>The ' . get_option( 'current_theme' ) . ' theme was successfully re-activated.</p>
-		</div>';
-		add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
-	}
-}
 
 
 
@@ -44,6 +40,7 @@ function skivvy_autooptions() {
 
 
 // WP_TITLE() - Simplify
+	/*
 	function skivvy_wp_title( $title, $separator ) {
 
 		global $paged, $page;
@@ -61,33 +58,20 @@ function skivvy_autooptions() {
 		return $filtered_title;
 
 	} add_filter( 'wp_title', 'skivvy_wp_title', 10, 2 );
+//*/
 
-
-
-// WP_HEAD() - Cleanup
-			remove_action('wp_head', 'rsd_link');
-			remove_action('wp_head', 'wp_generator');
-		#	remove_action('wp_head', 'feed_links', 2);
-			remove_action('wp_head', 'index_rel_link');
-			remove_action('wp_head', 'wlwmanifest_link');
-			remove_action('wp_head', 'feed_links_extra', 3);
-		#	remove_action('wp_head', 'start_post_rel_link', 10, 0);
-		#	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
-		#	remove_action('wp_head', 'parent_post_rel_link', 10, 0);
-		#	remove_action('wp_head', 'wp_shortlink_wp_head');
-		#	remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
-
-
-
-//  WP_FOOT()
-	function skivvy_footer() {
-		// includes Analytics.php code
-			get_template_part( '/js/analytics' );
-
-	} add_action( 'wp_footer', 'skivvy_footer' );
-
-
-
+// WP_HEAD() Cleanup
+		remove_action('wp_head', 'wp_generator');
+		remove_action('wp_head', 'rsd_link');							// <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://url.com/xmlrpc.php?rsd">
+		remove_action('wp_head', 'wlwmanifest_link');					// <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://url.com/wp-includes/wlwmanifest.xml"> | Resource file needed to enable tagging support for Windows Live Writer.
+		remove_action('wp_head', 'index_rel_link');						// ???
+		remove_action('wp_head', 'start_post_rel_link', 10, 0);			// ???
+		remove_action('wp_head', 'parent_post_rel_link', 10, 0);		// ???
+		remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);		// ???
+		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');	// <link rel="next" title="Post Title!" href="http://url.com/post-title/">
+		remove_action('wp_head', 'wp_shortlink_wp_head');				// <link rel="shortlink" href="http://url.com/?p=10">
+		remove_action('wp_head', 'feed_links', 2);						// <link rel="alternate" type="application/rss+xml" title="Skivvy » Feed" href="http://url.com/feed/"> | Works with Add_theme_support('automatic-feed-links');
+		remove_action('wp_head', 'feed_links_extra', 3);				// <link rel="alternate" type="application/rss+xml" title="Skivvy » Hello world! Comments Feed" href="http://url.com/hello-world/feed/">
 
 
 
@@ -122,22 +106,22 @@ function skivvy_autooptions() {
 	add_filter( 'gallery_style', 'skivvy_remove_gallery_css' );
 
 // Disable Emojis - By Ryan Hellyer @ https://geek.hellyer.kiwi/ - License: GPL2
-function disable_emojis() {
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
-	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-	add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
-} add_action( 'init', 'disable_emojis' );
-function disable_emojis_tinymce( $plugins ) {
-	if ( is_array( $plugins ) ) {
-		return array_diff( $plugins, array( 'wpemoji' ) );
-	} else {
-		return array();
+	function disable_emojis() {
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+		remove_action( 'wp_print_styles', 'print_emoji_styles' );
+		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+		add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+	} add_action( 'init', 'disable_emojis' );
+	function disable_emojis_tinymce( $plugins ) {
+		if ( is_array( $plugins ) ) {
+			return array_diff( $plugins, array( 'wpemoji' ) );
+		} else {
+			return array();
+		}
 	}
-}
 
 ?>

@@ -6,18 +6,26 @@
  */
 
 // get_the_snippet()
-function get_the_snippet( $length = 55, $readmore = 'Read More' ) {
+function get_the_snippet( $atts ) {
 	global $post;
+	if ( empty( $post ) ) return '';
 
-	if ( empty( $post ) ) {
-		return '';
-	}
+	$attr = wp_parse_args( $atts, array(
+		'more'           => 'Read More',
+		'length'         => '55',
+		'cut'            => 'words',		// Words or Letters
+		'ignoreexcerpt'  => 'false'
+	));
+
 
 	if ( post_password_required() ) {
 		return __( 'There is no excerpt because this is a protected post.' );
 	}
-
-	$text = get_the_content('');
+	if ( has_excerpt( $post->ID ) && $attr['ignoreexcerpt'] != 'false') {
+		$text = get_the_excerpt();
+	} else {
+		$text = get_the_content();
+	}
 	$text = strip_shortcodes( $text );
 	$text = apply_filters('the_content', $text);
 	$text = str_replace('\]\]\>', ']]&gt;', $text);
@@ -29,14 +37,23 @@ function get_the_snippet( $length = 55, $readmore = 'Read More' ) {
 		array_push($words, '...');
 		$text = implode(' ', $words);
 	}
-
-	$text .= ' <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+	$text = '<span class="post-snippet">'. $text . '</span>';
+	if ( $readmore != '' ) {
+		$text .= '<a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+	}
 	return $text;
 }
 
 //// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
 function the_snippet( $length=55, $readmore = 'Read More' ) {
-	echo apply_filters( 'the_snippet', get_the_snippet($length, $readmore) );
+	$attr = array(
+		'more'           => $readmore,
+		'length'         => $length,
+		'cut'            => 'words',		// Words or Letters
+		'ignoreexcerpt'  => 'false'
+	);
+
+	echo apply_filters( 'the_snippet', get_the_snippet( $attr ) );
 }
 
 // ---- get_the_thumbnail_caption() ---- //// Returns the caption for attached featured image featured image
@@ -50,6 +67,97 @@ function get_the_thumbnail_caption() {
 		$caption = $thumbnail_image[0]->post_excerpt;
 	}
 	return $caption;
+}
+
+
+if ( ! function_exists( chunkifier ) ) {
+	function chunkifier ( $atts ) {
+
+		$attr = wp_parse_args( $atts, array(
+			'tag' => '',
+			'content' => '',
+			'url'=>'#',
+			'target' => '',
+			'class'=>'',
+			'id'=>'',
+			'style'=>'',
+			'img'=>'',
+			'xtra' => 'false',
+			'title'=>'',
+			'more'=>''
+		));
+
+
+		// Container
+			// Container ID
+				$id = '';
+				if ( $attr['id'] != '' ){
+					$id = ' id="' . $attr['id'] .'" ';
+				}
+
+			// Container class
+				$class = '';
+				if ( $attr['class'] != '' ) {
+					$class = ' '. $attr['class'];
+				}
+
+			// Container style
+				$style = '';
+				if ( $attr['img'] ){
+					$style .= 'background-image:url('.$attr['img'].');';
+				}
+				if ( $attr['style'] ){
+					$style .= '' . $attr['style'];
+				}
+
+		// LinkGuts
+			$linkGuts = ' href="' . $attr['url'] .'"';
+
+			if ( $attr['target'] )
+				$linkGuts .= ' target="'. $attr['target'] .'"';
+
+			if ( $attr['more'] != '' ) {
+				$linkGuts .= ' title="'. $attr['linktext']  . ' - ' . $attr['title'] .'"';
+			} else {
+				$linkGuts .= ' title="'. $attr['title'] .'"';
+			}
+
+		// Extra Link
+			$outXLink = '';
+			if ( $attr['xtra'] != 'false' ) {
+				$outXLink = '<a class="' . $attr['tag'] . '-lynx" '. $linkGuts .'></a>';
+			}
+
+		// Title
+			$outTitle = '';
+			if ( $attr['title'] ) {
+				$outTitle = '<h3 class="' . $attr['tag'] . '-title"><a' . $linkGuts . '>' . $attr['title'] .'</a></h3>';
+			}
+
+		// Content
+			$outContent = '';
+			if ( $attr['content'] != '' ) {
+				$outContent = '<span class="' . $attr['tag'] . '-content">'. wpautop( do_shortcode( $attr['content'] ) ).'</span>';
+			}
+
+		// More
+			$outMore = '';
+			if ( $attr['more'] ) {
+				$outMore = '<a class="' . $attr['tag'] . '-more"' . $linkGuts . '>' . $attr['more'] . '</a>';
+			}
+
+		// RENDER
+			$output = '<div' . $id . ' class="' . $attr['tag'] . '-chunk'. $class . '" style="' . $style . '">';
+				$output .= '<div class="' . $attr['tag'] . '-wrap">';
+					$output .= $outXLink;
+					$output .= $outTitle;
+					$output .= $outContent;
+					$output .= $outMore;
+					$output .= '<div class="clear"></div>';
+				$output .= '</div>';
+			$output .= '</div>';
+		return $output;
+	}
 }
 
 

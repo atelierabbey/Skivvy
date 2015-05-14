@@ -27,7 +27,7 @@ if ( have_posts() ) :
 						$key = wp_specialchars($s, 1);
 						$count = $allsearch->post_count;
 						printf( __( '<div class="search-meta">Showing %1$s results for: %2$s</div>', 'skivvy' ), $count , $key );
-						wp_reset_query(); 
+						wp_reset_query();
 				}
 
 				if ( is_author() || get_the_author_meta( 'description' ) ) {
@@ -41,7 +41,7 @@ if ( have_posts() ) :
 
 			while ( have_posts() ) :
 
-				the_post(); 
+				the_post();
 
 				// Post Counter classes
 					$class_count = 'post-' . $i;
@@ -90,7 +90,7 @@ if ( have_posts() ) :
 	endif;
 
 // IF Nothing exists!
-else : 
+else :
 
 	if ( is_search() ) {
 

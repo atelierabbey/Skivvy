@@ -58,13 +58,14 @@ ul li ul li {list-style: circle;}
 @-moz-document url-prefix(http), url-prefix(file) {img:-moz-broken {-moz-force-broken-image-icon: 1;width: 100px;height: 75px;}}/* Force Firefox to show image placeholders */
 
 .clear {clear: both;display: block;overflow: hidden;visibility: hidden;width: 0;height: 0;float:none;}
-.clearfix:before,.clearfix:after,.container_12:before,.container_12:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}.clearfix:after,.container_12:after {clear: both;}.clearfix,.container_12 {*zoom: 1;}
+.clearfix:before,.clearfix:after {content: '.';display: block;overflow: hidden;visibility: hidden;font-size: 0;line-height: 0;width: 0;height: 0;}
+.clearfix:after,.container_12:after {clear: both;}
+.clearfix {*zoom: 1;}
 .group:after {content: "";display: table;clear: both;}
-.preloader {margin-left:-9999px;position:absolute;}
-.redalert{color:#fff;background-color:red;}
-.screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
-.hide, .hidden{display:none;}
-ul.nobull { padding:0; } ul.nobull > li { list-style:none;}
+.redalert {color:#fff;background-color:red;}
+.preloader, .screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+.hide, .hidden {display:none;}
+ul.nobull { padding:0; } ul.nobull > li {list-style:none;}
 ul.nobull > li > ul > li { list-style:disc; }
 ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .flatlist, .flatlist li { display: inline; }
@@ -101,13 +102,18 @@ img.alignright {margin-left: 10px;}
 .gallery-item img {float: left;margin: 5px;}
 .autohide-adminbar #wpadminbar {width: 37px;min-width: auto;overflow: hidden;transition: all .5s ease 0.24s;}
 .autohide-adminbar #wpadminbar:hover {width: 100%;overflow: visible;}
-.dropdown .main-menu {position: relative;display:inline-table;list-style:none;margin:0;padding:0;}
-.dropdown .main-menu:after {content:"";clear:both;display:block;}
-.dropdown .main-menu li {position:relative;float:left;list-style:none;margin:0;padding:0;}
-.dropdown .main-menu li a {display:block;white-space:nowrap;}
-.dropdown .main-menu .sub-menu {display:none;position:absolute;top: 100%;margin:0;padding:0;}
-.dropdown .main-menu .sub-menu li {float:none;position: relative;margin:0;padding:0;}
-.dropdown .main-menu li:hover .sub-menu {display:block;}
-.dropdown .main-menu .sub-menu .sub-menu {position: absolute; left: 100%; top:0;margin:0;padding:0;}
-.dropdown.animated .main-menu .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.5s ease 0s;}
-.dropdown.animated .main-menu li:hover > .sub-menu {visibility:visible;opacity: 1;}
+#main-menu,#main-menu li {list-style: none}
+.dropdown {position: relative;display:inline-table;margin:0;padding:0;}
+.dropdown:after {content:"";clear:both;display:block;}
+.dropdown li {position:relative;float:left;margin:0;padding:0;}
+.dropdown li a {display:block;white-space:nowrap;}
+.dropdown .sub-menu {display:none;position:absolute;top:100%;margin:0;padding:0;}
+.dropdown .sub-menu li {float:none;position:relative;margin:0;padding:0;}
+.dropdown li:hover .sub-menu {display:block;}
+.dropdown .sub-menu .sub-menu {position: absolute;top:0;margin:0;padding:0;}
+.dropdown .sub-menu, .flyoutleft .sub-menu, .flyoutright .flyoutleft .sub-menu {left:auto;right:0;}
+.dropdown .sub-menu .sub-menu, .flyoutleft .sub-menu .sub-menu, .sub-menu .flyoutleft .sub-menu,.flyoutright .flyoutleft .sub-menu .sub-menu,.flyoutright .sub-menu .flyoutleft .sub-menu  {left:auto;right:100%;}
+.flyoutright .sub-menu, .flyoutright .sub-menu, .flyoutleft .flyoutright .sub-menu {left:0;right:auto;}
+.flyoutright .sub-menu .sub-menu, .sub-menu .flyoutright .sub-menu,.flyoutleft .flyoutright .sub-menu .sub-menu, .flyoutleft .sub-menu .flyoutright .sub-menu {left:100%;right:auto;}
+.dropdown.animated .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.5s ease 0s;}
+.dropdown.animated li:hover > .sub-menu {visibility:visible;opacity: 1;}

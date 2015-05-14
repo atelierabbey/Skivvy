@@ -10,7 +10,7 @@
 		echo '<div class="clear"></div>'; //*/
 
 
-		echo '<div id="footer-copyright" class="textcenter">';
+		echo '<div role="contentinfo" id="footer-copyright" class="textcenter">';
 			$start_year = "2015"; // Starting Year
 			$date = date( 'Y' ); // Current year
 			if ( $date > $start_year ) $date = "$start_year - $date"; // If the two years don't match, they go to 'n fro. If you don't want the hyphenated date, comment out this line.
