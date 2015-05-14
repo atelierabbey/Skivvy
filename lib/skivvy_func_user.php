@@ -6,18 +6,26 @@
  */
 
 // get_the_snippet()
-function get_the_snippet( $length = 55, $readmore = 'Read More' ) {
+function get_the_snippet( $atts ) {
 	global $post;
+	if ( empty( $post ) ) return '';
 
-	if ( empty( $post ) ) {
-		return '';
-	}
+	$attr = wp_parse_args( $atts, array(
+		'more'           => 'Read More',
+		'length'         => '55',
+		'cut'            => 'words',		// Words or Letters
+		'ignoreexcerpt'  => 'true'
+	));
+
 
 	if ( post_password_required() ) {
 		return __( 'There is no excerpt because this is a protected post.' );
 	}
-
-	$text = get_the_content('');
+	if ( has_excerpt( $post->ID ) ) {
+		$text = get_the_excerpt();
+	} else {
+		$text = get_the_content();
+	}
 	$text = strip_shortcodes( $text );
 	$text = apply_filters('the_content', $text);
 	$text = str_replace('\]\]\>', ']]&gt;', $text);
@@ -29,15 +37,22 @@ function get_the_snippet( $length = 55, $readmore = 'Read More' ) {
 		array_push($words, '...');
 		$text = implode(' ', $words);
 	}
-
+	$text = '<span class="post-snippet">'. $text . '</span>';
 	if ( $readmore != '' ) {
-		$text .= ' <a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+		$text .= '<a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
 	}
 	return $text;
 }
 
 //// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
 function the_snippet( $length=55, $readmore = 'Read More' ) {
+	$attr = wp_parse_args( $atts, array(
+		'more'           => $readmore,
+		'length'         => $length,
+		'cut'            => 'words',		// Words or Letters
+		'ignoreexcerpt'  => 'true'
+	));
+
 	echo apply_filters( 'the_snippet', get_the_snippet($length, $readmore) );
 }
 
@@ -56,9 +71,9 @@ function get_the_thumbnail_caption() {
 
 
 if ( ! function_exists( chunkifier ) ) {
-	function chunkifier ( $args ) {
+	function chunkifier ( $atts ) {
 
-		$attr = wp_parse_args( $args, array(
+		$attr = wp_parse_args( $atts, array(
 			'tag' => '',
 			'content' => '',
 			'url'=>'#',
