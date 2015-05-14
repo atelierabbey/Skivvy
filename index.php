@@ -1,18 +1,28 @@
-<?php get_header(); ?>
-<section id="content">
-	<div class="page-wrapper">
-		<section role="main" class="page-content clearfix"><?php
+<?php
 
-			if ( is_front_page() ) get_template_part( 'inc/chunk' , 'slider' ); // Slider
+get_header();
 
-			get_template_part( 'inc/chunk' , 'title' ); // The Title
+	echo ('<section id="content">'.
+			'<div class="page-wrapper">'.
+				'<main role="main" id="main-content" class="clearfix">');
 
-			get_template_part( 'inc/chunk' , 'content' ); // The Content
+					if ( is_front_page() ) {
+						get_template_part( 'inc/chunk' , 'slider' ); // Slider
 
-			if ( ! is_page() ) get_template_part( 'inc/chunk' , 'pagination' ); // Pagination
+					} else {
+						get_template_part( 'inc/chunk' , 'title' ); // The Title
 
-		?></section>
-		<?php // get_sidebar();?>
-	</div>
-</section>
-<?php get_footer(); ?>
+					}
+
+					get_template_part( 'inc/chunk' , 'content' ); // The Content
+
+					if ( ! is_page() ) get_template_part( 'inc/chunk' , 'pagination' ); // Pagination
+
+			echo '</main>';
+			# get_sidebar();
+	echo ('</div>'.
+	'</section>');
+
+get_footer();
+
+?>
