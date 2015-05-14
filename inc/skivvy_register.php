@@ -40,6 +40,26 @@
 	} add_action('wp_enqueue_scripts', 'skivvy_scriptnstyle_enqueuer');
 
 
+//  WP_HEAD()
+	function skivvy_head() {
+		echo (
+			'<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">' // Force IE to render most recent engine for installed browser. And enable Chrome Frame
+		#	'<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">'. // Don't autodetect phonenumbers and create links in iphone safari & blackberry
+
+		#	.'<link rel="profile" href="http://gmpg.org/xfn/11">'
+
+			.'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->' // HTML5 Shiv for < IE9
+
+		);
+	} add_action( 'wp_head', 'skivvy_head' );
+
+
+//  WP_FOOT()
+	function skivvy_foot() {
+		// includes Analytics.php code
+			get_template_part( '/js/analytics' );
+	} add_action( 'wp_footer', 'skivvy_foot' );
+
 
 
 // REGISTER - Widget Areas

@@ -60,7 +60,7 @@
 	} add_filter( 'wp_title', 'skivvy_wp_title', 10, 2 );
 //*/
 
-// WP_HEAD() - Cleanup
+// WP_HEAD() Cleanup
 		remove_action('wp_head', 'wp_generator');
 		remove_action('wp_head', 'rsd_link');							// <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://url.com/xmlrpc.php?rsd">
 		remove_action('wp_head', 'wlwmanifest_link');					// <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://url.com/wp-includes/wlwmanifest.xml"> | Resource file needed to enable tagging support for Windows Live Writer.
@@ -72,25 +72,6 @@
 		remove_action('wp_head', 'wp_shortlink_wp_head');				// <link rel="shortlink" href="http://url.com/?p=10">
 		remove_action('wp_head', 'feed_links', 2);						// <link rel="alternate" type="application/rss+xml" title="Skivvy » Feed" href="http://url.com/feed/"> | Works with Add_theme_support('automatic-feed-links');
 		remove_action('wp_head', 'feed_links_extra', 3);				// <link rel="alternate" type="application/rss+xml" title="Skivvy » Hello world! Comments Feed" href="http://url.com/hello-world/feed/">
-
-
-	function skivvy_head() {
-		echo (
-			'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->' // HTML5 Shiv for < IE9
-		#	.'<link rel="profile" href="http://gmpg.org/xfn/11">'
-
-		);
-	} add_action( 'wp_head', 'skivvy_head' );
-
-
-//  WP_FOOT()
-	function skivvy_foot() {
-		// includes Analytics.php code
-			get_template_part( '/js/analytics' );
-	} add_action( 'wp_footer', 'skivvy_foot' );
-
-
-
 
 
 
