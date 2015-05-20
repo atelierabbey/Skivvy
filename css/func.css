@@ -1,6 +1,6 @@
-/* 4May15 */
+/* 19May15 */
 /* ----------- NORMALIZE ----------- */
-*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td, li ol, li ul { margin:0; padding:0;box-sizing:border-box;}
+*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;box-sizing:border-box;}
 address, caption, cite, code, dfn, em, strong, th, var, th, caption{text-align:left;font-style:normal; font-weight:normal;}
 code,kbd,pre,samp {font-family: 'courier new',monospace, serif;font-size: 1em;}
 ol, ul, li {list-style:none;}
@@ -16,7 +16,7 @@ button, input {line-height: normal;}
 button, select {text-transform: none;}
 button,html input[type="button"], input[type="reset"],input[type="submit"] {-webkit-appearance: button; cursor: pointer; *overflow: visible; border:0; }
 button[disabled], html input[disabled] {cursor: default;}
-dl,menu,ol,ul {margin: 1em 0;}
+dl,menu,ol,ul,p {margin: 0 0 1em;}
 dd {margin: 0 0 0 40px;}
 fieldset { border: 1px solid #c0c0c0;margin: 0 2px;padding: 0.35em 0.625em 0.75em;}
 h1, h2, h3, h4, h5, h6 {line-height:1em;font-weight:bold;}
@@ -37,7 +37,6 @@ legend { border: 0; padding: 0;white-space: normal; *margin-left: -7px; }
 mark { background: #ff0; color: #000;}
 ol li {list-style: decimal;}
 ol li ol li {list-style: lower-alpha;}
-p {margin-bottom:1rem;}
 p:empty {display:none;}
 pre {white-space: pre;white-space: pre-wrap;word-wrap: break-word;}
 q {quotes: none;}
