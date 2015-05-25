@@ -6,7 +6,7 @@
  */
 
 // get_the_snippet()
-function get_the_snippet( $atts ) {
+function get_the_snippet( $atts = array() ) {
 	global $post;
 	if ( empty( $post ) ) return '';
 
