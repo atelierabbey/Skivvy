@@ -38,7 +38,7 @@ function get_the_snippet( $atts ) {
 		$text = implode(' ', $words);
 	}
 	if ( $attr['more'] != '' ) {
-		$text .= '<a href="'.get_permalink( get_the_ID() ).'" class="readmorebtn">'.$readmore.'</a>';
+		$text .= '<a href="'.get_permalink( get_the_ID() ).'" class="readmorebtn">'.$attr['more'].'</a>';
 	}
 	return $text;
 }
