@@ -8,7 +8,7 @@ if ( have_posts() ) :
 				echo wp_get_attachment_image( $post->ID, 'fullsize' );
 
 	// If Single View
-		elseif ( is_page() || is_front_page() || is_single() ) :
+		elseif ( is_page() || is_front_page() && ! is_home() || is_single() ) :
 
 			the_post();
 
