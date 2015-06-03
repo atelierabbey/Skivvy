@@ -1,4 +1,4 @@
-<?php #08May15
+<?php #3Jun15
 /*
  *		-------------------------------------------------------
  *		SHORTCODES
@@ -206,19 +206,24 @@
 
 	}
 	function shortcode_slide( $atts, $content = null ) {
-			extract( shortcode_atts( array(
-				'img' => ''
-			), $atts ) );
+		extract( shortcode_atts( array(
+			'img' => '',
+			'style' => ''
+		), $atts ) );
+		// SLIDE
+		if ( $img != '' ) {
+			$background_image = 'background-image:url(\'' . $img . '\');';
+		}
 
-			// SLIDE
-				if ( $img != '' ) {
-					$background_image = 'background-image:url(\'' . $img . '\');';
-				}
-				$output = '<div id="slide-' . get_the_ID() . '" class="cycle-slide" style="position:absolute;' . $background_image . '">';
+		$output = '<div class="cycle-slide slide-' . get_the_ID() . '" style="position:absolute;' . $background_image . ' ' . $style .'">';
+			$output .= '<div class="cycle-content">';
+				$output .= '<div class="page-wrapper">';
 					$output .= apply_filters( 'the_content' , $content);
 				$output .= '</div>';
-			return $output;
-	}
+			$output .= '</div>';
+		$output .= '</div>';
+		return $output;
+	} 
 
 // Use: [blogfeed show="5" class="" length="55" morelink="Read More" alllink="See All Posts"]
 	function shortcode_blogfeed( $atts ) {
