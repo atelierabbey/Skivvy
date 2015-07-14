@@ -1,4 +1,4 @@
-/* 19May15 */
+/* 14Jul15 */
 /* ----------- NORMALIZE ----------- */
 *, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, figure, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0;box-sizing:border-box;}
 address, caption, cite, code, dfn, em, strong, th, var, th, caption{text-align:left;font-style:normal; font-weight:normal;}
@@ -72,10 +72,10 @@ ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .textright, .titleright h2, .titleright h3 {text-align:right;}
 .textcenter, .titlecenter h2, .titlecenter h3 {text-align:center;}
 .textjustify, .justified {text-align:justify;}
-.justified:after {content:'';width:100%;font-size: 0;line-height: 0;}
-.justified, .access ul.justified {display: block;}
-.justified > *, .justified:after, .access ul.justified:after {display: inline-block;}
-.access ul.justified li {float:none;}
+.justified::after, .dropdown.justified::after {content:'';width:100%;font-size: 0;line-height: 0;}
+.justified, .justified, .dropdown.justified {display: block;}
+.justified > *, .justified::after, .justified::after, .dropdown.justified::after {display: inline-block;}
+.justified li, .dropdown.justified li {float:none;}
 .one_half {width:50%;}
 .one_third {width:33.33%;}
 .two_third {width:66.66%;}
