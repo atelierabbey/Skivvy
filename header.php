@@ -28,10 +28,10 @@
 				'</a>'.
 
 			// Mobile Toggle
-				'<button id="mobile-toggle" class="alignright"></button>'.
+				'<button id="mobile-toggle" class="alignright dont-print"></button>'.
 
 			// Main Menu
-				'<nav role="navigation">'.
+				'<nav role="navigation" class="dont-print">'.
 						wp_nav_menu( array(
 							'container'       => false,
 							'menu_class'      => 'alignright nobull dropdown animated flyoutright', // Menu functionality classes
