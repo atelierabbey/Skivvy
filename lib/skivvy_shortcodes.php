@@ -112,6 +112,7 @@
 			'class'=>'',
 			'id'=>'',
 			'style'=>'',
+			'icon' => '',
 			'img'=>'',
 			'xtra' => 'false',
 			'title'=>'',
@@ -153,6 +154,39 @@
 				$linkGuts .= ' title="'. $attr['title'] .'"';
 			}
 
+		// icon
+			if ( $attr['icon'] != '' ) {
+				global $icon_locations;
+				foreach ($icon_locations as $key => $value) {
+
+						if ( $attr['icon'] == $key ) {
+
+							$fileLocation = get_stylesheet_directory_uri(). '/img/'. $value;
+							$fileInfo = pathinfo($fileLocation);
+
+							$outIcon = '<a class="bucket-icon"' . $linkGuts . '>';
+
+								if ( $fileInfo['extension'] == 'svg' ) {
+
+									$outIcon .= file_get_contents( $fileLocation );
+
+								} elseif ( $fileInfo['extension'] == 'png' || $fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'gif' ) {
+
+									$outIcon .= '<img src="'. $fileLocation . '" alt="icon-'. $key . '" >';
+
+								} else {
+
+									$outIcon .= $key;
+
+								}
+							
+							$outIcon .= '</a>';
+						}
+
+				}
+
+			}
+
 		// Extra Link
 			$outXLink = '';
 			if ( $attr['xtra'] != 'false' ) {
@@ -180,6 +214,7 @@
 		// RENDER
 			$output = '<div' . $id . ' class="chunk-bucket'. $class . '" style="' . $style . '">';
 				$output .= '<div class="bucket-wrap">';
+					$output .= $outIcon;
 					$output .= $outXLink;
 					$output .= $outTitle;
 					$output .= $outContent;
