@@ -114,6 +114,7 @@
 			'style'=>'',
 			'icon' => '',
 			'img'=>'',
+			'autop' => 'true',
 			'xtra' => 'false',
 			'title'=>'',
 			'more'=>''
@@ -202,7 +203,13 @@
 		// Content
 			$outContent = '';
 			if ( $content != null ) {
-				$outContent .= '<span class="bucket-content">'. wpautop(do_shortcode($content)).'</span>';
+				$outContent .= '<span class="bucket-content">';
+					if ( $attr['autop'] == 'true' ) {
+						$outContent .= wpautop(do_shortcode($content));
+					} else {
+						$outContent .= do_shortcode($content);
+					}
+				$outContent .= '</span>';
 			}
 
 		// More
