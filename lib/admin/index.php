@@ -41,6 +41,7 @@
 		$editor->add_cap('create_users');
 		$editor->add_cap('edit_users');
 		$editor->add_cap('edit_theme_options');
+		$editor->add_cap('gform_full_access');
 		# $editor->add_cap('manage_options');
 	} add_action('admin_menu', 'custom_admin_menu');
 
