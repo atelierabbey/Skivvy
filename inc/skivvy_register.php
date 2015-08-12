@@ -53,6 +53,17 @@
 		);
 	} add_action( 'wp_head', 'skivvy_head' );
 
+//  REGISTER - HTML Classes 
+	function skivvy_html_classes( $classes ) {
+
+		$query = $_SERVER["QUERY_STRING"];
+		
+		if ( $query != '' ) {
+			$classes = array_merge( $classes, explode( '&', str_replace( '=' , '_' , $query ) ) );
+		}
+
+		return $classes;
+	} add_filter('html_classes','skivvy_html_classes');
 
 //  WP_FOOT()
 	function skivvy_foot() {

@@ -3,7 +3,6 @@ The Skivvy Decree
 - Consistent Structure
 - Reduce rabbit holing
 - Clear and ordered function files
-- Less automation and queries for straight echoes
 - Fully flexible
 - Minimilist core
 

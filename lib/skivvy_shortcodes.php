@@ -1,4 +1,4 @@
-<?php #08May15
+<?php #3Jun15
 /*
  *		-------------------------------------------------------
  *		SHORTCODES
@@ -112,7 +112,9 @@
 			'class'=>'',
 			'id'=>'',
 			'style'=>'',
+			'icon' => '',
 			'img'=>'',
+			'autop' => 'true',
 			'xtra' => 'false',
 			'title'=>'',
 			'more'=>''
@@ -153,6 +155,39 @@
 				$linkGuts .= ' title="'. $attr['title'] .'"';
 			}
 
+		// icon
+			if ( $attr['icon'] != '' ) {
+				global $icon_locations;
+				foreach ($icon_locations as $key => $value) {
+
+						if ( $attr['icon'] == $key ) {
+
+							$fileLocation = get_stylesheet_directory_uri(). '/img/'. $value;
+							$fileInfo = pathinfo($fileLocation);
+
+							$outIcon = '<a class="bucket-icon"' . $linkGuts . '>';
+
+								if ( $fileInfo['extension'] == 'svg' ) {
+
+									$outIcon .= file_get_contents( $fileLocation );
+
+								} elseif ( $fileInfo['extension'] == 'png' || $fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'gif' ) {
+
+									$outIcon .= '<img src="'. $fileLocation . '" alt="icon-'. $key . '" >';
+
+								} else {
+
+									$outIcon .= $key;
+
+								}
+							
+							$outIcon .= '</a>';
+						}
+
+				}
+
+			}
+
 		// Extra Link
 			$outXLink = '';
 			if ( $attr['xtra'] != 'false' ) {
@@ -168,7 +203,13 @@
 		// Content
 			$outContent = '';
 			if ( $content != null ) {
-				$outContent .= '<span class="bucket-content">'. wpautop(do_shortcode($content)).'</span>';
+				$outContent .= '<span class="bucket-content">';
+					if ( $attr['autop'] == 'true' ) {
+						$outContent .= wpautop(do_shortcode($content));
+					} else {
+						$outContent .= do_shortcode($content);
+					}
+				$outContent .= '</span>';
 			}
 
 		// More
@@ -180,6 +221,7 @@
 		// RENDER
 			$output = '<div' . $id . ' class="chunk-bucket'. $class . '" style="' . $style . '">';
 				$output .= '<div class="bucket-wrap">';
+					$output .= $outIcon;
 					$output .= $outXLink;
 					$output .= $outTitle;
 					$output .= $outContent;
@@ -206,19 +248,24 @@
 
 	}
 	function shortcode_slide( $atts, $content = null ) {
-			extract( shortcode_atts( array(
-				'img' => ''
-			), $atts ) );
+		extract( shortcode_atts( array(
+			'img' => '',
+			'style' => ''
+		), $atts ) );
+		// SLIDE
+		if ( $img != '' ) {
+			$background_image = 'background-image:url(\'' . $img . '\');';
+		}
 
-			// SLIDE
-				if ( $img != '' ) {
-					$background_image = 'background-image:url(\'' . $img . '\');';
-				}
-				$output = '<div id="slide-' . get_the_ID() . '" class="cycle-slide" style="position:absolute;' . $background_image . '">';
+		$output = '<div class="cycle-slide slide-' . get_the_ID() . '" style="position:absolute;' . $background_image . ' ' . $style .'">';
+			$output .= '<div class="cycle-content">';
+				$output .= '<div class="page-wrapper">';
 					$output .= apply_filters( 'the_content' , $content);
 				$output .= '</div>';
-			return $output;
-	}
+			$output .= '</div>';
+		$output .= '</div>';
+		return $output;
+	} 
 
 // Use: [blogfeed show="5" class="" length="55" morelink="Read More" alllink="See All Posts"]
 	function shortcode_blogfeed( $atts ) {

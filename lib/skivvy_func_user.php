@@ -6,7 +6,7 @@
  */
 
 // get_the_snippet()
-function get_the_snippet( $atts ) {
+function get_the_snippet( $atts = array() ) {
 	global $post;
 	if ( empty( $post ) ) return '';
 
@@ -21,7 +21,7 @@ function get_the_snippet( $atts ) {
 	if ( post_password_required() ) {
 		return __( 'There is no excerpt because this is a protected post.' );
 	}
-	if ( has_excerpt( $post->ID ) && $attr['ignoreexcerpt'] != 'false') {
+	if ( has_excerpt(  get_the_ID() ) && $attr['ignoreexcerpt'] != 'false') {
 		$text = get_the_excerpt();
 	} else {
 		$text = get_the_content();
@@ -31,18 +31,18 @@ function get_the_snippet( $atts ) {
 	$text = str_replace('\]\]\>', ']]&gt;', $text);
     $text = preg_replace('@<script[^>]*?>.*?</script>@si', '', $text);
     $text = strip_tags($text, '<p>');
-    $words = explode(' ', $text, $length + 1);
-	if (count($words)> $length) {
+    $words = explode(' ', $text, $attr['length'] + 1);
+	if ( count($words) > $attr['length'] ) {
 		array_pop($words);
 		array_push($words, '...');
 		$text = implode(' ', $words);
 	}
-	$text = '<span class="post-snippet">'. $text . '</span>';
-	if ( $readmore != '' ) {
-		$text .= '<a href="'.get_permalink($post->ID).'" class="readmorebtn">'.$readmore.'</a>';
+	if ( $attr['more'] != '' ) {
+		$text .= '<a href="'.get_permalink( get_the_ID() ).'" class="readmorebtn">'.$attr['more'].'</a>';
 	}
 	return $text;
 }
+
 
 //// ---- the_snippet() ---- ////  function to replace the_excerpt(), ex. the_snippet(72,'Read More');
 function the_snippet( $length=55, $readmore = 'Read More' ) {
