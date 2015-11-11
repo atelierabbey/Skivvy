@@ -109,9 +109,6 @@
 			#	add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
 			#	add_theme_support( 'woocommerce' );
 
-		// Customizable options that run at Theme activation. in inc/skivvy_simple.php
-			#	skivvy_autooptions();
-
 		// Add Widget/sidebar functionality
 			#	add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes
 			#	add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
