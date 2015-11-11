@@ -5,10 +5,7 @@
 	echo (
 			'<meta charset="'. get_bloginfo( 'charset' ).'">'.
 			'<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">'. // Meta description, important for SEO. Defaults to blog's description.
-			'<meta content="width=device-width, initial-scale=1.0" name="viewport">'. // Sets default width and scale to be dependent on the device.
-			'<link rel="shortcut icon" type="image/png" href="' . get_stylesheet_directory_uri() . '/img/favicon.png?v=1">'.
-		#	'<link rel="apple-touch-icon" href="' . get_stylesheet_directory_uri() . '/apple-touch-icon.png">'.
-
+			
 
 		// Paste Google Fonts here
 			"<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>"

@@ -1,4 +1,4 @@
-<?php #16Jun14
+<?php #10Nov15
 /*
  *		-------------------------------------------------------
  *		Auto Functions
@@ -78,8 +78,6 @@ function html_classes( $class = array() ) {
 
 
 
-
-/*
 //// ---- Advanced Menu Styling Classes ---- ////
 	if( class_exists( 'SimpleXMLElement' ) ) {
 		// Cleans up and counts number of menu items
@@ -322,7 +320,6 @@ function html_classes( $class = array() ) {
 		}
 	}
 		*/
-}
-add_filter('html_classes','css_browser_selector', 10 );
+} add_filter('html_classes','css_browser_selector', 10 );
 
 ?>
