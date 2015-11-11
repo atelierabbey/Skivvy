@@ -57,6 +57,7 @@
 
 
 //  WP_HEAD()
+
 	function skivvy_head() {
 		echo (
 			'<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">' // Force IE to render most recent engine for installed browser. And enable Chrome Frame
@@ -69,6 +70,61 @@
 		);
 	} add_action( 'wp_head', 'skivvy_head' );
 
+
+// Skivvy HTML & Body Classes
+	function html_classes( $class = array() ) {
+
+	$classes = array();
+
+	// Adds Skivvy version
+	if (function_exists('skinfo')){
+		$classes[] = skinfo('Version');
+	}
+
+	// Adds .autohide-adminbar when logged in
+	/*
+	if ( is_user_logged_in() ) {
+		$classes[] = 'autohide-adminbar';
+	} //*/
+
+	if ( ! empty( $class ) ) {
+			if ( !is_array( $class ) )
+				$class = preg_split( '#\s+#', $class );
+			$classes = array_merge( $classes, $class );
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+	$all_classes = apply_filters( 'html_classes', $classes, $class );
+
+	// Separates classes with a single space, collates classes
+	echo join( ' ', $all_classes );
+}
+	function skivvy_body_classes($classes) {
+		global $wpdb, $post;
+
+		// .subpage for all non-front_page
+			if ( ! is_front_page() ) {
+				$classes[] = 'subpage';
+			}
+
+		// page classes
+		if (is_page()) {
+
+			// .section-{$parentpage} - Parent Page Post class -- Add the top level parent page to the body class
+				if ($post->post_parent) {
+					$parent  = end(get_post_ancestors($current_page_id));
+				} else {
+					$parent = $post->ID;
+				}
+				$post_data = get_post($parent, ARRAY_A);
+				$classes[] = 'section-' . $post_data['post_name'];
+
+		}
+
+		return $classes;
+
+	}
+	add_filter('body_class','skivvy_body_classes');
 
 
 
