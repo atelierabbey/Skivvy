@@ -1,64 +1,4 @@
-<?php #13May15
-
-//	Skivvy Auto-Options
-	function skivvy_autooptions() {
-		$the_theme_status = get_option( 'theme_setup_status' );
-		if ( $the_theme_status !== '1' ) {
-			// Setup Default WordPress settings
-			$core_settings = array(
-				'show_avatars' => false,
-				'avatar_default' => 'mystery',
-				'avatar_rating' => 'G',
-				'default_role' => 'editor',
-				'comments_per_page' => 20,
-				'uploads_use_yearmonth_folders' => false,
-			);
-			foreach ( $core_settings as $k => $v ) {update_option( $k, $v );}
-
-			// Delete dummy post, page and comment.
-			wp_delete_post( 1, true );
-			wp_delete_post( 2, true );
-			wp_delete_comment( 1 );
-
-			update_option( 'theme_setup_status', '1' );
-			$msg = '<div class="error"><p>The '.get_option( 'current_theme' ).' theme has changed your WordPress default <a href="' . admin_url( 'options-general.php' ) . '" title="See Settings">settings</a> and deleted default posts & comments.</p></div>';
-			add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
-		}
-		// Else if we are re-activing the theme
-		elseif ( $the_theme_status === '1' and isset( $_GET['activated'] ) ) {
-			$msg = '
-			<div class="updated">
-				<p>The ' . get_option( 'current_theme' ) . ' theme was successfully re-activated.</p>
-			</div>';
-			add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $msg, '"' ) . '";' ) );
-		}
-	}
-
-
-
-
-
-
-// WP_TITLE() - Simplify
-	/*
-	function skivvy_wp_title( $title, $separator ) {
-
-		global $paged, $page;
-		$description = get_bloginfo( 'description', 'display' );
-
-		if (is_feed()) { return $title; }
-		if (is_category()) { $title = "Category: $title";}
-		if (is_tag()) { $title = "Tag: $title";}
-		if (is_search()) { $title = "Search: $title"; }
-		if (post_password_required($post) ) { $title = "Protected: $title"; }
-		if (is_404() ) { $title = "404 Not Found $separator "; }
-		$filtered_title = $title . get_bloginfo( 'name', 'display' );
-		$filtered_title .= ( ! empty( $description ) && ( is_home() || is_front_page() || is_404() ) ) ? " $separator $description" : '';
-		$filtered_title .= ( 2 <= $paged || 2 <= $page ) ? ' - ' . sprintf( __( 'Page %s' ), max( $paged, $page ) ) : '';
-		return $filtered_title;
-
-	} add_filter( 'wp_title', 'skivvy_wp_title', 10, 2 );
-//*/
+<?php #10Nov15
 
 // WP_HEAD() Cleanup
 		remove_action('wp_head', 'wp_generator');
@@ -73,9 +13,25 @@
 		remove_action('wp_head', 'feed_links', 2);						// <link rel="alternate" type="application/rss+xml" title="Skivvy » Feed" href="http://url.com/feed/"> | Works with Add_theme_support('automatic-feed-links');
 		remove_action('wp_head', 'feed_links_extra', 3);				// <link rel="alternate" type="application/rss+xml" title="Skivvy » Hello world! Comments Feed" href="http://url.com/hello-world/feed/">
 
+// Disable Emojis - By Ryan Hellyer @ https://geek.hellyer.kiwi/ - License: GPL2
+	function disable_emojis() {
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+		remove_action( 'wp_print_styles', 'print_emoji_styles' );
+		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+		add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+	} add_action( 'init', 'disable_emojis' );
+	function disable_emojis_tinymce( $plugins ) {
+		if ( is_array( $plugins ) ) {
+			return array_diff( $plugins, array( 'wpemoji' ) );
+		} else {
+			return array();
+		}
+	}
 
-
-// ----- Remove default WP-nonsense ----- //
 
 // Remove XML-RPC function by default to remove DDOS Ping attacks    |    Read more - http://labs.sucuri.net/?is-my-wordpress-ddosing
 	function remove_xmlrpc_pingback_ping( $methods ) {
@@ -105,23 +61,6 @@
 	}
 	add_filter( 'gallery_style', 'skivvy_remove_gallery_css' );
 
-// Disable Emojis - By Ryan Hellyer @ https://geek.hellyer.kiwi/ - License: GPL2
-	function disable_emojis() {
-		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		remove_action( 'wp_print_styles', 'print_emoji_styles' );
-		remove_action( 'admin_print_styles', 'print_emoji_styles' );
-		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-		add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
-	} add_action( 'init', 'disable_emojis' );
-	function disable_emojis_tinymce( $plugins ) {
-		if ( is_array( $plugins ) ) {
-			return array_diff( $plugins, array( 'wpemoji' ) );
-		} else {
-			return array();
-		}
-	}
+
 
 ?>
