@@ -15,7 +15,7 @@ html {background-color:#fff;color:#000;font:14px/1.75em 'Open Sans', sans-serif;
 h1, h2, h3, h4, h5, h6 {}
 ul, ol {padding: 0 0 0 40px;}
 blockquote { border-left:1px solid #696969; padding-left:10px;margin: 1em 40px; }
-button,input,select,textarea {padding:5px;margin:5px 0;}
+button,input,select,textarea {padding:5px;margin:5px 0;max-width:100%;}
 a, a:link, a:visited {color:#1A78B2;}
 a:hover, a:focus, a:active {color:#36A6BF;}
 button, a.button, .button, html input[type="button"], input[type="reset"], input[type="submit"] {padding: 8px 15px;border-radius:3px;display:inline-block;color:#fff;background-color:#1A78B2;}
