@@ -24,7 +24,7 @@
 				elseif ( is_front_page()        ) : the_title();
 				elseif ( is_page()              ) : the_title();
 				elseif ( is_404()               ) : _e( '404 | Page not found' , 'skivvy' );
-				else                       : // Ninja Silence....
+				else                              : // Ninja Silence....
 				endif;
 
 	?></h1>
