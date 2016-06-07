@@ -40,9 +40,10 @@ ul.nobull > li > ul > li { list-style:disc; }
 ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .flatlist, .flatlist li { display: inline; }
 .justified:after {content:'';width:100%;font-size: 0;line-height: 0;}
-.justified, #main-menu ul.justified {display: block;}
-.justified > *, .justified:after, #main-menu ul.justified:after {display: inline-block;}
-#main-menu ul.justified li {float:none;}
+.justified, #main-menu.justified {display: block;}
+.justified > *, .justified:after, #main-menu.justified:after {display: inline-block;}
+#main-menu.justified li {float:none;}
+
 /* WP friendly */
 img.alignleft {margin-right: 10px;}
 img.alignright {margin-left: 10px;}
