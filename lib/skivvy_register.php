@@ -68,6 +68,15 @@
 			.'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->' // HTML5 Shiv for < IE9
 
 		);
+
+		// Prevent Duplicate Content - Source: http://perishablepress.com/seo-experiment-let-google-sort-it-out/
+		if ((is_home() && ($paged < 2 )) || is_single() || is_page() || is_category()) {
+			echo '<meta name="robots" content="index,archive,follow" />';
+		} else {
+			echo '<meta name="robots" content="noindex,noarchive,follow" />';
+		}
+
+
 	} add_action( 'wp_head', 'skivvy_head' );
 
 
