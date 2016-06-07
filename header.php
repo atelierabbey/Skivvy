@@ -30,12 +30,13 @@
 			// Main Menu
 				'<nav role="navigation" class="dont-print">'.
 						wp_nav_menu( array(
-							//'container'       => false,
 							'menu_class'      => 'alignright nobull dropdown animated flyoutleft', // Menu functionality classes
 							'menu_id'         => 'main-menu',
 							'theme_location'  => 'main',
-							'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
+							'container'       => false,
 							'echo'            => false,
+							'fallback_cb'     => false,
+							'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
 							'walker'          => new skivvy_walker_main
 
 						)).
