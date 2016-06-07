@@ -17,7 +17,7 @@
 <body id="page-<?php the_ID(); ?>" <?php body_class(); ?>>
 <?php
 $output .= '<header role="banner" id="header">';
-	$output .= '<div class="page-wrapper">'
+	$output .= '<div class="page-wrapper">';
 
 			// Logo
 				$output .= '<a id="logo" class="alignleft" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">';
