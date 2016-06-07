@@ -4,7 +4,7 @@
 
 	echo (
 			'<meta charset="'. get_bloginfo( 'charset' ).'">'.
-			'<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">'. // Meta description, important for SEO. Defaults to blog's description.
+			'<meta name="description" content="' . get_bloginfo( 'description', 'display' ) . '">'. // Meta description, important for SEO. Defaults to blog's description.
 			
 
 		// Paste Google Fonts here
