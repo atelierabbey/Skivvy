@@ -6,17 +6,13 @@ get_header();
 			'<div class="page-wrapper">'.
 				'<main role="main" id="main-content" class="clearfix">');
 
-					if ( is_front_page() ) {
-						get_template_part( 'inc/chunk' , 'slider' ); // Slider
+					if ( ! is_front_page() ) {
+						get_template_part( 'inc/chunk' , 'title' );
+					} 
 
-					} else {
-						get_template_part( 'inc/chunk' , 'title' ); // The Title
+					get_template_part( 'inc/chunk' , 'content' );
 
-					}
-
-					get_template_part( 'inc/chunk' , 'content' ); // The Content
-
-					if ( ! is_page() ) get_template_part( 'inc/chunk' , 'pagination' ); // Pagination
+					if ( ! is_page() ) get_template_part( 'inc/chunk' , 'pagination' );
 
 			echo '</main>';
 			# get_sidebar();
