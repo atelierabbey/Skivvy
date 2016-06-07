@@ -71,7 +71,7 @@
 	} add_action( 'wp_head', 'skivvy_head' );
 
 
-// Skivvy HTML & Body Classes
+// Skivvy HTML Classes
 	function html_classes( $class = array() ) {
 
 	$classes = array();
@@ -99,6 +99,9 @@
 	// Separates classes with a single space, collates classes
 	echo join( ' ', $all_classes );
 }
+
+
+// Body Classes
 	function skivvy_body_classes($classes) {
 		global $wpdb, $post;
 
@@ -130,8 +133,7 @@
 
 //  WP_FOOT()
 	function skivvy_foot() {
-		// includes Analytics.php code
-			get_template_part( '/js/analytics' );
+
 	} add_action( 'wp_footer', 'skivvy_foot' );
 
 
