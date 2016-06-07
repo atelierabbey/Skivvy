@@ -7,9 +7,8 @@
 	$imagelocation="/wp-content/themes/Skivvy/img/logo.png";
 
 	// Text copy
-	$sitetitle = 'Database connection error';
-	$h1tag = 'Database error';
-	$ptag = "Hello, We're sorry but the site is having some trouble at the moment. We are doing our best to bring everything back online,<br />Bookmark us and come back later. We apologize for the inconvience.";
+	$sitetitle = 'Database error';
+	$ptag = "Hello, We're sorry but the site is having some trouble at the moment. We are doing our best to bring everything back online,<br />Bookmark us and come back later. We apologize for the inconvenience.";
 
 	// Styling
 	$bodystyling = "background:#ddd; text-align:center; padding-top:20px;";
@@ -26,7 +25,7 @@
 		'<body style="' . $bodystyling . '">'.
 			'<img src="' . $imagelocation . '" alt="' . $sitetitle . '" />'.
 			'<div style="' . $divstyling . '">'.
-				'<h1>' . $h1tag . '</h1>'.
+				'<h1>' . $sitetitle . '</h1>'.
 				'<p>' . $ptag . '</p>'.
 			'</div>'.
 		'</body>' .
