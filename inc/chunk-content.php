@@ -60,7 +60,7 @@ if ( have_posts() ) :
 
 
 				/// Post Loops
-				echo '<article class="post-content ' . $class_count . $cats_slugs . ' postid-'.get_the_ID().'">';
+				echo '<article class="post-content ' . join( ' ', get_post_class() ) . '">';
 
 						// Post Thumbnail
 							if ( has_post_thumbnail() ) {
