@@ -1,17 +1,24 @@
 <?php #10Nov15
 
 // WP_HEAD() Cleanup
-		remove_action('wp_head', 'wp_generator');
-		remove_action('wp_head', 'rsd_link');							// <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://url.com/xmlrpc.php?rsd">
-		remove_action('wp_head', 'wlwmanifest_link');					// <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://url.com/wp-includes/wlwmanifest.xml"> | Resource file needed to enable tagging support for Windows Live Writer.
-		remove_action('wp_head', 'index_rel_link');						// ???
-		remove_action('wp_head', 'start_post_rel_link', 10, 0);			// ???
-		remove_action('wp_head', 'parent_post_rel_link', 10, 0);		// ???
-		remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);		// ???
-		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');	// <link rel="next" title="Post Title!" href="http://url.com/post-title/">
-		remove_action('wp_head', 'wp_shortlink_wp_head');				// <link rel="shortlink" href="http://url.com/?p=10">
-		remove_action('wp_head', 'feed_links', 2);						// <link rel="alternate" type="application/rss+xml" title="Skivvy » Feed" href="http://url.com/feed/"> | Works with Add_theme_support('automatic-feed-links');
-		remove_action('wp_head', 'feed_links_extra', 3);				// <link rel="alternate" type="application/rss+xml" title="Skivvy » Hello world! Comments Feed" href="http://url.com/hello-world/feed/">
+	remove_action('wp_head', 'wp_generator');
+	remove_action('wp_head', 'rsd_link');							// <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://url.com/xmlrpc.php?rsd">
+	remove_action('wp_head', 'wlwmanifest_link');					// <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://url.com/wp-includes/wlwmanifest.xml"> | Resource file needed to enable tagging support for Windows Live Writer.
+	remove_action('wp_head', 'index_rel_link');						// ???
+	remove_action('wp_head', 'start_post_rel_link', 10, 0);			// ???
+	remove_action('wp_head', 'parent_post_rel_link', 10, 0);		// ???
+	remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);		// ???
+	remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');	// <link rel="next" title="Post Title!" href="http://url.com/post-title/">
+	remove_action('wp_head', 'wp_shortlink_wp_head');				// <link rel="shortlink" href="http://url.com/?p=10">
+	remove_action('wp_head', 'feed_links', 2);						// <link rel="alternate" type="application/rss+xml" title="Skivvy » Feed" href="http://url.com/feed/"> | Works with Add_theme_support('automatic-feed-links');
+	remove_action('wp_head', 'feed_links_extra', 3);				// <link rel="alternate" type="application/rss+xml" title="Skivvy » Hello world! Comments Feed" href="http://url.com/hello-world/feed/">
+
+	remove_action('wp_head', 'rest_output_link_wp_head');			// <link rel="https://api.w.org/" href="http://skivvy.atelierabbey.org/wp-json/">
+	remove_action('wp_head', 'wp_oembed_add_host_js');				// ???
+	remove_action('wp_head', 'wp_oembed_add_discovery_links');		// <link rel="alternate" type="application/json+oembed" href="http://skivvy.atelierabbey.org/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fskivvy.atelierabbey.org%2F"> & <link rel="alternate" type="text/xml+oembed" href="http://skivvy.atelierabbey.org/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fskivvy.atelierabbey.org%2F&amp;format=xml">
+	remove_action('wp_head', '_custom_logo_header_styles');			// ???
+	
+
 
 // Disable Emojis - By Ryan Hellyer @ https://geek.hellyer.kiwi/ - License: GPL2
 	function disable_emojis() {
@@ -34,6 +41,7 @@
 
 
 // Remove XML-RPC function by default to remove DDOS Ping attacks    |    Read more - http://labs.sucuri.net/?is-my-wordpress-ddosing
+	// NOTE - This may also affect the current WordPress phone app (v5.4.1), since it relies on the xmlrpc method
 	function remove_xmlrpc_pingback_ping( $methods ) {
 		unset( $methods['pingback.ping'] );
 		return $methods;
