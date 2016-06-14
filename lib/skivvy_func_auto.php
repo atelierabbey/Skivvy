@@ -1,4 +1,4 @@
-<?php #19Dec15
+<?php
 
 //// ---- Add featured images to RSS feed ---- ////
 	function rss_post_thumbnail($content) {
@@ -13,15 +13,26 @@
 
 
 
+// Skivvy HTML Classes
+	function html_classes( $inlineclass = array() ) {
+
+	$classes = array();
+
+	if ( ! empty( $inlineclass ) ) {
+		if ( !is_array( $inlineclass ) )
+			$inlineclass = preg_split( '#\s+#', $inlineclass );
+		$classes = array_merge( $classes, $inlineclass );
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+	$all_classes = apply_filters( 'html_classes', $classes, $inlineclass );
+
+	// Separates classes with a single space, collates classes
+	echo join( ' ', $all_classes );
+}
 
 
-
-/*
-**
-**		14Apr14
-**
-*/
-# - http://www.useragentstring.com/pages/useragentstring.php
+// Browser Selector - http://www.useragentstring.com/pages/useragentstring.php
 	function css_browser_selector( $classes ) {
 
 			// $ua = null
