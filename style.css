@@ -25,11 +25,12 @@ ul, ol {
 	padding: 0 0 0 40px;
 }
 blockquote {
-	 border-left:1px solid #696969;
-	 padding-left:10px;
+	border-left: 1px solid #696969;
 	margin: 1em 40px;
-	 }
-button,input,select,textarea {
+	padding-left:10px;
+}
+input,select,textarea {
+	border: 1px solid #aaa;
 	padding:5px;
 	margin:5px 0;
 	max-width:100%;
@@ -41,16 +42,13 @@ a:hover, a:focus, a:active {
 	color:#36A6BF;
 }
 button, a.button, .button, html input[type="button"], input[type="reset"], input[type="submit"] {
-	padding: 8px 15px;
-	border-radius:3px;
-	display:inline-block;
-	color:#fff;
 	background-color:#1A78B2;
+	border:none;
+	border-radius:3px;
+	color:#fff;
+	display:inline-block;
+	padding: 6px 15px;
 }
-.button:empty {
-	opacity:0.1;
-	cursor:default;
-	  }
 .page-wrapper {
 	width:calc(100% - 20px);
 	min-width:320px;
@@ -66,9 +64,9 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 .page-content {
 }
 .post-content {
-	margin-top:10px;
-	padding-top:10px;
-	border-top:1px solid #bbb;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #bbb;
 }
 .post-content.first {
 	margin:0;
@@ -97,6 +95,10 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 .post-prev {
 	background-image:url('img/icon-right.png');
 }
+.post-next:empty, .post-prev:empty {
+	opacity:0.1;
+	cursor:default;
+}
 .post-next a, .post-prev a {
 	display:block;
 	top:0;
@@ -107,23 +109,19 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 .skivdiv-content {
 	padding:10px;
 }
-.fullwidth > .skivdiv-content {
-	padding:0;
-}
 .subpage #content .page-wrapper {
 	max-width:980px;
 }
+.page-template-template_chunks #content > .page-wrapper,
 .page-template-template_fullwidth #content > .page-wrapper {
 	max-width: none;
 	width: 100%;
 	padding:0;
 }
+.page-template-template_chunks #content .page-title,
 .page-template-template_fullwidth #content .page-title {
 	max-width:880px;
 	margin:0 auto;
-}
-.page-template-template_fullwidth #content .fullwidth > .skivdiv-content {
-	padding: 0 10%;
 }
 
 
@@ -176,7 +174,6 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 
 
 /* ----------------- Responsive ------------------- */
-
 @media all and (min-width: 1025px) {
 
 }
@@ -190,7 +187,7 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 }
 @media all and (min-width: 769px)  {#mobile-nav,#mobile-toggle {display:none !important;}}
 @media all and (max-width: 768px)  {
-	#main-menu {
+	#main-menu.dropdown {
 		display: none;
 	}
 	#mobile-nav,#mobile-toggle {
@@ -200,8 +197,8 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 		clear: left;
 	}
 	.one_half, .one_third.last {
-		margin:0 auto;
-		float:none;
+		margin: 0 auto;
+		float: none;
 		clear: both;
 	}
 	.one_half {
