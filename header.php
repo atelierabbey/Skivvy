@@ -1,28 +1,15 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> class="<?php if (function_exists('html_classes')){ html_classes(); } ?>">
-<head><?php
-
-	echo (
-			'<meta charset="'. get_bloginfo( 'charset' ).'">'.
-			'<meta name="description" content="' . get_bloginfo( 'description', 'display' ) . '">'. // Meta description, important for SEO. Defaults to blog's description.
-			
-
-		// Paste Google Fonts here
-			"<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>"
-
-	);
-
-	wp_head();
-?></head>
+<html <?php language_attributes(); ?> class="<?php html_classes(); ?>">
+<head><?php wp_head(); ?></head>
 <body id="page-<?php the_ID(); ?>" <?php body_class(); ?>>
 <?php
 $output .= '<header role="banner" id="header">';
 	$output .= '<div class="page-wrapper">';
 
 			// Logo
-				$output .= '<a id="logo" class="alignleft" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">';
-					$output .= '<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">';
-				$output .= '</a>';
+				$output .= get_skivvy_logo( array(
+					'class' => 'alignleft',
+				));
 
 			// Mobile Toggle
 				$output .= '<button id="mobile-toggle" class="alignright dont-print"></button>';
@@ -30,14 +17,14 @@ $output .= '<header role="banner" id="header">';
 			// Main Menu
 				$output .= '<nav role="navigation" class="dont-print">';
 					$output .= wp_nav_menu( array(
-							'menu_class'      => 'alignright nobull dropdown animated flyoutleft', // Menu functionality classes
-							'menu_id'         => 'main-menu',
-							'theme_location'  => 'main',
-							'container'       => false,
 							'echo'            => false,
+							'container'       => false,
+							'theme_location'  => 'main',
+							'menu_id'         => 'main-menu',
+							'menu_class'      => 'clearfix nobull dropdown animated flyoutleft justified', // Menu functionality classes
 							'fallback_cb'     => false,
 							'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
-							'walker'          => new skivvy_walker_main
+							'walker'          => new skivvy_walker_main,
 
 					));
 
@@ -45,13 +32,13 @@ $output .= '<header role="banner" id="header">';
 
 					// Mobile Menu
 					$output .= wp_nav_menu( array(
+							'echo'            => false,
 							'container'       => false,
-							'menu_class'      => 'nobull textcenter clearfix',
-							'menu_id'         => 'mobile-nav',
-							'items_wrap'      => '<ul style="display:none;" id="%1$s" class="%2$s">%3$s</ul>',
 							'theme_location'  => 'mobile',
+							'menu_id'         => 'mobile-nav',
+							'menu_class'      => 'nobull textcenter clearfix',
+							'items_wrap'      => '<ul style="display:none;" id="%1$s" class="%2$s">%3$s</ul>',
 							'depth'           => -1,
-							'echo'            => false
 					));
 				$output .= '</nav>';
 

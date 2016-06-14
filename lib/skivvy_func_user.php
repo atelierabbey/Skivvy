@@ -56,6 +56,50 @@ function the_snippet( $length=55, $readmore = 'Read More' ) {
 	echo apply_filters( 'the_snippet', get_the_snippet( $attr ) );
 }
 
+
+// Skivvy Default Logo
+/*
+NEED:
+Middle parse
+Middle should be img or text
+parse in bg img
+use default
+if function exists,& has custom logo, use custom logo
+*/
+	function get_skivvy_logo( $atts ) {
+		$attr = wp_parse_args( $atts, array(
+				'id'    => 'logo',
+				'class' => '',
+				'title' => esc_attr( get_bloginfo( 'name', 'display' ) ),
+				'alt'   => esc_attr( get_bloginfo( 'name', 'display' ) ),
+				'href'  => home_url( '/' ),
+				'itemprop-url'  => 'url',
+				'itemprop-logo' => 'logo',
+				'rel'      => 'home',
+		));
+
+
+		$attributes_link = array();
+		$attributes_link[] = 'id="'         . $attr['id']           .'"';
+		$attributes_link[] = 'class="'      . $attr['class']        .'"';
+		$attributes_link[] = 'title="'      . $attr['title']        .'"';
+		$attributes_link[] = 'itemprop="'   . $attr['itemprop-url'] .'"';
+		$attributes_link[] = 'rel="'        . $attr['rel']          .'"';
+
+		$attributes_img = array();
+		$attributes_img[]  = 'alt="'        . $attr['alt']          .'"';
+		$attributes_img[]  = 'src="'        . get_stylesheet_directory_uri() . '/img/logo.png"';
+
+		$output = '<a ' . join(' ', $attributes_link) . '>';
+			$output .= '<img ' . join(' ', $attributes_img) . '>';
+		$output .= '</a>';
+
+		return apply_filters('get_skivvy_logo', $output);
+	}
+
+
+
+
 // ---- get_the_thumbnail_caption() ---- //// Returns the caption for attached featured image featured image
 function get_the_thumbnail_caption() {
 	global $post;
