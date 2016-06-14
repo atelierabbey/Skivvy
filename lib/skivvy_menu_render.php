@@ -19,9 +19,10 @@ class skivvy_walker_main extends Walker_Nav_Menu {
 				# $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
 				$output .= '<ul class="' . $class_names . '">';
 		}
-		function end_lvl(&$output, $depth=0, $args=array()) {
+
+		function end_lvl( &$output, $depth = 0, $args = array() ) {
 			$output .= '</ul>';
-			# $output .= "\n";
+			$output .= "\n";
 		}
 
 		function start_el( &$output, $item, $depth, $args ) {
@@ -30,10 +31,10 @@ class skivvy_walker_main extends Walker_Nav_Menu {
 
 			// depth dependent classes
 			$depth_classes = array(
-				//( $depth == 0 ? 'navitem-item' : 'navitem-sub' ),
-				//( $depth >=2 ? 'sub-sub-menu-item' : '' ),
+			#	( $depth == 0 ? 'navitem-item' : 'navitem-sub' ),
+			#	( $depth >=2 ? 'sub-sub-menu-item' : '' ),
 				( $depth % 2 ? 'navitem-odd' : 'navitem-even' ),
-				//'menu-item-depth-' . $depth
+			#	'menu-item-depth-' . $depth
 			);
 			$depth_class_names = esc_attr( implode( ' ', $depth_classes ) );
 
@@ -45,7 +46,7 @@ class skivvy_walker_main extends Walker_Nav_Menu {
 			$output .= $indent . '<li class="navitem-'. $item->ID . ' ' . $depth_class_names . ' ' . $class_names . '">';
 
 			// link attributes
-			$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+			$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : ' title="' .esc_attr( apply_filters( 'the_title', $item->title, $item->ID ) ).'"';
 			$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
 			$attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
 			$attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
@@ -64,10 +65,10 @@ class skivvy_walker_main extends Walker_Nav_Menu {
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
 
-		function end_el(&$output, $item, $depth=0, $args=array()) {
+		function end_el( &$output, $item, $depth=0, $args=array() ) {
 			$output .= '</li>';
-			$output .= ' ';
-			# $output .= "\n";
+			#$output .= ' ';
+			$output .= "\n";
 		}
 }
 /*
