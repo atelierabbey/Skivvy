@@ -130,7 +130,11 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 }
 #logo {
 }
+#logo, #header nav {
+	display: inline-block;
+}
 #main-menu {
+	
 }
 #main-menu li a {
 	padding:3px 5px;
