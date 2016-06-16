@@ -85,6 +85,7 @@ if function exists,& has custom logo, use custom logo
 		$attributes_link[] = 'title="'      . $attr['title']        .'"';
 		$attributes_link[] = 'itemprop="'   . $attr['itemprop-url'] .'"';
 		$attributes_link[] = 'rel="'        . $attr['rel']          .'"';
+		$attributes_link[] = 'href="'       . $attr['href']         .'"';
 
 		$attributes_img = array();
 		$attributes_img[]  = 'alt="'        . $attr['alt']          .'"';
