@@ -7,9 +7,9 @@ $output .= '<header role="banner" id="header">';
 	$output .= '<div class="page-wrapper">';
 
 			// Logo
-				$output .= get_skivvy_logo( array(
-					'class' => 'alignleft',
-				));
+				$output .= '<a id="logo" class="alignleft" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">';
+					$output .= '<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">';
+				$output .= '</a>';
 
 			// Mobile Toggle
 				$output .= '<button id="mobile-toggle" class="alignright dont-print"></button>';
