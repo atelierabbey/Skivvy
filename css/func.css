@@ -52,13 +52,12 @@ ul.nobull > li > ul > li > ul > li { list-style:circle; }
 .dropdown .sub-menu li {float:none;position:relative;margin:0;padding:0;}
 .dropdown li:hover .sub-menu {display:block;}
 .dropdown .sub-menu .sub-menu {position: absolute;top:0;margin:0;padding:0;}
-.dropdown .sub-menu, .flyoutleft .sub-menu, .flyoutright .flyoutleft .sub-menu {left:auto;right:0;}
-.dropdown .sub-menu .sub-menu, .flyoutleft .sub-menu .sub-menu, .sub-menu .flyoutleft .sub-menu,.flyoutright .flyoutleft .sub-menu .sub-menu,.flyoutright .sub-menu .flyoutleft .sub-menu  {left:auto;right:100%;}
-.flyoutright .sub-menu, .flyoutright .sub-menu, .flyoutleft .flyoutright .sub-menu {left:0;right:auto;}
-.flyoutright .sub-menu .sub-menu, .sub-menu .flyoutright .sub-menu,.flyoutleft .flyoutright .sub-menu .sub-menu, .flyoutleft .sub-menu .flyoutright .sub-menu {left:100%;right:auto;}
+.dropdown .sub-menu, .flyout-left .sub-menu, .flyout-right .flyout-left .sub-menu {left:auto;right:0;}
+.dropdown .sub-menu .sub-menu, .flyout-left .sub-menu .sub-menu, .sub-menu .flyout-left .sub-menu,.flyout-right .flyout-left .sub-menu .sub-menu,.flyout-right .sub-menu .flyout-left .sub-menu  {left:auto;right:100%;}
+.flyout-right .sub-menu, .flyout-right .sub-menu, .flyout-left .flyout-right .sub-menu {left:0;right:auto;}
+.flyout-right .sub-menu .sub-menu, .sub-menu .flyout-right .sub-menu,.flyout-left .flyout-right .sub-menu .sub-menu, .flyout-left .sub-menu .flyout-right .sub-menu {left:100%;right:auto;}
 .dropdown.animated .sub-menu {display:block;position:absolute;visibility:hidden;z-index:1;opacity:0;transition: opacity 0.5s ease 0s;}
 .dropdown.animated li:hover > .sub-menu {visibility:visible;opacity: 1;}
-
 /* WP friendly */
 img.alignleft {margin-right: 10px;}
 img.alignright {margin-left: 10px;}
