@@ -1,9 +1,9 @@
-<?php
+<?php # 2017-08-31
 
 //// ---- Add featured images to RSS feed ---- ////
 	function rss_post_thumbnail($content) {
 		global $post;
-		if(has_post_thumbnail($post->ID)) {
+		if ( has_post_thumbnail($post->ID) ) {
 			$content = '<p>' . get_the_post_thumbnail($post->ID) .'</p>' . get_the_content();
 		}
 		return $content;
@@ -16,25 +16,25 @@
 // Skivvy HTML Classes
 	function html_classes( $inlineclass = array() ) {
 
-	$classes = array();
+		$classes = array();
 
-	if ( ! empty( $inlineclass ) ) {
-		if ( !is_array( $inlineclass ) )
-			$inlineclass = preg_split( '#\s+#', $inlineclass );
-		$classes = array_merge( $classes, $inlineclass );
+		if ( ! empty( $inlineclass ) ) {
+			if ( !is_array( $inlineclass ) )
+				$inlineclass = preg_split( '#\s+#', $inlineclass );
+			$classes = array_merge( $classes, $inlineclass );
+		}
+
+		$classes = array_map( 'esc_attr', $classes );
+		$all_classes = apply_filters( 'html_classes', $classes, $inlineclass );
+
+		echo join( ' ', $all_classes );
+
 	}
-
-	$classes = array_map( 'esc_attr', $classes );
-	$all_classes = apply_filters( 'html_classes', $classes, $inlineclass );
-
-	// Separates classes with a single space, collates classes
-	echo join( ' ', $all_classes );
-}
 
 
 // Browser Selector - http://www.useragentstring.com/pages/useragentstring.php
 	function css_browser_selector( $classes ) {
-
+			/*
 			// $ua = null
 			$ua = ($ua) ? strtolower($ua) : strtolower($_SERVER['HTTP_USER_AGENT']);
 
@@ -100,7 +100,7 @@
 			} else if(strstr($ua, 'x11') || strstr($ua, 'linux')) {
 					$b[] = 'linux';
 			}
-
+			//*/
 			return $b;
 
 
@@ -207,6 +207,4 @@
 		}
 	}
 		*/
-} add_filter('html_classes','css_browser_selector', 10 );
-
-?>
+} #add_filter('html_classes','css_browser_selector', 10 );

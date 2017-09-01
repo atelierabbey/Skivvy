@@ -1,22 +1,10 @@
-<?php # 10Nov15
-//		Menu
-//		WP_HEAD()
-//		Javascripts & Styles
-//		HTML Classes
-//		Body Classes
-//		WP_FOOT()
-//		Widgets Area
-//		MIME Types
-//		Theme Setup
-
-
-
+<?php # 2017-08-31
 
 // Menus
 	register_nav_menus( array(
 		'main' => __( 'Main Menu' ),
 		'mobile' =>  __( 'Mobile Menu' ),
-		'sitemap' => __( 'Site Map' ),
+	#	'sitemap' => __( 'Site Map' ),
 	) );
 
 
@@ -158,7 +146,7 @@
 	/*
 	function skivvy_register_sidebars() {
 		register_sidebar( array(
-			'name' => __( 'Sidebar name', 'skivvy' ),
+			'name' => __( 'Sidebar', 'skivvy' ),
 			'id' => 'primary-widget-area',
 			'description' => 'The primary widget area',
 			'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
