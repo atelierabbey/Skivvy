@@ -20,5 +20,3 @@ get_header();
 	echo '</section>';
 
 get_footer();
-
-?>
