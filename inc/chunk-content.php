@@ -79,7 +79,7 @@ if ( have_posts() ) :
 
 						// Post excerpt
 							echo '<div class="post-snippet">'.
-									get_the_excerpt().
+									get_the_snippet().
 								 '</div>';
 
 				echo '</article>';
@@ -126,4 +126,4 @@ else :
 	}
 	echo $output;
 
-endif; ?>
+endif;

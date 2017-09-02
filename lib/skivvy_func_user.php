@@ -30,15 +30,27 @@
 		$text = str_replace('\]\]\>', ']]&gt;', $text);
 	    $text = preg_replace('@<script[^>]*?>.*?</script>@si', '', $text);
 	    $text = strip_tags($text, '<p>');
-	    $words = explode(' ', $text, $attr['length'] + 1);
-		if ( count($words) > $attr['length'] ) {
-			array_pop($words);
-			array_push($words, '...');
-			$text = implode(' ', $words);
-		}
+
+	    $cutcompare = strtolower($attr['cut']);
+	    if ( $cutcompare == 'letters' || $cutcompare == 'letter' ) {
+
+	    	$text = substr( $text, 0, $attr['length'] );
+
+	    } else {
+	    	
+			$words = explode(' ', $text, $attr['length'] + 1);
+			if ( count($words) > $attr['length'] ) {
+				array_pop($words);
+				array_push($words, '...');
+				$text = implode(' ', $words);
+			}
+
+	    }
+
 		if ( isset($attr['more']) ) {
 			$text .= '<a href="' . get_permalink( get_the_ID() ) . '" class="snippet-more">' . $attr['more'] . '</a>';
 		}
+
 		return $text;
 
 	}
