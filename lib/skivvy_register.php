@@ -63,6 +63,7 @@
 	function skivvy_scriptnstyle_enqueuer() {
 
 		// SCRIPTS - wp_register_script( $handle, $src, $deps, $ver, $in_footer );
+			wp_register_script( 'skivvy-polyfill', get_stylesheet_directory_uri(). '/js/polyfill.js', array('jquery'), '1', true );
 			wp_register_script( 'skivvy-custom', get_stylesheet_directory_uri(). '/js/custom.js', array('jquery'), '1', true );
 
 		// STYLES - wp_register_style( $handle, $src, $deps, $ver, $media );
@@ -72,6 +73,7 @@
 
 		// ENQUEUE
 			// NOTE: Comment out here if undesired.
+			#	wp_enqueue_script('skivvy-polyfill');
 				wp_enqueue_script('skivvy-custom');
 				wp_enqueue_style ('skivvy-print');
 				wp_enqueue_style ('skivvy-style');
