@@ -9,10 +9,10 @@
 			return '';
 
 		$attr = wp_parse_args( $atts, array(
-			'more'           => NULL,
-			'length'         => 55,
-			'cut'            => 'words', // Words or Letters
-			'ignoreexcerpt'  => false
+			'more'              => NULL,
+			'length'            => 55,
+			'cut_by_character'  => FALSE, // Words or Letters
+			'ignoreexcerpt'     => false
 		));
 
 
@@ -31,8 +31,7 @@
 	    $text = preg_replace('@<script[^>]*?>.*?</script>@si', '', $text);
 	    $text = strip_tags($text, '<p>');
 
-	    $cutcompare = strtolower($attr['cut']);
-	    if ( $cutcompare == 'letters' || $cutcompare == 'letter' ) {
+	    if ( $attr['cut_by_character'] ) {
 
 	    	$text = substr( $text, 0, $attr['length'] );
 
