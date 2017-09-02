@@ -15,7 +15,7 @@
 
 	// POST DATE
 	
-		the_time('F j, Y');
+		the_time(get_option('date_format'));
 		/* printf( __('Published %2$s', 'skivvy'),
 				'meta-prep meta-prep-entry-date',
 				sprintf( '<abbr title="%1$s">%2$s</abbr>',
