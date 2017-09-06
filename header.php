@@ -39,7 +39,7 @@
 							'menu_id'         => 'mobile-nav',
 							'menu_class'      => 'nobull textcenter clearfix',
 							'items_wrap'      => '<ul style="display:none;" id="%1$s" class="%2$s">%3$s</ul>',
-							'depth'           => -1,
+							'depth'           => 2,
 						));
 
 				$output .= '</nav>';

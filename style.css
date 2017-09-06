@@ -127,11 +127,9 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 }
 #logo {
 }
-#logo, #header nav {
-	display: inline-block;
+#header nav {
 }
 #main-menu {
-	
 }
 #main-menu li a {
 	padding:3px 5px;
@@ -151,15 +149,6 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 #main-menu .sub-menu li a:hover {
 	background-color:#ddd;
 }
-#mobile-toggle {
-	background-color:transparent;
-	background-image: url('img/icon-menu.png');
-	border-radius: 0;
-	height: 32px;
-	width: 38px;
-}
-#mobile-nav {
-}
 /* ------------------------------------------------------------------------------------- FOOTER ----------------- */
 #footer {
 }
@@ -171,9 +160,17 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	text-decoration:none;
 }
 /* ------------------------------------------------------------------------------------- MOBILE ----------------- */
-@media all and (min-width: 1025px) {
-
-}
+#mobile-toggle {background-color:transparent;background-image: url('img/icon-menu.png');border-radius: 0;height: 32px;width: 38px;}
+#mobile-nav {margin:0;}
+#mobile-nav a:hover,#mobile-nav li.menu-item-has-children:hover {background-color: #efefef;}
+#mobile-nav li.menu-item-has-children {cursor: pointer;position: relative;}
+#mobile-nav li.menu-item-has-children > a {pointer-events: none;}
+#mobile-nav > li.menu-item-has-children.menu-closed > a:after {content: '+';}
+#mobile-nav > li.menu-item-has-children > a:after {content: '-';position: absolute;right: 10px;}
+#mobile-nav .sub-menu {padding: 0;border-top: 1px solid #ddd;border-bottom: 2px solid #ddd;overflow: hidden;}
+#mobile-nav .sub-menu a {}
+#mobile-nav .sub-menu li a:hover {}
+#mobile-nav .sub-menu > li {list-style: none;}
 @media all and (max-width: 1024px) {
 	.two_third, .three_fourth, .five_sixth, .two_fifth, .three_fifth, .four_fifth {
 		margin:0 auto;
@@ -190,7 +187,7 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	#mobile-nav,#mobile-toggle {
 		display: block;
 	}
-	.fullwidth .one_fourth:nth-child(3), .fullwidth .one_fifth:nth-child(4), .fullwidth .one_sixth:nth-child(4) {
+	* > .one_fourth:nth-child(2n+1), * > .one_fifth:nth-child(5n+1), * > .one_sixth:nth-child(6n+1) {
 		clear: left;
 	}
 	.one_half, .one_third.last {
@@ -209,10 +206,10 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	}
 }
 @media all and (max-width: 640px)  {
-	.fullwidth .one_fifth:nth-child(4) {
+	* > .one_fifth:nth-child(5n+1) {
 		clear:none;
 	}
-	.fullwidth .one_fifth:nth-child(3) {
+	* > .one_fifth:nth-child(2n+1), * > .one_fifth:nth-child(4n+1) {
 		clear: left;
 	}
 	.one_third, .one_fifth.last {
@@ -228,10 +225,10 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	}
 }
 @media all and (max-width: 480px)  {
-	.fullwidth .one_fifth:nth-child(3) {
+	* > .one_fifth:nth-child(4n+1) {
 		clear:none;
 	}
-	.fullwidth .one_fifth:nth-child(3) {
+	* > .one_sixth:nth-child(2n+1), * > .one_sixth:nth-child(4n+1) {
 		clear: left;
 	}
 	.one_fourth {
@@ -244,9 +241,6 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	}
 	.one_sixth {
 		width:50%;
-	}
-	.fullwidth .one_sixth:nth-child(2n+1) {
-		clear: left;
 	}
 }
 @media all and (max-width: 360px) {
