@@ -187,7 +187,7 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	#mobile-nav,#mobile-toggle {
 		display: block;
 	}
-	* > .one_fourth:nth-child(2n+1), * > .one_fifth:nth-child(5n+1), * > .one_sixth:nth-child(6n+1) {
+	* > .one_fourth:nth-of-type(2n+1), * > .one_fifth:nth-of-type(5n+1), * > .one_sixth:nth-of-type(6n+1) {
 		clear: left;
 	}
 	.one_half, .one_third.last {
@@ -206,10 +206,10 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	}
 }
 @media all and (max-width: 640px)  {
-	* > .one_fifth:nth-child(5n+1) {
+	* > .one_fifth:nth-of-type(5n+1) {
 		clear:none;
 	}
-	* > .one_fifth:nth-child(2n+1), * > .one_fifth:nth-child(4n+1) {
+	* > .one_fifth:nth-of-type(2n+1), * > .one_fifth:nth-of-type(4n+1) {
 		clear: left;
 	}
 	.one_third, .one_fifth.last {
@@ -225,10 +225,10 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 	}
 }
 @media all and (max-width: 480px)  {
-	* > .one_fifth:nth-child(4n+1) {
+	* > .one_fifth:nth-of-type(4n+1) {
 		clear:none;
 	}
-	* > .one_sixth:nth-child(2n+1), * > .one_sixth:nth-child(4n+1) {
+	* > .one_sixth:nth-of-type(2n+1), * > .one_sixth:nth-of-type(4n+1) {
 		clear: left;
 	}
 	.one_fourth {
