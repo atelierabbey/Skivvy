@@ -205,12 +205,8 @@
 			#	add_theme_support( 'post-formats', array('aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video') );
 			#	add_theme_support( 'woocommerce' );
 
-
-
 		// Add Widget/sidebar functionality
 			#	add_filter('widget_text', 'do_shortcode'); // Widget Support - Shortcodes
-			#	add_filter('widget_text', array( $wp_embed, 'run_shortcode' ), 8 );
-			#	add_filter('widget_text', array( $wp_embed, 'autoembed'), 8 ); // Widget Support - oEmbed & oEmbed 2
 
 	} add_action( 'after_setup_theme', 'skivvy_setup' );
 
