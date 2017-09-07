@@ -4,7 +4,7 @@
 <body id="page-<?php the_ID(); ?>" <?php body_class(); ?>>
 <?php
 
-	$output .= '<header role="banner" id="header">';
+	$output .= '<header id="header">';
 		$output .= '<div class="page-wrapper">';
 
 			// Logo
@@ -16,7 +16,7 @@
 			// Mobile Toggle
 				$output .= '<button id="mobile-toggle" class="alignright dont-print"></button>';
 
-				$output .= '<nav role="navigation" class="dont-print">';
+				$output .= '<nav id="main-nav" class="dont-print">';
 
 					// Main Menu
 						$output .= wp_nav_menu( array(
@@ -37,7 +37,7 @@
 							'echo'            => false,
 							'container'       => false,
 							'theme_location'  => 'mobile',
-							'menu_id'         => 'mobile-nav',
+							'menu_id'         => 'mobile-menu',
 							'menu_class'      => 'nobull textcenter clearfix',
 							'items_wrap'      => '<ul style="display:none;" id="%1$s" class="%2$s">%3$s</ul>',
 							'depth'           => 2,

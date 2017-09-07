@@ -4,7 +4,7 @@ get_header();
 
 	echo '<section id="content">';
 		echo '<div class="page-wrapper">';
-				echo '<main role="main" id="main-content" class="clearfix">';
+				echo '<main id="main-content" class="clearfix">';
 
 						if ( ! is_front_page() ) {
 							get_template_part( 'inc/chunk' , 'title' );
