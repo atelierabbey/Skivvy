@@ -8,8 +8,9 @@
 		$output .= '<div class="page-wrapper">';
 
 			// Logo
-				$output .= '<a id="logo" class="alignleft" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">';
-					$output .= '<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">';
+				$output .= '<a id="logo" class="alignleft imgreplace" href="' . home_url( '/' ) . '" title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" rel="home">';
+					$output .= get_bloginfo( 'name', 'display' );
+					#$output .= '<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">';
 				$output .= '</a>';
 
 			// Mobile Toggle

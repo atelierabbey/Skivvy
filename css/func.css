@@ -14,6 +14,7 @@ a{text-decoration:none;}
 .clearfix:after,.container_12:after{clear:both;}
 .clearfix{*zoom:1;}
 .preloader,.screenreader{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+.imgreplace{font-size:0;color:rgba(0,0,0,0);}
 .hide,.hidden{display:none;}
 .greyscale{filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);filter:url(func.svg#greyscale);filter: gray;-webkit-filter:grayscale(1);}
 .blurry{filter:url(func.svg#blurry);-webkit-filter:blur(1px);filter:blur(1px);}

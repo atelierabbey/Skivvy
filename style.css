@@ -126,6 +126,10 @@ button, a.button, .button, html input[type="button"], input[type="reset"], input
 #header {
 }
 #logo {
+	display:inline-block;
+	background:url('img/logo.png') no-repeat scroll 0 0 / contain;
+	width:195px;
+	height:66px;
 }
 #header nav {
 }
