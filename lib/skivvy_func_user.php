@@ -1,4 +1,84 @@
-<?php # 2017-08-31
+<?php # 2017-09-09
+
+// Skivvy Logo
+	function get_skivvy_logo( $atts ) {
+		$attr = wp_parse_args( $atts, array(
+				'id'    => 'logo',
+				'class' => '',
+				'title' => esc_attr( get_bloginfo( 'name', 'display' ) ),
+				'alt'   => esc_attr( get_bloginfo( 'name', 'display' ) ),
+				'href'  => home_url( '/' ),
+				'itemprop-url'  => 'url',
+				'itemprop-logo' => 'logo',
+				'rel'      => 'home',
+				'custom'   => true,
+				'src'      => get_stylesheet_directory_uri() . '/img/logo.png',
+				'output'   => 'img', // img or text
+				'link-data' => NULL,
+				'img-data' => NULL,
+		));
+		$attributes_link = array();
+		$attributes_link[] = 'id="'         . $attr['id']           .'"';
+		$attributes_link[] = 'class="'      . $attr['class']        .'"';
+		$attributes_link[] = 'title="'      . $attr['title']        .'"';
+		$attributes_link[] = 'itemprop="'   . $attr['itemprop-url'] .'"';
+		$attributes_link[] = 'rel="'        . $attr['rel']          .'"';
+		$attributes_link[] = 'href="'       . $attr['href']         .'"';
+
+		if ( isset($attr['link-data']) ) {
+			if ( is_array($attr['link-data']) ) {
+				foreach ($attr['link-data'] as $key => $value) {
+					$attributes_link[] = 'data-'. $key . '="' . $value .'"';
+				}
+			} else {
+				$attributes_link[] = $attr['link-data'];
+			}
+		}
+
+		if ( has_custom_logo() && $attr['custom'] ) {
+			$custom_logo_id = get_theme_mod( 'custom_logo' );
+			$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+			$attr['src'] = $image[0];
+		}
+
+		switch ( $attr['output'] ) {
+
+			case 'img':
+					$attributes_img = array();
+
+					$attributes_img[]  = 'alt="'        . $attr['alt']          .'"';
+					$attributes_img[]  = 'src="'        . $attr['src']          .'"';
+
+					if ( isset($attr['img-data']) ) {
+						if ( is_array($attr['img-data']) ) {
+							foreach ($attr['img-data'] as $key => $value) {
+								$attributes_img[] = 'data-'. $key . '="' . $value .'"';
+							}
+						} else {
+							$attributes_img[] = $attr['img-data'];
+						}
+					}
+
+					$middle = '<img ' . join(' ', $attributes_img) . '>';
+				break;
+
+			case 'bgimg':
+				$attributes_link[] = 'style="background-image:url(' . $attr['src'] . ')"';
+			case 'text':
+			default:
+			$middle = $attr['alt'];
+				break;
+		}
+
+
+		$output = '<a ' . join(' ', $attributes_link) . '>';
+			$output .= $middle;
+		$output .= '</a>';
+
+		return apply_filters('get_skivvy_logo', $output);
+
+	}
+
 
 // get_the_snippet()
 	function get_the_snippet( $atts = array() ) {
