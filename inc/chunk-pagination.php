@@ -12,13 +12,13 @@
 			if ( is_home() || is_day() || is_month() || is_year() || is_tax() || is_category() || is_tag() || is_author() || is_archive() || is_search() ) {
 
 						echo $next_start;
-							next_posts_link ( __('Next Page' , 'skivvy') );
+							previous_posts_link ( __('Previous Page' , 'skivvy') );
 						echo $next_end;
 
 						# posts_nav_link(' | ','&larr; Previous Page','Next Page &rarr;');
 
 						echo $prev_start;
-							previous_posts_link ( __('Previous Page' , 'skivvy') );
+							next_posts_link ( __('Next Page' , 'skivvy') );
 						echo $prev_end;
 
 			} elseif ( is_attachment() ) {
