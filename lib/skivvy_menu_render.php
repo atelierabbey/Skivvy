@@ -44,7 +44,7 @@ class skivvy_walker_main extends Walker_Nav_Menu {
 			$output .= "\n";
 		}
 
-		function start_el( &$output, $item, $depth, $args ) {
+		function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 
 			global $wp_query;
 			$indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
