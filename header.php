@@ -4,7 +4,7 @@
 <body id="page-<?php the_ID(); ?>" <?php body_class(); ?>>
 <?php
 
-	$output .= '<header id="header">';
+	$output = '<header id="header">';
 		$output .= '<div class="page-wrapper">';
 
 			// Logo
