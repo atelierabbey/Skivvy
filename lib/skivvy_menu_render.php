@@ -22,7 +22,7 @@ function skivvy_nav_classes( $classes, $item, $args, $depth ) {
 
 class skivvy_walker_main extends Walker_Nav_Menu {
   
-		function start_lvl( &$output, $depth ) {
+		function start_lvl( &$output, $depth = 0, $args = array() ) {
 			// depth dependent classes
 				$indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
 				$display_depth = $depth + 1; // because it counts the first submenu as 0
@@ -39,7 +39,7 @@ class skivvy_walker_main extends Walker_Nav_Menu {
 				$output .= '<ul class="' . $class_names . '">';
 		}
 
-		function end_lvl( &$output, $depth = 0, $args = array() ) {
+		function end_lvl( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 			$output .= '</ul>';
 			$output .= "\n";
 		}
