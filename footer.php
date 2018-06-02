@@ -1,6 +1,6 @@
 <?php
 
-	$output .= '<footer id="footer">';
+	$output = '<footer id="footer">';
 
 		$output .= '<div class="page-wrapper">';
 
